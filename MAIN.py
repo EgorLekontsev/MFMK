@@ -1,8 +1,25 @@
 import tkinter as tk
 from datetime import datetime
 
-
-class App(tk.Tk):
+'''
+Frame1 - Экран №1 - Главный экран 
+Menu - Меню - Настройки
+Frame2 - Экран №2 - Планировщик установок 
+Frame3 - Экран №3 - Журнал
+Frame4 - Экран №4 - Мониторинг(Журнал)
+Frame5 - Экран №5 - Мониторинг(История)
+Frame6 - Экран №6 - Мониторинг(Тренды)
+Frame7 - Экран №7 - Счетчик эл.(Настройки)
+Frame8 - Экран №8 - Счетчик эл.(Тарифы)
+Frame9 - Экран №9 - Счетчик эл.(История электроэнергии)
+Frame10 - Экран №10 - Счетчик эл.(Тренды электроэнергии)
+Frame11 - Экран №11 - ПЧ(ABX)
+Frame12 - Экран №12 - ПЧ(ВВ ПЧ 1-3)
+Frame13 - Экран №13 - ПЧ(ВВ ПЧ 4-6)
+Frame14 - Экран №14 - ПЧ(Настройки ПЧ)
+Frame15 - Экран №15 - Насосы(Настройки)
+'''
+class App(tk.Tk): # Основной класс с характеристиками окна
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -18,8 +35,11 @@ class App(tk.Tk):
         container.grid_columnconfigure(0, weight=1)
 
         self.frames = {}
-
-        for F in (Frame1, Frame2):
+        '''
+        При добавлении фрейма, обновить кортеж снизу!!!
+        Так же не забыть создать класс для нового фрейма, по аналогии!!!
+        '''
+        for F in (Frame1, Menu, Frame2):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -29,46 +49,60 @@ class App(tk.Tk):
 
         self.update_clock()
 
-    def show_frame(self, page_name):
+    def show_frame(self, page_name): # Смена фреймов
         frame = self.frames[page_name]
         frame.tkraise()
 
-        if page_name == "Frame1":
-            self.title("Главный экран")  # Изменяем название окна для Frame1
-        elif page_name == "Frame2":
-            self.title("Настройки")  # Изменяем название окна для Frame2
+        if page_name == "Frame1": # Смена названия окна
+            self.title("Главный экран")
+        elif page_name == "Menu":
+            self.title("Настройки")
 
-    def update_clock(self):
+    def update_clock(self): # Часики
         current_time = datetime.now().strftime('%d/%m/%y %H:%M')
         for frame_name in self.frames:
             self.frames[frame_name].update_clock(current_time)
-        self.after(1000, self.update_clock)
+        self.after(1000, self.update_clock) # Тик-так
 
 
-class Frame1(tk.Frame):
+class Frame1(tk.Frame): #Экран №1
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
 
-        button = tk.Button(self, text="Настройки", command=lambda: controller.show_frame("Frame2"))
-        button.pack(pady=10)
-
+        button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Menu"))
+        button.place(x=0, y=0)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 
-class Frame2(tk.Frame):
+class Menu(tk.Frame): #Меню
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
 
-        button = tk.Button(self, text="Главный экран", command=lambda: controller.show_frame("Frame1"))
-        button.pack(pady=10)
+        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Frame1"))
+        button.place(x=0, y=0)
+        button2 = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Frame1"))
+        button2.place(x=0, y=0)
 
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
+
+class Frame2(tk.Frame): #Экран №2
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, background='black')
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.pack(anchor='ne', padx=10, pady=10)
+
+        button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button.place(x=0, y=0)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
