@@ -39,7 +39,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         При добавлении фрейма, обновить кортеж снизу!!!
         Так же не забыть создать класс для нового фрейма, по аналогии!!!
         '''
-        for F in (Frame1, Menu, Frame2):
+        for F in (Frame1, Menu, Frame2, Frame9):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -81,16 +81,35 @@ class Frame1(tk.Frame): #Экран №1
 class Menu(tk.Frame): #Меню
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 9))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
-
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
                            relief="groove", command=lambda: controller.show_frame("Frame1"))
         button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"))
-        button2.place(x=0, y=0)
-
+        button2 = tk.Button(self, text="Уставки", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=35)
+        button3 = tk.Button(self, text="Мониторинг", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button3.place(x=0, y=70)
+        button4 = tk.Button(self, text="Журнал", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button4.place(x=0, y=105)
+        button5 = tk.Button(self, text="Настройки станции", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button5.place(x=0, y=140)
+        button6 = tk.Button(self, text="Инженерное меню", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button6.place(x=0, y=175)
+        button7 = tk.Button(self, text="Настройки панели", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button7.place(x=0, y=210)
+        button8 = tk.Button(self, text="Контакты", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button8.place(x=0, y=245)
+        button9 = tk.Button(self, text="Клавиатура", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame9"))
+        button9.place(x=0, y=245)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
@@ -106,6 +125,38 @@ class Frame2(tk.Frame): #Экран №2
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
+class Frame9(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent, background='black')
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 9))
+        self.clock_label.pack(anchor='ne', padx=10, pady=10)
+
+        text_entry = tk.Entry(self, fg='white', bg='black', font=('Roboto Bold', 12))
+        text_entry.pack(pady=20)
+
+        keyboard_rows = [
+            ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+            ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+            ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
+        ]
+
+        for row in keyboard_rows:
+            row_frame = tk.Frame(self)
+            row_frame.pack()
+
+            for char in row:
+                button = tk.Button(row_frame, text=char, fg='white', bg='black', font=('Roboto Bold', 12), width=5)
+                button.pack(side=tk.LEFT, padx=5, pady=5)
+
+        back_button = tk.Button(self, text='Backspace', fg='white', bg='black', font=('Roboto Bold', 12))
+        back_button.pack(pady=10)
+
+        button_close = tk.Button(self, text="Закрыть", fg='white', bg='black', font=('Roboto Bold', 12),
+                                 relief="groove", command=lambda: controller.show_frame("Frame1"))
+        button_close.pack(pady=10)
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
 
 app = App()
 app.mainloop()
