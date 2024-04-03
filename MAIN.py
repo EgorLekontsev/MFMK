@@ -2,22 +2,27 @@ import tkinter as tk
 from datetime import datetime
 
 '''
-Frame1 - Экран №1 - Главный экран 
-Menu - Меню - Настройки
-Frame2 - Экран №2 - Планировщик установок 
-Frame3 - Экран №3 - Журнал
-Frame4 - Экран №4 - Мониторинг(Журнал)
-Frame5 - Экран №5 - Мониторинг(История)
-Frame6 - Экран №6 - Мониторинг(Тренды)
-Frame7 - Экран №7 - Счетчик эл.(Настройки)
-Frame8 - Экран №8 - Счетчик эл.(Тарифы)
-Frame9 - Экран №9 - Счетчик эл.(История электроэнергии)
-Frame10 - Экран №10 - Счетчик эл.(Тренды электроэнергии)
-Frame11 - Экран №11 - ПЧ(ABX)
-Frame12 - Экран №12 - ПЧ(ВВ ПЧ 1-3)
-Frame13 - Экран №13 - ПЧ(ВВ ПЧ 4-6)
-Frame14 - Экран №14 - ПЧ(Настройки ПЧ)
-Frame15 - Экран №15 - Насосы(Настройки)
+Frame1 - Главный экран 
+Menu - Настройки
+Frame2 - Планировщик уставок
+Frame3 - Мониторинг(Тренды онлайн)
+Frame4 - Мониторинг(Тренды истории)
+Frame5 - Мониторинг(Наработки насосов)
+Frame6 - Журнал(Текущие события)
+Frame7 - Журнал(Журнал история)
+Frame8 - Журнал(Журнал изменений)
+Frame9 - Настройки станции(Параметры двигателей)
+Frame10 - Настройки станции(Настройки датчиков)
+Frame11 - Настройки станции(Параметры насосов общ.)
+Frame12 - Настройки станции(вкл. доп. насосов)
+Frame13 - Настройки станции(откл. доп. насосов)
+Frame14 - Настройки станции(Опции)
+Frame15 - Настройки станции(Аварийные режимы)
+Frame16 - Инженерное меню(Настройки ПИД-рег.)
+Frame17 - Инженерное меню(PLC)
+Frame18 - Инженерное меню(Бэкап)
+Frame19 - Настройки панели
+Frame20 - Контакты
 '''
 class App(tk.Tk): # Основной класс с характеристиками окна
     def __init__(self, *args, **kwargs):
@@ -56,7 +61,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         if page_name == "Frame1": # Смена названия окна
             self.title("Главный экран")
         elif page_name == "Menu":
-            self.title("Настройки")
+            self.title("Меню")
 
     def update_clock(self): # Часики
         current_time = datetime.now().strftime('%d/%m/%y %H:%M')
@@ -68,10 +73,10 @@ class App(tk.Tk): # Основной класс с характеристика�
 class Frame1(tk.Frame): #Экран №1
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 9))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
 
-        button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 12),
+        button = tk.Button(self, text="Меню", fg='white', bg='black', font=('Roboto Bold', 12),
                            relief="groove", command=lambda: controller.show_frame("Menu"))
         button.place(x=0, y=0)
     def update_clock(self, current_time):
@@ -81,15 +86,32 @@ class Frame1(tk.Frame): #Экран №1
 class Menu(tk.Frame): #Меню
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 9))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
-
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
                            relief="groove", command=lambda: controller.show_frame("Frame1"))
         button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"))
-        button2.place(x=0, y=0)
+        button2 = tk.Button(self, text="Уставки", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=35)
+        button3 = tk.Button(self, text="Мониторинг", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button3.place(x=0, y=70)
+        button4 = tk.Button(self, text="Журнал", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button4.place(x=0, y=105)
+        button5 = tk.Button(self, text="Настройки станции", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button5.place(x=0, y=140)
+        button6 = tk.Button(self, text="Инженерное меню", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button6.place(x=0, y=175)
+        button7 = tk.Button(self, text="Настройки панели", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button7.place(x=0, y=210)
+        button8 = tk.Button(self, text="Контакты", fg='white', bg='black', font=('Roboto Bold', 12),
+                            relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button8.place(x=0, y=245)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -97,11 +119,11 @@ class Menu(tk.Frame): #Меню
 class Frame2(tk.Frame): #Экран №2
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 9))
         self.clock_label.pack(anchor='ne', padx=10, pady=10)
 
-        button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame2"))
+        button = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
+                           relief="groove", command=lambda: controller.show_frame("Menu"))
         button.place(x=0, y=0)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
