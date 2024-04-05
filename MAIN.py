@@ -1,5 +1,7 @@
 import tkinter as tk
+from tkinter import PhotoImage, Canvas
 from datetime import datetime
+from PIL import Image, ImageTk
 
 '''
 Frame1 - Главный экран 
@@ -51,7 +53,6 @@ class App(tk.Tk): # Основной класс с характеристика�
             frame.grid(row=0, column=0, sticky="nsew")
 
         self.show_frame("Frame1")
-
         self.update_clock()
 
     def show_frame(self, page_name): # Смена фреймов
@@ -116,6 +117,7 @@ class App(tk.Tk): # Основной класс с характеристика�
 class Frame1(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
+
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
