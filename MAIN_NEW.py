@@ -135,7 +135,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         self.after(1000, self.update_clock) # Тик-так
 
 
-class Frame1(tk.Frame):
+class Frame1_1(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
         self.canvas = Canvas(
@@ -209,7 +209,7 @@ class Menu(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1"))
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
         self.SetpointPlanner_img = PhotoImage(file=r"images\Buttons\SetpointPlanner.png")
         self.SetpointPlanner_button = self.canvas.create_image(100, 90, image=self.SetpointPlanner_img)
         self.canvas.tag_bind(self.SetpointPlanner_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
@@ -270,7 +270,7 @@ class Frame2(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1"))
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
         self.SetpointPlanner_img = PhotoImage(file=r"images\Buttons\SetpointPlannerOpen.png")
         self.SetpointPlanner_button = self.canvas.create_image(100, 90, image=self.SetpointPlanner_img)
         self.Monitoring_img = PhotoImage(file=r"images\Buttons\Monitoring.png")
@@ -302,7 +302,7 @@ class Frame3(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -328,7 +328,7 @@ class Frame4(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -354,7 +354,7 @@ class Frame5(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -379,7 +379,7 @@ class Frame6(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -404,7 +404,7 @@ class Frame7(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -429,7 +429,7 @@ class Frame8(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -454,7 +454,7 @@ class Frame9(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -491,7 +491,7 @@ class Frame10(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -509,7 +509,7 @@ class Frame11(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -528,7 +528,7 @@ class Frame12(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -546,7 +546,7 @@ class Frame13(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -602,7 +602,7 @@ class Frame16(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -628,7 +628,7 @@ class Frame17(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -654,7 +654,7 @@ class Frame18(tk.Frame):
         self.clock_label.place(x=680, y=5)
 
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
+                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
         button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
                             relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
@@ -689,7 +689,7 @@ class Frame19(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1"))
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
         self.SetpointPlanner_img = PhotoImage(file=r"images\Buttons\SetpointPlanner.png")
         self.SetpointPlanner_button = self.canvas.create_image(100, 90, image=self.SetpointPlanner_img)
         self.canvas.tag_bind(self.SetpointPlanner_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
@@ -743,7 +743,7 @@ class Frame20(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1"))
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
         self.SetpointPlanner_img = PhotoImage(file=r"images\Buttons\SetpointPlanner.png")
         self.SetpointPlanner_button = self.canvas.create_image(100, 90, image=self.SetpointPlanner_img)
         self.canvas.tag_bind(self.SetpointPlanner_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
