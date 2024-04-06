@@ -1,24 +1,3 @@
-'''
-from tkinter import *
-def btn_clicked() -> None:
-    print("Button Clicked")
-window = Tk()
-window.geometry("800x480")
-window.configure(bg="#161616")
-canvas = Canvas(
-    window,
-    bg="#161616",
-    height=480,
-    width=800,
-    bd=0,
-    highlightthickness=0,
-    relief="ridge")
-canvas.place(x=0, y=0)
-background_img = PhotoImage(file=r"images\MainScreen\stop_icon.png")
-background = canvas.create_image(675, 20, image=background_img)
-window.resizable(False, False)
-window.mainloop()
-'''
 import tkinter as tk
 from tkinter import PhotoImage, Canvas
 from datetime import datetime
@@ -29,7 +8,7 @@ from subprocess import check_output
 from socket import socket, AF_INET, SOCK_DGRAM
 
 '''
-Frame1 - Главный экран 
+Frame1 - Главный экран - 1 2 3 4 фреймы индикаторов
 Menu - Настройки
 Frame2 - Планировщик уставок
 Frame3 - Мониторинг(Тренды онлайн)
@@ -71,7 +50,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         При добавлении фрейма, обновить кортеж снизу!!!
         Так же не забыть создать класс для нового фрейма, по аналогии!!!
         '''
-        for F in (Frame1_1, Menu, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
+        for F in (Frame1_1, Frame1_2, Frame1_3, Frame1_4, Menu, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
@@ -86,6 +65,12 @@ class App(tk.Tk): # Основной класс с характеристика�
 
         match page_name: # Смена названий окна
             case "Frame1_1":
+                self.title("Главный экран")
+            case "Frame1_2":
+                self.title("Главный экран")
+            case "Frame1_3":
+                self.title("Главный экран")
+            case "Frame1_4":
                 self.title("Главный экран")
             case "Menu":
                 self.title("Меню")
@@ -156,7 +141,7 @@ class Frame1_1(tk.Frame):
         self.canvas.tag_bind(self.options_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
         self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_0.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
-        self.canvas.tag_bind(self.indicators_button, "<Button-1>", self.update_indicators)
+        self.canvas.tag_bind(self.indicators_button, "<Button-1>", lambda event: controller.show_frame("Frame1_2"))
         self.background_img = PhotoImage(file=r"images\MainScreen\stop_icon.png")
         background = self.canvas.create_image(655, 20, image=self.background_img)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -164,6 +149,8 @@ class Frame1_1(tk.Frame):
         self.right_img = PhotoImage(file=r"images\MainScreen\red.png")
         self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
+        self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
+        self.Pumps = self.canvas.create_image(380,400, image=self.Pumps_img)
 
     def update_right(self, event):
         if self.right_img.cget("file") == r"images\MainScreen\red.png":
@@ -183,18 +170,154 @@ class Frame1_1(tk.Frame):
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
-    def update_indicators(self, event):
-        #canvas.delete(abc) --- Для удаления
-        #print(self.indicators_img.cget("file"))
-        if self.indicators_img.cget("file") == "images\MainScreen\indicator_0.png":
-            self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_1.png")
-        elif self.indicators_img.cget("file") == "images\MainScreen\indicator_1.png":
-            self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_2.png")
-        elif self.indicators_img.cget("file") == "images\MainScreen\indicator_2.png":
-            self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_0.png")
+class Frame1_2(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+        self.options_img = PhotoImage(file=r"images\Buttons\options.png")
+        self.options_button = self.canvas.create_image(65, 18, image=self.options_img)
+        self.canvas.tag_bind(self.options_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_1.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
-        self.canvas.tag_bind(self.indicators_button, "<Button-1>", self.update_indicators)
+        self.canvas.tag_bind(self.indicators_button, "<Button-1>", lambda event: controller.show_frame("Frame1_3"))
+        self.background_img = PhotoImage(file=r"images\MainScreen\stop_icon.png")
+        background = self.canvas.create_image(655, 20, image=self.background_img)
+        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+        self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
+        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
 
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
+
+class Frame1_3(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+        self.options_img = PhotoImage(file=r"images\Buttons\options.png")
+        self.options_button = self.canvas.create_image(65, 18, image=self.options_img)
+        self.canvas.tag_bind(self.options_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_1.png")
+        self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
+        self.canvas.tag_bind(self.indicators_button, "<Button-1>", lambda event: controller.show_frame("Frame1_4"))
+        self.background_img = PhotoImage(file=r"images\MainScreen\stop_icon.png")
+        background = self.canvas.create_image(655, 20, image=self.background_img)
+        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+        self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
+        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.button1_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button1_button = self.canvas.create_image(235, 200, image=self.button1_img)
+        self.canvas.tag_bind(self.button1_button, "<Button-1>", self.update_button1)
+        self.button2_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button2_button = self.canvas.create_image(330, 200, image=self.button2_img)
+        self.canvas.tag_bind(self.button2_button, "<Button-1>", self.update_button2)
+        self.button3_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button3_button = self.canvas.create_image(425, 200, image=self.button3_img)
+        self.canvas.tag_bind(self.button3_button, "<Button-1>", self.update_button3)
+        self.button4_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button4_button = self.canvas.create_image(520, 200, image=self.button4_img)
+        self.canvas.tag_bind(self.button4_button, "<Button-1>", self.update_button4)
+        self.button5_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button5_button = self.canvas.create_image(615, 200, image=self.button5_img)
+        self.canvas.tag_bind(self.button5_button, "<Button-1>", self.update_button5)
+        self.button6_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
+        self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
+    def update_button1(self, event):
+        if self.button1_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button1_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button1_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button1_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button1_button = self.canvas.create_image(235, 200, image=self.button1_img)
+        self.canvas.tag_bind(self.button1_button, "<Button-1>", self.update_button1)
+
+    def update_button2(self, event):
+        if self.button2_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button2_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button2_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button2_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button2_button = self.canvas.create_image(330, 200, image=self.button2_img)
+        self.canvas.tag_bind(self.button2_button, "<Button-1>", self.update_button2)
+
+    def update_button3(self, event):
+        if self.button3_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button3_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button3_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button3_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button3_button = self.canvas.create_image(425, 200, image=self.button3_img)
+        self.canvas.tag_bind(self.button3_button, "<Button-1>", self.update_button3)
+    def update_button4(self, event):
+        if self.button4_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button4_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button4_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button4_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button4_button = self.canvas.create_image(520, 200, image=self.button4_img)
+        self.canvas.tag_bind(self.button4_button, "<Button-1>", self.update_button4)
+
+    def update_button5(self, event):
+        if self.button5_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button5_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button5_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button5_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button5_button = self.canvas.create_image(615, 200, image=self.button5_img)
+        self.canvas.tag_bind(self.button5_button, "<Button-1>", self.update_button5)
+
+    def update_button6(self, event):
+        if self.button6_img.cget("file") == r"images\MainScreen\OFF.png":
+            self.button6_img = PhotoImage(file=r"images\MainScreen\ON.png")
+        elif self.button6_img.cget("file") == r"images\MainScreen\ON.png":
+            self.button6_img = PhotoImage(file=r"images\MainScreen\OFF.png")
+        self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
+        self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
+
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
+
+class Frame1_4(tk.Frame):
+    def __init__(self, parent, controller):
+        tk.Frame.__init__(self, parent)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+        self.options_img = PhotoImage(file=r"images\Buttons\options.png")
+        self.options_button = self.canvas.create_image(65, 18, image=self.options_img)
+        self.canvas.tag_bind(self.options_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_2.png")
+        self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
+        self.canvas.tag_bind(self.indicators_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.background_img = PhotoImage(file=r"images\MainScreen\stop_icon.png")
+        background = self.canvas.create_image(655, 20, image=self.background_img)
+        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+        self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
+        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
 
 
 class Menu(tk.Frame):
