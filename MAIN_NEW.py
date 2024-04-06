@@ -228,6 +228,26 @@ class Frame2(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+
+        self.InterfaceScreen_img = PhotoImage(file=r"images\SetpointPlannerScreen\Interface.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 250, image=self.InterfaceScreen_img)
+        self.day1_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_1.png")
+        self.day1_button = self.canvas.create_image(535, 130, image=self.day1_img)
+        self.day2_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_2.png")
+        self.day2_button = self.canvas.create_image(575, 130, image=self.day2_img)
+        self.day3_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_3.png")
+        self.day3_button = self.canvas.create_image(615, 130, image=self.day3_img)
+        self.day4_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_4.png")
+        self.day4_button = self.canvas.create_image(655, 130, image=self.day4_img)
+        self.day5_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_5.png")
+        self.day5_button = self.canvas.create_image(695, 130, image=self.day5_img)
+        self.day6_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_6.png")
+        self.day6_button = self.canvas.create_image(735, 130, image=self.day6_img)
+        self.day7_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_7.png")
+        self.day7_button = self.canvas.create_image(775, 130, image=self.day7_img)
+
+
+
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
@@ -253,6 +273,7 @@ class Frame2(tk.Frame):
         self.Contacts_img = PhotoImage(file=r"images\Buttons\Contacts.png")
         self.Contacts_button = self.canvas.create_image(100, 450, image=self.Contacts_img)
         self.canvas.tag_bind(self.Contacts_button, "<Button-1>", lambda event: controller.show_frame("Frame20"))
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
