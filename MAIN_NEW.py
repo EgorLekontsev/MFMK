@@ -832,6 +832,27 @@ class Frame20(tk.Frame):
         self.canvas.tag_bind(self.PanelSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame19"))
         self.Contacts_img = PhotoImage(file=r"images\Buttons\ContactsOpen.png")
         self.Contacts_button = self.canvas.create_image(100, 450, image=self.Contacts_img)
+
+        self.InterfaceScreen_img = PhotoImage(file=r"images\Contacts\Contacts.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 202, image=self.InterfaceScreen_img)
+
+        self.software_label = tk.Label(self.canvas, text="AAAAAAAAAAAAAAAAAAAAAAAA", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.software_label.place(x=485, y=48)
+        self.version_label = tk.Label(self.canvas, text="##########", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.version_label.place(x=485, y=83)
+        self.compilationDate_label = tk.Label(self.canvas, text="##:##:#####", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.compilationDate_label.place(x=485, y=119)
+        self.productCode1_label = tk.Label(self.canvas, text="#########", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.productCode1_label.place(x=420, y=166)
+        self.productCode2_label = tk.Label(self.canvas, text="#########", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.productCode2_label.place(x=526, y=166)
+        self.productCode3_label = tk.Label(self.canvas, text="#########", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.productCode3_label.place(x=632, y=166)
+        self.pumpsAll_label = tk.Label(self.canvas, text="##", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.pumpsAll_label.place(x=444, y=205)
+        self.pumpsWorking_label = tk.Label(self.canvas, text="##", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.pumpsWorking_label.place(x=651, y=205)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
