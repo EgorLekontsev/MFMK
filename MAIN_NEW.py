@@ -6,6 +6,8 @@ from platform import system
 from re import sub
 from subprocess import check_output
 from socket import socket, AF_INET, SOCK_DGRAM
+import wmi
+import psutil
 
 '''
 Frame1 - Главный экран - 1 2 3 4 фреймы индикаторов
@@ -897,16 +899,168 @@ class Frame19(tk.Frame, NetInfo):
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
         self.ip_ = NetInfo().ipv4
-        self.result = self.ip_.split(".")
+        self.result_IP = self.ip_.split(".")
 
-        self.IP_1 = tk.Label(self.canvas, text=f"{self.result[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.IP_1.place(x=404, y=294)
-        self.IP_2 = tk.Label(self.canvas, text=f"{self.result[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.IP_2.place(x=509, y=294)
-        self.IP_3 = tk.Label(self.canvas, text=f"{self.result[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.IP_3.place(x=612, y=294)
-        self.IP_4 = tk.Label(self.canvas, text=f"{self.result[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.IP_4.place(x=715, y=294)
+        self.net_if_addrs = psutil.net_if_addrs()
+
+        for interface, addresses in self.net_if_addrs.items():
+            for address in addresses:
+                if address.family == 2:  # IPv4
+                    if address.address == self.ip_:
+                        self.result_netmask = address.netmask
+
+        self.result_netmask_split = self.result_netmask.split(".")
+
+        if (len(self.result_netmask_split[0])== 1):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=418, y=335)
+        elif (len(self.result_netmask_split[0])== 2):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=414, y=335)
+        elif (len(self.result_netmask_split[0])== 3):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=410, y=335)
+        if (len(self.result_netmask_split[1])== 1):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=520, y=335)
+        elif (len(self.result_netmask_split[1])== 2):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=516, y=335)
+        elif (len(self.result_netmask_split[1])== 3):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=512, y=335)
+        if (len(self.result_netmask_split[2])== 1):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=622, y=335)
+        elif (len(self.result_netmask_split[2])== 2):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=617, y=335)
+        elif (len(self.result_netmask_split[2])== 3):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=614, y=335)
+        if (len(self.result_netmask_split[3])== 1):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=724, y=335)
+        elif (len(self.result_netmask_split[3])== 2):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=720, y=335)
+        elif (len(self.result_netmask_split[3])== 3):
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.netmask_1.place(x=717, y=335)
+
+        self.time_display_1 = tk.Label(self.canvas, text="**", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_1.place(x=645, y=63)
+        self.time_display_2 = tk.Label(self.canvas, text="**", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_2.place(x=645, y=103)
+        def show_data_and_time():
+            now = datetime.now()
+            self.show_day.config(text = now.strftime("%d"))
+            self.show_month.config(text = now.strftime("%m"))
+            self.show_year.config(text = now.strftime("%Y"))
+            self.show_hour.config(text = now.strftime("%H"))
+            self.show_minute.config(text = now.strftime("%M"))
+            self.show_second.config(text = now.strftime("%S"))
+            self.canvas.after(100, show_data_and_time)
+
+        wmi_obj = wmi.WMI()
+        wmi_sql = "select IPAddress,DefaultIPGateway from Win32_NetworkAdapterConfiguration where IPEnabled=TRUE"
+        self.wmi_out = wmi_obj.query(wmi_sql)
+
+        self.show_hour = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_hour.place(x=480, y=234)
+        self.show_minute = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_minute.place(x=584, y=234)
+        self.show_second = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_second.place(x=684, y=234)
+        self.show_day = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_day.place(x=480, y=195)
+        self.show_month = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_month.place(x=584, y=195)
+        self.show_year = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.show_year.place(x=684, y=195)
+
+        show_data_and_time()
+
+        self.result_IP = self.ip_.split(".")
+
+        if(len(self.result_IP[0]) == 1):
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_1.place(x=418, y=294)
+        elif(len(self.result_IP[0]) == 2):
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_1.place(x=414, y=294)
+        elif (len(self.result_IP[0]) == 3):
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_1.place(x=410, y=294)
+        if (len(self.result_IP[1]) == 1):
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_2.place(x=520, y=294)
+        elif (len(self.result_IP[1]) == 2):
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_2.place(x=516, y=294)
+        elif (len(self.result_IP[1]) == 3):
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_2.place(x=512, y=294)
+        if (len(self.result_IP[2]) == 1):
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_3.place(x=622, y=294)
+        elif (len(self.result_IP[2]) == 2):
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_3.place(x=617, y=294)
+        elif (len(self.result_IP[2]) == 3):
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_3.place(x=614, y=294)
+        if (len(self.result_IP[3]) == 1):
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_4.place(x=724, y=294)
+        elif (len(self.result_IP[3]) == 2):
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_4.place(x=720, y=294)
+        elif (len(self.result_IP[3]) == 3):
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+            self.IP_4.place(x=717, y=294)
+
+        for dev in self.wmi_out:
+            self.result_gateway = dev.DefaultIPGateway[0]
+
+        self.result_gateway_split = self.result_gateway.split(".")
+
+        if (len(self.result_gateway_split[0]) == 1):
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_1.place(x=418, y=374)
+        elif (len(self.result_gateway_split[0]) == 2):
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_1.place(x=414, y=374)
+        elif (len(self.result_gateway_split[0]) == 3):
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_1.place(x=410, y=374)
+        if (len(self.result_gateway_split[1]) == 1):
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_2.place(x=520, y=374)
+        elif (len(self.result_gateway_split[1]) == 2):
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_2.place(x=516, y=374)
+        elif (len(self.result_gateway_split[1]) == 3):
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_2.place(x=512, y=374)
+        if (len(self.result_gateway_split[2]) == 1):
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_3.place(x=622, y=374)
+        elif (len(self.result_gateway_split[2]) == 2):
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_3.place(x=617, y=374)
+        elif (len(self.result_gateway_split[2]) == 3):
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_3.place(x=614, y=374)
+        if (len(self.result_gateway_split[3]) == 1):
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_4.place(x=724, y=374)
+        elif (len(self.result_gateway_split[3]) == 2):
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_4.place(x=720, y=374)
+        elif (len(self.result_gateway_split[3]) == 3):
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
+            self.gateway_4.place(x=717, y=374)
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
