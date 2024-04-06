@@ -23,6 +23,10 @@ import tkinter as tk
 from tkinter import PhotoImage, Canvas
 from datetime import datetime
 from PIL import Image, ImageTk
+from platform import system
+from re import sub
+from subprocess import check_output
+from socket import socket, AF_INET, SOCK_DGRAM
 
 '''
 Frame1 - Главный экран 
@@ -673,7 +677,59 @@ class Frame18(tk.Frame):
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
-class Frame19(tk.Frame):
+class NetInfo:
+    def __init__(self):
+        self.ipv4 = self.local()
+        self.platform = system()
+        self.mac = None
+        self.iface = None
+        self.ipv6 = None
+        if self.platform == "Windows":
+            self.mac_iface_win()
+        elif self.platform == "Linux":
+            self.mac_iface_lin()
+        else:
+            exit(0)
+
+    @staticmethod
+    def local():
+        st = socket(AF_INET, SOCK_DGRAM)
+        try:
+            st.connect(('10.255.255.255', 1))
+            ip = st.getsockname()[0]
+        except OSError:
+            ip = '127.0.0.1'
+        finally:
+            st.close()
+        return ip
+
+    def mac_iface_win(self):
+        adapter_lst = check_output("wmic NICCONFIG WHERE IPEnabled=true GET MACAddress, "
+                                   "IPAddress /FORMAT:csv", shell=False).decode().strip().splitlines()
+        for adapter in adapter_lst:
+            if adapter.strip():
+                node, ipaddr, mac = adapter.split(",")
+                ipaddr = sub("[{}]", "", ipaddr).split(";")
+                if ipaddr[0] == self.ipv4:
+                    self.mac = mac.upper()
+                    try:
+                        self.ipv6 = ipaddr[1]
+                    except IndexError:
+                        pass
+        if self.mac:
+            interface_all = check_output('getmac /FO csv /NH /V', shell=False).decode('cp866').splitlines()
+            for line in interface_all:
+                if self.mac.upper().replace(":", "-") in line:
+                    self.iface = line.split(",")[0].replace('"', '')
+                    break
+
+    def mac_iface_lin(self):
+        com_run = check_output('ip -h -br a | grep UP', shell=True).decode().split()
+        self.iface = com_run[0].strip()
+        self.ipv6 = com_run[3].strip().split("/")[0]
+        self.mac = check_output("ip a | grep ether | gawk '{print $2}'", shell=True).decode().strip().upper()
+
+class Frame19(tk.Frame, NetInfo):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
         self.canvas = Canvas(
@@ -716,6 +772,18 @@ class Frame19(tk.Frame):
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 148, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
+        self.ip_ = NetInfo().ipv4
+        self.result = self.ip_.split(".")
+
+        self.IP_1 = tk.Label(self.canvas, text=f"{self.result[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.IP_1.place(x=404, y=294)
+        self.IP_2 = tk.Label(self.canvas, text=f"{self.result[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.IP_2.place(x=509, y=294)
+        self.IP_3 = tk.Label(self.canvas, text=f"{self.result[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.IP_3.place(x=612, y=294)
+        self.IP_4 = tk.Label(self.canvas, text=f"{self.result[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.IP_4.place(x=715, y=294)
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
