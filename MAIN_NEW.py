@@ -692,6 +692,20 @@ class Frame19(tk.Frame):
         self.Contacts_img = PhotoImage(file=r"images\Buttons\Contacts.png")
         self.Contacts_button = self.canvas.create_image(100, 450, image=self.Contacts_img)
         self.canvas.tag_bind(self.Contacts_button, "<Button-1>", lambda event: controller.show_frame("Frame20"))
+
+        self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Settings.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
+        self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 148, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
+    def update_switch(self, event):
+        if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
+        elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 148, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
