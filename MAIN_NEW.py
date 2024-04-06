@@ -770,7 +770,7 @@ class Frame19(tk.Frame, NetInfo):
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Settings.png")
         self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 148, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
         self.ip_ = NetInfo().ipv4
@@ -790,7 +790,7 @@ class Frame19(tk.Frame, NetInfo):
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 148, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
