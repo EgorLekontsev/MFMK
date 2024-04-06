@@ -157,7 +157,25 @@ class Frame1(tk.Frame):
         background = self.canvas.create_image(655, 20, image=self.background_img)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
+        self.right_img = PhotoImage(file=r"images\MainScreen\red.png")
+        self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
+        self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
 
+    def update_right(self, event):
+        if self.right_img.cget("file") == r"images\MainScreen\red.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\blue.png")
+        elif self.right_img.cget("file") == r"images\MainScreen\blue.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\green.png")
+        elif self.right_img.cget("file") == r"images\MainScreen\green.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\pink.png")
+        elif self.right_img.cget("file") == r"images\MainScreen\pink.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\orange.png")
+        elif self.right_img.cget("file") == r"images\MainScreen\orange.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\yellow.png")
+        elif self.right_img.cget("file") == r"images\MainScreen\yellow.png":
+            self.right_img = PhotoImage(file=r"images\MainScreen\red.png")
+        self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
+        self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
