@@ -67,13 +67,13 @@ class App(tk.Tk): # Основной класс с характеристика�
         При добавлении фрейма, обновить кортеж снизу!!!
         Так же не забыть создать класс для нового фрейма, по аналогии!!!
         '''
-        for F in (Frame1, Menu, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
+        for F in (Frame1_1, Menu, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Frame1")
+        self.show_frame("Frame1_1")
         self.update_clock()
 
     def show_frame(self, page_name): # Смена фреймов
@@ -81,7 +81,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         frame.tkraise()
 
         match page_name: # Смена названий окна
-            case "Frame1":
+            case "Frame1_1":
                 self.title("Главный экран")
             case "Menu":
                 self.title("Меню")
