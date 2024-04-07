@@ -290,6 +290,8 @@ class Frame1_1(tk.Frame):
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
         self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
         self.Pumps = self.canvas.create_image(380,400, image=self.Pumps_img)
+        self.Info_img = PhotoImage(file=r"images\MainScreen\Info.png")
+        self.Info = self.canvas.create_image(90, 400, image=self.Info_img)
 
     def update_right(self, event):
         if self.right_img.cget("file") == r"images\MainScreen\red.png":
@@ -333,6 +335,8 @@ class Frame1_2(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
         self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.Info_img = PhotoImage(file=r"images\MainScreen\Info.png")
+        self.Info = self.canvas.create_image(90, 400, image=self.Info_img)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -361,6 +365,9 @@ class Frame1_3(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
         self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.Info_img = PhotoImage(file=r"images\MainScreen\Info.png")
+        self.Info = self.canvas.create_image(90, 400, image=self.Info_img)
+
         self.button1_img = PhotoImage(file=r"images\MainScreen\ON.png")
         self.button1_button = self.canvas.create_image(235, 200, image=self.button1_img)
         self.canvas.tag_bind(self.button1_button, "<Button-1>", self.update_button1)
@@ -454,6 +461,8 @@ class Frame1_4(tk.Frame):
         self.clock_label.place(x=680, y=5)
         self.Pumps_img = PhotoImage(file=r"images\MainScreen\SystemPump.png")
         self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.Info_img = PhotoImage(file=r"images\MainScreen\Info.png")
+        self.Info = self.canvas.create_image(90, 400, image=self.Info_img)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
