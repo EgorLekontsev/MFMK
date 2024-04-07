@@ -927,14 +927,38 @@ class Frame11(tk.Frame):
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\ParametersOfTheDrivePump.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 200, image=self.InterfaceScreen_img)
+
+        self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(610, 140, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+
+        self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(610, 180, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+
+    def update_switch_first(self, event):
+        if self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-0.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
+        elif self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-1.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(610, 140, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+
+    def update_switch_second(self, event):
+        if self.Switch_Flat_second_img.cget("file") == "images\StationSettings\Switch-0.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
+        elif self.Switch_Flat_second_img.cget("file") == "images\StationSettings\Switch-1.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(610, 180, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame12(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -983,14 +1007,16 @@ class Frame12(tk.Frame):
         self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
+
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\ParametersForEnablingExtras.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 245, image=self.InterfaceScreen_img)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame13(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -1040,13 +1066,14 @@ class Frame13(tk.Frame):
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\OptionsForTurningOffExtras.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 245, image=self.InterfaceScreen_img)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 class Frame14(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -1096,14 +1123,26 @@ class Frame14(tk.Frame):
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\Options.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 245, image=self.InterfaceScreen_img)
+        self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
+    def update_switch(self, event):
+        if self.Switch_Flat_img.cget("file") == "images\StationSettings\Switch-0.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
+        elif self.Switch_Flat_img.cget("file") == "images\StationSettings\Switch-1.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame15(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -1114,7 +1153,6 @@ class Frame15(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
@@ -1153,14 +1191,27 @@ class Frame15(tk.Frame):
         self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_1.png")
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\EmergencyModes.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 245, image=self.InterfaceScreen_img)
+        self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\_NO_YES.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 440, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
+    def update_switch(self, event):
+        if self.Switch_Flat_img.cget("file") == "images\StationSettings\_NO_YES.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\_YES_NO.png")
+        elif self.Switch_Flat_img.cget("file") == "images\StationSettings\_YES_NO.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\StationSettings\_NO_YES.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 440, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame16(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
+
         self.canvas = Canvas(
             self,
             bg="black",
@@ -1170,6 +1221,8 @@ class Frame16(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
 
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
@@ -1191,15 +1244,15 @@ class Frame16(tk.Frame):
         self.InterfaceScreen = self.canvas.create_image(490, 230, image=self.InterfaceScreen_img)
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(659, 203, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch_frame16)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
-    def update_switch_frame16(self, event):
+    def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(659, 203, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch_frame16)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -1207,8 +1260,6 @@ class Frame16(tk.Frame):
 class Frame17(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -1219,6 +1270,8 @@ class Frame17(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
 
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
@@ -1240,7 +1293,6 @@ class Frame17(tk.Frame):
 
         self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
         self.switch_btn_di1_button = self.canvas.create_image(269, 97, image=self.switch_btn_di1_img)
-        #self.canvas.tag_bind(self.switch_btn_di1_button, "<Button-1>", self.update_switch_btn_di1_img)
         self.switch_btn_di2_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
         self.switch_btn_di2_button = self.canvas.create_image(295, 97, image=self.switch_btn_di2_img)
         self.switch_btn_di3_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
@@ -1303,22 +1355,12 @@ class Frame17(tk.Frame):
         self.switch_btn_ai5_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
         self.switch_btn_ai5_button = self.canvas.create_image(729, 249, image=self.switch_btn_ai5_img)
 
-
-    '''def update_switch_btn_di1_img(self, event):
-        if self.switch_btn_di1_img.cget("file") == "images\PanelSettings\Switch1-0.png":
-            self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-1.png")
-        elif self.switch_btn_di1_img.cget("file") == "images\PanelSettings\Switch1-1.png":
-            self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
-        self.switch_btn_di1_button = self.canvas.create_image(269, 97, image=self.switch_btn_di1_img)
-        self.canvas.tag_bind(self.switch_btn_di1_button, "<Button-1>", self.update_switch_btn_di1_img)'''
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame18(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -1329,6 +1371,8 @@ class Frame18(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
 
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
@@ -1359,59 +1403,47 @@ class Frame18(tk.Frame):
 
         for interface, addresses in self.net_if_addrs.items():
             for address in addresses:
-                if address.family == 2:  # IPv4
+                if address.family == 2:
                     if address.address == self.ip_:
                         self.result_netmask = address.netmask
 
         self.result_netmask_split = self.result_netmask.split(".")
 
         if (len(self.result_netmask_split[0]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=418, y=335)
         elif (len(self.result_netmask_split[0]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=414, y=335)
         elif (len(self.result_netmask_split[0]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=410, y=335)
         if (len(self.result_netmask_split[1]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=520, y=335)
         elif (len(self.result_netmask_split[1]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=516, y=335)
         elif (len(self.result_netmask_split[1]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=512, y=335)
         if (len(self.result_netmask_split[2]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=622, y=335)
         elif (len(self.result_netmask_split[2]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=617, y=335)
         elif (len(self.result_netmask_split[2]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=614, y=335)
         if (len(self.result_netmask_split[3]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=724, y=335)
         elif (len(self.result_netmask_split[3]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=720, y=335)
         elif (len(self.result_netmask_split[3]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.netmask_1.place(x=717, y=335)
 
         self.time_display_1 = tk.Label(self.canvas, text="**", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -1451,106 +1483,81 @@ class Frame18(tk.Frame):
         self.result_IP = self.ip_.split(".")
 
         if (len(self.result_IP[0]) == 1):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_1.place(x=418, y=294)
         elif (len(self.result_IP[0]) == 2):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_1.place(x=414, y=294)
         elif (len(self.result_IP[0]) == 3):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_1.place(x=410, y=294)
         if (len(self.result_IP[1]) == 1):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_2.place(x=520, y=294)
         elif (len(self.result_IP[1]) == 2):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_2.place(x=516, y=294)
         elif (len(self.result_IP[1]) == 3):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_2.place(x=512, y=294)
         if (len(self.result_IP[2]) == 1):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_3.place(x=622, y=294)
         elif (len(self.result_IP[2]) == 2):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_3.place(x=617, y=294)
         elif (len(self.result_IP[2]) == 3):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_3.place(x=614, y=294)
         if (len(self.result_IP[3]) == 1):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_4.place(x=724, y=294)
         elif (len(self.result_IP[3]) == 2):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_4.place(x=720, y=294)
         elif (len(self.result_IP[3]) == 3):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
+            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.IP_4.place(x=717, y=294)
 
         for dev in self.wmi_out:
             self.result_gateway = dev.DefaultIPGateway[0]
-
         self.result_gateway_split = self.result_gateway.split(".")
 
         if (len(self.result_gateway_split[0]) == 1):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_1.place(x=418, y=374)
         elif (len(self.result_gateway_split[0]) == 2):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_1.place(x=414, y=374)
         elif (len(self.result_gateway_split[0]) == 3):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_1.place(x=410, y=374)
         if (len(self.result_gateway_split[1]) == 1):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_2.place(x=520, y=374)
         elif (len(self.result_gateway_split[1]) == 2):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_2.place(x=516, y=374)
         elif (len(self.result_gateway_split[1]) == 3):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_2.place(x=512, y=374)
         if (len(self.result_gateway_split[2]) == 1):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_3.place(x=622, y=374)
         elif (len(self.result_gateway_split[2]) == 2):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_3.place(x=617, y=374)
         elif (len(self.result_gateway_split[2]) == 3):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_3.place(x=614, y=374)
         if (len(self.result_gateway_split[3]) == 1):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_4.place(x=724, y=374)
         elif (len(self.result_gateway_split[3]) == 2):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_4.place(x=720, y=374)
         elif (len(self.result_gateway_split[3]) == 3):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
+            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
             self.gateway_4.place(x=717, y=374)
 
     def update_switch(self, event):
@@ -1620,6 +1627,7 @@ class NetInfo:
 class Frame19(tk.Frame, NetInfo):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
+
         self.canvas = Canvas(
             self,
             bg="black",
@@ -1629,31 +1637,38 @@ class Frame19(tk.Frame, NetInfo):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
 
         self.new_window = None
 
-        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
         self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
         self.SetpointPlanner_img = PhotoImage(file=r"images\Buttons\SetpointPlanner.png")
         self.SetpointPlanner_button = self.canvas.create_image(100, 90, image=self.SetpointPlanner_img)
         self.canvas.tag_bind(self.SetpointPlanner_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
+
         self.Monitoring_img = PhotoImage(file=r"images\Buttons\Monitoring.png")
         self.Monitoring_button = self.canvas.create_image(100, 150, image=self.Monitoring_img)
         self.canvas.tag_bind(self.Monitoring_button, "<Button-1>", lambda event: controller.show_frame("Frame3"))
+
         self.Journal_img = PhotoImage(file=r"images\Buttons\Journal.png")
         self.Journal_button = self.canvas.create_image(100, 210, image=self.Journal_img)
         self.canvas.tag_bind(self.Journal_button, "<Button-1>", lambda event: controller.show_frame("Frame6"))
+
         self.StationSettings_img = PhotoImage(file=r"images\Buttons\StationSettings.png")
         self.StationSettings_button = self.canvas.create_image(100, 270, image=self.StationSettings_img)
         self.canvas.tag_bind(self.StationSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
         self.EngineeringMenu_img = PhotoImage(file=r"images\Buttons\EngineeringMenu.png")
         self.EngineeringMenu_button = self.canvas.create_image(100, 330, image=self.EngineeringMenu_img)
         self.canvas.tag_bind(self.EngineeringMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame16"))
+
         self.PanelSettings_img = PhotoImage(file=r"images\Buttons\PanelSettingsOpen.png")
         self.PanelSettings_button = self.canvas.create_image(100, 390, image=self.PanelSettings_img)
+
         self.Contacts_img = PhotoImage(file=r"images\Buttons\Contacts.png")
         self.Contacts_button = self.canvas.create_image(100, 450, image=self.Contacts_img)
         self.canvas.tag_bind(self.Contacts_button, "<Button-1>", lambda event: controller.show_frame("Frame20"))
@@ -1856,6 +1871,7 @@ class Frame20(tk.Frame):
         self.canvas.place(x=0, y=0)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
+
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
         self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
