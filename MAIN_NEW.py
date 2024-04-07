@@ -567,21 +567,30 @@ class Frame3(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Тренды онлайн", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame3"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="Тренды истории", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame4"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Наработка насосов", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame5"), width=18, height=3)
-        button5.place(x=0, y=240)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.TO_img = PhotoImage(file=r"images\Buttons\TrendsOnlineOPEN.png")
+        self.TO_button = self.canvas.create_image(100, 150, image=self.TO_img)
+        self.TS_img = PhotoImage(file=r"images\Buttons\TrendingStories.png")
+        self.TS_button = self.canvas.create_image(100, 210, image=self.TS_img)
+        self.canvas.tag_bind(self.TS_button, "<Button-1>", lambda event: controller.show_frame("Frame4"))
+        self.Pumps_img = PhotoImage(file=r"images\Buttons\OperatingTimeOfPumps.png")
+        self.Pumps_button = self.canvas.create_image(100, 270, image=self.Pumps_img)
+        self.canvas.tag_bind(self.Pumps_button, "<Button-1>", lambda event: controller.show_frame("Frame5"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -593,21 +602,22 @@ class Frame4(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Тренды онлайн", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame3"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="Тренды истории", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame4"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Наработка насосов", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame5"), width=18, height=3)
-        button5.place(x=0, y=240)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Frame3"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -619,21 +629,31 @@ class Frame5(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Тренды онлайн", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame3"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="Тренды истории", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame4"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Наработка насосов", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame5"), width=18, height=3)
-        button5.place(x=0, y=240)
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.TO_img = PhotoImage(file=r"images\Buttons\TrendsOnline.png")
+        self.TO_button = self.canvas.create_image(100, 150, image=self.TO_img)
+        self.canvas.tag_bind(self.TO_button, "<Button-1>", lambda event: controller.show_frame("Frame3"))
+        self.TS_img = PhotoImage(file=r"images\Buttons\TrendingStories.png")
+        self.TS_button = self.canvas.create_image(100, 210, image=self.TS_img)
+        self.canvas.tag_bind(self.TS_button, "<Button-1>", lambda event: controller.show_frame("Frame4"))
+        self.Pumps_img = PhotoImage(file=r"images\Buttons\OperatingTimeOfPumpsOPEN.png")
+        self.Pumps_button = self.canvas.create_image(100, 270, image=self.Pumps_img)
+
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
