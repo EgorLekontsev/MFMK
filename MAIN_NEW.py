@@ -777,6 +777,16 @@ class Frame17(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
         button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
                            relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
         button.place(x=0, y=0)
@@ -793,7 +803,82 @@ class Frame17(tk.Frame):
                             relief="groove", command=lambda: controller.show_frame("Frame18"), width=18, height=3)
         button5.place(x=0, y=240)
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\PLC.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
 
+        self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di1_button = self.canvas.create_image(269, 97, image=self.switch_btn_di1_img)
+        #self.canvas.tag_bind(self.switch_btn_di1_button, "<Button-1>", self.update_switch_btn_di1_img)
+        self.switch_btn_di2_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di2_button = self.canvas.create_image(295, 97, image=self.switch_btn_di2_img)
+        self.switch_btn_di3_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di3_button = self.canvas.create_image(321, 97, image=self.switch_btn_di3_img)
+        self.switch_btn_di4_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di4_button = self.canvas.create_image(350, 97, image=self.switch_btn_di4_img)
+        self.switch_btn_di5_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di5_button = self.canvas.create_image(377, 97, image=self.switch_btn_di5_img)
+        self.switch_btn_di6_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di6_button = self.canvas.create_image(404, 97, image=self.switch_btn_di6_img)
+        self.switch_btn_di7_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di7_button = self.canvas.create_image(432, 97, image=self.switch_btn_di7_img)
+        self.switch_btn_di8_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di8_button = self.canvas.create_image(458, 97, image=self.switch_btn_di8_img)
+        self.switch_btn_di9_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di9_button = self.canvas.create_image(487, 97, image=self.switch_btn_di9_img)
+        self.switch_btn_di10_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di10_button = self.canvas.create_image(514, 97, image=self.switch_btn_di10_img)
+        self.switch_btn_di11_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di11_button = self.canvas.create_image(541, 97, image=self.switch_btn_di11_img)
+        self.switch_btn_di12_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di12_button = self.canvas.create_image(568, 97, image=self.switch_btn_di12_img)
+        self.switch_btn_rs485_img = PhotoImage(file=r"images\PanelSettings\Switch2-0.png")
+        self.switch_btn_rs485_button = self.canvas.create_image(719, 97, image=self.switch_btn_rs485_img)
+
+        self.switch_btn_dq1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq1_button = self.canvas.create_image(269.5, 249, image=self.switch_btn_dq1_img)
+        self.switch_btn_dq2_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq2_button = self.canvas.create_image(296.5, 249, image=self.switch_btn_dq2_img)
+        self.switch_btn_dq3_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq3_button = self.canvas.create_image(323.5, 249, image=self.switch_btn_dq3_img)
+        self.switch_btn_dq4_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq4_button = self.canvas.create_image(352.5, 249, image=self.switch_btn_dq4_img)
+        self.switch_btn_dq5_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq5_button = self.canvas.create_image(378.5, 249, image=self.switch_btn_dq5_img)
+        self.switch_btn_dq6_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq6_button = self.canvas.create_image(406, 249, image=self.switch_btn_dq6_img)
+        self.switch_btn_dq7_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq7_button = self.canvas.create_image(434, 249, image=self.switch_btn_dq7_img)
+        self.switch_btn_dq8_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq8_button = self.canvas.create_image(460, 249, image=self.switch_btn_dq8_img)
+        self.switch_btn_dq9_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq9_button = self.canvas.create_image(488, 249, image=self.switch_btn_dq9_img)
+        self.switch_btn_dq10_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq10_button = self.canvas.create_image(515, 249, image=self.switch_btn_dq10_img)
+        self.switch_btn_dq11_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq11_button = self.canvas.create_image(542, 249, image=self.switch_btn_dq11_img)
+        self.switch_btn_dq12_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_dq12_button = self.canvas.create_image(571, 249, image=self.switch_btn_dq12_img)
+        self.switch_btn_aq1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_aq1_button = self.canvas.create_image(601, 249, image=self.switch_btn_aq1_img)
+        self.switch_btn_ai1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_ai1_button = self.canvas.create_image(625, 249, image=self.switch_btn_ai1_img)
+        self.switch_btn_ai2_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_ai2_button = self.canvas.create_image(650.5, 249, image=self.switch_btn_ai2_img)
+        self.switch_btn_ai3_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_ai3_button = self.canvas.create_image(677.5, 249, image=self.switch_btn_ai3_img)
+        self.switch_btn_ai4_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_ai4_button = self.canvas.create_image(705, 249, image=self.switch_btn_ai4_img)
+        self.switch_btn_ai5_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_ai5_button = self.canvas.create_image(729, 249, image=self.switch_btn_ai5_img)
+
+
+    '''def update_switch_btn_di1_img(self, event):
+        if self.switch_btn_di1_img.cget("file") == "images\PanelSettings\Switch1-0.png":
+            self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-1.png")
+        elif self.switch_btn_di1_img.cget("file") == "images\PanelSettings\Switch1-1.png":
+            self.switch_btn_di1_img = PhotoImage(file=r"images\PanelSettings\Switch1-0.png")
+        self.switch_btn_di1_button = self.canvas.create_image(269, 97, image=self.switch_btn_di1_img)
+        self.canvas.tag_bind(self.switch_btn_di1_button, "<Button-1>", self.update_switch_btn_di1_img)'''
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
