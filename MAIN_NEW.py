@@ -47,7 +47,6 @@ class App(tk.Tk): # Основной класс с характеристика�
         self.container.pack(side="top", fill="both", expand=True)
         self.container.grid_rowconfigure(0, weight=1)
         self.container.grid_columnconfigure(0, weight=1)
-
         self.frames = {}
         '''
         При добавлении фрейма, обновить кортеж снизу!!!
@@ -201,8 +200,6 @@ class Keypad(tk.Toplevel):
     def cammo_func(self, event):
         self.clock_label.config(text=self.clock_label.cget('text')+",")
     '''
-    def func(self, event):
-        print("Заглушка")
     def zero_func(self, event):
         if len(self.enter_password) != 8:
             self.enter_password = self.enter_password + "0"
@@ -251,19 +248,12 @@ class Keypad(tk.Toplevel):
         new_text = past_text[:-1]
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
-
-    def reguest_frame19(self):
-        #Frame19.update_switch(self, event=None, flag="True")
-        frame19_instance = Frame19(parent=self.master, controller=self)  # Создание экземпляра класса Frame19
-        frame19_instance.update_switch(event=None, flag="True")  # Вызов метода update_switch на созданном экземпляре
     def enter_button_func(self, event):
         if self.enter_password == self.password:
             self.enter_password = ""
             self.entry_label.config(text="")
             print("Успешный вход!")
             self.destroy()
-            if self.NameFrame == "Frame19":
-                self.reguest_frame19()
         else:
             print(self.enter_password)
             print("Неудачная попытка!")
@@ -1345,7 +1335,6 @@ class Frame19(tk.Frame, NetInfo):
         self.canvas.place(x=0, y=0)
 
         self.new_window = None
-        self.NameFrame = "Frame19"
 
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
@@ -1543,28 +1532,16 @@ class Frame19(tk.Frame, NetInfo):
             self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
             self.gateway_4.place(x=717, y=374)
 
-    def update_switch(self, event,  flag=None):
-        print(self.Switch_Flat_img.cget("file"))
-        if flag:
-            print("test two step")
-            print(self.Switch_Flat_img.cget("file"))
-            #new_window.destroy()
-            if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
-                print("test 1three step")
-                self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
-            elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
-                self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-                print("test 2three step")
-            print(self.Switch_Flat_img.cget("file"))
-            self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-            self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
-            self.canvas.update()
+    def update_switch(self, event):
+        self.new_window = Keypad("Frame19")
+        # self.new_window.grab_set() блок
+        if self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-0.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
+        elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
+            self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
-        else:
-            self.new_window = Keypad(self.NameFrame)
-            #self.new_window.grab_set()
-            #print(new_window.reguest())
-            print("test one step")
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
