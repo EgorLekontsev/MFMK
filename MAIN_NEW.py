@@ -1141,21 +1141,22 @@ class Frame16(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Настройки ПИД-рег.", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame16"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="PLC", fg='white', bg='black', font=('Roboto', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame17"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Бэкап", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame18"), width=18, height=3)
-        button5.place(x=0, y=240)
+
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.PID_img = PhotoImage(file=r"images\Buttons\pidOPEN.png")
+        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
+        self.PLC_img = PhotoImage(file=r"images\Buttons\plc.png")
+        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
+        self.canvas.tag_bind(self.PLC_button, "<Button-1>", lambda event: controller.show_frame("Frame17"))
+        self.Backup_img = PhotoImage(file=r"images\Buttons\Backup.png")
+        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
+        self.canvas.tag_bind(self.Backup_button, "<Button-1>", lambda event: controller.show_frame("Frame18"))
+
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Settings.png")
         self.InterfaceScreen = self.canvas.create_image(490, 230, image=self.InterfaceScreen_img)
@@ -1190,21 +1191,20 @@ class Frame17(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Настройки ПИД-рег.", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame16"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="PLC", fg='white', bg='black', font=('Roboto', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame17"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Бэкап", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame18"), width=18, height=3)
-        button5.place(x=0, y=240)
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.PID_img = PhotoImage(file=r"images\Buttons\pid.png")
+        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
+        self.canvas.tag_bind(self.PID_button, "<Button-1>", lambda event: controller.show_frame("Frame16"))
+        self.PLC_img = PhotoImage(file=r"images\Buttons\plcOPEN.png")
+        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
+        self.Backup_img = PhotoImage(file=r"images\Buttons\Backup.png")
+        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
+        self.canvas.tag_bind(self.Backup_button, "<Button-1>", lambda event: controller.show_frame("Frame18"))
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\PLC.png")
         self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
@@ -1300,21 +1300,22 @@ class Frame18(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=60)
-        button3 = tk.Button(self, text="Настройки ПИД-рег.", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame16"), width=18, height=3)
-        button3.place(x=0, y=120)
-        button4 = tk.Button(self, text="PLC", fg='white', bg='black', font=('Roboto', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame17"), width=18, height=3)
-        button4.place(x=0, y=180)
-        button5 = tk.Button(self, text="Бэкап", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame18"), width=18, height=3)
-        button5.place(x=0, y=240)
+
+        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
+        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
+        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.PID_img = PhotoImage(file=r"images\Buttons\pid.png")
+        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
+        self.canvas.tag_bind(self.PID_button, "<Button-1>", lambda event: controller.show_frame("Frame16"))
+        self.PLC_img = PhotoImage(file=r"images\Buttons\plc.png")
+        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
+        self.canvas.tag_bind(self.PLC_button, "<Button-1>", lambda event: controller.show_frame("Frame17"))
+        self.Backup_img = PhotoImage(file=r"images\Buttons\BackupOPEN.png")
+        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
+
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Bek.png")
         self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
