@@ -755,9 +755,9 @@ class Frame16(tk.Frame):
         button5.place(x=0, y=240)
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Settings.png")
-        self.InterfaceScreen = self.canvas.create_image(470, 230, image=self.InterfaceScreen_img)
+        self.InterfaceScreen = self.canvas.create_image(490, 230, image=self.InterfaceScreen_img)
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(639, 203, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(659, 203, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch_frame16)
 
     def update_switch_frame16(self, event):
@@ -765,7 +765,7 @@ class Frame16(tk.Frame):
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(639, 203, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(659, 203, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch_frame16)
 
     def update_clock(self, current_time):
@@ -829,9 +829,9 @@ class Frame18(tk.Frame):
         button5.place(x=0, y=240)
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Bek.png")
-        self.InterfaceScreen = self.canvas.create_image(485, 230, image=self.InterfaceScreen_img)
+        self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(655, 152, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
         self.ip_ = NetInfo().ipv4
@@ -1040,7 +1040,7 @@ class Frame18(tk.Frame):
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "images\PanelSettings\Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(655, 152, image=self.Switch_Flat_img)
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
 
