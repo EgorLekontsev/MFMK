@@ -736,36 +736,54 @@ class Frame8(tk.Frame):
 class Frame9(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
+
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        button3 = tk.Button(self, text="Параметры двигателей", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame9"), width=18, height=3)
-        button3.place(x=0, y=100)
-        button4 = tk.Button(self, text="Настройки датчиков", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame10"), width=18, height=3)
-        button4.place(x=0, y=150)
-        button5 = tk.Button(self, text="Параметры насосов общ.", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame11"), width=18, height=3)
-        button5.place(x=0, y=200)
-        button6 = tk.Button(self, text="Вкл. доп. насосов", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame12"), width=18, height=3)
-        button6.place(x=0, y=250)
-        button7 = tk.Button(self, text="Откл. доп. насосов", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame13"), width=18, height=3)
-        button7.place(x=0, y=300)
-        button8 = tk.Button(self, text="Опции", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame14"), width=18, height=3)
-        button8.place(x=0, y=350)
-        button9 = tk.Button(self, text="Аварийные режимы", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Frame15"), width=18, height=3)
-        button9.place(x=0, y=400)
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0+30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4+30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_1.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4+30, image=self.EngineParameters_img)
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4+30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4+30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4+30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4+30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4+30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4+30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -776,15 +794,53 @@ class Frame10(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_1.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -794,15 +850,53 @@ class Frame11(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_1.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -813,15 +907,53 @@ class Frame12(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_1.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
@@ -831,15 +963,53 @@ class Frame13(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1_1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_1.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -849,15 +1019,53 @@ class Frame14(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_1.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
+        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -868,15 +1076,53 @@ class Frame15(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        button = tk.Button(self, text="Главный экран", fg='white', bg='black', font=('Roboto Bold', 12),
-                           relief="groove", command=lambda: controller.show_frame("Frame1"), width=18, height=3)
-        button.place(x=0, y=0)
-        button2 = tk.Button(self, text="Назад", fg='white', bg='black', font=('Roboto Bold', 12),
-                            relief="groove", command=lambda: controller.show_frame("Menu"), width=18, height=3)
-        button2.place(x=0, y=50)
-        '''
-        ВСТАВИТЬ ИСПРАВЛЕННЫЕ КНОПКИ
-        '''
+        self.canvas = Canvas(
+            self,
+            bg="black",
+            height=480,
+            width=800,
+            bd=0,
+            highlightthickness=0,
+            relief="ridge")
+        self.canvas.place(x=0, y=0)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.clock_label.place(x=680, y=5)
+
+        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
+        self.MainScreen_button = self.canvas.create_image(100, 0 + 30, image=self.MainScreen_img)
+        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+
+        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
+        self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+
+        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
+        self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
+        self.canvas.tag_bind(self.EngineParameters_button, "<Button-1>", lambda event: controller.show_frame("Frame9"))
+
+        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
+        self.SensorSettings_button = self.canvas.create_image(100, 160.4 + 30, image=self.SensorSettings_img)
+        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+
+        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
+        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4 + 30, image=self.PumpParametersInGeneral_img)
+        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+
+        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
+        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4 + 30, image=self.OnAdditionalPumps_img)
+        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+
+        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
+        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4 + 30, image=self.OffOfAdditionalPumps_img)
+        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+
+        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
+        self.Options_button = self.canvas.create_image(100, 368.4 + 30, image=self.Options_img)
+        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+
+        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_1.png")
+        self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
