@@ -814,14 +814,39 @@ class Frame9(tk.Frame):
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4+30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\EngineParameters.png")
+        self.InterfaceScreen = self.canvas.create_image(498, 230, image=self.InterfaceScreen_img)
+
+        self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\ReadingGray.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(676, 362, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+
+        self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\RecordGray.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(676, 404, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+
+    def update_switch_first(self, event):
+        if self.Switch_Flat_first_img.cget("file") == "images\StationSettings\ReadingGray.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\ReadingGreen.png")
+        elif self.Switch_Flat_first_img.cget("file") == "images\StationSettings\ReadingGreen.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\ReadingGray.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(676, 362, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+
+    def update_switch_second(self, event):
+        if self.Switch_Flat_second_img.cget("file") == "images\StationSettings\RecordGray.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\RecordGreen.png")
+        elif self.Switch_Flat_second_img.cget("file") == "images\StationSettings\RecordGreen.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\RecordGray.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(676, 404, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
 class Frame10(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -871,13 +896,14 @@ class Frame10(tk.Frame):
         self.EmergencyModes_button = self.canvas.create_image(100, 419.4 + 30, image=self.EmergencyModes_img)
         self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
 
+        self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\SensorSettings.png")
+        self.InterfaceScreen = self.canvas.create_image(500, 160, image=self.InterfaceScreen_img)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 class Frame11(tk.Frame):
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent, background='black')
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
 
         self.canvas = Canvas(
             self,
@@ -931,19 +957,20 @@ class Frame11(tk.Frame):
         self.InterfaceScreen = self.canvas.create_image(500, 200, image=self.InterfaceScreen_img)
 
         self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
-        self.Switch_Flat_first_button = self.canvas.create_image(610, 140, image=self.Switch_Flat_first_img)
+        self.Switch_Flat_first_button = self.canvas.create_image(670, 176, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
 
         self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
-        self.Switch_Flat_second_button = self.canvas.create_image(610, 180, image=self.Switch_Flat_second_img)
+        self.Switch_Flat_second_button = self.canvas.create_image(670, 218, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+
 
     def update_switch_first(self, event):
         if self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-0.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
         elif self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-1.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
-        self.Switch_Flat_first_button = self.canvas.create_image(610, 140, image=self.Switch_Flat_first_img)
+        self.Switch_Flat_first_button = self.canvas.create_image(670, 176, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
 
     def update_switch_second(self, event):
@@ -951,7 +978,7 @@ class Frame11(tk.Frame):
             self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
         elif self.Switch_Flat_second_img.cget("file") == "images\StationSettings\Switch-1.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
-        self.Switch_Flat_second_button = self.canvas.create_image(610, 180, image=self.Switch_Flat_second_img)
+        self.Switch_Flat_second_button = self.canvas.create_image(670, 218, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -1270,8 +1297,8 @@ class Frame17(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
+
+        self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12), )
 
         self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
         self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
