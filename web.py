@@ -28,7 +28,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def MainScreen(): #Frame 1_1 1_2 1_3 1_4
-    return 'Main'
+    return render_template('main.html')
 @app.route('/Monitoring')
 def MonitoringScreen():#Frame3 4 5
     return 'Monitoring'
