@@ -42,7 +42,7 @@ def OptionsStationScreen():#Frame9 10 11 12 13 14 15
 
 @app.route('/EngineeringMenu')
 def EngineeringMenuScreen():#Frame16 17 18
-    return 'EngineeringMenu'
+    return render_template('EngineeringMenu.html')
 @app.route('/Menu')
 def MenuScreen():#Menu Frame2 19 20
     return render_template('menu.html')
