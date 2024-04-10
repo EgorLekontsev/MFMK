@@ -38,7 +38,7 @@ def JournalScreen():#Menu Frame6 7 8
 
 @app.route('/OptionsStation')
 def OptionsStationScreen():#Frame9 10 11 12 13 14 15
-    return 'OptionsStation'
+    return render_template('OptionsStation.html')
 
 @app.route('/EngineeringMenu')
 def EngineeringMenuScreen():#Frame16 17 18
