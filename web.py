@@ -31,10 +31,10 @@ def MainScreen(): #Frame 1_1 1_2 1_3 1_4
     return render_template('main.html')
 @app.route('/Monitoring')
 def MonitoringScreen():#Frame3 4 5
-    return 'Monitoring'
+    return render_template('Monitoring.html')
 @app.route('/Journal')
 def JournalScreen():#Menu Frame6 7 8
-    return 'Journal'
+    return render_template('Journal.html')
 
 @app.route('/OptionsStation')
 def OptionsStationScreen():#Frame9 10 11 12 13 14 15
