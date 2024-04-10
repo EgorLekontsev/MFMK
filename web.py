@@ -1,5 +1,4 @@
-from flask import Flask
-
+from flask import Flask, render_template
 '''
 Keypad - кейпад
 Frame1 - Главный экран - 1 2 3 4 фреймы индикаторов
@@ -46,7 +45,7 @@ def EngineeringMenuScreen():#Frame16 17 18
     return 'EngineeringMenu'
 @app.route('/Menu')
 def MenuScreen():#Menu Frame2 19 20
-    return 'men'
+    return render_template('menu.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

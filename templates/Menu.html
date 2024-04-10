@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Страница с кнопками и временем</title>
+    <style>
+        body {
+            background-color: black;
+            margin-left: 0px;
+            margin-top: 0px;
+            position: relative; /* устанавливаем позиционирование относительно */
+        }
+
+        button {
+            width: 245px;
+            height: 73.5px;
+            margin: 0;
+            display: block;
+            background-color: black;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+            border-left: 3px solid #8E8E8E;
+            border-top: 3px solid #8E8E8E;
+            border-right: 3px solid #8E8E8E;
+            border-bottom: 3px solid #8E8E8E;
+        }
+
+        #clock {
+            position: absolute;
+            right: 0px;
+            top: 14px;
+            left: 830px;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="window.location.href='/'">Главный экран</button>
+    <button>Планировщик уставок</button>
+    <button>Мониторинг</button>
+    <button>Журнал</button>
+    <button>Настройки станции</button>
+    <button>Инженерное меню</button>
+    <button>Настройки панели</button>
+    <button>Контакты</button>
+
+    <div id="clock"></div>
+
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var day = now.getDate().toString().padStart(2, '0');
+            var month = (now.getMonth() + 1).toString().padStart(2, '0');
+            var year = now.getFullYear().toString().slice(-2);
+            var hours = now.getHours().toString().padStart(2, '0');
+            var minutes = now.getMinutes().toString().padStart(2, '0');
+
+            document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
+        }
+
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
