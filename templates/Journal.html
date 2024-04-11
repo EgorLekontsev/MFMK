@@ -4,18 +4,28 @@
 <title>Журнал</title>
 {% endblock %}
 
-{% block button %}
-button {
-    width: 245px;
-    height: 73.5px;
+{% block a %}
+a {
+    width: 200px;
+    height: 60px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 {% endblock %}
 
 {% block body %}
-<button onclick="window.location.href='/'">Главный экран</button>
-<button onclick="window.location.href='/Menu'">Назад</button>
-<button>Текущие события</button>
-<button>Журнал история</button>
-<button>Журнал изменений</button>
+<a href="/"><img src="{{ url_for('static', filename='Journal/MainScreen.png') }}"/></a>
+<a href="/Menu"><img src="{{ url_for('static', filename='Journal/Back.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Journal/NowEvents.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Journal/JournalHistory.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Journal/JournalEdits.png') }}"/></a>
+
 <div id="clock"></div>
 {% endblock %}

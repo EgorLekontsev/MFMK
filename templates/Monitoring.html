@@ -4,18 +4,28 @@
 <title>Мониторинг</title>
 {% endblock %}
 
-{% block button %}
-button {
-    width: 245px;
-    height: 73.5px;
+{% block a %}
+a {
+    width: 200px;
+    height: 60px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
 }
 {% endblock %}
 
 {% block body %}
-<button onclick="window.location.href='/'">Главный экран</button>
-<button onclick="window.location.href='/Menu'">Назад</button>
-<button>Тренды онлайн</button>
-<button>Тренды истории</button>
-<button>Наработки насосов</button>
+<a href="/"><img src="{{ url_for('static', filename='Monitoring/MainScreen.png') }}"/></a>
+<a href="/Menu"><img src="{{ url_for('static', filename='Monitoring/Back.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Monitoring/NowEvents.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Monitoring/JournalHistory.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='Monitoring/JournalEdits.png') }}"/></a>
+
 <div id="clock"></div>
 {% endblock %}

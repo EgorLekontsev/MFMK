@@ -28,10 +28,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def MainScreen(): #Frame 1_1 1_2 1_3 1_4
-    return render_template('main.html')
+    return render_template('Main.html')
+
 @app.route('/Monitoring')
 def MonitoringScreen():#Frame3 4 5
     return render_template('Monitoring.html')
+
 @app.route('/Journal')
 def JournalScreen():#Menu Frame6 7 8
     return render_template('Journal.html')
@@ -43,9 +45,10 @@ def OptionsStationScreen():#Frame9 10 11 12 13 14 15
 @app.route('/EngineeringMenu')
 def EngineeringMenuScreen():#Frame16 17 18
     return render_template('EngineeringMenu.html')
+
 @app.route('/Menu')
 def MenuScreen():#Menu Frame2 19 20
-    return render_template('menu.html')
+    return render_template('Menu.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -3,47 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <style>
+        html {
+            width: 800px;
+            height: 480px;
+        }
         body {
             background-color: black;
             margin-left: 0px;
             margin-top: 0px;
-            position: relative; /* устанавливаем позиционирование относительно */
-        }
-        a {
-            margin-left: 0px;
-            margin-top: 0px;
             margin-right: 0px;
             margin-bottom: 0px;
+            width: 800px;
+            height: 480px;
         }
-<!--        {% block button %}{% endblock %}-->
-<!--        button {-->
-<!--            margin: 0;-->
-<!--            display: block;-->
-<!--            background-color: black;-->
-<!--            color: white;-->
-<!--            font-family: 'Roboto', sans-serif;-->
-<!--            font-weight: bold;-->
-<!--            font-size: 20px;-->
-<!--            border-left: 3px solid #8E8E8E;-->
-<!--            border-top: 3px solid #8E8E8E;-->
-<!--            border-right: 3px solid #8E8E8E;-->
-<!--            border-bottom: 3px solid #8E8E8E;-->
-<!--        }-->
         #clock {
             position: absolute;
             right: 0px;
             top: 14px;
-            left: 830px;
+            left: 650px;
             color: white;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
             font-size: 20px;
         }
+        {% block buttons %}{% endblock %}
+        {% block a %}{% endblock %}
     </style>
     {% block title %}{% endblock %}
 </head>
 <body>
-    {% block body %}{% endblock %}
+    <div class="buttons">
+        {% block body %}{% endblock %}
+    </div>
     <script>
         function updateClock() {
             var now = new Date();

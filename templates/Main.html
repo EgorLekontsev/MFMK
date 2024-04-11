@@ -4,14 +4,24 @@
 <title>Главный экран</title>
 {% endblock %}
 
-{% block button %}
-button {
-    width: 164px;
-    height: 46px;
+{% block a %}
+a {
+    width: 140px;
+    height: 40px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
 }
 {% endblock %}
 
 {% block body %}
-<button onclick="window.location.href='/Menu'">Настройки</button>
+<a href="/Menu"><img src="{{ url_for('static', filename='Main/Settings.png') }}"/></a>
+
 <div id="clock"></div>
 {% endblock %}
