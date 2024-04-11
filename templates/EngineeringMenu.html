@@ -1,48 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Инженерное меню</title>
-    <style>
-        body {
-            background-color: black;
-            margin-left: 0px;
-            margin-top: 0px;
-            position: relative; /* устанавливаем позиционирование относительно */
-        }
-        button {
-            width: 245px;
-            height: 73.5px;
-            margin: 0;
-            display: block;
-            background-color: black;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            border-left: 3px solid #8E8E8E;
-            border-top: 3px solid #8E8E8E;
-            border-right: 3px solid #8E8E8E;
-            border-bottom: 3px solid #8E8E8E;
-        }
+{% extends 'Base.html' %}
 
-        #clock {
-            position: absolute;
-            right: 0px;
-            top: 14px;
-            left: 830px;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-        }
-    </style>
-</head>
-<body>
-    <button onclick="window.location.href='/'">Главный экран</button>
-    <button onclick="window.location.href='/Menu'">Назад</button>
-    <button>Настройки ПИД-рег.</button>
-    <button>PLC</button>
-    <button>Бэкан</button>
+{% block title %}
+<title>Инженерное меню</title>
+{% endblock %}
 
-</body>
-</html>
+{% block button %}
+button {
+    width: 245px;
+    height: 73.5px;
+}
+{% endblock %}
+
+{% block body %}
+<button onclick="window.location.href='/'">Главный экран</button>
+<div id="clock"></div>
+<button onclick="window.location.href='/Menu'">Назад</button>
+<button>Настройки ПИД-рег.</button>
+<button>PLC</button>
+<button>Бэкан</button>
+{% endblock %}

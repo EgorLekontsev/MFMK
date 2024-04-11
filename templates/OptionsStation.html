@@ -1,67 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Настройки станции</title>
-    <style>
-        body {
-            background-color: black;
-            margin-left: 0px;
-            margin-top: 0px;
-            position: relative; /* устанавливаем позиционирование относительно */
-        }
-        button.main {
-            width: 245px;
-            height: 73.5px;
-            margin: 0;
-            display: block;
-            background-color: black;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            border-left: 3px solid #8E8E8E;
-            border-top: 3px solid #8E8E8E;
-            border-right: 3px solid #8E8E8E;
-            border-bottom: 3px solid #8E8E8E;
-        }
-        button {
-            width: 245px;
-            height: 64.3px;
-            margin: 0;
-            display: block;
-            background-color: black;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-            border-left: 3px solid #8E8E8E;
-            border-top: 3px solid #8E8E8E;
-            border-right: 3px solid #8E8E8E;
-            border-bottom: 3px solid #8E8E8E;
-        }
+{% extends 'Base.html' %}
 
-        #clock {
-            position: absolute;
-            right: 0px;
-            top: 14px;
-            left: 830px;
-            color: white;
-            font-family: 'Roboto', sans-serif;
-            font-weight: bold;
-            font-size: 20px;
-        }
-    </style>
-</head>
-<body>
-    <button class="main" onclick="window.location.href='/'">Главный экран</button>
-    <button onclick="window.location.href='/Menu'">Назад</button>
-    <button>Параметры двигателей</button>
-    <button>Настройки датчиков</button>
-    <button>Параметры насосов общ.</button>
-    <button>Вкл. доп. насосов</button>
-    <button>Откл. доп. насосов</button>
-    <button>Опции</button>
-    <button>Аварийные режимы</button>
+{% block title %}
+<title>Настройки станции</title>
+{% endblock %}
 
-</body>
-</html>
+{% block button %}
+button {
+    width: 245px;
+    height: 64.3px;
+}
+button.main {
+    width: 245px;
+    height: 73.5px;
+    margin: 0;
+    display: block;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    border-left: 3px solid #8E8E8E;
+    border-top: 3px solid #8E8E8E;
+    border-right: 3px solid #8E8E8E;
+    border-bottom: 3px solid #8E8E8E;
+}
+{% endblock %}
+
+{% block body %}
+<button class="main" onclick="window.location.href='/'">Главный экран</button>
+<button onclick="window.location.href='/Menu'">Назад</button>
+<button>Параметры двигателей</button>
+<button>Настройки датчиков</button>
+<button>Параметры насосов общ.</button>
+<button>Вкл. доп. насосов</button>
+<button>Откл. доп. насосов</button>
+<button>Опции</button>
+<button>Аварийные режимы</button>
+<div id="clock"></div>
+{% endblock %}
