@@ -4,21 +4,22 @@
 <title>Настройки</title>
 {% endblock %}
 
-{% block button %}
-button {
-    width: 245px;
-    height: 73.5px;
-}
-{% endblock %}
+<!--{% block button %}-->
+<!--button {-->
+<!--    width: 245px;-->
+<!--    height: 73.5px;-->
+<!--}-->
+<!--{% endblock %}-->
 
 {% block body %}
-<button onclick="window.location.href='/'">Главный экран</button>
-<button>Планировщик уставок</button>
-<button onclick="window.location.href='/Monitoring'">Мониторинг</button>
-<button onclick="window.location.href='/Journal'">Журнал</button>
-<button onclick="window.location.href='/OptionsStation'">Настройки станции</button>
-<button onclick="window.location.href='/EngineeringMenu'">Инженерное меню</button>
-<button>Настройки панели</button>
-<button>Контакты</button>
+<a href="/"><img src="{{ url_for('static', filename='WebImgMain/MainScreen.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='WebImgMain/SetpointPlanner.png') }}"/></a>
+<a href="/Monitoring"><img src="{{ url_for('static', filename='WebImgMain/Monitoring.png') }}"/></a>
+<a href="/Journal"><img src="{{ url_for('static', filename='WebImgMain/Journal.png') }}"/></a>
+<a href="/OptionsStation"><img src="{{ url_for('static', filename='WebImgMain/OptionsStation.png') }}"/></a>
+<a href="/EngineeringMenu"><img src="{{ url_for('static', filename='WebImgMain/EngineeringMenu.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='WebImgMain/PanelSettings.png') }}"/></a>
+<a href="#"><img src="{{ url_for('static', filename='WebImgMain/Contacts.png') }}"/></a>
+
 <div id="clock"></div>
 {% endblock %}
