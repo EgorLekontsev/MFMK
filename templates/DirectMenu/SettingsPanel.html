@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Base.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Настройки панели</title>
+{% endblock %}
+
+{% block a %}
+a {
+    width: 200px;
+    height: 60px;
+}
+{% endblock %}
+
+{% block bodystyle %}
+body {
+    height: 480px;
+}
+{% endblock %}
+
+{% block htmlstyle %}
+html {
+    height: 480px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 200px;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+{% endblock %}
+
+{% block body %}
+<a href="/"><img src="{{ url_for('static', filename='Menu/MainScreen.png') }}"/></a>
+<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Menu/SetpointPlanner.png') }}"/></a>
+<a href="/Monitoring"><img src="{{ url_for('static', filename='Menu/Monitoring.png') }}"/></a>
+<a href="/Journal"><img src="{{ url_for('static', filename='Menu/Journal.png') }}"/></a>
+<a href="/OptionsStation"><img src="{{ url_for('static', filename='Menu/OptionsStation.png') }}"/></a>
+<a href="/EngineeringMenu"><img src="{{ url_for('static', filename='Menu/EngineeringMenu.png') }}"/></a>
+<a href="/SettingsPanel"><img src="{{ url_for('static', filename='Menu/PanelSettingsOpen.png') }}"/></a>
+<a href="/Contacts"><img src="{{ url_for('static', filename='Menu/Contacts.png') }}"/></a>
+
+<div id="clock"></div>
+{% endblock %}
