@@ -34,10 +34,6 @@ def MainScreen(): #Frame 1_1 1_2 1_3 1_4
 def SetpointPlannerScreen(): #Frame 2
     return render_template('DirectMenu/SetpointPlanner.html')
 
-@app.route('/Monitoring')
-def MonitoringScreen():#Frame3 4 5
-    return render_template('DirectMenu/Monitoring.html')
-
 @app.route('/OnlineTrends')
 def OnlineTrendsScreen():#Frame3 4 5
     return render_template('DirectMonitoring/OnlineTrends.html')
@@ -50,10 +46,6 @@ def HistoryTrendsScreen():#Frame3 4 5
 def PumpOperatingTimeScreen():#Frame3 4 5
     return render_template('DirectMonitoring/PumpOperatingTime.html')
 
-@app.route('/Journal')
-def JournalScreen():#Menu Frame6 7 8
-    return render_template('DirectMenu/Journal.html')
-
 @app.route('/CurrentEvent')
 def CurrentEventScreen():#Menu Frame6 7 8
     return render_template('DirectJournal/CurrentEvent.html')
@@ -65,10 +57,6 @@ def JournalHistoryScreen():#Menu Frame6 7 8
 @app.route('/ChangeLog')
 def ChangeLogScreen():#Menu Frame6 7 8
     return render_template('DirectJournal/ChangeLog.html')
-
-@app.route('/OptionsStation')
-def OptionsStationScreen():#Frame9 10 11 12 13 14 15
-    return render_template('DirectMenu/OptionsStation.html')
 
 @app.route('/EngineParameters')
 def EngineParametersScreen():#Frame9 10 11 12 13 14 15
