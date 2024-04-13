@@ -21,11 +21,11 @@
             position: absolute;
             right: 0px;
             top: 14px;
-            left: 675px;
+            left: 650px;
             color: white;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 20px;
         }
         {% block mainscreen %}{% endblock %}
         {% block buttons %}{% endblock %}
@@ -35,6 +35,7 @@
     {% block title %}{% endblock %}
 </head>
 <body>
+    {% block interface %}{% endblock %}
     <div class="buttons">
         {% block body %}{% endblock %}
     </div>

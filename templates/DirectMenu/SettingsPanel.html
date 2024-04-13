@@ -32,6 +32,10 @@ html {
 }
 {% endblock %}
 
+{% block interface %}
+<img src="{{ url_for('static', filename='PanelSettings/interface.png') }}" style="position: absolute; top: 60px; left: 210px;"/>
+{% endblock %}
+
 {% block body %}
 <a href="/"><img src="{{ url_for('static', filename='Menu/MainScreen.png') }}"/></a>
 <a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Menu/SetpointPlanner.png') }}"/></a>
