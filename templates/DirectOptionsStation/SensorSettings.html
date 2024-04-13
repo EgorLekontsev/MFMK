@@ -50,6 +50,10 @@ body {
 }
 {% endblock %}
 
+{% block interface %}
+<img src="{{ url_for('static', filename='OptionsStation/interface_2.png') }}" style="position: absolute; top: 40px; left: 210px;"/>
+{% endblock %}
+
 {% block body %}
 <a href="/" class="mainscreen"><img src="{{ url_for('static', filename='OptionsStation/MainScreen.png') }}"/></a>
 <a href="/SetpointPlanner" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Back.png') }}"class="imgotherbutton1"/></a>
