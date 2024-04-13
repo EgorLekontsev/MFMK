@@ -7,7 +7,7 @@
 {% block a %}
 .otherbutton {
     width: 200px;
-    height: 53px;
+    height: 52.5px;
 }
 {% endblock %}
 
@@ -20,35 +20,46 @@
 
 {% block htmlstyle %}
 html {
-    height: 484px;
+    height: 480px;
 }
 {% endblock %}
 
 {% block bodystyle %}
 body {
-    height: 484px;
+    height: 480px;
 }
 {% endblock %}
 
 {% block buttons %}
 .buttons {
     width: 200px;
-    height: 484px;
+    height: 480px;
     display: flex;
     flex-direction: column;
 }
 {% endblock %}
 
+{% block imgotherbuttons %}
+.imgotherbutton{
+    width: 200px;
+    height: 52.5px;
+}
+.imgotherbutton1{
+    width: 200px;
+    height: 55px;
+}
+{% endblock %}
+
 {% block body %}
 <a href="/" class="mainscreen"><img src="{{ url_for('static', filename='OptionsStation/MainScreen.png') }}"/></a>
-<a href="/Menu" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Back.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EngineParameters.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/SensorSettings.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/PumpParametersInGeneral.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OnAdditionalPumps.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OffOfAdditionalPumps.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Options.png') }}"/></a>
-<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EmergencyModes.png') }}"/></a>
+<a href="/Menu" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Back.png') }}"class="imgotherbutton1"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EngineParameters.png') }}"class="imgotherbutton"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/SensorSettings.png') }}"class="imgotherbutton1"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/PumpParametersInGeneral.png') }}"class="imgotherbutton"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OnAdditionalPumps.png') }}"class="imgotherbutton1"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OffOfAdditionalPumps.png') }}"class="imgotherbutton"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Options.png') }}"class="imgotherbutton1"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EmergencyModes.png') }}"class="imgotherbutton"/></a>
 
 <div id="clock"></div>
 {% endblock %}
