@@ -27,83 +27,83 @@ Frame20 - Контакты
 app = Flask(__name__)
 
 @app.route('/')
-def MainScreen(): #Frame 1_1 1_2 1_3 1_4
+def MainScreen():
     return render_template('DirectMenu/Main.html')
 
 @app.route('/SetpointPlanner')
-def SetpointPlannerScreen(): #Frame 2
+def SetpointPlannerScreen():
     return render_template('DirectMenu/SetpointPlanner.html')
 
 @app.route('/OnlineTrends')
-def OnlineTrendsScreen():#Frame3 4 5
+def OnlineTrendsScreen():
     return render_template('DirectMonitoring/OnlineTrends.html')
 
 @app.route('/HistoryTrends')
-def HistoryTrendsScreen():#Frame3 4 5
+def HistoryTrendsScreen():
     return render_template('DirectMonitoring/HistoryTrends.html')
 
 @app.route('/PumpOperatingTime')
-def PumpOperatingTimeScreen():#Frame3 4 5
+def PumpOperatingTimeScreen():
     return render_template('DirectMonitoring/PumpOperatingTime.html')
 
 @app.route('/CurrentEvent')
-def CurrentEventScreen():#Menu Frame6 7 8
+def CurrentEventScreen():
     return render_template('DirectJournal/CurrentEvent.html')
 
 @app.route('/JournalHistory')
-def JournalHistoryScreen():#Menu Frame6 7 8
+def JournalHistoryScreen():
     return render_template('DirectJournal/JournalHistory.html')
 
 @app.route('/ChangeLog')
-def ChangeLogScreen():#Menu Frame6 7 8
+def ChangeLogScreen():
     return render_template('DirectJournal/ChangeLog.html')
 
 @app.route('/EngineParameters')
-def EngineParametersScreen():#Frame9 10 11 12 13 14 15
+def EngineParametersScreen():
     return render_template('DirectOptionsStation/EngineParameters.html')
 
 @app.route('/SensorSettings')
-def SensorSettingsScreen():#Frame9 10 11 12 13 14 15
+def SensorSettingsScreen():
     return render_template('DirectOptionsStation/SensorSettings.html')
 
 @app.route('/PumpParametersInGeneral')
-def PumpParametersInGeneralScreen():#Frame9 10 11 12 13 14 15
+def PumpParametersInGeneralScreen():
     return render_template('DirectOptionsStation/PumpParametersInGeneral.html')
 
 @app.route('/OnAdditionalPumps')
-def OnAdditionalPumpsScreen():#Frame9 10 11 12 13 14 15
+def OnAdditionalPumpsScreen():
     return render_template('DirectOptionsStation/OnAdditionalPumps.html')
 
 @app.route('/OffOfAdditionalPumps')
-def OffOfAdditionalPumpsScreen():#Frame9 10 11 12 13 14 15
+def OffOfAdditionalPumpsScreen():
     return render_template('DirectOptionsStation/OffOfAdditionalPumps.html')
 
 @app.route('/Options')
-def OptionsScreen():#Frame9 10 11 12 13 14 15
+def OptionsScreen():
     return render_template('DirectOptionsStation/Options.html')
 
 @app.route('/EmergencyModes')
-def EmergencyModesScreen():#Frame9 10 11 12 13 14 15
+def EmergencyModesScreen():
     return render_template('DirectOptionsStation/EmergencyModes.html')
 
 @app.route('/SettingsPID')
-def SettingsPIDScreen():#Frame16 17 18
+def SettingsPIDScreen():
     return render_template('DirectEngineeringMenu/SettingsPID.html')
 
 @app.route('/PLC')
-def PLCScreen():#Frame16 17 18
+def PLCScreen():#
     return render_template('DirectEngineeringMenu/PLC.html')
 
 @app.route('/Backup')
-def BackupScreen():#Frame16 17 18
+def BackupScreen():
     return render_template('DirectEngineeringMenu/Backup.html')
 
 @app.route('/SettingsPanel')
-def SettingsPanelScreen():#Frame16 17 18
+def SettingsPanelScreen():
     return render_template('DirectMenu/SettingsPanel.html')
 
 @app.route('/Contacts')
-def ContactsScreen():#Frame16 17 18
+def ContactsScreen():
     return render_template('DirectMenu/Contacts.html')
 
 if __name__ == '__main__':
