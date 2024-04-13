@@ -15,6 +15,11 @@
             margin-right: 0px;
             margin-bottom: 0px;
             width: 800px;
+            -webkit-user-select: none; /* для WebKit браузеров */
+            -khtml-user-select: none; /* для Konqueror */
+            -moz-user-select: none; /* для Firefox */
+            -ms-user-select: none; /* для Internet Explorer/Edge */
+            user-select: none;
         }
         {% block bodystyle %}{% endblock %}
         #clock {
@@ -31,6 +36,10 @@
         {% block buttons %}{% endblock %}
         {% block a %}{% endblock %}
         {% block imgotherbuttons %}{% endblock %}
+        img {
+            pointer-events: none;
+        }
+
     </style>
     {% block title %}{% endblock %}
 </head>
@@ -50,6 +59,14 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 1000);
+
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+        });
     </script>
 </body>
 </html>
