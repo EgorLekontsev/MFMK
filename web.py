@@ -30,10 +30,6 @@ app = Flask(__name__)
 def MainScreen(): #Frame 1_1 1_2 1_3 1_4
     return render_template('DirectMenu/Main.html')
 
-@app.route('/Menu')
-def MenuScreen():#Menu Frame2 19 20
-    return render_template('DirectMenu/Menu.html')
-
 @app.route('/SetpointPlanner')
 def SetpointPlannerScreen(): #Frame 2
     return render_template('DirectMenu/SetpointPlanner.html')
@@ -101,10 +97,6 @@ def OptionsScreen():#Frame9 10 11 12 13 14 15
 @app.route('/EmergencyModes')
 def EmergencyModesScreen():#Frame9 10 11 12 13 14 15
     return render_template('DirectOptionsStation/EmergencyModes.html')
-
-@app.route('/EngineeringMenu')
-def EngineeringMenuScreen():#Frame16 17 18
-    return render_template('DirectMenu/EngineeringMenu.html')
 
 @app.route('/SettingsPID')
 def SettingsPIDScreen():#Frame16 17 18
