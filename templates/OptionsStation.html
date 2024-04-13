@@ -4,37 +4,45 @@
 <title>Настройки станции</title>
 {% endblock %}
 
-{% block button %}
-button {
-    width: 245px;
-    height: 64.3px;
+{% block a %}
+.otherbutton {
+    width: 200px;
+    height: 53px;
 }
-button.main {
-    width: 245px;
-    height: 73.5px;
-    margin: 0;
-    display: block;
-    background-color: black;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 20px;
-    border-left: 3px solid #8E8E8E;
-    border-top: 3px solid #8E8E8E;
-    border-right: 3px solid #8E8E8E;
-    border-bottom: 3px solid #8E8E8E;
+{% endblock %}
+
+{% block mainscreen %}
+.mainscreen {
+    width: 200px;
+    height: 60px;
+}
+{% endblock %}
+
+{% block bodystyle %}
+body {
+    height: 484px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 200px;
+    height: 484px;
+    display: flex;
+    flex-direction: column;
 }
 {% endblock %}
 
 {% block body %}
-<button class="main" onclick="window.location.href='/'">Главный экран</button>
-<button onclick="window.location.href='/Menu'">Назад</button>
-<button>Параметры двигателей</button>
-<button>Настройки датчиков</button>
-<button>Параметры насосов общ.</button>
-<button>Вкл. доп. насосов</button>
-<button>Откл. доп. насосов</button>
-<button>Опции</button>
-<button>Аварийные режимы</button>
+<a href="/" class="mainscreen"><img src="{{ url_for('static', filename='OptionsStation/MainScreen.png') }}"/></a>
+<a href="/Menu" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Back.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EngineParameters.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/SensorSettings.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/PumpParametersInGeneral.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OnAdditionalPumps.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OffOfAdditionalPumps.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Options.png') }}"/></a>
+<a href="#" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EmergencyModes.png') }}"/></a>
+
 <div id="clock"></div>
 {% endblock %}

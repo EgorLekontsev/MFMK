@@ -14,8 +14,8 @@
             margin-right: 0px;
             margin-bottom: 0px;
             width: 800px;
-            height: 480px;
         }
+        {% block bodystyle %}{% endblock %}
         #clock {
             position: absolute;
             right: 0px;
@@ -26,6 +26,7 @@
             font-weight: bold;
             font-size: 20px;
         }
+        {% block mainscreen %}{% endblock %}
         {% block buttons %}{% endblock %}
         {% block a %}{% endblock %}
     </style>
