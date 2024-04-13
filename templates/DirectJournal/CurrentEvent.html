@@ -1,7 +1,7 @@
 {% extends 'Base.html' %}
 
 {% block title %}
-<title>Журнал</title>
+<title>Текущие события</title>
 {% endblock %}
 
 {% block a %}
@@ -35,7 +35,7 @@ body {
 {% block body %}
 <a href="/"><img src="{{ url_for('static', filename='Journal/MainScreen.png') }}"/></a>
 <a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Journal/Back.png') }}"/></a>
-<a href="/CurrentEvent"><img src="{{ url_for('static', filename='Journal/NowEvents.png') }}"/></a>
+<a href="/CurrentEvent"><img src="{{ url_for('static', filename='Journal/NowEventsOpen.png') }}"/></a>
 <a href="/JournalHistory"><img src="{{ url_for('static', filename='Journal/JournalHistory.png') }}"/></a>
 <a href="/ChangeLog"><img src="{{ url_for('static', filename='Journal/JournalEdits.png') }}"/></a>
 

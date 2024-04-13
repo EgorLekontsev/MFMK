@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'Base.html' %}
 
-</body>
-</html>
+{% block title %}
+<title>Наработки насосов</title>
+{% endblock %}
+
+{% block a %}
+a {
+    width: 200px;
+    height: 60px;
+}
+{% endblock %}
+
+{% block htmlstyle %}
+html {
+    height: 480px;
+}
+{% endblock %}
+
+{% block bodystyle %}
+body {
+    height: 480px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+{% endblock %}
+
+{% block body %}
+<a href="/"><img src="{{ url_for('static', filename='Monitoring/MainScreen.png') }}"/></a>
+<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Monitoring/Back.png') }}"/></a>
+<a href="/OnlineTrends"><img src="{{ url_for('static', filename='Monitoring/TrendsOnline.png') }}"/></a>
+<a href="/HistoryTrends"><img src="{{ url_for('static', filename='Monitoring/TrendingStories.png') }}"/></a>
+<a href="/PumpOperatingTime"><img src="{{ url_for('static', filename='Monitoring/OperatingTimeOfPumpsOpen.png') }}"/></a>
+
+<div id="clock"></div>
+{% endblock %}
