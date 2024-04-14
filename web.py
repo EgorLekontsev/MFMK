@@ -117,6 +117,7 @@ def SettingsPanelScreen():
 @app.route('/Contacts')
 def ContactsScreen():
     return render_template('DirectMenu/Contacts.html')
+
 @app.route('/Keyboard')
 def KeyboardScreen():
     return render_template('DirectInput/Keyboard.html')
