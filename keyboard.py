@@ -117,7 +117,6 @@ def lang_func():
 
 bs_button = tk.Button(bg="#a5a5a5", fg="white", font=('Roboto Bold', 12), text="<", command=lambda: print("Удалить"))
 bs_button.place(x=550, y=0, height=50, width=51)
-#cl_button = tk.Button(root, bg="#a5a5a5", fg="white", font=('Roboto Bold', 12), text="CL", command=lambda: [button.destroy() for button in numbers_buttons])
 cl_button = tk.Button(bg="#a5a5a5", fg="white", font=('Roboto Bold', 12), text="CL", command=lambda: print("Очистить все"))
 cl_button.place(x=550, y=164, height=51, width=51)
 space_button = tk.Button(bg="#a5a5a5", fg="white", font=('Roboto Bold', 12), text="Пробел", command=lambda: print("Пробел"))
