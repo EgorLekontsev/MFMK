@@ -36,6 +36,7 @@
         {% block buttons %}{% endblock %}
         {% block a %}{% endblock %}
         {% block imgotherbuttons %}{% endblock %}
+
         img {
             pointer-events: none;
         }
@@ -67,6 +68,8 @@
         document.addEventListener('dragstart', function(e) {
             e.preventDefault();
         });
+
     </script>
+    {% block page_script %}{% endblock %}
 </body>
 </html>
