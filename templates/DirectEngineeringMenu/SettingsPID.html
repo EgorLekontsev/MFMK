@@ -33,7 +33,21 @@ body {
 {% endblock %}
 
 {% block interface %}
-<img src="{{ url_for('static', filename='PID/interface.png') }}" draggable="false" style="position: absolute; top: 40px; left: 210px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='PID/interface.png') }}" draggable="false" style="position: absolute; top: 40px; left: 210px;"/>
+<img id="Switch" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage()" style="position: absolute; top: 197px; left: 635px;">
+{% endblock %}
+
+{% block page_script %}
+<script>
+function changeImage() {
+  var image = document.getElementById('Switch');
+  if (image.src.match("/static/Interactive/Switch-0.png")) {
+    image.src = "/static/Interactive/Switch-1.png";
+  } else {
+    image.src = "/static/Interactive/Switch-0.png";
+  }
+}
+</script>
 {% endblock %}
 
 {% block body %}

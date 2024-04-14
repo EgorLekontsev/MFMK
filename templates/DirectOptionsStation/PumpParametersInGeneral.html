@@ -51,7 +51,30 @@ body {
 {% endblock %}
 
 {% block interface %}
-<img src="{{ url_for('static', filename='OptionsStation/interface_3.png') }}" style="position: absolute; top: 80px; left: 210px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='OptionsStation/interface_3.png') }}" style="position: absolute; top: 80px; left: 210px;"/>
+<img id="Switch1" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage1()" style="position: absolute; top: 158px; left: 640px;">
+<img id="Switch2" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage2()" style="position: absolute; top: 200px; left: 640px;">
+{% endblock %}
+
+{% block page_script %}
+<script>
+function changeImage1() {
+  var image = document.getElementById('Switch1');
+  if (image.src.match("/static/Interactive/Switch-0.png")) {
+    image.src = "/static/Interactive/Switch-1.png";
+  } else {
+    image.src = "/static/Interactive/Switch-0.png";
+  }
+}
+function changeImage2() {
+  var image = document.getElementById('Switch2');
+  if (image.src.match("/static/Interactive/Switch-0.png")) {
+    image.src = "/static/Interactive/Switch-1.png";
+  } else {
+    image.src = "/static/Interactive/Switch-0.png";
+  }
+}
+</script>
 {% endblock %}
 
 {% block body %}

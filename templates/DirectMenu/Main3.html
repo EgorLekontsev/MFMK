@@ -36,34 +36,7 @@ body {
 <img class="pointereventnone" src="{{ url_for('static', filename='Main/SystemPump.png') }}" draggable="false" style="position: absolute; top: 335px; left: 0px;"/>
 <img class="pointereventnone" src="{{ url_for('static', filename='Main/Info.png') }}" draggable="false" style="position: absolute; top: 330px; left: 8px;"/>
 <img class="pointereventnone" src="{{ url_for('static', filename='Main/stop_icon.png') }}" draggable="false" style="position: absolute; top: 5px; left: 635px;"/>
-<a href="/Main1"><img src="{{ url_for('static', filename='Main/indicator_0.png') }}" draggable="false" style="position: absolute; top: 5px; left: 150px;"/></a>
-<img id="Switch" src="{{ url_for('static', filename='Main/red.png') }}" onclick="changeImage()" style="position: absolute; top: 43px; left: 743px;">
-{% endblock %}
-
-{% block page_script %}
-<script>
-function changeImage() {
-  var image = document.getElementById('Switch');
-  if (image.src.match("/static/Main/red.png")) {
-    image.src = "/static/Main/blue.png";
-  }
-  else if (image.src.match("/static/Main/blue.png")) {
-    image.src = "/static/Main/green.png";
-  }
-  else if (image.src.match("/static/Main/green.png")) {
-    image.src = "/static/Main/pink.png";
-  }
-  else if (image.src.match("/static/Main/pink.png")) {
-    image.src = "/static/Main/orange.png";
-  }
-  else if (image.src.match("/static/Main/orange.png")) {
-    image.src = "/static/Main/yellow.png";
-  }
-  else if (image.src.match("/static/Main/yellow.png")) {
-    image.src = "/static/Main/red.png";
-  }
-}
-</script>
+<a href="/"><img src="{{ url_for('static', filename='Main/indicator_2.png') }}" draggable="false" style="position: absolute; top: 5px; left: 150px;"/></a>
 {% endblock %}
 
 {% block body %}

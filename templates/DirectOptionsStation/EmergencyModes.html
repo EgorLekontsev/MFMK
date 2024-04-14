@@ -51,7 +51,21 @@ body {
 {% endblock %}
 
 {% block interface %}
-<img src="{{ url_for('static', filename='OptionsStation/interface_7.png') }}" style="position: absolute; top: 30px; left: 210px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='OptionsStation/interface_7.png') }}" style="position: absolute; top: 30px; left: 210px;"/>
+<img id="Switch" src="{{ url_for('static', filename='Interactive/_NO_YES.png') }}" onclick="changeImage()" style="position: absolute; top: 422px; left: 610px;">
+{% endblock %}
+
+{% block page_script %}
+<script>
+function changeImage() {
+  var image = document.getElementById('Switch');
+  if (image.src.match("/static/Interactive/_NO_YES.png")) {
+    image.src = "/static/Interactive/_YES_NO.png";
+  } else {
+    image.src = "/static/Interactive/_NO_YES.png";
+  }
+}
+</script>
 {% endblock %}
 
 {% block body %}

@@ -1,0 +1,105 @@
+{% extends 'Base.html' %}
+
+{% block title %}
+<title>Главный экран</title>
+{% endblock %}
+
+{% block a %}
+a {
+    width: 140px;
+    height: 40px;
+}
+{% endblock %}
+
+{% block htmlstyle %}
+html {
+    height: 480px;
+}
+{% endblock %}
+
+{% block bodystyle %}
+body {
+    height: 480px;
+}
+{% endblock %}
+
+{% block buttons %}
+.buttons {
+    width: 140px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+}
+{% endblock %}
+
+{% block interface %}
+<img class="pointereventnone" src="{{ url_for('static', filename='Main/SystemPump.png') }}" draggable="false" style="position: absolute; top: 335px; left: 0px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='Main/Info.png') }}" draggable="false" style="position: absolute; top: 330px; left: 8px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='Main/stop_icon.png') }}" draggable="false" style="position: absolute; top: 5px; left: 635px;"/>
+<a href="/Main3"><img src="{{ url_for('static', filename='Main/indicator_1.png') }}" draggable="false" style="position: absolute; top: 5px; left: 150px;"/></a>
+<img id="Switch1" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage1()" style="position: absolute; top: 140px; left: 190px;">
+<img id="Switch2" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage2()" style="position: absolute; top: 140px; left: 290px;">
+<img id="Switch3" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage3()" style="position: absolute; top: 140px; left: 390px;">
+<img id="Switch4" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage4()" style="position: absolute; top: 140px; left: 490px;">
+<img id="Switch5" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage5()" style="position: absolute; top: 140px; left: 590px;">
+<img id="Switch6" src="{{ url_for('static', filename='Interactive/ON.png') }}" onclick="changeImage6()" style="position: absolute; top: 140px; left: 690px;">
+{% endblock %}
+
+{% block page_script %}
+<script>
+function changeImage1() {
+  var image = document.getElementById('Switch1');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+function changeImage2() {
+  var image = document.getElementById('Switch2');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+function changeImage3() {
+  var image = document.getElementById('Switch3');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+function changeImage4() {
+  var image = document.getElementById('Switch4');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+function changeImage5() {
+  var image = document.getElementById('Switch5');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+function changeImage6() {
+  var image = document.getElementById('Switch6');
+  if (image.src.match("/static/Interactive/ON.png")) {
+    image.src = "/static/Interactive/OFF.png";
+  } else {
+    image.src = "/static/Interactive/ON.png";
+  }
+}
+</script>
+{% endblock %}
+
+{% block body %}
+<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Main/Settings.png') }}"/></a>
+
+<div id="clock"></div>
+{% endblock %}

@@ -30,6 +30,18 @@ app = Flask(__name__)
 def MainScreen():
     return render_template('DirectMenu/Main.html')
 
+@app.route('/Main1')
+def Main1Screen():
+    return render_template('DirectMenu/Main1.html')
+
+@app.route('/Main2')
+def Main2Screen():
+    return render_template('DirectMenu/Main2.html')
+
+@app.route('/Main3')
+def Main3Screen():
+    return render_template('DirectMenu/Main3.html')
+
 @app.route('/SetpointPlanner')
 def SetpointPlannerScreen():
     return render_template('DirectMenu/SetpointPlanner.html')
@@ -91,7 +103,7 @@ def SettingsPIDScreen():
     return render_template('DirectEngineeringMenu/SettingsPID.html')
 
 @app.route('/PLC')
-def PLCScreen():#
+def PLCScreen():
     return render_template('DirectEngineeringMenu/PLC.html')
 
 @app.route('/Backup')
