@@ -33,7 +33,7 @@ html {
 {% endblock %}
 
 {% block interface %}
-<img src="{{ url_for('static', filename='PanelSettings/interface.png') }}" draggable="false" style="position: absolute; top: 60px; left: 210px;"/>
+<img class="pointereventnone" src="{{ url_for('static', filename='PanelSettings/interface.png') }}" draggable="false" style="position: absolute; top: 60px; left: 210px;"/>
 <img id="Switch" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage()" style="position: absolute; top: 140px; left: 635px;">
 {% endblock %}
 
