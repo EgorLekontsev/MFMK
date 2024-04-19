@@ -4,24 +4,6 @@
 <title>Контакты</title>
 {% endblock %}
 
-{% block a %}
-a {
-    width: 200px;
-    height: 60px;
-}
-{% endblock %}
-
-{% block bodystyle %}
-body {
-    height: 480px;
-}
-{% endblock %}
-
-{% block htmlstyle %}
-html {
-    height: 480px;
-}
-{% endblock %}
 
 {% block buttons %}
 .buttons {
@@ -32,19 +14,71 @@ html {
 }
 {% endblock %}
 
+{% block button200x60 %}
+.button200x60 {
+    border: none;
+    padding: 0px;
+    width: 200px;
+    height: 60px;
+    background: black;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    font-family: Roboto;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 47px;
+}
+{% endblock %}
+
 {% block interface %}
 <img class="pointereventnone" src="{{ url_for('static', filename='Contacts/interface.png') }}" draggable="false" style="position: absolute; top: 40px; left: 210px;"/>
 {% endblock %}
 
 {% block body %}
-<a href="/"><img src="{{ url_for('static', filename='Menu/MainScreen.png') }}"/></a>
-<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Menu/SetpointPlanner.png') }}"/></a>
-<a href="/OnlineTrends"><img src="{{ url_for('static', filename='Menu/Monitoring.png') }}"/></a>
-<a href="/CurrentEvent"><img src="{{ url_for('static', filename='Menu/Journal.png') }}"/></a>
-<a href="/EngineParameters"><img src="{{ url_for('static', filename='Menu/OptionsStation.png') }}"/></a>
-<a href="/SettingsPID"><img src="{{ url_for('static', filename='Menu/EngineeringMenu.png') }}"/></a>
-<a href="/SettingsPanel"><img src="{{ url_for('static', filename='Menu/PanelSettings.png') }}"/></a>
-<a><img src="{{ url_for('static', filename='Menu/ContactsOpen.png') }}"/></a>
+<div>
+    <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
+         style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
+
+    <img onclick="window.location.href='/SetpointPlanner'" src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
+         style="position: absolute; top: 73px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/SetpointPlanner'" class="button200x60">Планировщик уставок</button>
+
+    <img onclick="window.location.href='/OnlineTrends'" src="{{ url_for('static', filename='iconsbutton/Monitoring.png') }}"
+         style="position: absolute; top: 137px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/OnlineTrends'" class="button200x60">Мониторинг</button>
+    <img onclick="window.location.href='/OnlineTrends'" src="{{ url_for('static', filename='iconsbutton/Link.png') }}"
+         style="position: absolute; top: 138px; left: 169px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+
+    <img onclick="window.location.href='/CurrentEvent'" src="{{ url_for('static', filename='iconsbutton/Journal.png') }}"
+         style="position: absolute; top: 192px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/CurrentEvent'" class="button200x60">Журнал</button>
+    <img onclick="window.location.href='/CurrentEvent'" src="{{ url_for('static', filename='iconsbutton/Link.png') }}"
+         style="position: absolute; top: 201px; left: 169px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+
+    <img onclick="window.location.href='/EngineParameters'" src="{{ url_for('static', filename='iconsbutton/StationSettings.png') }}"
+         style="position: absolute; top: 256px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/EngineParameters'" class="button200x60">Настройки станции</button>
+    <img onclick="window.location.href='/EngineParameters'" src="{{ url_for('static', filename='iconsbutton/Link.png') }}"
+         style="position: absolute; top: 259px; left: 169px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+
+    <img onclick="window.location.href='/SettingsPID'" src="{{ url_for('static', filename='iconsbutton/EngineeringMenu.png') }}"
+         style="position: absolute; top: 315px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/SettingsPID'" class="button200x60">Инженерное меню</button>
+    <img onclick="window.location.href='/SettingsPID'" src="{{ url_for('static', filename='iconsbutton/Link.png') }}"
+         style="position: absolute; top: 321px; left: 169px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+
+    <img onclick="window.location.href='/SettingsPanel'" src="{{ url_for('static', filename='iconsbutton/PanelSettings.png') }}"
+         style="position: absolute; top: 375px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/SettingsPanel'" class="button200x60">Настройки панели</button>
+
+    <img src="{{ url_for('static', filename='iconsbutton/Contacts.png') }}"
+         style="position: absolute; top: 438px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button class="button200x60">Контакты</button>
+    <img src="{{ url_for('static', filename='iconsbutton/Triangle.png') }}"
+         style="position: absolute; top: 432px; left: 181px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+</div>
 
 <div id="clock"></div>
 {% endblock %}

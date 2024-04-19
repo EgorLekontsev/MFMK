@@ -4,31 +4,27 @@
 <title>Главный экран</title>
 {% endblock %}
 
-{% block a %}
-a {
-    width: 140px;
-    height: 40px;
-}
-{% endblock %}
-
-{% block htmlstyle %}
-html {
-    height: 480px;
-}
-{% endblock %}
-
-{% block bodystyle %}
-body {
-    height: 480px;
-}
-{% endblock %}
-
 {% block buttons %}
 .buttons {
     width: 140px;
     height: 40px;
     display: flex;
     flex-direction: column;
+}
+{% endblock %}
+
+{% block button200x60 %}
+.button200x60 {
+    border: none;
+    padding: 0px;
+    width: 140px;
+    height: 40px;
+    background: black;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    font-family: Roboto; /* Устанавливаем стиль шрифта */
+    font-size: 20px; /* Устанавливаем размер шрифта */
+    color: white;
+    font-weight: bold;
 }
 {% endblock %}
 
@@ -40,7 +36,9 @@ body {
 {% endblock %}
 
 {% block body %}
-<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Main/Settings.png') }}"/></a>
+<div>
+    <button onclick="window.location.href='/SetpointPlanner'" class="button200x60">Настройки</button>
+</div>
 
 <div id="clock"></div>
 {% endblock %}

@@ -7,7 +7,6 @@
             width: 800px;
             height: 480px;
         }
-        {% block htmlstyle %}{% endblock %}
         body {
             background-color: black;
             margin-left: 0px;
@@ -15,13 +14,13 @@
             margin-right: 0px;
             margin-bottom: 0px;
             width: 800px;
+            height: 480px;
             -webkit-user-select: none; /* для WebKit браузеров */
             -khtml-user-select: none; /* для Konqueror */
             -moz-user-select: none; /* для Firefox */
             -ms-user-select: none; /* для Internet Explorer/Edge */
             user-select: none;
         }
-        {% block bodystyle %}{% endblock %}
         #clock {
             position: absolute;
             right: 0px;
@@ -32,14 +31,8 @@
             font-weight: bold;
             font-size: 16px;
         }
-        {% block mainscreen %}{% endblock %}
+        {% block button200x60 %}{% endblock %}
         {% block buttons %}{% endblock %}
-        {% block a %}{% endblock %}
-        {% block imgotherbuttons %}{% endblock %}
-
-        .pointereventnone {
-            pointer-events: none;
-        }
     </style>
     {% block title %}{% endblock %}
 </head>

@@ -4,49 +4,12 @@
 <title>Параметры насосов общ.</title>
 {% endblock %}
 
-{% block a %}
-.otherbutton {
-    width: 200px;
-    height: 52.5px;
-}
-{% endblock %}
-
-{% block mainscreen %}
-.mainscreen {
-    width: 200px;
-    height: 60px;
-}
-{% endblock %}
-
-{% block htmlstyle %}
-html {
-    height: 480px;
-}
-{% endblock %}
-
-{% block bodystyle %}
-body {
-    height: 480px;
-}
-{% endblock %}
-
 {% block buttons %}
 .buttons {
     width: 200px;
     height: 480px;
     display: flex;
     flex-direction: column;
-}
-{% endblock %}
-
-{% block imgotherbuttons %}
-.imgotherbutton{
-    width: 200px;
-    height: 52.5px;
-}
-.imgotherbutton1{
-    width: 200px;
-    height: 55px;
 }
 {% endblock %}
 
@@ -78,15 +41,9 @@ function changeImage2() {
 {% endblock %}
 
 {% block body %}
-<a href="/" class="mainscreen"><img src="{{ url_for('static', filename='OptionsStation/MainScreen.png') }}"/></a>
-<a href="/SetpointPlanner" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Back.png') }}"class="imgotherbutton1"/></a>
-<a href="/EngineParameters" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EngineParameters.png') }}"class="imgotherbutton"/></a>
-<a href="/SensorSettings" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/SensorSettings.png') }}"class="imgotherbutton1"/></a>
-<a class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/PumpParametersInGeneralOpen.png') }}"class="imgotherbutton"/></a>
-<a href="/OnAdditionalPumps" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OnAdditionalPumps.png') }}"class="imgotherbutton1"/></a>
-<a href="/OffOfAdditionalPumps" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/OffOfAdditionalPumps.png') }}"class="imgotherbutton"/></a>
-<a href="/Options" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/Options.png') }}"class="imgotherbutton1"/></a>
-<a href="/EmergencyModes" class="otherbutton"><img src="{{ url_for('static', filename='OptionsStation/EmergencyModes.png') }}"class="imgotherbutton"/></a>
+<div>
+
+</div>
 
 <div id="clock"></div>
 {% endblock %}

@@ -1,26 +1,7 @@
 {% extends 'Base.html' %}
 
 {% block title %}
-<title>Журнал история</title>
-{% endblock %}
-
-{% block a %}
-a {
-    width: 200px;
-    height: 60px;
-}
-{% endblock %}
-
-{% block htmlstyle %}
-html {
-    height: 480px;
-}
-{% endblock %}
-
-{% block bodystyle %}
-body {
-    height: 480px;
-}
+<title>Журнал историй</title>
 {% endblock %}
 
 {% block buttons %}
@@ -32,12 +13,39 @@ body {
 }
 {% endblock %}
 
+{% block button200x60 %}
+.button200x60 {
+    border: none;
+    padding: 0px;
+    width: 200px;
+    height: 60px;
+    background: black;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    font-family: Roboto;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 47px;
+}
+{% endblock %}
+
 {% block body %}
-<a href="/"><img src="{{ url_for('static', filename='Journal/MainScreen.png') }}"/></a>
-<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Journal/Back.png') }}"/></a>
-<a href="/CurrentEvent"><img src="{{ url_for('static', filename='Journal/NowEvents.png') }}"/></a>
-<a><img src="{{ url_for('static', filename='Journal/JournalHistory.png') }}"/></a>
-<a href="/ChangeLog"><img src="{{ url_for('static', filename='Journal/JournalEdits.png') }}"/></a>
+<div>
+    <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
+         style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
+
+    <img onclick="window.location.href='/CurrentEvent'" src="{{ url_for('static', filename='iconsbutton/Back.png') }}"
+         style="position: absolute; top: 80px; left: 13px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/CurrentEvent'" class="button200x60">Назад</button>
+</div>
+
+<!--<a href="/"><img src="{{ url_for('static', filename='Journal/MainScreen.png') }}"/></a>-->
+<!--<a href="/SetpointPlanner"><img src="{{ url_for('static', filename='Journal/Back.png') }}"/></a>-->
+<!--<a href="/CurrentEvent"><img src="{{ url_for('static', filename='Journal/NowEvents.png') }}"/></a>-->
+<!--<a><img src="{{ url_for('static', filename='Journal/JournalHistory.png') }}"/></a>-->
+<!--<a href="/ChangeLog"><img src="{{ url_for('static', filename='Journal/JournalEdits.png') }}"/></a>-->
 
 <div id="clock"></div>
 {% endblock %}
