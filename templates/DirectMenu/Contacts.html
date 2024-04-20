@@ -4,39 +4,24 @@
 <title>Контакты</title>
 {% endblock %}
 
-
-{% block buttons %}
-.buttons {
-    width: 200px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
-    border: none;
-    padding: 0px;
-    width: 200px;
-    height: 60px;
-    background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+{% block styleforrightbody %}
+p {
     font-family: Roboto;
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     font-weight: bold;
-    text-align: left;
-    padding-left: 47px;
+    width: 250px;
+    height: 20px;
+    margin: 0px;
+}
+hr {
+    margin: 0px;
+    border-color: #616161;
 }
 {% endblock %}
 
-{% block interface %}
-<img class="pointereventnone" src="{{ url_for('static', filename='Contacts/interface.png') }}" draggable="false" style="position: absolute; top: 40px; left: 210px;"/>
-{% endblock %}
-
-{% block body %}
-<div>
+{% block container %}
+<div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
          style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
@@ -79,6 +64,45 @@
     <img src="{{ url_for('static', filename='iconsbutton/Triangle.png') }}"
          style="position: absolute; top: 432px; left: 181px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 </div>
+{% endblock %}
 
-<div id="clock"></div>
+{% block clock %}
+    <div id="clock"></div>
+{% endblock %}
+
+{% block interface %}
+<div class="rightbody">
+    <div style="width: 600px; height: 480px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
+            style="position: absolute; top: 48px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 50px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Программное обеспечение</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
+            style="position: absolute; top: 83px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 86px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Версия EasyBuilder</p>
+        <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
+            style="position: absolute; top: 119px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 122px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Дата компиляции</p>
+        <hr style="position: absolute; top: 156px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Key.png') }}"
+            style="position: absolute; top: 164px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 168px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Код продукта</p>
+        <img src="{{ url_for('static', filename='iconsbutton/SensorSettings.png') }}"
+            style="position: absolute; top: 202px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 207px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Количество насосов</p>
+        <p style="position: absolute; top: 207px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px;">из них работающих</p>
+        <hr style="position: absolute; top: 240px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Mail.png') }}"
+            style="position: absolute; top: 255px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 255px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Почта</p>
+        <p style="position: absolute; top: 255px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px;">info@mfmc.ru</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Web.png') }}"
+            style="position: absolute; top: 288px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 288px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Вэб-сайт</p>
+        <p style="position: absolute; top: 288px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px;">www.mfmc.ru</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Telephone.png') }}"
+            style="position: absolute; top: 322px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 324px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Техническая поддержка</p>
+        <p style="position: absolute; top: 321px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px;">+7 (495) 122-22-62<br>+7 (800) 333-14-61</p>
+    </div>
+</div>
 {% endblock %}

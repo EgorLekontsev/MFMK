@@ -4,53 +4,24 @@
 <title>Настройки панели</title>
 {% endblock %}
 
-
-{% block buttons %}
-.buttons {
-    width: 200px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
-    border: none;
-    padding: 0px;
-    width: 200px;
-    height: 60px;
-    background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
-    font-family: Roboto; /* Устанавливаем стиль шрифта */
-    font-size: 20px; /* Устанавливаем размер шрифта */
+{% block styleforrightbody %}
+p {
+    font-family: Roboto;
+    font-size: 16px;
     color: white;
     font-weight: bold;
-    text-align: left;
-    padding-left: 47px;
+    width: 250px;
+    height: 20px;
+    margin: 0px;
+}
+hr {
+    margin: 0px;
+    border-color: #616161;
 }
 {% endblock %}
 
-{% block interface %}
-<img class="pointereventnone" src="{{ url_for('static', filename='PanelSettings/interface.png') }}" draggable="false" style="position: absolute; top: 60px; left: 210px;"/>
-<img id="Switch" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage()" style="position: absolute; top: 140px; left: 635px;">
-{% endblock %}
-
-{% block page_script %}
-<script>
-function changeImage() {
-  var image = document.getElementById('Switch');
-  if (image.src.match("/static/Interactive/Switch-0.png")) {
-    image.src = "/static/Interactive/Switch-1.png";
-  } else {
-    image.src = "/static/Interactive/Switch-0.png";
-  }
-}
-</script>
-{% endblock %}
-
-{% block body %}
-<div>
+{% block container %}
+<div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
          style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
@@ -93,6 +64,99 @@ function changeImage() {
          style="position: absolute; top: 438px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/Contacts'" class="button200x60">Контакты</button>
 </div>
+{% endblock %}
 
+{% block clock %}
 <div id="clock"></div>
+{% endblock %}
+
+{% block switch %}
+function changeSwitch() {
+    var image = document.getElementById("Switch");
+    if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+    } else {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+    }
+}
+{% endblock %}
+
+{% block interface %}
+<div class="rightbody">
+    <div style="width: 600px; height: 480px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Sun.png') }}"
+            style="position: absolute; top: 55px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 59px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время до отключения дисплея</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 56px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 53px; left: 640px; border: 3px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px;">минут</p>
+        <img src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
+            style="position: absolute; top: 97px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 99px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время до отключения заставки</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 95px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 93px; left: 640px; border: 3px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px;">минут</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Music.png') }}"
+            style="position: absolute; top: 130px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Зуммер</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 133px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <img id="Switch" onclick="changeSwitch()" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
+            style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+        <hr style="position: absolute; top: 178px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
+            style="position: absolute; top: 189px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 193px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Дата</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 188px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 187px; left: 478px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 194px; left: 536px; right: 0px; bottom: 0px; border: none; padding: 0px;">День</p>
+        <hr style="position: absolute; top: 187px; left: 583px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 194px; left: 629px; right: 0px; bottom: 0px; border: none; padding: 0px;">Месяц</p>
+        <hr style="position: absolute; top: 187px; left: 687px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 194px; left: 752px; right: 0px; bottom: 0px; border: none; padding: 0px;">Год</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Time.png') }}"
+            style="position: absolute; top: 222px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 227px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 229px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 226px; left: 478px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 232px; left: 535px; right: 0px; bottom: 0px; border: none; padding: 0px;">Часы</p>
+        <hr style="position: absolute; top: 226px; left: 583px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 232px; left: 617px; right: 0px; bottom: 0px; border: none; padding: 0px;">Минуты</p>
+        <hr style="position: absolute; top: 226px; left: 687px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 232px; left: 713px; right: 0px; bottom: 0px; border: none; padding: 0px;">Секунды</p>
+        <hr style="position: absolute; top: 266px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 269px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px;">Ethernet</p>
+        <img src="{{ url_for('static', filename='iconsbutton/IP.png') }}"
+            style="position: absolute; top: 288px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 294px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px;">IP Адрес</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 289px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 286px; left: 379px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 286px; left: 481px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 286px; left: 583px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 286px; left: 685px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Mask.png') }}"
+            style="position: absolute; top: 327px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 333px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px;">IP Адрес</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 329px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 326px; left: 379px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 326px; left: 481px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 326px; left: 583px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 326px; left: 685px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <img src="{{ url_for('static', filename='iconsbutton/WWW.png') }}"
+            style="position: absolute; top: 366px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 372px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px;">IP Адрес</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 367px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 366px; left: 379px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 366px; left: 481px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 366px; left: 583px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+        <hr style="position: absolute; top: 366px; left: 685px; border: 3px solid white; width: 98px; height: 32px; border-radius: 6px;">
+    </div>
+</div>
 {% endblock %}

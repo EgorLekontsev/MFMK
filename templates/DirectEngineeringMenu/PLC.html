@@ -4,38 +4,8 @@
 <title>PLC</title>
 {% endblock %}
 
-{% block buttons %}
-.buttons {
-    width: 200px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
-    border: none;
-    padding: 0px;
-    width: 200px;
-    height: 60px;
-    background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
-    font-family: Roboto;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 47px;
-}
-{% endblock %}
-
-{% block interface %}
-<img class="pointereventnone" src="{{ url_for('static', filename='PLC/interface.png') }}" draggable="false" style="position: absolute; top: 10px; left: 230px;"/>
-{% endblock %}
-
-{% block body %}
-<div>
+{% block container %}
+<div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
          style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>

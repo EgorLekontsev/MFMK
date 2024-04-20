@@ -4,51 +4,8 @@
 <title>Бэкап</title>
 {% endblock %}
 
-{% block buttons %}
-.buttons {
-    width: 200px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
-    border: none;
-    padding: 0px;
-    width: 200px;
-    height: 60px;
-    background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
-    font-family: Roboto;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 47px;
-}
-{% endblock %}
-
-{% block interface %}
-<img class="pointereventnone" src="{{ url_for('static', filename='PanelSettings/interface.png') }}" draggable="false" style="position: absolute; top: 60px; left: 210px;"/>
-<img id="Switch" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage()" style="position: absolute; top: 140px; left: 635px;">
-{% endblock %}
-
-{% block page_script %}
-<script>
-function changeImage() {
-  var image = document.getElementById('Switch');
-  if (image.src.match("/static/Interactive/Switch-0.png")) {
-    image.src = "/static/Interactive/Switch-1.png";
-  } else {
-    image.src = "/static/Interactive/Switch-0.png";
-  }
-}
-</script>
-{% endblock %}
-{% block body %}
-<div>
+{% block container %}
+<div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
          style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
@@ -67,6 +24,8 @@ function changeImage() {
     <img src="{{ url_for('static', filename='iconsbutton/Triangle.png') }}"
          style="position: absolute; top: 252px; left: 180px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 </div>
+{% endblock %}
 
+{% block clock %}
 <div id="clock"></div>
 {% endblock %}

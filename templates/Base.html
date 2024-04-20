@@ -15,37 +15,76 @@
             margin-bottom: 0px;
             width: 800px;
             height: 480px;
-            -webkit-user-select: none; /* для WebKit браузеров */
-            -khtml-user-select: none; /* для Konqueror */
-            -moz-user-select: none; /* для Firefox */
-            -ms-user-select: none; /* для Internet Explorer/Edge */
             user-select: none;
         }
         #clock {
             position: absolute;
             right: 0px;
-            top: 14px;
-            left: 675px;
+            top: 10px;
+            left: 680px;
             color: white;
             font-family: 'Roboto', sans-serif;
             font-weight: bold;
             font-size: 16px;
+            width: 115px;
+            height: 20px;
         }
-        .pointereventnone {
-            pointer-events: none;
+        .buttons {
+            width: 200px;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            float: left;
         }
-        {% block button200x60 %}{% endblock %}
-        {% block button200x52 %}{% endblock %}
-        {% block buttons %}{% endblock %}
+        .button200x60 {
+            border: none;
+            padding: 0px;
+            width: 200px;
+            height: 60px;
+            background: black;
+            box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+            font-family: Roboto; /* Устанавливаем стиль шрифта */
+            font-size: 20px; /* Устанавливаем размер шрифта */
+            color: white;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 47px;
+        }
+        .button200x52 {
+            border: none;
+            padding: 0px;
+            width: 200px;
+            height: 52.5px;
+            background: black;
+            box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+            font-family: Roboto; /* Устанавливаем стиль шрифта */
+            font-size: 16px; /* Устанавливаем размер шрифта */
+            color: white;
+            font-weight: bold;
+            text-align: left;
+            padding-left: 47px;
+        }
+        button:hover {
+            background-color: #282828;
+            color: white;
+        }
+        .rightbody {
+            width: 600px;
+            height: 480px;
+            float: left;
+        }
+        {% block styleforrightbody %}{% endblock %}
     </style>
     {% block title %}{% endblock %}
 </head>
 <body>
-    {% block interface %}{% endblock %}
-    <div class="buttons">
-        {% block body %}{% endblock %}
+    <div>
+        {% block container %}{% endblock %}
+        {% block interface %}{% endblock %}
+        {% block clock %}{% endblock %}
     </div>
     <script>
+        {% block switch %}{% endblock %}
         function updateClock() {
             var now = new Date();
             var day = now.getDate().toString().padStart(2, '0');
@@ -56,16 +95,6 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 50);
-
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        document.addEventListener('dragstart', function(e) {
-            e.preventDefault();
-        });
-
     </script>
-    {% block page_script %}{% endblock %}
 </body>
 </html>

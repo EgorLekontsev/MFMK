@@ -4,39 +4,54 @@
 <title>Планировщик уставок</title>
 {% endblock %}
 
-
-{% block buttons %}
-.buttons {
-    width: 200px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
-    border: none;
-    padding: 0px;
-    width: 200px;
-    height: 60px;
-    background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
-    font-family: Roboto; /* Устанавливаем стиль шрифта */
-    font-size: 20px; /* Устанавливаем размер шрифта */
+{% block styleforrightbody %}
+p {
+    font-family: Roboto;
+    font-size: 16px;
     color: white;
     font-weight: bold;
-    text-align: left;
-    padding-left: 47px;
+    width: 200px;
+    height: 20px;
+    margin: 0px;
+}
+hr {
+    margin: 0px;
+    border-color: #616161;
+}
+.buttonblue {
+    border: none;
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    background-color: #0F91DA;
+    color: white;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
+.buttonred {
+    border: none;
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    background-color: #871212;
+    color: white;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
+.buttonblue:hover {
+    color: white;
+    background-color: #2073A1;
+}
+.buttonred:hover {
+    color: white;
+    background-color: #601515;
 }
 {% endblock %}
 
-{% block interface %}
-<img class="pointereventnone" src="{{ url_for('static', filename='SetpointPlanner/interface.png') }}" draggable="false" style="position: absolute; top: 15px; left: 200px;"/>
-{% endblock %}
-
-{% block body %}
-<div>
+{% block container %}
+<div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
          style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
@@ -79,6 +94,109 @@
          style="position: absolute; top: 438px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
     <button onclick="window.location.href='/Contacts'" class="button200x60">Контакты</button>
 </div>
+{% endblock %}
 
-<div id="clock"></div>
+{% block clock %}
+    <div id="clock"></div>
+{% endblock %}
+
+{% block interface %}
+<div class="rightbody">
+    <div style="width: 600px; height: 480px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}"
+            style="position: absolute; top: 18px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 19px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Источник уставки</p>
+        <hr style="position: absolute; top: 50px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/User.png') }}"
+            style="position: absolute; top: 62px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 67px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Уставка пользователя</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 62px; left: 579px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 60px; left: 623px; border: 3px solid white; width: 154px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 66px; left: 750px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 100px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
+            style="position: absolute; top: 112px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 116px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Настройка дней недели</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 108px; left: 479px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <button class="buttonblue" style="position: absolute; top: 105px; left: 510px;">ПН</button>
+        <button class="buttonblue" style="position: absolute; top: 105px; left: 550px;">ВТ</button>
+        <button class="buttonblue" style="position: absolute; top: 105px; left: 590px;">СР</button>
+        <button class="buttonblue" style="position: absolute; top: 105px; left: 630px;">ЧТ</button>
+        <button class="buttonblue" style="position: absolute; top: 105px; left: 670px;">ПТ</button>
+        <button class="buttonred" style="position: absolute; top: 105px; left: 710px;">СБ</button>
+        <button class="buttonred" style="position: absolute; top: 105px; left: 750px;">ВС</button>
+        <hr style="position: absolute; top: 146px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 155px; left: 208px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; color: #616161;">Планировщик</p>
+        <p style="position: absolute; top: 179px; left: 231px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время перехода:</p>
+        <p style="position: absolute; top: 179px; left: 372px; right: 0px; bottom: 0px; border: none; padding: 0px;">Будни</p>
+        <p style="position: absolute; top: 179px; left: 474px; right: 0px; bottom: 0px; border: none; padding: 0px;">Выходные</p>
+        <p style="position: absolute; top: 179px; left: 572px; right: 0px; bottom: 0px; border: none; padding: 0px;">Уставка</p>
+        <p style="position: absolute; top: 179px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px;">Будни</p>
+        <p style="position: absolute; top: 179px; left: 707px; right: 0px; bottom: 0px; border: none; padding: 0px;">Выходные</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
+            style="position: absolute; top: 213px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 217px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Утро</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 214px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 210px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 215px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 210px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 215px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 210px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 215px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 210px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 215px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
+            style="position: absolute; top: 258px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 261px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">День</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 259px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 258px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 264px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 258px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 263px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 258px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 264px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 258px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 265px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
+            style="position: absolute; top: 303px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 305px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Вечер</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 304px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 300px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 306px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 300px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 306px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 300px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 306px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 300px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 306px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
+            style="position: absolute; top: 348px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 349px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px;">Ночь</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 349px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 345px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 351px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 345px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 351px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
+        <hr style="position: absolute; top: 345px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 351px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 345px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
+        <p style="position: absolute; top: 351px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <hr style="position: absolute; top: 399px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
+            style="position: absolute; top: 414px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 414px; left: 252px; right: 0px; bottom: 0px; border: none; padding: 0px;">Текущий день</p>
+        <p style="position: absolute; top: 414px; left: 553px; right: 0px; bottom: 0px; border: none; padding: 0px;">Тип дня</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
+            style="position: absolute; top: 444px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 444px; left: 251px; right: 0px; bottom: 0px; border: none; padding: 0px;">Тип уставки</p>
+        <p style="position: absolute; top: 444px; left: 519px; right: 0px; bottom: 0px; border: none; padding: 0px;">Текущая уставка</p>
+        <p style="position: absolute; top: 444px; left: 744px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+    </div>
+</div>
 {% endblock %}
