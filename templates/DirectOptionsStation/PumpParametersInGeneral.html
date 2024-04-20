@@ -13,6 +13,40 @@
 }
 {% endblock %}
 
+{% block button200x60 %}
+.button200x60 {
+    border: none;
+    padding: 0px;
+    width: 200px;
+    height: 60px;
+    background: black;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    font-family: Roboto; /* Устанавливаем стиль шрифта */
+    font-size: 20px; /* Устанавливаем размер шрифта */
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 47px;
+}
+{% endblock %}
+
+{% block button200x52 %}
+.button200x52 {
+    border: none;
+    padding: 0px;
+    width: 200px;
+    height: 52.5px;
+    background: black;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    font-family: Roboto; /* Устанавливаем стиль шрифта */
+    font-size: 16px; /* Устанавливаем размер шрифта */
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 47px;
+}
+{% endblock %}
+
 {% block interface %}
 <img class="pointereventnone" src="{{ url_for('static', filename='OptionsStation/interface_3.png') }}" style="position: absolute; top: 80px; left: 210px;"/>
 <img id="Switch1" src="{{ url_for('static', filename='Interactive/Switch-0.png') }}" onclick="changeImage1()" style="position: absolute; top: 158px; left: 640px;">
@@ -42,7 +76,43 @@ function changeImage2() {
 
 {% block body %}
 <div>
+    <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
+         style="position: absolute; top: 16px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/'" class="button200x60">Главный экран</button>
 
+    <img onclick="window.location.href='/SetpointPlanner'" src="{{ url_for('static', filename='iconsbutton/Back.png') }}"
+         style="position: absolute; top: 76px; left: 13px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/SetpointPlanner'" class="button200x52">Назад</button>
+
+    <img onclick="window.location.href='/EngineParameters'" src="{{ url_for('static', filename='iconsbutton/EngineParameters.png') }}"
+         style="position: absolute; top: 124px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/EngineParameters'" class="button200x52">Параметры двигателей</button>
+
+    <img onclick="window.location.href='/SensorSettings'" src="{{ url_for('static', filename='iconsbutton/SensorSettings.png') }}"
+         style="position: absolute; top: 175px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/SensorSettings'" class="button200x52">Настройки датчиков</button>
+
+    <img src="{{ url_for('static', filename='iconsbutton/SensorSettings.png') }}"
+         style="position: absolute; top: 227px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button class="button200x52">Параметры насосов общ.</button>
+    <img src="{{ url_for('static', filename='iconsbutton/Triangle.png') }}"
+         style="position: absolute; top: 225px; left: 180px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+
+    <img onclick="window.location.href='/OnAdditionalPumps'" src="{{ url_for('static', filename='iconsbutton/On.png') }}"
+         style="position: absolute; top: 285px; left: 13px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/OnAdditionalPumps'" class="button200x52">Вкл. доп.<br>насосов</button>
+
+    <img onclick="window.location.href='/OffOfAdditionalPumps'" src="{{ url_for('static', filename='iconsbutton/Off.png') }}"
+         style="position: absolute; top: 338px; left: 13px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/OffOfAdditionalPumps'" class="button200x52">Откл. дов.<br>насосов</button>
+
+    <img onclick="window.location.href='/Options'" src="{{ url_for('static', filename='iconsbutton/Options.png') }}"
+         style="position: absolute; top: 387px; left: 13px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/Options'" class="button200x52">Опции</button>
+
+    <img onclick="window.location.href='/EmergencyModes'" src="{{ url_for('static', filename='iconsbutton/Modes.png') }}"
+         style="position: absolute; top: 441px; left: 10px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+    <button onclick="window.location.href='/EmergencyModes'" class="button200x52">Аварийные режимы</button>
 </div>
 
 <div id="clock"></div>
