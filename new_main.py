@@ -9,6 +9,16 @@ from socket import socket, AF_INET, SOCK_DGRAM
 import wmi
 import psutil
 
+'''def check_os():
+    os = system()
+    if os == "Windows":
+        print("This is Windows operating system.")
+    elif os == "Linux":
+        print("This is Linux operating system.")
+    else:
+        print("Unknown operating system.")
+check_os()'''
+
 '''
 Keypad - кейпад
 Frame1 - Главный экран - 1 2 3 4 фреймы индикаторов
