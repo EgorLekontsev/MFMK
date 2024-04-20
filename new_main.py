@@ -12,7 +12,6 @@ import psutil
 '''
 Keypad - кейпад
 Frame1 - Главный экран - 1 2 3 4 фреймы индикаторов
-Menu - Настройки
 Frame2 - Планировщик уставок
 Frame3 - Мониторинг(Тренды онлайн)
 Frame4 - Мониторинг(Тренды истории)
@@ -52,7 +51,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         При добавлении фрейма, обновить кортеж снизу!!!
         Так же не забыть создать класс для нового фрейма, по аналогии!!!
         '''
-        for F in (Frame1_1, Frame1_2, Frame1_3, Frame1_4, Menu, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
+        for F in (Frame1_1, Frame1_2, Frame1_3, Frame1_4, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
@@ -74,8 +73,6 @@ class App(tk.Tk): # Основной класс с характеристика�
                 self.title("Главный экран")
             case "Frame1_4":
                 self.title("Главный экран")
-            case "Menu":
-                self.title("Меню")
             case "Frame2":
                 self.title("Планировщик уставок")
             case "Frame3":
@@ -276,7 +273,7 @@ class Frame1_1(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
         button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 14),
-                           relief="groove", command=lambda: controller.show_frame("Menu"))
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
         button.place(x=0, y=0, width=135, height=37)
         self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_0.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
@@ -324,7 +321,7 @@ class Frame1_2(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
         button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 14),
-                           relief="groove", command=lambda: controller.show_frame("Menu"))
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
         button.place(x=0, y=0, width=135, height=37)
         self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_1.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
@@ -354,7 +351,7 @@ class Frame1_3(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
         button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 14),
-                           relief="groove", command=lambda: controller.show_frame("Menu"))
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
         button.place(x=0, y=0, width=135, height=37)
         self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_1.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
@@ -450,7 +447,7 @@ class Frame1_4(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
         button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 14),
-                           relief="groove", command=lambda: controller.show_frame("Menu"))
+                           relief="groove", command=lambda: controller.show_frame("Frame2"))
         button.place(x=0, y=0, width=135, height=37)
         self.indicators_img = PhotoImage(file=r"images\MainScreen\indicator_2.png")
         self.indicators_button = self.canvas.create_image(195, 20, image=self.indicators_img)
@@ -463,115 +460,6 @@ class Frame1_4(tk.Frame):
         self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
         self.Info_img = PhotoImage(file=r"images\MainScreen\Info.png")
         self.Info = self.canvas.create_image(90, 400, image=self.Info_img)
-
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
-
-
-class Menu(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent, background='black')
-        self.canvas = Canvas(
-            self,
-            bg="black",
-            height=480,
-            width=800,
-            bd=0,
-            highlightthickness=0,
-            relief="ridge")
-        self.canvas.place(x=0, y=0)
-
-        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
-
-        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
-        self.img_screen = Image.open(r"new_images\screen.png")
-        self.img_calendar = Image.open(r"new_images\calendar.png")
-        self.img_peak = Image.open(r"new_images\peak.png")
-        self.img_tablet = Image.open(r"new_images\tablet.png")
-        self.img_gear_wheel = Image.open(r"new_images\gear_wheel.png")
-        self.img_wrench = Image.open(r"new_images\wrench.png")
-        self.img_gear_wheel_bg = Image.open(r"new_images\gear_wheel_bg.png")
-        self.img_phone = Image.open(r"new_images\phone.png")
-        self.img_right = Image.open(r"new_images\right.png")
-
-        self.combined_img1 = Image.new("RGB", (200, 60), "black")
-        self.draw1 = ImageDraw.Draw(self.combined_img1)
-        self.combined_img1.paste(self.img_screen, (10, 20))
-        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
-        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
-
-        self.combined_img2 = Image.new("RGB", (200, 60), "black")
-        self.draw2 = ImageDraw.Draw(self.combined_img2)
-        self.combined_img2.paste(self.img_calendar, (10, 15))
-        self.draw2.text((50, 10), "Планировщик\nуставок", fill="white", font=self.font)
-        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
-
-        self.combined_img3 = Image.new("RGB", (200, 60), "black")
-        self.draw3 = ImageDraw.Draw(self.combined_img3)
-        self.combined_img3.paste(self.img_peak, (10, 15))
-        self.combined_img3.paste(self.img_right, (170, 15))
-        self.draw3.text((50, 20), "Мониторинг", fill="white", font=self.font)
-        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
-
-        self.combined_img4 = Image.new("RGB", (200, 60), "black")
-        self.draw4 = ImageDraw.Draw(self.combined_img4)
-        self.combined_img4.paste(self.img_tablet, (10, 15))
-        self.combined_img4.paste(self.img_right, (170, 15))
-        self.draw4.text((50, 20), "Журнал", fill="white", font=self.font)
-        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
-
-        self.combined_img5 = Image.new("RGB", (200, 60), "black")
-        self.draw5 = ImageDraw.Draw(self.combined_img5)
-        self.combined_img5.paste(self.img_gear_wheel, (10, 15))
-        self.combined_img5.paste(self.img_right, (170, 15))
-        self.draw5.text((50, 10), "Настройки\nстанции", fill="white", font=self.font)
-        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
-
-        self.combined_img6 = Image.new("RGB", (200, 60), "black")
-        self.draw6 = ImageDraw.Draw(self.combined_img6)
-        self.combined_img6.paste(self.img_wrench, (10, 15))
-        self.combined_img6.paste(self.img_right, (170, 15))
-        self.draw6.text((50, 10), "Инженерное\nменю", fill="white", font=self.font)
-        self.combined_photo6 = ImageTk.PhotoImage(self.combined_img6)
-
-        self.combined_img7 = Image.new("RGB", (200, 60), "black")
-        self.draw7 = ImageDraw.Draw(self.combined_img7)
-        self.combined_img7.paste(self.img_gear_wheel_bg, (10, 15))
-        self.draw7.text((50, 10), "Настройки\nпанели", fill="white", font=self.font)
-        self.combined_photo7 = ImageTk.PhotoImage(self.combined_img7)
-
-        self.combined_img8 = Image.new("RGB", (200, 60), "black")
-        self.draw8 = ImageDraw.Draw(self.combined_img8)
-        self.combined_img8.paste(self.img_phone, (10, 15))
-        self.draw8.text((50, 20), "Контакты", fill="white", font=self.font)
-        self.combined_photo8 = ImageTk.PhotoImage(self.combined_img8)
-
-        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
-                           command=lambda: controller.show_frame("Frame1_1"))
-        button.place(x=0, y=0, width=200, height=60)
-        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
-                           command=lambda: controller.show_frame("Frame2"))
-        button2.place(x=0, y=60, width=200, height=60)
-        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame3"))
-        button3.place(x=0, y=120, width=200, height=60)
-        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame6"))
-        button4.place(x=0, y=180, width=200, height=60)
-        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame9"))
-        button5.place(x=0, y=240, width=200, height=60)
-        button6 = tk.Button(self, image=self.combined_photo6, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame16"))
-        button6.place(x=0, y=300, width=200, height=60)
-        button7 = tk.Button(self, image=self.combined_photo7, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame19"))
-        button7.place(x=0, y=360, width=200, height=60)
-        button8 = tk.Button(self, image=self.combined_photo8, bg='black', relief="groove", activebackground="black",
-                            command=lambda: controller.show_frame("Frame20"))
-        button8.place(x=0, y=420, width=200, height=60)
-
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -621,16 +509,18 @@ class Frame2(tk.Frame):
         self.img_gear_wheel_bg = Image.open(r"new_images\gear_wheel_bg.png")
         self.img_phone = Image.open(r"new_images\phone.png")
         self.img_right = Image.open(r"new_images\right.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
 
         self.combined_img1 = Image.new("RGB", (200, 60), "black")
         self.draw1 = ImageDraw.Draw(self.combined_img1)
-        self.combined_img1.paste(self.img_screen, (10, 20))
+        self.combined_img1.paste(self.img_screen, (15, 20))
         self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
         self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
 
         self.combined_img2 = Image.new("RGB", (200, 60), "black")
         self.draw2 = ImageDraw.Draw(self.combined_img2)
         self.combined_img2.paste(self.img_calendar, (10, 15))
+        self.combined_img2.paste(self.img_triangle, (180, 13))
         self.draw2.text((50, 10), "Планировщик\nуставок", fill="white", font=self.font)
         self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
 
@@ -718,20 +608,61 @@ class Frame3(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.TO_img = PhotoImage(file=r"images\Buttons\TrendsOnlineOPEN.png")
-        self.TO_button = self.canvas.create_image(100, 150, image=self.TO_img)
-        self.TS_img = PhotoImage(file=r"images\Buttons\TrendingStories.png")
-        self.TS_button = self.canvas.create_image(100, 210, image=self.TS_img)
-        self.canvas.tag_bind(self.TS_button, "<Button-1>", lambda event: controller.show_frame("Frame4"))
-        self.Pumps_img = PhotoImage(file=r"images\Buttons\OperatingTimeOfPumps.png")
-        self.Pumps_button = self.canvas.create_image(100, 270, image=self.Pumps_img)
-        self.canvas.tag_bind(self.Pumps_button, "<Button-1>", lambda event: controller.show_frame("Frame5"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.combined_img3.paste(self.img_triangle, (180, 13))
+        self.draw3.text((50, 10), "Тренды\nонлайн", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_peak, (10, 15))
+        self.combined_img4.paste(self.img_right, (170, 15))
+        self.draw4.text((50, 10), "Тренды\nистории", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_timer, (10, 15))
+        self.draw5.text((50, 10), "Наработки\nнасосов", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame3"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame4"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame5"))
+        button5.place(x=0, y=240, width=200, height=60)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -753,12 +684,29 @@ class Frame4(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Frame3"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_left = Image.open(r"new_images\left.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame3"))
+        button2.place(x=0, y=60, width=200, height=60)
+
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -780,20 +728,61 @@ class Frame5(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.TO_img = PhotoImage(file=r"images\Buttons\TrendsOnline.png")
-        self.TO_button = self.canvas.create_image(100, 150, image=self.TO_img)
-        self.canvas.tag_bind(self.TO_button, "<Button-1>", lambda event: controller.show_frame("Frame3"))
-        self.TS_img = PhotoImage(file=r"images\Buttons\TrendingStories.png")
-        self.TS_button = self.canvas.create_image(100, 210, image=self.TS_img)
-        self.canvas.tag_bind(self.TS_button, "<Button-1>", lambda event: controller.show_frame("Frame4"))
-        self.Pumps_img = PhotoImage(file=r"images\Buttons\OperatingTimeOfPumpsOPEN.png")
-        self.Pumps_button = self.canvas.create_image(100, 270, image=self.Pumps_img)
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.draw3.text((50, 10), "Тренды\nонлайн", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_peak, (10, 15))
+        self.combined_img4.paste(self.img_right, (170, 15))
+        self.draw4.text((50, 10), "Тренды\nистории", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_timer, (10, 15))
+        self.combined_img5.paste(self.img_triangle, (180, 13))
+        self.draw5.text((50, 10), "Наработки\nнасосов", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame3"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame4"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame5"))
+        button5.place(x=0, y=240, width=200, height=60)
 
 
     def update_clock(self, current_time):
@@ -815,20 +804,61 @@ class Frame6(tk.Frame):
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.NowEvents_img = PhotoImage(file=r"images\Buttons\NowEventsOpen.png")
-        self.NowEvents_button = self.canvas.create_image(100, 150, image=self.NowEvents_img)
-        self.JournalHistory_img = PhotoImage(file=r"images\Buttons\JournalHistory.png")
-        self.JournalHistory_button = self.canvas.create_image(100, 210, image=self.JournalHistory_img)
-        self.canvas.tag_bind(self.JournalHistory_button, "<Button-1>", lambda event: controller.show_frame("Frame7"))
-        self.JournalEdits_img = PhotoImage(file=r"images\Buttons\JournalEdits.png")
-        self.JournalEdits_button = self.canvas.create_image(100, 270, image=self.JournalEdits_img)
-        self.canvas.tag_bind(self.JournalEdits_button, "<Button-1>", lambda event: controller.show_frame("Frame8"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.combined_img3.paste(self.img_triangle, (180, 13))
+        self.draw3.text((50, 10), "Текущие\nсобытия", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_peak, (10, 15))
+        self.combined_img4.paste(self.img_right, (170, 15))
+        self.draw4.text((50, 10), "Журнал\nистория", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_timer, (10, 15))
+        self.draw5.text((50, 10), "Журнал\nизменений", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame6"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame7"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame8"))
+        button5.place(x=0, y=240, width=200, height=60)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -849,12 +879,28 @@ class Frame7(tk.Frame):
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Frame6"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_left = Image.open(r"new_images\left.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame6"))
+        button2.place(x=0, y=60, width=200, height=60)
 
 
     def update_clock(self, current_time):
@@ -876,20 +922,61 @@ class Frame8(tk.Frame):
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Frame6"))
-        self.NowEvents_img = PhotoImage(file=r"images\Buttons\NowEvents.png")
-        self.NowEvents_button = self.canvas.create_image(100, 150, image=self.NowEvents_img)
-        self.canvas.tag_bind(self.NowEvents_button, "<Button-1>", lambda event: controller.show_frame("Frame6"))
-        self.JournalHistory_img = PhotoImage(file=r"images\Buttons\JournalHistory.png")
-        self.JournalHistory_button = self.canvas.create_image(100, 210, image=self.JournalHistory_img)
-        self.canvas.tag_bind(self.JournalHistory_button, "<Button-1>", lambda event: controller.show_frame("Frame7"))
-        self.JournalEdits_img = PhotoImage(file=r"images\Buttons\JournalEditsOpen.png")
-        self.JournalEdits_button = self.canvas.create_image(100, 270, image=self.JournalEdits_img)
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.draw3.text((50, 10), "Текущие\nсобытия", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_peak, (10, 15))
+        self.combined_img4.paste(self.img_right, (170, 15))
+        self.draw4.text((50, 10), "Журнал\nистория", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_timer, (10, 15))
+        self.combined_img5.paste(self.img_triangle, (180, 13))
+        self.draw5.text((50, 10), "Журнал\nизменений", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame6"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame7"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame8"))
+        button5.place(x=0, y=240, width=200, height=60)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -911,40 +998,98 @@ class Frame9(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\StationSettings\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 0+30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+        self.img_diode = Image.open(r"new_images\diode.png")
+        self.img_swap = Image.open(r"new_images\swap.png")
+        self.img_plusone = Image.open(r"new_images\plus_one.png")
+        self.img_minusone = Image.open(r"new_images\minus_one.png")
+        self.img_options = Image.open(r"new_images\options.png")
+        self.img_emergency = Image.open(r"new_images\emergency.png")
 
-        self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
-        self.BackToMenu_button = self.canvas.create_image(100, 56.4+30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
 
-        self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_1.png")
-        self.EngineParameters_button = self.canvas.create_image(100, 107.4+30, image=self.EngineParameters_img)
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
 
-        self.SensorSettings_img = PhotoImage(file=r"images\StationSettings\SensorSettings1_0.png")
-        self.SensorSettings_button = self.canvas.create_image(100, 160.4+30, image=self.SensorSettings_img)
-        self.canvas.tag_bind(self.SensorSettings_button, "<Button-1>", lambda event: controller.show_frame("Frame10"))
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_diode, (10, 15))
+        self.draw3.text((50, 10), "Параметры\nдвигателей", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
 
-        self.PumpParametersInGeneral_img = PhotoImage(file=r"images\StationSettings\PumpParametersInGeneral1_0.png")
-        self.PumpParametersInGeneral_button = self.canvas.create_image(100, 211.4+30, image=self.PumpParametersInGeneral_img)
-        self.canvas.tag_bind(self.PumpParametersInGeneral_button, "<Button-1>", lambda event: controller.show_frame("Frame11"))
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_swap, (15, 15))
+        self.draw4.text((50, 10), "Настройки\nдатчиков", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
 
-        self.OnAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OnAdditionalPumps1_0.png")
-        self.OnAdditionalPumps_button = self.canvas.create_image(100, 264.4+30, image=self.OnAdditionalPumps_img)
-        self.canvas.tag_bind(self.OnAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame12"))
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_swap, (15, 15))
+        self.draw5.text((50, 10), "Параметры\nнасосов общ.", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
 
-        self.OffOfAdditionalPumps_img = PhotoImage(file=r"images\StationSettings\OffOfAdditionalPumps1_0.png")
-        self.OffOfAdditionalPumps_button = self.canvas.create_image(100, 315.4+30, image=self.OffOfAdditionalPumps_img)
-        self.canvas.tag_bind(self.OffOfAdditionalPumps_button, "<Button-1>", lambda event: controller.show_frame("Frame13"))
+        self.combined_img6 = Image.new("RGB", (200, 60), "black")
+        self.draw6 = ImageDraw.Draw(self.combined_img6)
+        self.combined_img6.paste(self.img_plusone, (15, 15))
+        self.draw6.text((50, 10), "Вкл. доп.\nнасосов", fill="white", font=self.font)
+        self.combined_photo6 = ImageTk.PhotoImage(self.combined_img6)
 
-        self.Options_img = PhotoImage(file=r"images\StationSettings\Options1_0.png")
-        self.Options_button = self.canvas.create_image(100, 368.4+30, image=self.Options_img)
-        self.canvas.tag_bind(self.Options_button, "<Button-1>", lambda event: controller.show_frame("Frame14"))
+        self.combined_img7 = Image.new("RGB", (200, 60), "black")
+        self.draw7 = ImageDraw.Draw(self.combined_img7)
+        self.combined_img7.paste(self.img_minusone, (15, 15))
+        self.draw7.text((50, 10), "Откл. доп.\nнасосов", fill="white", font=self.font)
+        self.combined_photo7 = ImageTk.PhotoImage(self.combined_img7)
 
-        self.EmergencyModes_img = PhotoImage(file=r"images\StationSettings\EmergencyModes1_0.png")
-        self.EmergencyModes_button = self.canvas.create_image(100, 419.4+30, image=self.EmergencyModes_img)
-        self.canvas.tag_bind(self.EmergencyModes_button, "<Button-1>", lambda event: controller.show_frame("Frame15"))
+        self.combined_img8 = Image.new("RGB", (200, 60), "black")
+        self.draw8 = ImageDraw.Draw(self.combined_img8)
+        self.combined_img8.paste(self.img_options, (15, 15))
+        self.draw8.text((50, 20), "Опции", fill="white", font=self.font)
+        self.combined_photo8 = ImageTk.PhotoImage(self.combined_img8)
+
+        self.combined_img9 = Image.new("RGB", (200, 60), "black")
+        self.draw9 = ImageDraw.Draw(self.combined_img9)
+        self.combined_img9.paste(self.img_emergency, (15, 15))
+        self.draw9.text((50, 10), "Аварийные\nрежимы", fill="white", font=self.font)
+        self.combined_photo9 = ImageTk.PhotoImage(self.combined_img9)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=52.5)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame9"))
+        button3.place(x=0, y=112.5, width=200, height=52.5)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame10"))
+        button4.place(x=0, y=165, width=200, height=52.5)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame11"))
+        button5.place(x=0, y=217.5, width=200, height=52.5)
+        button6 = tk.Button(self, image=self.combined_photo6, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame12"))
+        button6.place(x=0, y=270, width=200, height=52.5)
+        button7 = tk.Button(self, image=self.combined_photo7, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame13"))
+        button7.place(x=0, y=322.5, width=200, height=52.5)
+        button8 = tk.Button(self, image=self.combined_photo8, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame14"))
+        button8.place(x=0, y=375, width=200, height=52.5)
+        button9 = tk.Button(self, image=self.combined_photo9, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame15"))
+        button9.place(x=0, y=427.5, width=200, height=52.5)
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\StationSettings\EngineParameters.png")
         self.InterfaceScreen = self.canvas.create_image(498, 230, image=self.InterfaceScreen_img)
@@ -999,7 +1144,7 @@ class Frame10(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1056,7 +1201,7 @@ class Frame11(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1098,7 +1243,7 @@ class Frame11(tk.Frame):
 
 
     def update_switch_first(self, event):
-        if self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-0.png":
+        if self.Switch_Flat_first_img.cget("file") ==  "images\StationSettings\Switch-0.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-1.png")
         elif self.Switch_Flat_first_img.cget("file") == "images\StationSettings\Switch-1.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"images\StationSettings\Switch-0.png")
@@ -1138,7 +1283,7 @@ class Frame12(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1196,7 +1341,7 @@ class Frame13(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1253,7 +1398,7 @@ class Frame14(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1321,7 +1466,7 @@ class Frame15(tk.Frame):
 
         self.BackToMenu_img = PhotoImage(file=r"images\StationSettings\Back.png")
         self.BackToMenu_button = self.canvas.create_image(100, 56.4 + 30, image=self.BackToMenu_img)
-        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
+        self.canvas.tag_bind(self.BackToMenu_button, "<Button-1>", lambda event: controller.show_frame("Frame2"))
 
         self.EngineParameters_img = PhotoImage(file=r"images\StationSettings\EngineParameters1_0.png")
         self.EngineParameters_button = self.canvas.create_image(100, 107.4 + 30, image=self.EngineParameters_img)
@@ -1383,20 +1528,58 @@ class Frame16(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.PID_img = PhotoImage(file=r"images\Buttons\pidOPEN.png")
-        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
-        self.PLC_img = PhotoImage(file=r"images\Buttons\plc.png")
-        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
-        self.canvas.tag_bind(self.PLC_button, "<Button-1>", lambda event: controller.show_frame("Frame17"))
-        self.Backup_img = PhotoImage(file=r"images\Buttons\Backup.png")
-        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
-        self.canvas.tag_bind(self.Backup_button, "<Button-1>", lambda event: controller.show_frame("Frame18"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.combined_img3.paste(self.img_triangle, (180, 13))
+        self.draw3.text((50, 10), "Настройки\nПИД-рег.", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.draw4.text((50, 20), "PLC", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.draw5.text((50, 20), "Бэкап", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame16"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame17"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame18"))
+        button5.place(x=0, y=240, width=200, height=60)
 
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Settings.png")
@@ -1432,20 +1615,58 @@ class Frame17(tk.Frame):
 
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12), )
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.PID_img = PhotoImage(file=r"images\Buttons\pid.png")
-        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
-        self.canvas.tag_bind(self.PID_button, "<Button-1>", lambda event: controller.show_frame("Frame16"))
-        self.PLC_img = PhotoImage(file=r"images\Buttons\plcOPEN.png")
-        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
-        self.Backup_img = PhotoImage(file=r"images\Buttons\Backup.png")
-        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
-        self.canvas.tag_bind(self.Backup_button, "<Button-1>", lambda event: controller.show_frame("Frame18"))
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
+
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.draw3.text((50, 10), "Настройки\nПИД-рег.", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.combined_img4.paste(self.img_triangle, (180, 13))
+        self.draw4.text((50, 20), "PLC", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.draw5.text((50, 20), "Бэкап", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame16"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame17"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame18"))
+        button5.place(x=0, y=240, width=200, height=60)
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\PLC.png")
         self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
@@ -1533,21 +1754,58 @@ class Frame18(tk.Frame):
         self.clock_label = tk.Label(self, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
 
-        self.MainScreen_img = PhotoImage(file=r"images\Buttons\MainScreen.png")
-        self.MainScreen_button = self.canvas.create_image(100, 30, image=self.MainScreen_img)
-        self.canvas.tag_bind(self.MainScreen_button, "<Button-1>", lambda event: controller.show_frame("Frame1_1"))
-        self.Back_img = PhotoImage(file=r"images\Buttons\Back.png")
-        self.Back_button = self.canvas.create_image(100, 90, image=self.Back_img)
-        self.canvas.tag_bind(self.Back_button, "<Button-1>", lambda event: controller.show_frame("Menu"))
-        self.PID_img = PhotoImage(file=r"images\Buttons\pid.png")
-        self.PID_button = self.canvas.create_image(100, 150, image=self.PID_img)
-        self.canvas.tag_bind(self.PID_button, "<Button-1>", lambda event: controller.show_frame("Frame16"))
-        self.PLC_img = PhotoImage(file=r"images\Buttons\plc.png")
-        self.PLC_button = self.canvas.create_image(100, 210, image=self.PLC_img)
-        self.canvas.tag_bind(self.PLC_button, "<Button-1>", lambda event: controller.show_frame("Frame17"))
-        self.Backup_img = PhotoImage(file=r"images\Buttons\BackupOPEN.png")
-        self.Backup_button = self.canvas.create_image(100, 270, image=self.Backup_img)
+        self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
+        self.img_screen = Image.open(r"new_images\screen.png")
+        self.img_peak = Image.open(r"new_images\peak.png")
+        self.img_timer = Image.open(r"new_images\timer.png")
+        self.img_right = Image.open(r"new_images\right.png")
+        self.img_left = Image.open(r"new_images\left.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
 
+        self.combined_img1 = Image.new("RGB", (200, 60), "black")
+        self.draw1 = ImageDraw.Draw(self.combined_img1)
+        self.combined_img1.paste(self.img_screen, (15, 20))
+        self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
+        self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
+
+        self.combined_img2 = Image.new("RGB", (200, 60), "black")
+        self.draw2 = ImageDraw.Draw(self.combined_img2)
+        self.combined_img2.paste(self.img_left, (15, 20))
+        self.draw2.text((50, 20), "Назад", fill="white", font=self.font)
+        self.combined_photo2 = ImageTk.PhotoImage(self.combined_img2)
+
+        self.combined_img3 = Image.new("RGB", (200, 60), "black")
+        self.draw3 = ImageDraw.Draw(self.combined_img3)
+        self.combined_img3.paste(self.img_peak, (10, 15))
+        self.draw3.text((50, 10), "Настройки\nПИД-рег.", fill="white", font=self.font)
+        self.combined_photo3 = ImageTk.PhotoImage(self.combined_img3)
+
+        self.combined_img4 = Image.new("RGB", (200, 60), "black")
+        self.draw4 = ImageDraw.Draw(self.combined_img4)
+        self.draw4.text((50, 20), "PLC", fill="white", font=self.font)
+        self.combined_photo4 = ImageTk.PhotoImage(self.combined_img4)
+
+        self.combined_img5 = Image.new("RGB", (200, 60), "black")
+        self.draw5 = ImageDraw.Draw(self.combined_img5)
+        self.combined_img5.paste(self.img_triangle, (180, 13))
+        self.draw5.text((50, 20), "Бэкап", fill="white", font=self.font)
+        self.combined_photo5 = ImageTk.PhotoImage(self.combined_img5)
+
+        button = tk.Button(self, image=self.combined_photo1, bg='black', relief="groove", activebackground="black",
+                           command=lambda: controller.show_frame("Frame1_1"))
+        button.place(x=0, y=0, width=200, height=60)
+        button2 = tk.Button(self, image=self.combined_photo2, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame2"))
+        button2.place(x=0, y=60, width=200, height=60)
+        button3 = tk.Button(self, image=self.combined_photo3, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame16"))
+        button3.place(x=0, y=120, width=200, height=60)
+        button4 = tk.Button(self, image=self.combined_photo4, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame17"))
+        button4.place(x=0, y=180, width=200, height=60)
+        button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
+                            command=lambda: controller.show_frame("Frame18"))
+        button5.place(x=0, y=240, width=200, height=60)
 
         self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Bek.png")
         self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
@@ -1811,10 +2069,11 @@ class Frame19(tk.Frame, NetInfo):
         self.img_gear_wheel_bg = Image.open(r"new_images\gear_wheel_bg.png")
         self.img_phone = Image.open(r"new_images\phone.png")
         self.img_right = Image.open(r"new_images\right.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
 
         self.combined_img1 = Image.new("RGB", (200, 60), "black")
         self.draw1 = ImageDraw.Draw(self.combined_img1)
-        self.combined_img1.paste(self.img_screen, (10, 20))
+        self.combined_img1.paste(self.img_screen, (15, 20))
         self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
         self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
 
@@ -1855,6 +2114,7 @@ class Frame19(tk.Frame, NetInfo):
         self.combined_img7 = Image.new("RGB", (200, 60), "black")
         self.draw7 = ImageDraw.Draw(self.combined_img7)
         self.combined_img7.paste(self.img_gear_wheel_bg, (10, 15))
+        self.combined_img7.paste(self.img_triangle, (180, 13))
         self.draw7.text((50, 10), "Настройки\nпанели", fill="white", font=self.font)
         self.combined_photo7 = ImageTk.PhotoImage(self.combined_img7)
 
@@ -2098,10 +2358,11 @@ class Frame20(tk.Frame):
         self.img_gear_wheel_bg = Image.open(r"new_images\gear_wheel_bg.png")
         self.img_phone = Image.open(r"new_images\phone.png")
         self.img_right = Image.open(r"new_images\right.png")
+        self.img_triangle = Image.open(r"new_images\triangle.png")
 
         self.combined_img1 = Image.new("RGB", (200, 60), "black")
         self.draw1 = ImageDraw.Draw(self.combined_img1)
-        self.combined_img1.paste(self.img_screen, (10, 20))
+        self.combined_img1.paste(self.img_screen, (15, 20))
         self.draw1.text((50, 20), "Главный экран", fill="white", font=self.font)
         self.combined_photo1 = ImageTk.PhotoImage(self.combined_img1)
 
@@ -2148,6 +2409,7 @@ class Frame20(tk.Frame):
         self.combined_img8 = Image.new("RGB", (200, 60), "black")
         self.draw8 = ImageDraw.Draw(self.combined_img8)
         self.combined_img8.paste(self.img_phone, (10, 15))
+        self.combined_img8.paste(self.img_triangle, (180, 13))
         self.draw8.text((50, 20), "Контакты", fill="white", font=self.font)
         self.combined_photo8 = ImageTk.PhotoImage(self.combined_img8)
 
