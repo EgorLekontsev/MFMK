@@ -487,23 +487,110 @@ class Frame2(tk.Frame):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.InterfaceScreen_img = PhotoImage(file=r"images\SetpointPlannerScreen\Interface.png")
-        self.InterfaceScreen = self.canvas.create_image(500, 250, image=self.InterfaceScreen_img)
-        self.day1_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_1.png")
-        self.day1_button = self.canvas.create_image(535, 130, image=self.day1_img)
-        self.day2_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_2.png")
-        self.day2_button = self.canvas.create_image(575, 130, image=self.day2_img)
-        self.day3_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_3.png")
-        self.day3_button = self.canvas.create_image(615, 130, image=self.day3_img)
-        self.day4_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_4.png")
-        self.day4_button = self.canvas.create_image(655, 130, image=self.day4_img)
-        self.day5_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_5.png")
-        self.day5_button = self.canvas.create_image(695, 130, image=self.day5_img)
-        self.day6_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_6.png")
-        self.day6_button = self.canvas.create_image(735, 130, image=self.day6_img)
-        self.day7_img = PhotoImage(file=r"images\SetpointPlannerScreen\day_7.png")
-        self.day7_button = self.canvas.create_image(775, 130, image=self.day7_img)
+        button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove", activebackground="#0F91DA", activeforeground="white")
+        button_day1.place(x=510, y=107, width=35, height=35)
+        button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day2.place(x=550, y=107, width=35, height=35)
+        button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day3.place(x=590, y=107, width=35, height=35)
+        button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day4.place(x=630, y=107, width=35, height=35)
+        button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day5.place(x=670, y=107, width=35, height=35)
+        button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white")
+        button_day6.place(x=710, y=107, width=35, height=35)
+        button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white")
+        button_day7.place(x=750, y=107, width=35, height=35)
 
+        self.img_share = PhotoImage(file=r"new_images\share.png")
+        self.img_line = PhotoImage(file=r"new_images\line.png")
+        self.img_user = PhotoImage(file=r"new_images\user.png")
+        self.img_cal = PhotoImage(file=r"new_images\calendar.png")
+        self.img_day = PhotoImage(file=r"new_images\day.png")
+        self.img_eye = PhotoImage(file=r"new_images\eye.png")
+        self.img_shield = PhotoImage(file=r"new_images\shield.png")
+
+        self.canvas.create_image(231, 30, image=self.img_share)
+        self.canvas.create_image(231, 78, image=self.img_user)
+        self.canvas.create_image(231, 226, image=self.img_day)
+        self.canvas.create_image(231, 271, image=self.img_day)
+        self.canvas.create_image(231, 316, image=self.img_day)
+        self.canvas.create_image(231, 361, image=self.img_day)
+        self.canvas.create_image(594, 77, image=self.img_shield)
+        self.canvas.create_image(491, 122, image=self.img_shield)
+        self.canvas.create_image(354, 227, image=self.img_shield)
+        self.canvas.create_image(354, 273, image=self.img_shield)
+        self.canvas.create_image(354, 318, image=self.img_shield)
+        self.canvas.create_image(354, 363, image=self.img_shield)
+
+        self.canvas.create_image(500, 51, image=self.img_line)
+        self.canvas.create_image(500, 104, image=self.img_line)
+        self.canvas.create_image(500, 147, image=self.img_line)
+        self.canvas.create_image(500, 404, image=self.img_line)
+        self.canvas.create_image(231, 424, image=self.img_eye)
+        self.canvas.create_image(231, 454, image=self.img_eye)
+        self.canvas.create_image(231, 125, image=self.img_cal)
+
+        self.label1 = tk.Label(self.canvas, text="Источник уставки", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.label1.place(x=260, y=19)
+        self.label2 = tk.Label(self.canvas, text="Уставка пользователя", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.label2.place(x=260, y=67)
+        self.label3 = tk.Label(self.canvas, text="Настройка дней недели", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.label3.place(x=260, y=116)
+        self.label4 = tk.Label(self.canvas, text="Планировщик", fg='gray', bg='black',
+                               font=('Roboto Bold', 10))
+        self.label4.place(x=208, y=155)
+        self.label5 = tk.Label(self.canvas, text="Время перехода:", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label5.place(x=231, y=179)
+        self.label6 = tk.Label(self.canvas, text="Будни", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label6.place(x=372, y=179)
+        self.label7 = tk.Label(self.canvas, text="Выходные", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label7.place(x=474, y=179)
+        self.label8 = tk.Label(self.canvas, text="Уставка:", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label8.place(x=572, y=179)
+        self.label9 = tk.Label(self.canvas, text="Будни", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label9.place(x=644, y=179)
+        self.label10 = tk.Label(self.canvas, text="Выходные", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label10.place(x=707, y=179)
+        self.label11 = tk.Label(self.canvas, text="Утро", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label11.place(x=260, y=217)
+        self.label12 = tk.Label(self.canvas, text="День", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label12.place(x=260, y=261)
+        self.label13 = tk.Label(self.canvas, text="Вечер", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label13.place(x=260, y=305)
+        self.label14 = tk.Label(self.canvas, text="Ночь", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label14.place(x=260, y=349)
+        self.label15 = tk.Label(self.canvas, text="Текущий день", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label15.place(x=252, y=414)
+        self.label16 = tk.Label(self.canvas, text="Тип уставки", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label16.place(x=252, y=444)
+        self.label17 = tk.Label(self.canvas, text="Тип дня", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label17.place(x=553, y=414)
+        self.label18 = tk.Label(self.canvas, text="Текущая уставка", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label18.place(x=519, y=444)
+        self.label19 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label19.place(x=744, y=445)
 
 
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -2517,8 +2604,63 @@ class Frame19(tk.Frame, NetInfo):
                             command=lambda: controller.show_frame("Frame20"))
         button8.place(x=0, y=420, width=200, height=60)
 
-        self.InterfaceScreen_img = PhotoImage(file=r"images\PanelSettings\Bek.png")
-        self.InterfaceScreen = self.canvas.create_image(500, 230, image=self.InterfaceScreen_img)
+        self.img_noon = PhotoImage(file=r"new_images\noon.png")
+        self.img_scrn = PhotoImage(file=r"new_images\screen.png")
+        self.img_note = PhotoImage(file=r"new_images\note.png")
+        self.img_cal = PhotoImage(file=r"new_images\calendar.png")
+        self.img_time = PhotoImage(file=r"new_images\time.png")
+        self.img_ip = PhotoImage(file=r"new_images\ip.png")
+        self.img_mask = PhotoImage(file=r"new_images\mask.png")
+        self.img_gateway = PhotoImage(file=r"new_images\gateway.png")
+        self.img_shield = PhotoImage(file=r"new_images\shield.png")
+        self.img_line = PhotoImage(file=r"new_images\line2.png")
+
+
+        self.canvas.create_image(233, 70, image=self.img_noon)
+        self.canvas.create_image(233, 110, image=self.img_scrn)
+        self.canvas.create_image(233, 145, image=self.img_note)
+        self.canvas.create_image(233, 202, image=self.img_cal)
+        self.canvas.create_image(233, 237, image=self.img_time)
+        self.canvas.create_image(233, 303, image=self.img_ip)
+        self.canvas.create_image(233, 342, image=self.img_mask)
+        self.canvas.create_image(233, 381, image=self.img_gateway)
+        self.canvas.create_image(624, 70, image=self.img_shield)
+        self.canvas.create_image(624, 109, image=self.img_shield)
+        self.canvas.create_image(624, 147, image=self.img_shield)
+        self.canvas.create_image(461.25, 201.75, image=self.img_shield)
+        self.canvas.create_image(461.25, 242.75, image=self.img_shield)
+        self.canvas.create_image(362.25, 302.75, image=self.img_shield)
+        self.canvas.create_image(362.25, 342.75, image=self.img_shield)
+        self.canvas.create_image(362.25, 380.75, image=self.img_shield)
+
+        self.label1 = tk.Label(self.canvas, text="Ethernet", fg='white', bg='black',
+                               font=('Roboto Bold', 10))
+        self.label1.place(x=216, y=269)
+        self.label2 = tk.Label(self.canvas, text="Время до отключения дисплея", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label2.place(x=259, y=59)
+        self.label3 = tk.Label(self.canvas, text="Время до отключения заставки", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label3.place(x=259, y=99)
+        self.label4 = tk.Label(self.canvas, text="Зуммер", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label4.place(x=259, y=136)
+        self.label5 = tk.Label(self.canvas, text="Дата", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label5.place(x=259, y=193)
+        self.label6 = tk.Label(self.canvas, text="Время", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label6.place(x=259, y=227)
+        self.label7 = tk.Label(self.canvas, text="IP Адрес", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label7.place(x=259, y=294)
+        self.label8 = tk.Label(self.canvas, text="Маска", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label8.place(x=259, y=333)
+        self.label9 = tk.Label(self.canvas, text="Шлюз", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label9.place(x=259, y=372)
+
         self.Switch_Flat_img = PhotoImage(file=r"images\PanelSettings\Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
@@ -2806,8 +2948,61 @@ class Frame20(tk.Frame):
                             command=lambda: controller.show_frame("Frame20"))
         button8.place(x=0, y=420, width=200, height=60)
 
-        self.InterfaceScreen_img = PhotoImage(file=r"images\Contacts\Contacts.png")
-        self.InterfaceScreen = self.canvas.create_image(500, 202, image=self.InterfaceScreen_img)
+        self.img_question = PhotoImage(file=r"new_images\question.png")
+        self.img_key = PhotoImage(file=r"new_images\key.png")
+        self.img_swap = PhotoImage(file=r"new_images\swap.png")
+        self.img_cal = PhotoImage(file=r"new_images\calendar.png")
+        self.img_mail = PhotoImage(file=r"new_images\mail.png")
+        self.img_site = PhotoImage(file=r"new_images\site.png")
+        self.img_support = PhotoImage(file=r"new_images\support.png")
+        self.img_line = PhotoImage(file=r"new_images\line2.png")
+
+        self.canvas.create_image(503, 157, image=self.img_line)
+        self.canvas.create_image(503, 241, image=self.img_line)
+        self.canvas.create_image(233, 61, image=self.img_question)
+        self.canvas.create_image(233, 96, image=self.img_question)
+        self.canvas.create_image(233, 132, image=self.img_cal)
+        self.canvas.create_image(233, 178, image=self.img_key)
+        self.canvas.create_image(233, 217, image=self.img_swap)
+        self.canvas.create_image(233, 265, image=self.img_mail)
+        self.canvas.create_image(233, 298, image=self.img_site)
+        self.canvas.create_image(233, 334, image=self.img_support)
+
+        self.label1 = tk.Label(self.canvas, text="Программное обеспечение", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.label1.place(x=259, y=50)
+        self.label2 = tk.Label(self.canvas, text="Версия EasyBuilder", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label2.place(x=259, y=86)
+        self.label3 = tk.Label(self.canvas, text="Дата компиляции", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label3.place(x=259, y=122)
+        self.label4 = tk.Label(self.canvas, text="Код продукта", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label4.place(x=259, y=168)
+        self.label5 = tk.Label(self.canvas, text="Количество насосов", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label5.place(x=259, y=207)
+        self.label6 = tk.Label(self.canvas, text="Почта", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label6.place(x=259, y=255)
+        self.label7 = tk.Label(self.canvas, text="Вэб-сайт", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label7.place(x=259, y=288)
+        self.label8 = tk.Label(self.canvas, text="Техническая поддержка", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label8.place(x=259, y=324)
+        self.label9 = tk.Label(self.canvas, text="из них работающих", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label9.place(x=485, y=207)
+        self.label10 = tk.Label(self.canvas, text="info@mfmc.ru", fg='white', bg='black',
+                               font=('Roboto Bold', 12))
+        self.label10.place(x=644, y=255)
+        self.label11 = tk.Label(self.canvas, text="www.mfmc.ru", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label11.place(x=644, y=289)
+        self.label12 = tk.Label(self.canvas, text="+7 (495) 122-22-62\n+7 (800) 333-14-61", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label12.place(x=644, y=321)
 
         self.software_label = tk.Label(self.canvas, text="AAAAAAAAAAAAAAAAAAAAAAAA", fg='white', bg='black', font=('Roboto Bold', 12))
         self.software_label.place(x=485, y=48)
