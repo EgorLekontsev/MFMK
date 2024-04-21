@@ -509,12 +509,13 @@ class Frame2(tk.Frame):
         button_day7.place(x=750, y=107, width=35, height=35)
 
         self.img_share = PhotoImage(file=r"new_images\share.png")
-        self.img_line = PhotoImage(file=r"new_images\line.png")
         self.img_user = PhotoImage(file=r"new_images\user.png")
         self.img_cal = PhotoImage(file=r"new_images\calendar.png")
         self.img_day = PhotoImage(file=r"new_images\day.png")
         self.img_eye = PhotoImage(file=r"new_images\eye.png")
         self.img_shield = PhotoImage(file=r"new_images\shield.png")
+        self.img_field_l = PhotoImage(file=r"new_images\field_long.png")
+        self.img_field_s = PhotoImage(file=r"new_images\field_short.png")
 
         self.canvas.create_image(231, 30, image=self.img_share)
         self.canvas.create_image(231, 78, image=self.img_user)
@@ -529,10 +530,11 @@ class Frame2(tk.Frame):
         self.canvas.create_image(354, 318, image=self.img_shield)
         self.canvas.create_image(354, 363, image=self.img_shield)
 
-        self.canvas.create_image(500, 51, image=self.img_line)
-        self.canvas.create_image(500, 104, image=self.img_line)
-        self.canvas.create_image(500, 147, image=self.img_line)
-        self.canvas.create_image(500, 404, image=self.img_line)
+        self.canvas.create_line(210, 50, 790, 50, fill="gray", width=1)
+        self.canvas.create_line(210, 100, 790, 100, fill="gray", width=1)
+        self.canvas.create_line(210, 150, 790, 150, fill="gray", width=1)
+        self.canvas.create_line(210, 400, 790, 400, fill="gray", width=1)
+
         self.canvas.create_image(231, 424, image=self.img_eye)
         self.canvas.create_image(231, 454, image=self.img_eye)
         self.canvas.create_image(231, 125, image=self.img_cal)
@@ -591,6 +593,200 @@ class Frame2(tk.Frame):
         self.label19 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label19.place(x=744, y=445)
+
+        self.canvas.create_image(423, 226, image=self.img_field_s)
+        self.canvas.create_image(423, 274, image=self.img_field_s)
+        self.canvas.create_image(423, 316, image=self.img_field_s)
+        self.canvas.create_image(423, 361, image=self.img_field_s)
+        self.canvas.create_image(528, 226, image=self.img_field_s)
+        self.canvas.create_image(528, 274, image=self.img_field_s)
+        self.canvas.create_image(528, 316, image=self.img_field_s)
+        self.canvas.create_image(528, 361, image=self.img_field_s)
+
+
+        self.label20 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label20.place(x=420, y=215, width=5, height=19)
+        self.label21 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label21.place(x=420, y=264, width=5, height=19)
+        self.label22 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label22.place(x=420, y=306, width=5, height=19)
+        self.label23 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label23.place(x=420, y=349, width=5, height=19)
+        self.label24 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label24.place(x=525, y=215, width=5, height=19)
+        self.label25 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label25.place(x=525, y=264, width=5, height=19)
+        self.label26 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label26.place(x=525, y=306, width=5, height=19)
+        self.label27 = tk.Label(self.canvas, text=":", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label27.place(x=525, y=349, width=5, height=19)
+
+        #Кликабельная зона
+        self.setpoint = self.canvas.create_image(703, 76, image=self.img_field_l)
+        self.canvas.tag_bind(self.setpoint, "<Button-1>", lambda event: print(1))
+        self.label28 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label28.place(x=750, y=66, width=28, height=19)
+        self.label28.bind("<Button-1>", lambda event: print(1))
+        self.setpoint_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.setpoint_value.place(x=644, y=67, width=33, height=19)
+        self.setpoint_value.bind("<Button-1>", lambda event: print(1))
+
+        self.weekdays_morning_h = tk.Label(self.canvas, text="05", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.weekdays_morning_h.place(x=388, y=216, width=19, height=19)
+        self.weekdays_afternoon_h = tk.Label(self.canvas, text="10", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekdays_afternoon_h.place(x=388, y=265, width=19, height=19)
+        self.weekdays_evening_h = tk.Label(self.canvas, text="17", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekdays_evening_h.place(x=388, y=307, width=19, height=19)
+        self.weekdays_night_h = tk.Label(self.canvas, text="22", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekdays_night_h.place(x=388, y=350, width=19, height=19)
+
+        self.weekdays_morning_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekdays_morning_m.place(x=440, y=216, width=19, height=19)
+        self.weekdays_afternoon_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekdays_afternoon_m.place(x=440, y=265, width=19, height=19)
+        self.weekdays_evening_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekdays_evening_m.place(x=440, y=307, width=19, height=19)
+        self.weekdays_night_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                         font=('Roboto Bold', 12))
+        self.weekdays_night_m.place(x=440, y=350, width=19, height=19)
+
+        self.weekends_morning_h = tk.Label(self.canvas, text="05", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekends_morning_h.place(x=492, y=216, width=19, height=19)
+        self.weekends_afternoon_h = tk.Label(self.canvas, text="10", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekends_afternoon_h.place(x=492, y=265, width=19, height=19)
+        self.weekends_evening_h = tk.Label(self.canvas, text="17", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekends_evening_h.place(x=492, y=307, width=19, height=19)
+        self.weekends_night_h = tk.Label(self.canvas, text="22", fg='white', bg='black',
+                                         font=('Roboto Bold', 12))
+        self.weekends_night_h.place(x=492, y=350, width=19, height=19)
+
+        self.weekends_morning_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekends_morning_m.place(x=544, y=216, width=19, height=19)
+        self.weekends_afternoon_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekends_afternoon_m.place(x=544, y=265, width=19, height=19)
+        self.weekends_evening_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                           font=('Roboto Bold', 12))
+        self.weekends_evening_m.place(x=544, y=307, width=19, height=19)
+        self.weekends_night_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+                                         font=('Roboto Bold', 12))
+        self.weekends_night_m.place(x=544, y=350, width=19, height=19)
+
+        self.weekdays_morning_field = self.canvas.create_image(636, 226, image=self.img_field_s)
+        self.weekdays_afternoon_field = self.canvas.create_image(636, 274, image=self.img_field_s)
+        self.weekdays_evening_field = self.canvas.create_image(636, 316, image=self.img_field_s)
+        self.weekdays_night_field = self.canvas.create_image(636, 361, image=self.img_field_s)
+        self.weekends_morning_field = self.canvas.create_image(741, 226, image=self.img_field_s)
+        self.weekends_afternoon_field = self.canvas.create_image(741, 274, image=self.img_field_s)
+        self.weekends_evening_field = self.canvas.create_image(741, 316, image=self.img_field_s)
+        self.weekends_night_field = self.canvas.create_image(741, 361, image=self.img_field_s)
+
+        self.weekdays_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                       font=('Roboto Bold', 12))
+        self.weekdays_morning_value.place(x=599, y=216, width=42, height=19)
+        self.label29 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label29.place(x=653, y=215, width=28, height=19)
+        self.weekdays_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                               font=('Roboto Bold', 12))
+        self.weekdays_afternoon_value.place(x=599, y=265, width=42, height=19)
+        self.label30 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label30.place(x=653, y=264, width=28, height=19)
+        self.weekdays_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                               font=('Roboto Bold', 12))
+        self.weekdays_evening_value.place(x=599, y=307, width=42, height=19)
+        self.label31 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label31.place(x=653, y=306, width=28, height=19)
+        self.weekdays_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                               font=('Roboto Bold', 12))
+        self.weekdays_night_value.place(x=599, y=350, width=42, height=19)
+        self.label32 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label32.place(x=653, y=351, width=28, height=19)
+
+
+        self.weekends_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                               font=('Roboto Bold', 12))
+        self.weekends_morning_value.place(x=704, y=216, width=42, height=19)
+        self.label33 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label33.place(x=757, y=215, width=28, height=19)
+        self.weekends_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                                 font=('Roboto Bold', 12))
+        self.weekends_afternoon_value.place(x=704, y=265, width=42, height=19)
+        self.label34 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label34.place(x=757, y=265, width=28, height=19)
+        self.weekends_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                               font=('Roboto Bold', 12))
+        self.weekends_evening_value.place(x=704, y=307, width=42, height=19)
+        self.label35 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label35.place(x=757, y=306, width=28, height=19)
+        self.weekends_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+                                             font=('Roboto Bold', 12))
+        self.weekends_night_value.place(x=704, y=350, width=42, height=19)
+        self.label36 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.label36.place(x=757, y=350, width=28, height=19)
+        # Кликабельная зона
+
+        self.day = tk.Label(self.canvas, text="", fg='white', bg='black',
+                                font=('Roboto Bold', 12))
+        self.current_day = datetime.now()
+        self.weekday = self.current_day.weekday() + 1
+        match (self.weekday):
+            case 1:
+                self.day.config(text = "Понедельник")
+            case 2:
+                self.day.config(text="Вторник")
+            case 3:
+                self.day.config(text="Среда")
+            case 4:
+                self.day.config(text="Четверг")
+            case 5:
+                self.day.config(text="Пятница")
+            case 6:
+                self.day.config(text="Суббота")
+            case 7:
+                self.day.config(text="Воскресенье")
+        self.day.place(x=375, y=414)
+
+        self.type_setpoint = tk.Label(self.canvas, text="Пользователь", fg='white', bg='black',
+                            font=('Roboto Bold', 12))
+        self.type_setpoint.place(x=354, y=444)
+
+        self.type_day = tk.Label(self.canvas, text="Не определен", fg='white', bg='black',
+                                      font=('Roboto Bold', 12))
+        self.type_day.place(x=625, y=414)
+
+        self.current_setpoint = tk.Label(self.canvas, text="", fg='white', bg='black',
+                                 font=('Roboto Bold', 12))
+        self.current_setpoint.config(text="3.00")
+        self.current_setpoint.place(x=675, y=444)
 
 
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -2613,8 +2809,11 @@ class Frame19(tk.Frame, NetInfo):
         self.img_mask = PhotoImage(file=r"new_images\mask.png")
         self.img_gateway = PhotoImage(file=r"new_images\gateway.png")
         self.img_shield = PhotoImage(file=r"new_images\shield.png")
-        self.img_line = PhotoImage(file=r"new_images\line2.png")
+        self.img_rectangle_l = PhotoImage(file=r"new_images\rectangle_long.png")
+        self.img_rectangle_s = PhotoImage(file=r"new_images\rectangle_short.png")
 
+        self.canvas.create_line(220, 180, 790, 180, fill="gray", width=2)
+        self.canvas.create_line(220, 270, 790, 270, fill="gray", width=2)
 
         self.canvas.create_image(233, 70, image=self.img_noon)
         self.canvas.create_image(233, 110, image=self.img_scrn)
@@ -2635,7 +2834,7 @@ class Frame19(tk.Frame, NetInfo):
 
         self.label1 = tk.Label(self.canvas, text="Ethernet", fg='white', bg='black',
                                font=('Roboto Bold', 10))
-        self.label1.place(x=216, y=269)
+        self.label1.place(x=216, y=273, width=54, height=14)
         self.label2 = tk.Label(self.canvas, text="Время до отключения дисплея", fg='white', bg='black',
                                font=('Roboto Bold', 12))
         self.label2.place(x=259, y=59)
@@ -2680,45 +2879,86 @@ class Frame19(tk.Frame, NetInfo):
 
         if (len(self.result_netmask_split[0])== 1):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=418, y=335)
+            self.netmask_1.place(x=418, y=332)
         elif (len(self.result_netmask_split[0])== 2):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=414, y=335)
+            self.netmask_1.place(x=414, y=332)
         elif (len(self.result_netmask_split[0])== 3):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=410, y=335)
+            self.netmask_1.place(x=410, y=332)
         if (len(self.result_netmask_split[1])== 1):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=520, y=335)
+            self.netmask_1.place(x=520, y=332)
         elif (len(self.result_netmask_split[1])== 2):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=516, y=335)
+            self.netmask_1.place(x=516, y=332)
         elif (len(self.result_netmask_split[1])== 3):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=512, y=335)
+            self.netmask_1.place(x=512, y=332)
         if (len(self.result_netmask_split[2])== 1):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=622, y=335)
+            self.netmask_1.place(x=622, y=332)
         elif (len(self.result_netmask_split[2])== 2):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=617, y=335)
+            self.netmask_1.place(x=617, y=332)
         elif (len(self.result_netmask_split[2])== 3):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=614, y=335)
+            self.netmask_1.place(x=614, y=332)
         if (len(self.result_netmask_split[3])== 1):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=724, y=335)
+            self.netmask_1.place(x=724, y=332)
         elif (len(self.result_netmask_split[3])== 2):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=720, y=335)
+            self.netmask_1.place(x=720, y=332)
         elif (len(self.result_netmask_split[3])== 3):
             self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black', font=('Roboto Bold', 12))
-            self.netmask_1.place(x=717, y=335)
+            self.netmask_1.place(x=717, y=332)
 
-        self.time_display_1 = tk.Label(self.canvas, text="**", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_display_1.place(x=645, y=63)
-        self.time_display_2 = tk.Label(self.canvas, text="**", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_display_2.place(x=645, y=103)
+        # Кликабельная зона
+        self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
+        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
+        self.time_display_1 = tk.Label(self.canvas, text="30", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_1.place(x=645, y=58)
+        self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_label_1.place(x=738, y=59, width=47, height=19)
+        self.time_display_2 = tk.Label(self.canvas, text="15", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_2.place(x=645, y=98)
+        self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_label_2.place(x=738, y=99, width=47, height=19)
+
+        self.data_days = self.canvas.create_image(525, 205, image=self.img_rectangle_s)
+        self.data_days_label = tk.Label(self.canvas, text="День", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_days_label.place(x=530, y=198, width=39, height=19)
+        self.data_months = self.canvas.create_image(630, 205, image=self.img_rectangle_s)
+        self.data_months_label = tk.Label(self.canvas, text="Месяц", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_months_label.place(x=620, y=198, width=59, height=19)
+        self.data_years = self.canvas.create_image(735, 205, image=self.img_rectangle_s)
+        self.data_years_label = tk.Label(self.canvas, text="Год", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_years_label.place(x=745, y=198, width=39, height=19)
+        self.data_hours = self.canvas.create_image(525, 245, image=self.img_rectangle_s)
+        self.data_hours_label = tk.Label(self.canvas, text="Часы", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_hours_label.place(x=530, y=237, width=39, height=19)
+        self.data_minutes = self.canvas.create_image(630, 245, image=self.img_rectangle_s)
+        self.data_minutes_label = tk.Label(self.canvas, text="Минуты", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_minutes_label.place(x=615, y=237, width=59, height=19)
+        self.data_seconds = self.canvas.create_image(735, 245, image=self.img_rectangle_s)
+        self.data_seconds_label = tk.Label(self.canvas, text="Секунды", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.data_seconds_label.place(x=715, y=237, width=66, height=19)
+
+        self.ip_rectangle_1 = self.canvas.create_image(428.75, 302.5, image=self.img_rectangle_s)
+        self.ip_rectangle_2 = self.canvas.create_image(530.75, 302.5, image=self.img_rectangle_s)
+        self.ip_rectangle_3 = self.canvas.create_image(632.75, 302.5, image=self.img_rectangle_s)
+        self.ip_rectangle_4 = self.canvas.create_image(734.75, 302.5, image=self.img_rectangle_s)
+        self.mask_rectangle_1 = self.canvas.create_image(428.75, 342.5, image=self.img_rectangle_s)
+        self.mask_rectangle_2 = self.canvas.create_image(530.75, 342.5, image=self.img_rectangle_s)
+        self.mask_rectangle_3 = self.canvas.create_image(632.75, 342.5, image=self.img_rectangle_s)
+        self.mask_rectangle_4 = self.canvas.create_image(734.75, 342.5, image=self.img_rectangle_s)
+        self.gateway_rectangle_1 = self.canvas.create_image(428.75, 382.5, image=self.img_rectangle_s)
+        self.gateway_rectangle_2 = self.canvas.create_image(530.75, 382.5, image=self.img_rectangle_s)
+        self.gateway_rectangle_3 = self.canvas.create_image(632.75, 382.5, image=self.img_rectangle_s)
+        self.gateway_rectangle_4 = self.canvas.create_image(734.75, 382.5, image=self.img_rectangle_s)
+        # Кликабельная зона
+
         def show_data_and_time():
             now = datetime.now()
             self.show_day.config(text = now.strftime("%d"))
@@ -2738,13 +2978,13 @@ class Frame19(tk.Frame, NetInfo):
         self.show_minute = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.show_minute.place(x=584, y=234)
         self.show_second = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_second.place(x=684, y=234)
+        self.show_second.place(x=689, y=234)
         self.show_day = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.show_day.place(x=480, y=195)
         self.show_month = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.show_month.place(x=584, y=195)
         self.show_year = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_year.place(x=684, y=195)
+        self.show_year.place(x=689, y=195)
 
         show_data_and_time()
 
@@ -2955,10 +3195,10 @@ class Frame20(tk.Frame):
         self.img_mail = PhotoImage(file=r"new_images\mail.png")
         self.img_site = PhotoImage(file=r"new_images\site.png")
         self.img_support = PhotoImage(file=r"new_images\support.png")
-        self.img_line = PhotoImage(file=r"new_images\line2.png")
 
-        self.canvas.create_image(503, 157, image=self.img_line)
-        self.canvas.create_image(503, 241, image=self.img_line)
+        self.canvas.create_line(220, 160, 790, 160, fill="gray", width=2)
+        self.canvas.create_line(220, 240, 790, 240, fill="gray", width=2)
+
         self.canvas.create_image(233, 61, image=self.img_question)
         self.canvas.create_image(233, 96, image=self.img_question)
         self.canvas.create_image(233, 132, image=self.img_cal)
