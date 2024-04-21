@@ -66,10 +66,86 @@ hr {
 <div id="clock"></div>
 {% endblock %}
 
+{% block switch %}
+function changeSwitch() {
+    var image = document.getElementById("Switch");
+    if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchNo.png') }}")) {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchYes.png') }}";
+    } else {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchNo.png') }}";
+    }
+}
+{% endblock %}
+
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
-
+        <p style="position: absolute; top: 38px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 160px;">Реле перепада давления</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Suction.png') }}"
+            style="position: absolute; top: 62px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Частота срабатывания</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 66px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 20px;">Гц</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Interval.png') }}"
+            style="position: absolute; top: 99px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 101px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Задержка аварии</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 105px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Pumping.png') }}"
+            style="position: absolute; top: 137px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 139px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px;">Максимальное число аварий</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 138px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 137px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 144px; left: 760px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">шт</p>
+        <hr style="position: absolute; top: 179px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 185px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 160px;">Настройки сухого хода</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Modes.png') }}"
+            style="position: absolute; top: 207px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 210px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px;">Предупреждения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 208px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 207px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 214px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Crash.png') }}"
+            style="position: absolute; top: 246px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 249px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px;">Авария</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 247px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 246px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 253px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Pumping.png') }}"
+            style="position: absolute; top: 286px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 288px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Задержка аварии</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 286px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 285px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 292px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <hr style="position: absolute; top: 326px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 328px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 240px;">Параметры стопа насосов при аварии</p>
+        <img src="{{ url_for('static', filename='iconsbutton/ShutdownDelay.png') }}"
+            style="position: absolute; top: 350px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 353px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Задержка выключения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 350px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 349px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 356px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <img src="{{ url_for('static', filename='iconsbutton/StopAtCriticalPressure.png') }}"
+            style="position: absolute; top: 393px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 394px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Стоп по критическому давлению</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 388px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 387px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 394px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/PipelineRuptureMonitoring.png') }}"
+            style="position: absolute; top: 441px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 436px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Контроль разрыва трубопровода</p>
+        <img id="Switch" onclick="changeSwitch()" src="{{ url_for('static', filename='iconsbutton/SwitchNo.png') }}"
+            style="position: absolute; top: 432px; left: 641px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
     </div>
 </div>
 {% endblock %}

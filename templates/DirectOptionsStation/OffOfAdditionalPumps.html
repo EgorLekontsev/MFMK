@@ -69,7 +69,68 @@ hr {
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
-
+        <img src="{{ url_for('static', filename='iconsbutton/Frequency.png') }}"
+            style="position: absolute; top: 56px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 60px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 340px;">Частота мастера на отключение доп. насоса</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 55px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 60px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 20px;">Гц</p>
+        <hr style="position: absolute; top: 98px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 103px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 240px;">Отключение при допустимом скачке</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Confirm.png') }}"
+            style="position: absolute; top: 131px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 134px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 310px;">Допустимый скачок (Стоп доп. насоса)</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 130px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 128px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 135px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Interval.png') }}"
+            style="position: absolute; top: 164px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 167px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Задержка выключения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 169px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 167px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 174px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <hr style="position: absolute; top: 206px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 210px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 240px;">Выключение при критическом скачке</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Modes.png') }}"
+            style="position: absolute; top: 233px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 236px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 320px;">Критический скачок (Стоп доп. насоса)</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 232px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 230px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 237px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Interval.png') }}"
+            style="position: absolute; top: 271px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 273px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Задержка выключения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 271px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 269px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 276px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <hr style="position: absolute; top: 306px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 312px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 360px;">Параметры работы мастера при отключении доп. насоса</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Interval.png') }}"
+            style="position: absolute; top: 334px; left: 222px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 337px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 340px;">Задержка ухода на фиксированную частоту</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 334px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 332px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 339px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Frequency.png') }}"
+            style="position: absolute; top: 375px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 378px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 340px;">Фиксированная частота</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 373px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 371px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 378px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Гц</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Time.png') }}"
+            style="position: absolute; top: 414px; left: 222px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 418px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 340px;">Время работы на фиксированной частоте</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 412px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 409px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 416px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
     </div>
 </div>
 {% endblock %}

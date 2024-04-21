@@ -10,7 +10,6 @@ p {
     font-size: 16px;
     color: white;
     font-weight: bold;
-    width: 290px;
     height: 20px;
     margin: 0px;
 }
@@ -69,38 +68,38 @@ hr {
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
-        <p style="position: absolute; top: 40px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px;">Датчик давления</p>
+        <p style="position: absolute; top: 40px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 110px;">Датчик давления</p>
         <img src="{{ url_for('static', filename='iconsbutton/Suction.png') }}"
             style="position: absolute; top: 60px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Номинал датчика на всасывание</p>
+        <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Номинал датчика на всасывание</p>
         <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 66px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <p style="position: absolute; top: 66px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Pumping.png') }}"
             style="position: absolute; top: 96px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Номинал датчика на нагнетание</p>
+        <p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Номинал датчика на нагнетание</p>
         <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 105px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <p style="position: absolute; top: 105px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 137px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 157px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 157px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Показание датчика на всасывание</p>
-        <p style="position: absolute; top: 157px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <p style="position: absolute; top: 157px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 270px;">Показание датчика на всасывание</p>
+        <p style="position: absolute; top: 157px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 187px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 187px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Показание датчика на нагнетание</p>
-        <p style="position: absolute; top: 187px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">Бар</p>
+        <p style="position: absolute; top: 187px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Показание датчика на нагнетание</p>
+        <p style="position: absolute; top: 187px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 229px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 230px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Миллиампер на всасывание </p>
-        <p style="position: absolute; top: 230px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">mA</p>
+        <p style="position: absolute; top: 230px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 220px;">Миллиампер на всасывание </p>
+        <p style="position: absolute; top: 230px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 263px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 261px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Миллиампер на нагнетание</p>
-        <p style="position: absolute; top: 261px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">mA</p>
+        <p style="position: absolute; top: 261px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Миллиампер на нагнетание</p>
+        <p style="position: absolute; top: 261px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
     </div>
 </div>
 {% endblock %}
