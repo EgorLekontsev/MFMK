@@ -10,7 +10,7 @@ p {
     font-size: 16px;
     color: white;
     font-weight: bold;
-    width: 200px;
+    width: 470px;
     height: 20px;
     margin: 0px;
 }
@@ -66,10 +66,99 @@ hr {
 <div id="clock"></div>
 {% endblock %}
 
+{% block switch %}
+function changeSwitchReading() {
+    var image = document.getElementById("SwitchReading");
+    if (image.src.match("{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}")) {
+        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOn.png') }}";
+    } else {
+        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}";
+    }
+}
+function changeSwitchRecording() {
+    var image = document.getElementById("SwitchRecording");
+    if (image.src.match("{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}")) {
+        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOn.png') }}";
+    } else {
+        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}";
+    }
+}
+{% endblock %}
+
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
         <p style="position: absolute; top: 41px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px;">Параметры двигателей</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Voltage.png') }}"
+            style="position: absolute; top: 62px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Напряжение</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 66px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px;">В</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Current.png') }}"
+            style="position: absolute; top: 98px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Ток</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 105px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px;">А</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Frequency.png') }}"
+            style="position: absolute; top: 138px; left: 222px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 143px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Частота</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 137px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 137px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 144px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px;">Гц</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Speed.png') }}"
+            style="position: absolute; top: 176px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 182px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Скорость</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 177px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 176px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 183px; left: 727px; right: 0px; bottom: 0px; border: none; padding: 0px;">Об/мин</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Power.png') }}"
+            style="position: absolute; top: 215px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 221px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px;">Мощность</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 216px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 215px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 222px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px;">кВт</p>
+        <hr style="position: absolute; top: 254px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 258px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px;">Разгон и торможение</p>
+        <img src="{{ url_for('static', filename='iconsbutton/AccelerationTime.png') }}"
+            style="position: absolute; top: 275px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 280px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время ускорения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 275px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 271px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 278px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px;">Сек</p>
+        <img src="{{ url_for('static', filename='iconsbutton/BrakingTime.png') }}"
+            style="position: absolute; top: 311px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 317px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px;">Время торможения</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 313px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 311px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p style="position: absolute; top: 318px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px;">Сек</p>
+        <hr style="position: absolute; top: 351px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+        <p style="position: absolute; top: 355px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px;">Управление параметрами ПЧ</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Reading.png') }}"
+            style="position: absolute; top: 375px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 380px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px;">Считывание настроек с ПЧ</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 372px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <img id="SwitchReading" onclick="changeSwitchReading()" src="{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}"
+            style="position: absolute; top: 372px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+        <p onclick="changeSwitchReading()" style="position: absolute; top: 378px; left: 667px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; cursor: pointer;">Чтение</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Recording.png') }}"
+            style="position: absolute; top: 409px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 414px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px;">Запись настроек в ПЧ</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 410px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <img id="SwitchRecording" onclick="changeSwitchRecording()" src="{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}"
+            style="position: absolute; top: 410px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+        <p onclick="changeSwitchRecording()" style="position: absolute; top: 416px; left: 667px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; cursor: pointer;">Запись</p>
+        <p style="position: absolute; top: 453px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; color: #FFFF00;">Внимание запись и считывание настроек возможна только в режиме стоп</p>
     </div>
 </div>
 {% endblock %}
