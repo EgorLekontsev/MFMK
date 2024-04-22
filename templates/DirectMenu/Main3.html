@@ -4,23 +4,14 @@
 <title>Главный экран</title>
 {% endblock %}
 
-{% block buttons %}
-.buttons {
-    width: 140px;
-    height: 40px;
-    display: flex;
-    flex-direction: column;
-}
-{% endblock %}
-
-{% block button200x60 %}
-.button200x60 {
+{% block button135x37 %}
+.button135x37 {
     border: none;
     padding: 0px;
-    width: 140px;
-    height: 40px;
+    width: 135px;
+    height: 37px;
     background: black;
-    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -2px 0 0px #8E8E8E, inset 0 2px 0 0px #8E8E8E;
+    box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -3px 0 0px #8E8E8E, inset 0 3px 0 0px #8E8E8E;
     font-family: Roboto; /* Устанавливаем стиль шрифта */
     font-size: 20px; /* Устанавливаем размер шрифта */
     color: white;
@@ -35,10 +26,12 @@
 <a href="/"><img src="{{ url_for('static', filename='Main/indicator_2.png') }}" draggable="false" style="position: absolute; top: 5px; left: 150px;"/></a>
 {% endblock %}
 
-{% block body %}
-<div>
-    <button onclick="window.location.href='/SetpointPlanner'" class="button200x60">Настройки</button>
+{% block container %}
+<div class="buttons">
+    <button onclick="window.location.href='/SetpointPlanner'" class="button135x37">Настройки</button>
 </div>
+{% endblock %}
 
+{% block clock %}
 <div id="clock"></div>
 {% endblock %}

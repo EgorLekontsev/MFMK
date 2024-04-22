@@ -4,6 +4,20 @@
 <title>Настройки ПИД-рег.</title>
 {% endblock %}
 
+{% block styleforrightbody %}
+p {
+    font-family: Roboto;
+    color: white;
+    font-weight: bold;
+    height: 20px;
+    margin: 0px;
+}
+hr {
+    margin: 0px;
+    border-color: #616161;
+}
+{% endblock %}
+
 {% block container %}
 <div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
@@ -28,4 +42,72 @@
 
 {% block clock %}
 <div id="clock"></div>
+{% endblock %}
+
+{% block switch %}
+function changeSwitch() {
+    var image = document.getElementById("Switch");
+    if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+    } else {
+        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+    }
+}
+{% endblock %}
+
+{% block interface %}
+<div class="rightbody">
+    <div style="width: 600px; height: 480px;">
+        <img src="{{ url_for('static', filename='iconsbutton/ProportionalCoefficient.png') }}"
+            style="position: absolute; top: 48px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 55px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px; font-size: 14px;">Пропорциональный коэффициент</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 49px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 45px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+        <img src="{{ url_for('static', filename='iconsbutton/IntegralCoefficient.png') }}"
+            style="position: absolute; top: 89px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 95px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 200px; font-size: 14px;">Интегральный коэффициент</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 90px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 84px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+        <img src="{{ url_for('static', filename='iconsbutton/DifferentialCoefficient.png') }}"
+            style="position: absolute; top: 129px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 135px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px; font-size: 14px;">Диффиеренциальный  коэффициент</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 129px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 124px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+        <img src="{{ url_for('static', filename='iconsbutton/IntegrationConstant.png') }}"
+            style="position: absolute; top: 169px; left: 234px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 173px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px; font-size: 14px;">Постоянная интегрирования</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 169px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 163px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}"
+            style="position: absolute; top: 206px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 209px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Подменить установку</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 205px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <img id="Switch" onclick="changeSwitch()" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
+            style="position: absolute; top: 204px; left: 639px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+        <img src="{{ url_for('static', filename='iconsbutton/Voltage.png') }}"
+            style="position: absolute; top: 242px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 246px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Установка на подмену</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 243px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <hr style="position: absolute; top: 237px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+        <hr style="position: absolute; top: 279px; left: 213px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
+        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
+            style="position: absolute; top: 291px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 290px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px; font-size: 12px;">Текущее давление</p>
+        <p style="position: absolute; top: 308px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px; font-size: 12px;">Текущая уставка</p>
+        <p style="position: absolute; top: 329px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px; font-size: 12px;">Error</p>
+        <img src="{{ url_for('static', filename='iconsbutton/Oyster.png') }}"
+            style="position: absolute; top: 356px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <p style="position: absolute; top: 351px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px; font-size: 12px;">Proportional</p>
+        <p style="position: absolute; top: 371px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Integral</p>
+        <p style="position: absolute; top: 394px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Derivative</p>
+        <p style="position: absolute; top: 412px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Выход PID</p>
+        <p style="position: absolute; top: 431px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Частота</p>
+    </div>
+</div>
 {% endblock %}
