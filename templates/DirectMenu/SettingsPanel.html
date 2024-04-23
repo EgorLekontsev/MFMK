@@ -113,21 +113,27 @@ function changeSwitch() {
             style="position: absolute; top: 188px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 187px; left: 478px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 194px; left: 536px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">День</p>
+        <p  id="currentDay" style="position: absolute; top: 194px; left: 498px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <hr style="position: absolute; top: 187px; left: 583px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 194px; left: 629px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Месяц</p>
+        <p  id="currentMonth" style="position: absolute; top: 194px; left: 596px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <hr style="position: absolute; top: 187px; left: 687px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 194px; left: 752px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Год</p>
+        <p  id="currentYear" style="position: absolute; top: 194px; left: 699px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <img src="{{ url_for('static', filename='iconsbutton/Time.png') }}"
             style="position: absolute; top: 222px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 227px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Время</p>
         <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 229px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 226px; left: 478px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 232px; left: 535px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Часы</p>
+        <p style="position: absolute; top: 232px; left: 506px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Секунды</p>
+        <p  id="currentSecond" style="position: absolute; top: 232px; left: 484px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <hr style="position: absolute; top: 226px; left: 583px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 232px; left: 617px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Минуты</p>
+        <p  id="currentMinute" style="position: absolute; top: 232px; left: 590px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <hr style="position: absolute; top: 226px; left: 687px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 232px; left: 713px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Секунды</p>
+        <p style="position: absolute; top: 232px; left: 739px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Часы</p>
+        <p id="currentHour" style="position: absolute; top: 232px; left: 702px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
         <hr style="position: absolute; top: 266px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
         <p style="position: absolute; top: 269px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px; width: 60px;">Ethernet</p>
         <img src="{{ url_for('static', filename='iconsbutton/IP.png') }}"
@@ -159,4 +165,24 @@ function changeSwitch() {
         <hr style="position: absolute; top: 366px; left: 687px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
     </div>
 </div>
+{% endblock %}
+
+{% block currentdate %}
+function getCurrentDateTime() {
+    const currentDateTime = new Date();
+    const hours = currentDateTime.getHours();
+    const minutes = currentDateTime.getMinutes();
+    const seconds = currentDateTime.getSeconds();
+    const day = currentDateTime.getDate();
+    const month = currentDateTime.getMonth() + 1;
+    const year = currentDateTime.getFullYear();
+    document.getElementById('currentHour').innerHTML = hours;
+    document.getElementById('currentMinute').innerHTML = minutes;
+    document.getElementById('currentSecond').innerHTML = seconds;
+    document.getElementById('currentDay').innerHTML = day;
+    document.getElementById('currentMonth').innerHTML = month;
+    document.getElementById('currentYear').innerHTML = year;
+}
+getCurrentDateTime();
+setInterval(getCurrentDateTime, 50);
 {% endblock %}

@@ -85,6 +85,7 @@
         {% block clock %}{% endblock %}
     </div>
     <script>
+        {% block page_script %}{% endblock %}
         {% block switch %}{% endblock %}
         function updateClock() {
             var now = new Date();
@@ -96,6 +97,7 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 50);
+        {% block currentdate %}{% endblock %}
     </script>
 </body>
 </html>
