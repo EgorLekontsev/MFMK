@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import PhotoImage, Canvas
+from tkinter import PhotoImage, Canvas, messagebox
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 from platform import system
@@ -8,6 +8,7 @@ from subprocess import check_output
 from socket import socket, AF_INET, SOCK_DGRAM
 import wmi
 import psutil
+import keypad
 
 '''def check_os():
     os = system()
@@ -131,144 +132,6 @@ class App(tk.Tk): # Основной класс с характеристика�
         for frame_name in self.frames:
             self.frames[frame_name].update_clock(current_time)
         self.after(1000, self.update_clock) # Тик-так
-
-class Keypad(tk.Toplevel):
-    def __init__(self, NameFrame, master=None, ):
-        super().__init__(master)
-        self.title("Главный экран")
-        self.geometry("300x400")
-        self.resizable(width=False, height=False)
-        self.canvas = tk.Canvas(
-            self,
-            height=400,
-            width=300,
-            bd=0,
-            highlightthickness=0,
-            relief="ridge")
-        self.canvas.place(x=0, y=0)
-
-        self.password = "123"
-        self.enter_password = ""
-        self.NameFrame = NameFrame
-
-        self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
-        self.entry_label.place(x=35, y=65)
-        self.interfacekp_img = PhotoImage(file=r"images\Keypad\InterfaceKP.png")
-        self.interfacekp = self.canvas.create_image(150, 200, image=self.interfacekp_img)
-        self.comma_img = PhotoImage(file=r"images\Keypad\Comma.png")
-        self.comma_button = self.canvas.create_image(45, 355, image=self.comma_img)
-        self.zero_img = PhotoImage(file=r"images\Keypad\0.png")
-        self.zero_button = self.canvas.create_image(115, 355, image=self.zero_img)
-        self.canvas.tag_bind(self.zero_button, "<Button-1>", self.zero_func)
-        self.one_img = PhotoImage(file=r"images\Keypad\1.png")
-        self.one_button = self.canvas.create_image(45, 285, image=self.one_img)
-        self.canvas.tag_bind(self.one_button, "<Button-1>", self.one_func)
-        self.two_img = PhotoImage(file=r"images\Keypad\2.png")
-        self.two_button = self.canvas.create_image(115, 285, image=self.two_img)
-        self.canvas.tag_bind(self.two_button, "<Button-1>", self.two_func)
-        self.three_img = PhotoImage(file=r"images\Keypad\3.png")
-        self.three_button = self.canvas.create_image(185, 285, image=self.three_img)
-        self.canvas.tag_bind(self.three_button, "<Button-1>", self.three_func)
-        self.four_img = PhotoImage(file=r"images\Keypad\4.png")
-        self.four_button = self.canvas.create_image(45, 215, image=self.four_img)
-        self.canvas.tag_bind(self.four_button, "<Button-1>", self.four_func)
-        self.five_img = PhotoImage(file=r"images\Keypad\5.png")
-        self.five_button = self.canvas.create_image(115, 215, image=self.five_img)
-        self.canvas.tag_bind(self.five_button, "<Button-1>", self.five_func)
-        self.six_img = PhotoImage(file=r"images\Keypad\6.png")
-        self.six_button = self.canvas.create_image(185, 215, image=self.six_img)
-        self.canvas.tag_bind(self.six_button, "<Button-1>", self.six_func)
-        self.seven_img = PhotoImage(file=r"images\Keypad\7.png")
-        self.seven_button = self.canvas.create_image(45, 145, image=self.seven_img)
-        self.canvas.tag_bind(self.seven_button, "<Button-1>", self.seven_func)
-        self.eight_img = PhotoImage(file=r"images\Keypad\8.png")
-        self.eight_button = self.canvas.create_image(115, 145, image=self.eight_img)
-        self.canvas.tag_bind(self.eight_button, "<Button-1>", self.eight_func)
-        self.nine_img = PhotoImage(file=r"images\Keypad\9.png")
-        self.nine_button = self.canvas.create_image(185, 145, image=self.nine_img)
-        self.canvas.tag_bind(self.nine_button, "<Button-1>", self.nine_func)
-        self.clear_all_img = PhotoImage(file=r"images\Keypad\C.png")
-        self.clear_all_button = self.canvas.create_image(255, 145, image=self.clear_all_img)
-        self.canvas.tag_bind(self.clear_all_button, "<Button-1>", self.clear_all_button_func)
-        self.clear_img = PhotoImage(file=r"images\Keypad\Arrow.png")
-        self.clear_button = self.canvas.create_image(255, 215, image=self.clear_img)
-        self.canvas.tag_bind(self.clear_button, "<Button-1>", self.clear_button_func)
-        self.esc_img = PhotoImage(file=r"images\Keypad\Esc.png")
-        self.esc_button = self.canvas.create_image(255, 285, image=self.esc_img)
-        self.canvas.tag_bind(self.esc_button, "<Button-1>", self.escape_button_func)
-        self.enter_img = PhotoImage(file=r"images\Keypad\Enter.png")
-        self.enter_button = self.canvas.create_image(220, 355, image=self.enter_img)
-        self.canvas.tag_bind(self.enter_button, "<Button-1>", self.enter_button_func)
-
-
-
-
-    ''' ЗАПЯТАЯ 
-    def cammo_func(self, event):
-        self.clock_label.config(text=self.clock_label.cget('text')+",")
-    '''
-    def zero_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "0"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def one_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "1"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def two_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "2"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def three_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "3"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def four_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "4"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def five_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "5"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def six_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "6"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def seven_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "7"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def eight_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "8"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def nine_func(self, event):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "9"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
-    def clear_all_button_func(self, event):
-        self.enter_password = ""
-        self.entry_label.config(text="")
-    def clear_button_func(self, event):
-        past_text = self.entry_label.cget('text')
-        new_text = past_text[:-1]
-        self.enter_password = self.enter_password[:-1]
-        self.entry_label.config(text=new_text)
-    def enter_button_func(self, event):
-        if self.enter_password == self.password:
-            self.enter_password = ""
-            self.entry_label.config(text="")
-            print("Успешный вход!")
-            self.destroy()
-        else:
-            print(self.enter_password)
-            print("Неудачная попытка!")
-
-    def escape_button_func(self, event):
-        self.destroy()
-
-
 
 class Frame1_1(tk.Frame):
     def __init__(self, parent, controller):
@@ -4361,7 +4224,7 @@ class Frame19(tk.Frame, NetInfo):
 
         self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
 
         self.ip_ = NetInfo().ipv4
         self.result_IP = self.ip_.split(".")
@@ -4568,15 +4431,26 @@ class Frame19(tk.Frame, NetInfo):
             self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
             self.gateway_4.place(x=717, y=374)
 
-    def update_switch(self, event):
-        self.new_window = Keypad("Frame19")
-        # self.new_window.grab_set() блок
-        if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
-            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
-        elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
-            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+    def check_password(self, event=None):
+        #self.master.grab_set()
+        self.keypad_instance = keypad.Keypad()
+        self.keypad_instance.callback_function = self.check_password
+        self.keypad_instance.protocol("WM_DELETE_WINDOW", self.update_switch)
+    def update_switch(self, event=None): #Смена переключателей
+        print(f"test:{self.keypad_instance.enter_password}")
+        if self.keypad_instance.enter_password == "123":
+            print("step 1")
+            if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
+                self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
+                print("step 2")
+            elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
+                self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+                print("step 3")
+            self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
+            self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
+            self.canvas.update()
+        else:
+            messagebox.showerror("Ошибка!", "Введен неправильный пароль!")
 
 
     def update_clock(self, current_time):
