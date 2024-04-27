@@ -70,46 +70,106 @@ hr {
 <div id="clock"></div>
 {% endblock %}
 
-{% block switch %}
-function changeSwitch() {
-    var image = document.getElementById("Switch");
-    if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
-        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+{% block script %}
+var resultpassword = '7531';
+function checkPassword() {
+    if (collectednumber === resultpassword) {
+        console.log('Пароль верный!');
+        var image = document.getElementById("Switch");
+        var result = document.getElementById('result').innerText;
+        modal.style.display = "none";
+        document.getElementById('result').innerText = '';
+        collectednumber = '';
+        var buttonstrue = true;
+        hideFlickeringElements()
+<!--        if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {-->
+<!--            image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";-->
+<!--            var result = document.getElementById('result').innerText;-->
+<!--            modal.style.display = "none";-->
+<!--            document.getElementById('result').innerText = '';-->
+<!--            collectednumber = '';-->
+<!--        } else {-->
+<!--            image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";-->
+<!--            var result = document.getElementById('result').innerText;-->
+<!--            modal.style.display = "none";-->
+<!--            document.getElementById('result').innerText = '';-->
+<!--            collectednumber = '';-->
+<!--        }-->
     } else {
-        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+        console.log('Неправильный пароль!');
     }
+}
+function hideFlickeringElements() {
+    var flickeringElements = document.querySelectorAll('.flickering');
+
+    setTimeout(function() {
+        flickeringElements.forEach(function(element) {
+            element.style.display = 'none';
+        });
+    }, 500);
+
+    setTimeout(function() {
+        flickeringElements.forEach(function(element) {
+            element.style.display = '';
+        });
+    }, 15000);
 }
 {% endblock %}
 
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="backgroundblack">
+                    <p class="passswordp">Введите пароль</p>
+                </div>
+                <div class="passwordprint">
+                    <p id="result" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+                <button onclick="appendToResult('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToResult('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToResult('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearResult()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToResult('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToResult('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToResult('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValue()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToResult('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToResult('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToResult('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack close" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToResult('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkPassword()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
+            </div>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Sun.png') }}"
             style="position: absolute; top: 55px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 59px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px;">Время до отключения дисплея</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 56px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         <img src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
             style="position: absolute; top: 97px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 99px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Время до отключения заставки</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 95px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         <img src="{{ url_for('static', filename='iconsbutton/Music.png') }}"
             style="position: absolute; top: 130px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Зуммер</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 133px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="Switch" onclick="changeSwitch()" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
+        <img id="Switch" onclick="changeSwitch()" class="openModal" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
             style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
         <hr style="position: absolute; top: 178px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
             style="position: absolute; top: 189px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 193px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">Дата</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 188px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 187px; left: 478px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 194px; left: 536px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">День</p>
@@ -123,7 +183,7 @@ function changeSwitch() {
         <img src="{{ url_for('static', filename='iconsbutton/Time.png') }}"
             style="position: absolute; top: 222px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 227px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Время</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 229px; left: 450px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 226px; left: 478px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <p style="position: absolute; top: 232px; left: 506px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Секунды</p>
@@ -139,7 +199,7 @@ function changeSwitch() {
         <img src="{{ url_for('static', filename='iconsbutton/IP.png') }}"
             style="position: absolute; top: 288px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 294px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px; width: 70px;">IP Адрес</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 289px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 286px; left: 379px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <hr style="position: absolute; top: 286px; left: 482px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
@@ -148,7 +208,7 @@ function changeSwitch() {
         <img src="{{ url_for('static', filename='iconsbutton/Mask.png') }}"
             style="position: absolute; top: 327px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 333px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px; width: 50px;">Маска</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 329px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 326px; left: 379px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <hr style="position: absolute; top: 326px; left: 482px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
@@ -157,7 +217,7 @@ function changeSwitch() {
         <img src="{{ url_for('static', filename='iconsbutton/WWW.png') }}"
             style="position: absolute; top: 366px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 372px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 14px; width: 50px;">Шлюз</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 367px; left: 351px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 366px; left: 379px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">
         <hr style="position: absolute; top: 366px; left: 482px; border: 2px solid white; width: 98px; height: 32px; border-radius: 6px;">

@@ -73,6 +73,115 @@
             height: 480px;
             float: left;
         }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            background-color: #626262;
+            margin-top: 0px;
+            margin-bottom: 0px;
+            margin-left: 0px;
+            margin-right: 0px;
+            padding: 0px;
+            border: none;
+            width: 300px;
+            height: 400px;
+            position: fixed;
+            top: 40px;
+            left: 350px;
+            box-shadow: inset 0 0 0 1px white;
+        }
+        .close {
+            color: #666;
+            float: right;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .backgroundblack {
+            width: 298px;
+            height: 39px;
+            background-color: black;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+        }
+        .passswordp {
+            font-family: Roboto;
+            font-size: 25px;
+            color: #A70000;
+            font-weight: bold;
+            position: absolute;
+            top: 5px;
+            left: 55px;
+        }
+        .passwordprint {
+            width: 271px;
+            height: 51px;
+            background-color: black;
+            position: absolute;
+            top: 54px;
+            left: 14px;
+            box-shadow: inset 0 0 0 1px white;
+        }
+        .inputbtnblack {
+            font-family: Roboto;
+            font-size: 22px;
+            font-weight: bold;
+            width: 61px;
+            height: 61px;
+            background-color: black;
+            color: white;
+            box-shadow: inset 0 0 0 1px white;
+            border-radius: 8px;
+            padding: 0px;
+            border: none;
+            cursor: pointer;
+        }
+        .inputbtnc {
+            font-family: Roboto;
+            font-size: 22px;
+            font-weight: bold;
+            width: 61px;
+            height: 61px;
+            background-color: #8E0000;
+            color: white;
+            box-shadow: inset 0 0 0 1px white;
+            border-radius: 8px;
+            padding: 0px;
+            border: none;
+            cursor: pointer;
+        }
+        .inputbtnc:hover {
+            background-color: #6A0000;
+            color: white;
+        }
+        .inputbtngreen {
+            font-family: Roboto;
+            font-size: 22px;
+            font-weight: bold;
+            width: 131px;
+            height: 61px;
+            background-color: green;
+            color: white;
+            box-shadow: inset 0 0 0 1px white;
+            border-radius: 8px;
+            padding: 0px;
+            border: none;
+            cursor: pointer;
+        }
+        .inputbtngreen:hover {
+            background-color: #005400;
+            color: white;
+        }
         {% block button135x37 %}{% endblock %}
         {% block styleforrightbody %}{% endblock %}
     </style>
@@ -97,6 +206,51 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 50);
+        var collectednumber = '';
+        function appendToResult(value) {
+            var result = document.getElementById('result').innerText;
+            if (result.length < 8) {
+                collectednumber += value;
+                console.log(collectednumber);
+                document.getElementById('result').innerText += '*';
+            }
+        }
+
+        function clearResult() {
+        var result = document.getElementById('result').innerText;
+            if (result !== '') {
+                collectednumber = '';
+                console.log(collectednumber);
+                document.getElementById('result').innerText = '';
+            }
+        }
+
+        function clearLastValue() {
+            var result = document.getElementById('result').innerText;
+            if (result !== '') {
+                document.getElementById('result').innerText = result.slice(0, -1);
+                collectednumber = collectednumber.slice(0, -1);
+                console.log(collectednumber);
+            }
+        }
+        var modal = document.getElementById('myModal');
+        var btns = document.getElementsByClassName("openModal");
+        var span = document.getElementsByClassName("close")[0];
+
+        span.onclick = function() {
+            var result = document.getElementById('result').innerText;
+            modal.style.display = "none"; // Скрываем модальное окно
+            document.getElementById('result').innerText = '';
+            collectednumber = '';
+            console.log(collectednumber);
+        }
+
+        for (var i = 0; i < btns.length; i++) {
+            btns[i].onclick = function() {
+                modal.style.display = "block";
+            }
+        }
+        {% block script %}{% endblock %}
         {% block currentdate %}{% endblock %}
     </script>
 </body>
