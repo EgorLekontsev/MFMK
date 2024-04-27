@@ -4185,14 +4185,15 @@ class Frame19(tk.Frame, NetInfo):
         self.canvas.create_image(233, 303, image=self.img_ip)
         self.canvas.create_image(233, 342, image=self.img_mask)
         self.canvas.create_image(233, 381, image=self.img_gateway)
-        self.canvas.create_image(624, 70, image=self.img_shield)
-        self.canvas.create_image(624, 109, image=self.img_shield)
-        self.canvas.create_image(624, 147, image=self.img_shield)
-        self.canvas.create_image(461.25, 201.75, image=self.img_shield)
-        self.canvas.create_image(461.25, 242.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 302.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 342.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 380.75, image=self.img_shield)
+
+        self.shield1 = self.canvas.create_image(624, 70, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 109, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 147, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(461.25, 201.75, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(461.25, 242.75, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(362.25, 302.75, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(362.25, 342.75, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(362.25, 380.75, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Ethernet", fg='white', bg='black',
                                font=('Roboto Bold', 10))
@@ -4434,12 +4435,13 @@ class Frame19(tk.Frame, NetInfo):
     def check_password(self, event=None):
         #self.master.grab_set()
         self.keypad_instance = keypad.Keypad()
-        self.keypad_instance.callback_function = self.check_password
-        self.keypad_instance.protocol("WM_DELETE_WINDOW", self.update_switch)
+        self.keypad_instance.callback_function = self.update_switch
+        #self.keypad_instance.protocol("WM_DELETE_WINDOW", self.update_switch)
     def update_switch(self, event=None): #Смена переключателей
         print(f"test:{self.keypad_instance.enter_password}")
         if self.keypad_instance.enter_password == "123":
             print("step 1")
+            self.img_shield = None
             if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
                 self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
                 print("step 2")

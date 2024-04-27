@@ -135,8 +135,8 @@ class Keypad(tk.Tk):
             print("Успешный вход!")
             if self.callback_function:
                 self.callback_function()
-            self.destroy()
-            self.enter_password = ""
+                self.destroy()
+                self.enter_password = ""
 
         else:
             messagebox.showerror("Ошибка!", "Введен неправильный пароль!")
