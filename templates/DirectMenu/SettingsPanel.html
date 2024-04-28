@@ -71,61 +71,179 @@ hr {
 {% endblock %}
 
 {% block script %}
+var collectednumber = '';
+
+
+function appendToResult(value) {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result.length < 8) {
+        collectednumber += value;
+        document.getElementById('passwordresult').innerText += '*';
+    }
+}
+function clearResult() {
+var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = '';
+        document.getElementById('passwordresult').innerText = '';
+    }
+}
+function clearLastValue() {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = collectednumber.slice(0, -1);
+        document.getElementById('passwordresult').innerText = result.slice(0, -1);
+    }
+}
+
+var ModalPassword = document.getElementById('ModalPassword');
+var span = document.getElementsByClassName("close")[0];
+var input1 = document.getElementById('InputText1');
+var input2 = document.getElementById('InputText2');
+var input3 = document.getElementById('InputText3');
+var input4 = document.getElementById('InputText4');
+var input5 = document.getElementById('InputText5');
+var input6 = document.getElementById('InputText6');
+var Switch = document.getElementById('Switch');
+var currectpassword = false;
+
+span.onclick = function() {
+    var result = document.getElementById('passwordresult').innerText;
+    ModalPassword.style.display = "none";
+    document.getElementById('result').innerText = '';
+    collectednumber = '';
+}
+
+input1.onclick = function() {
+    if (currectpassword === true) {
+        if(input1.onclick) {
+<!--            var element = document.getElementById('InputText2');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+input2.onclick = function() {
+    if (currectpassword === true) {
+        if(input2.onclick) {
+<!--            var element = document.getElementById('InputText2');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+input3.onclick = function() {
+    if (currectpassword === true) {
+        if(input3.onclick) {
+<!--            var element = document.getElementById('InputText2');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+input4.onclick = function() {
+    if (currectpassword === true) {
+        if(input4.onclick) {
+<!--            var element = document.getElementById('InputText5');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+input5.onclick = function() {
+    if (currectpassword === true) {
+        if(input5.onclick) {
+<!--            var element = document.getElementById('InputText5');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+input6.onclick = function() {
+    if (currectpassword === true) {
+        if(input6.onclick) {
+<!--            var element = document.getElementById('InputText5');-->
+<!--            element.innerText = '20';-->
+            ModalNumpad.style.display = "block";
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+Switch.onclick = function() {
+    if (currectpassword === true) {
+        if(Switch.onclick) {
+            if (Switch.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
+                Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+            } else {
+                Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
 var resultpassword = '7531';
 function checkPassword() {
     if (collectednumber === resultpassword) {
         console.log('Пароль верный!');
-        var image = document.getElementById("Switch");
-        var result = document.getElementById('result').innerText;
-        modal.style.display = "none";
-        document.getElementById('result').innerText = '';
+        var result = document.getElementById('passwordresult').innerText;
+        ModalPassword.style.display = "none";
+        document.getElementById('passwordresult').innerText = '';
         collectednumber = '';
-        var buttonstrue = true;
         hideFlickeringElements()
-<!--        if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {-->
-<!--            image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";-->
-<!--            var result = document.getElementById('result').innerText;-->
-<!--            modal.style.display = "none";-->
-<!--            document.getElementById('result').innerText = '';-->
-<!--            collectednumber = '';-->
-<!--        } else {-->
-<!--            image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";-->
-<!--            var result = document.getElementById('result').innerText;-->
-<!--            modal.style.display = "none";-->
-<!--            document.getElementById('result').innerText = '';-->
-<!--            collectednumber = '';-->
-<!--        }-->
     } else {
         console.log('Неправильный пароль!');
     }
 }
-function hideFlickeringElements() {
+function delay(t) {
+    return new Promise(res => {
+        timerId = setTimeout(res, t);
+    });
+}
+async function hideFlickeringElements() {
     var flickeringElements = document.querySelectorAll('.flickering');
-
-    setTimeout(function() {
-        flickeringElements.forEach(function(element) {
-            element.style.display = 'none';
-        });
-    }, 500);
-
-    setTimeout(function() {
-        flickeringElements.forEach(function(element) {
-            element.style.display = '';
-        });
-    }, 15000);
+    await delay(300);
+    flickeringElements.forEach(function(element) {
+        element.style.display = 'none';
+        currectpassword = true;
+    });
+    await delay(25000);
+    flickeringElements.forEach(function(element) {
+        element.style.display = '';
+        currectpassword = false;
+    });
 }
 {% endblock %}
 
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
-        <div id="myModal" class="modal">
-            <div class="modal-content">
+        <div id="ModalNumpad" class="Modal">
+            <div class="ModalContent">
+                <div class="passwordprint">
+                    <p id="numpad" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+            </div>
+        </div>
+        <div id="ModalPassword" class="Modal">
+            <div class="ModalContent">
                 <div class="backgroundblack">
                     <p class="passswordp">Введите пароль</p>
                 </div>
                 <div class="passwordprint">
-                    <p id="result" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                    <p id="passwordresult" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
                 </div>
                 <button onclick="appendToResult('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
                 <button onclick="appendToResult('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
@@ -149,21 +267,23 @@ function hideFlickeringElements() {
         <p style="position: absolute; top: 59px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px;">Время до отключения дисплея</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 56px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        <hr id="InputText1" style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p id="InputText2" style="position: absolute; top: 61px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">30</p>
+        <p id="InputText3" style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         <img src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
             style="position: absolute; top: 97px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 99px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Время до отключения заставки</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 95px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        <hr id="InputText4" style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+        <p id="InputText5" style="position: absolute; top: 101px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">15</p>
+        <p id="InputText6" style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         <img src="{{ url_for('static', filename='iconsbutton/Music.png') }}"
             style="position: absolute; top: 130px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Зуммер</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 133px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="Switch" onclick="changeSwitch()" class="openModal" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
+        <img id="Switch" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
             style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
         <hr style="position: absolute; top: 178px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"

@@ -73,7 +73,7 @@
             height: 480px;
             float: left;
         }
-        .modal {
+        .Modal {
             display: none;
             position: fixed;
             z-index: 1;
@@ -84,7 +84,7 @@
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.5);
         }
-        .modal-content {
+        .ModalContent {
             background-color: #626262;
             margin-top: 0px;
             margin-bottom: 0px;
@@ -98,13 +98,6 @@
             top: 40px;
             left: 350px;
             box-shadow: inset 0 0 0 1px white;
-        }
-        .close {
-            color: #666;
-            float: right;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
         }
         .backgroundblack {
             width: 298px;
@@ -206,52 +199,8 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 50);
-        var collectednumber = '';
-        function appendToResult(value) {
-            var result = document.getElementById('result').innerText;
-            if (result.length < 8) {
-                collectednumber += value;
-                console.log(collectednumber);
-                document.getElementById('result').innerText += '*';
-            }
-        }
-
-        function clearResult() {
-        var result = document.getElementById('result').innerText;
-            if (result !== '') {
-                collectednumber = '';
-                console.log(collectednumber);
-                document.getElementById('result').innerText = '';
-            }
-        }
-
-        function clearLastValue() {
-            var result = document.getElementById('result').innerText;
-            if (result !== '') {
-                document.getElementById('result').innerText = result.slice(0, -1);
-                collectednumber = collectednumber.slice(0, -1);
-                console.log(collectednumber);
-            }
-        }
-        var modal = document.getElementById('myModal');
-        var btns = document.getElementsByClassName("openModal");
-        var span = document.getElementsByClassName("close")[0];
-
-        span.onclick = function() {
-            var result = document.getElementById('result').innerText;
-            modal.style.display = "none"; // Скрываем модальное окно
-            document.getElementById('result').innerText = '';
-            collectednumber = '';
-            console.log(collectednumber);
-        }
-
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].onclick = function() {
-                modal.style.display = "block";
-            }
-        }
         {% block script %}{% endblock %}
         {% block currentdate %}{% endblock %}
-    </script>
+</script>
 </body>
 </html>
