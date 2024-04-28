@@ -44,6 +44,8 @@ Frame19 - Настройки панели
 Frame20 - Контакты
 '''
 class App(tk.Tk): # Основной класс с характеристиками окна
+
+    Pumps_active = 0
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -133,7 +135,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         current_time = datetime.now().strftime('%d/%m/%y %H:%M')
         for frame_name in self.frames:
             self.frames[frame_name].update_clock(current_time)
-        self.after(1000, self.update_clock) # Тик-так
+        self.after(500, self.update_clock) # Тик-так
 
 class Home(tk.Frame):
     def __init__(self, parent, controller):
@@ -197,8 +199,18 @@ class Home(tk.Frame):
 
         button_continue = tk.Button(self, text="Подтвердить", fg='white', bg='#005400', font=('Roboto Bold', 14),
                                activebackground="#005400", activeforeground="white",
-                               relief="groove", command=lambda: controller.show_frame("Frame1_1"))
+                               relief="groove", command=lambda: self.next(controller, int(self.pumps_value.cget('text'))))
         button_continue.place(x=215, y=320, width=370, height=54)
+        #lambda: controller.show_frame("Frame1_1")
+
+    def next(self, controller, p_value):
+        App.Pumps_active = p_value
+        controller.show_frame("Frame1_1")
+        controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
+        controller.frames["Frame1_1"].Pumps_active = App.Pumps_active
+        controller.frames["Frame1_2"].Pumps_active = App.Pumps_active
+        controller.frames["Frame1_3"].Pumps_active = App.Pumps_active
+        controller.frames["Frame1_4"].Pumps_active = App.Pumps_active
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -228,86 +240,55 @@ class Frame1_1(tk.Frame):
         self.right_img = PhotoImage(file=r"new_images/red.png")
         self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
-        self.Pumps_img = PhotoImage(file=r"new_images/SystemPump.png")
-        self.Pumps = self.canvas.create_image(380,400, image=self.Pumps_img)
+        self.img_pump_on = PhotoImage(file=r"new_images/pump_on.png")
+        self.img_pump_off = PhotoImage(file=r"new_images/pump_off.png")
         self.img_blue_rectangle = PhotoImage(file=r"new_images/blue_rectangle.png")
-        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
-        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
         self.output = tk.Label(self.canvas, text="Выход:",
                                 fg='#449344', bg='black',
                                 font=('Roboto Bold', 10))
-
-        self.output.place(x=10, y=330)
         self.output_value = tk.Label(self.canvas, text="0.00",
                             fg='white', bg='black',
                             font=('Roboto Bold', 10))
-
-        self.output_value.place(x=78, y=330)
         self.task = tk.Label(self.canvas, text="Задание:",
                             fg='#A70909', bg='black',
                             font=('Roboto Bold', 10))
-
-        self.task.place(x=10, y=360)
         self.task_value = tk.Label(self.canvas, text="0.00",
                                   fg='white', bg='black',
                                   font=('Roboto Bold', 10))
-
-        self.task_value.place(x=78, y=360)
         self.triangle = tk.Label(self.canvas, text="△:",
                              fg='white', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.triangle.place(x=10, y=390)
         self.triangle_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.triangle_value.place(x=78, y=390)
         self.rate = tk.Label(self.canvas, text="Частота:",
                               fg='white', bg='black',
                               font=('Roboto Bold', 10))
-
-        self.rate.place(x=10, y=420)
         self.rate_value = tk.Label(self.canvas, text="0.00",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 10))
-
-        self.rate_value.place(x=78, y=420)
         self.input = tk.Label(self.canvas, text="Вход:",
                                  fg='#0000FF', bg='black',
                                  font=('Roboto Bold', 10))
-
-        self.input.place(x=10, y=445)
         self.input_value = tk.Label(self.canvas, text="0.00",
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 10))
-
-        self.input_value.place(x=78, y=445)
         self.label1 = tk.Label(self.canvas, text="Бар",
                              fg='white', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.label1.place(x=130, y=330)
         self.label2 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label2.place(x=130, y=360)
         self.label3 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label3.place(x=130, y=390)
         self.label4 = tk.Label(self.canvas, text="Гц",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label4.place(x=130, y=420)
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-        self.label5.place(x=130, y=445)
     def update_right(self, event):
         if self.right_img.cget("file") == r"new_images/red.png":
             self.right_img = PhotoImage(file=r"new_images/blue.png")
@@ -325,6 +306,71 @@ class Frame1_1(tk.Frame):
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+        match (App.Pumps_active):
+            case 1:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_off)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 2:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 3:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 4:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 5:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 6:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_on)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+
+
+        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
+        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
+
+        self.output.place(x=10, y=330)
+        self.output_value.place(x=78, y=330)
+        self.task.place(x=10, y=360)
+        self.task_value.place(x=78, y=360)
+        self.triangle.place(x=10, y=390)
+        self.triangle_value.place(x=78, y=390)
+        self.rate.place(x=10, y=420)
+        self.rate_value.place(x=78, y=420)
+        self.input.place(x=10, y=445)
+        self.input_value.place(x=78, y=445)
+        self.label1.place(x=130, y=330)
+        self.label2.place(x=130, y=360)
+        self.label3.place(x=130, y=390)
+        self.label4.place(x=130, y=420)
+        self.label5.place(x=130, y=445)
+
+
 
 class Frame1_2(tk.Frame):
     def __init__(self, parent, controller):
@@ -348,90 +394,121 @@ class Frame1_2(tk.Frame):
         background = self.canvas.create_image(655, 20, image=self.background_img)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
-        self.Pumps_img = PhotoImage(file=r"new_images/SystemPump.png")
-        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.img_pump_on = PhotoImage(file=r"new_images/pump_on.png")
+        self.img_pump_off = PhotoImage(file=r"new_images/pump_off.png")
         self.img_blue_rectangle = PhotoImage(file=r"new_images/blue_rectangle.png")
-        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
-        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
         self.output = tk.Label(self.canvas, text="Выход:",
                                fg='#449344', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.output.place(x=10, y=330)
         self.output_value = tk.Label(self.canvas, text="0.00",
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 10))
-
-        self.output_value.place(x=78, y=330)
         self.task = tk.Label(self.canvas, text="Задание:",
                              fg='#A70909', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.task.place(x=10, y=360)
         self.task_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.task_value.place(x=78, y=360)
         self.triangle = tk.Label(self.canvas, text="△:",
                                  fg='white', bg='black',
                                  font=('Roboto Bold', 10))
-
-        self.triangle.place(x=10, y=390)
         self.triangle_value = tk.Label(self.canvas, text="0.00",
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 10))
-
-        self.triangle_value.place(x=78, y=390)
         self.rate = tk.Label(self.canvas, text="Частота:",
                              fg='white', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.rate.place(x=10, y=420)
         self.rate_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.rate_value.place(x=78, y=420)
         self.input = tk.Label(self.canvas, text="Вход:",
                               fg='#0000FF', bg='black',
                               font=('Roboto Bold', 10))
-
-        self.input.place(x=10, y=445)
         self.input_value = tk.Label(self.canvas, text="0.00",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 10))
-
-        self.input_value.place(x=78, y=445)
         self.label1 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label1.place(x=130, y=330)
         self.label2 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label2.place(x=130, y=360)
         self.label3 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label3.place(x=130, y=390)
         self.label4 = tk.Label(self.canvas, text="Гц",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label4.place(x=130, y=420)
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-        self.label5.place(x=130, y=445)
-
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+        match (App.Pumps_active):
+            case 1:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_off)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 2:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 3:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 4:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 5:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 6:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_on)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+
+        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
+        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
+
+        self.output.place(x=10, y=330)
+        self.output_value.place(x=78, y=330)
+        self.task.place(x=10, y=360)
+        self.task_value.place(x=78, y=360)
+        self.triangle.place(x=10, y=390)
+        self.triangle_value.place(x=78, y=390)
+        self.rate.place(x=10, y=420)
+        self.rate_value.place(x=78, y=420)
+        self.input.place(x=10, y=445)
+        self.input_value.place(x=78, y=445)
+        self.label1.place(x=130, y=330)
+        self.label2.place(x=130, y=360)
+        self.label3.place(x=130, y=390)
+        self.label4.place(x=130, y=420)
+        self.label5.place(x=130, y=445)
+
 
 class Frame1_3(tk.Frame):
     def __init__(self, parent, controller):
@@ -455,86 +532,54 @@ class Frame1_3(tk.Frame):
         self.canvas.create_image(655, 20, image=self.background_img)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
-        self.Pumps_img = PhotoImage(file=r"new_images/SystemPump.png")
-        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.img_pump_on = PhotoImage(file=r"new_images/pump_on.png")
+        self.img_pump_off = PhotoImage(file=r"new_images/pump_off.png")
         self.img_blue_rectangle = PhotoImage(file=r"new_images/blue_rectangle.png")
-        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
-        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
         self.output = tk.Label(self.canvas, text="Выход:",
                                fg='#449344', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.output.place(x=10, y=330)
         self.output_value = tk.Label(self.canvas, text="0.00",
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 10))
-
-        self.output_value.place(x=78, y=330)
         self.task = tk.Label(self.canvas, text="Задание:",
                              fg='#A70909', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.task.place(x=10, y=360)
         self.task_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.task_value.place(x=78, y=360)
         self.triangle = tk.Label(self.canvas, text="△:",
                                  fg='white', bg='black',
                                  font=('Roboto Bold', 10))
-
-        self.triangle.place(x=10, y=390)
         self.triangle_value = tk.Label(self.canvas, text="0.00",
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 10))
-
-        self.triangle_value.place(x=78, y=390)
         self.rate = tk.Label(self.canvas, text="Частота:",
                              fg='white', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.rate.place(x=10, y=420)
         self.rate_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.rate_value.place(x=78, y=420)
         self.input = tk.Label(self.canvas, text="Вход:",
                               fg='#0000FF', bg='black',
                               font=('Roboto Bold', 10))
-
-        self.input.place(x=10, y=445)
         self.input_value = tk.Label(self.canvas, text="0.00",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 10))
-
-        self.input_value.place(x=78, y=445)
         self.label1 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label1.place(x=130, y=330)
         self.label2 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label2.place(x=130, y=360)
         self.label3 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label3.place(x=130, y=390)
         self.label4 = tk.Label(self.canvas, text="Гц",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label4.place(x=130, y=420)
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label5.place(x=130, y=445)
 
         self.button1_img = PhotoImage(file=r"new_images/ON.png")
         self.button1_button = self.canvas.create_image(235, 200, image=self.button1_img)
@@ -604,6 +649,68 @@ class Frame1_3(tk.Frame):
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+        match (App.Pumps_active):
+            case 1:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_off)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 2:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 3:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 4:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 5:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 6:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_on)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+
+        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
+        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
+
+        self.output.place(x=10, y=330)
+        self.output_value.place(x=78, y=330)
+        self.task.place(x=10, y=360)
+        self.task_value.place(x=78, y=360)
+        self.triangle.place(x=10, y=390)
+        self.triangle_value.place(x=78, y=390)
+        self.rate.place(x=10, y=420)
+        self.rate_value.place(x=78, y=420)
+        self.input.place(x=10, y=445)
+        self.input_value.place(x=78, y=445)
+        self.label1.place(x=130, y=330)
+        self.label2.place(x=130, y=360)
+        self.label3.place(x=130, y=390)
+        self.label4.place(x=130, y=420)
+        self.label5.place(x=130, y=445)
 
 class Frame1_4(tk.Frame):
     def __init__(self, parent, controller):
@@ -627,89 +734,119 @@ class Frame1_4(tk.Frame):
         background = self.canvas.create_image(655, 20, image=self.background_img)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
-        self.Pumps_img = PhotoImage(file=r"new_images/SystemPump.png")
-        self.Pumps = self.canvas.create_image(380, 400, image=self.Pumps_img)
+        self.img_pump_on = PhotoImage(file=r"new_images/pump_on.png")
+        self.img_pump_off = PhotoImage(file=r"new_images/pump_off.png")
         self.img_blue_rectangle = PhotoImage(file=r"new_images/blue_rectangle.png")
-        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
-        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
         self.output = tk.Label(self.canvas, text="Выход:",
                                fg='#449344', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.output.place(x=10, y=330)
         self.output_value = tk.Label(self.canvas, text="0.00",
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 10))
-
-        self.output_value.place(x=78, y=330)
         self.task = tk.Label(self.canvas, text="Задание:",
                              fg='#A70909', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.task.place(x=10, y=360)
         self.task_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.task_value.place(x=78, y=360)
         self.triangle = tk.Label(self.canvas, text="△:",
                                  fg='white', bg='black',
                                  font=('Roboto Bold', 10))
-
-        self.triangle.place(x=10, y=390)
         self.triangle_value = tk.Label(self.canvas, text="0.00",
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 10))
-
-        self.triangle_value.place(x=78, y=390)
         self.rate = tk.Label(self.canvas, text="Частота:",
                              fg='white', bg='black',
                              font=('Roboto Bold', 10))
-
-        self.rate.place(x=10, y=420)
         self.rate_value = tk.Label(self.canvas, text="0.00",
                                    fg='white', bg='black',
                                    font=('Roboto Bold', 10))
-
-        self.rate_value.place(x=78, y=420)
         self.input = tk.Label(self.canvas, text="Вход:",
                               fg='#0000FF', bg='black',
                               font=('Roboto Bold', 10))
-
-        self.input.place(x=10, y=445)
         self.input_value = tk.Label(self.canvas, text="0.00",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 10))
-
-        self.input_value.place(x=78, y=445)
         self.label1 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label1.place(x=130, y=330)
         self.label2 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label2.place(x=130, y=360)
         self.label3 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label3.place(x=130, y=390)
         self.label4 = tk.Label(self.canvas, text="Гц",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-        self.label4.place(x=130, y=420)
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-        self.label5.place(x=130, y=445)
-
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+        match (App.Pumps_active):
+            case 1:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_off)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 2:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_off)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 3:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_off)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 4:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 5:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+            case 6:
+                self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_on)
+                self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_on)
+                self.Pump_four = self.canvas.create_image(420, 400, image=self.img_pump_on)
+                self.Pump_three = self.canvas.create_image(320, 400, image=self.img_pump_on)
+                self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
+                self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
+
+        self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
+        self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
+
+        self.output.place(x=10, y=330)
+        self.output_value.place(x=78, y=330)
+        self.task.place(x=10, y=360)
+        self.task_value.place(x=78, y=360)
+        self.triangle.place(x=10, y=390)
+        self.triangle_value.place(x=78, y=390)
+        self.rate.place(x=10, y=420)
+        self.rate_value.place(x=78, y=420)
+        self.input.place(x=10, y=445)
+        self.input_value.place(x=78, y=445)
+        self.label1.place(x=130, y=330)
+        self.label2.place(x=130, y=360)
+        self.label3.place(x=130, y=390)
+        self.label4.place(x=130, y=420)
+        self.label5.place(x=130, y=445)
 
 class Frame2(tk.Frame):
     def __init__(self, parent, controller):
@@ -4705,7 +4842,6 @@ class Frame20(tk.Frame):
         self.pumpsAll_label.place(x=444, y=207)
         self.pumpsWorking_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsWorking_label.place(x=651, y=207)
-
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
