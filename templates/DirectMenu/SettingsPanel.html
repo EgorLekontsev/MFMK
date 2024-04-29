@@ -72,6 +72,7 @@ hr {
 
 {% block script %}
 var collectednumber = '';
+var collectednumbernumpad = '';
 
 
 function appendToResult(value) {
@@ -97,40 +98,58 @@ function clearLastValue() {
 }
 
 var ModalPassword = document.getElementById('ModalPassword');
-var span = document.getElementsByClassName("close")[0];
+var span = document.getElementsByClassName("closeModalPassword")[0];
+var span1 = document.getElementsByClassName("closeModalNumpad")[0];
 var input1 = document.getElementById('InputText1');
 var input2 = document.getElementById('InputText2');
 var input3 = document.getElementById('InputText3');
 var input4 = document.getElementById('InputText4');
-var input5 = document.getElementById('InputText5');
-var input6 = document.getElementById('InputText6');
+var input2check = false;
+var input4check = false;
 var Switch = document.getElementById('Switch');
 var currectpassword = false;
 
 span.onclick = function() {
-    var result = document.getElementById('passwordresult').innerText;
     ModalPassword.style.display = "none";
-    document.getElementById('result').innerText = '';
+    document.getElementById('passwordresult').innerText = '';
     collectednumber = '';
+}
+
+span1.onclick = function() {
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    collectednumbernumpad = '';
+}
+
+function appendToNumpad(value) {
+    var result = document.getElementById('numpad').innerText;
+    if (result.length < 8) {
+        collectednumbernumpad += value;
+        document.getElementById('numpad').innerText += value;
+    }
+}
+function clearNumpad() {
+var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+    }
+}
+function clearLastValueNumpad() {
+    var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = collectednumber.slice(0, -1);
+        document.getElementById('numpad').innerText = result.slice(0, -1);
+    }
 }
 
 input1.onclick = function() {
     if (currectpassword === true) {
         if(input1.onclick) {
-<!--            var element = document.getElementById('InputText2');-->
-<!--            element.innerText = '20';-->
             ModalNumpad.style.display = "block";
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-input2.onclick = function() {
-    if (currectpassword === true) {
-        if(input2.onclick) {
-<!--            var element = document.getElementById('InputText2');-->
-<!--            element.innerText = '20';-->
-            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0';
+            document.getElementById('max').innerText = '30';
+            input2check = true;
         }
     } else {
         ModalPassword.style.display = "block";
@@ -139,42 +158,10 @@ input2.onclick = function() {
 input3.onclick = function() {
     if (currectpassword === true) {
         if(input3.onclick) {
-<!--            var element = document.getElementById('InputText2');-->
-<!--            element.innerText = '20';-->
             ModalNumpad.style.display = "block";
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-input4.onclick = function() {
-    if (currectpassword === true) {
-        if(input4.onclick) {
-<!--            var element = document.getElementById('InputText5');-->
-<!--            element.innerText = '20';-->
-            ModalNumpad.style.display = "block";
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-input5.onclick = function() {
-    if (currectpassword === true) {
-        if(input5.onclick) {
-<!--            var element = document.getElementById('InputText5');-->
-<!--            element.innerText = '20';-->
-            ModalNumpad.style.display = "block";
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-input6.onclick = function() {
-    if (currectpassword === true) {
-        if(input6.onclick) {
-<!--            var element = document.getElementById('InputText5');-->
-<!--            element.innerText = '20';-->
-            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0';
+            document.getElementById('max').innerText = '30';
+            input4check = true;
         }
     } else {
         ModalPassword.style.display = "block";
@@ -193,7 +180,38 @@ Switch.onclick = function() {
         ModalPassword.style.display = "block";
     }
 }
-
+function checkNumpad() {
+    if (input2check === true) {
+        if(collectednumbernumpad > 30) {
+            input2.innerText = "30";
+        }
+        else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
+            input2.innerText = "0";
+        }
+        else {
+            input2.innerText = collectednumbernumpad;
+        }
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input2check = false;
+    }
+    if (input4check === true) {
+        if(collectednumbernumpad > 30) {
+            input4.innerText = "30";
+        }
+        else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
+            input4.innerText = "0";
+        }
+        else {
+            input4.innerText = collectednumbernumpad;
+        }
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input4check = false;
+    }
+}
 var resultpassword = '7531';
 function checkPassword() {
     if (collectednumber === resultpassword) {
@@ -224,6 +242,9 @@ async function hideFlickeringElements() {
         element.style.display = '';
         currectpassword = false;
     });
+<!--    ModalNumpad.style.display = "none";-->
+<!--    document.getElementById('numpad').innerText = '';-->
+<!--    collectednumbernumpad = '';-->
 }
 {% endblock %}
 
@@ -232,9 +253,28 @@ async function hideFlickeringElements() {
     <div style="width: 600px; height: 480px;">
         <div id="ModalNumpad" class="Modal">
             <div class="ModalContent">
+                <p style="position: absolute; top: 17px; left: 14px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MIN:</p>
+                <p id="min" style="position: absolute; top: 17px; left: 56px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
+                <p style="position: absolute; top: 17px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MAX:</p>
+                <p id="max" style="position: absolute; top: 17px; left: 264px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
                 <div class="passwordprint">
                     <p id="numpad" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
                 </div>
+                <button onclick="appendToNumpad('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToNumpad('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToNumpad('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearNumpad()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToNumpad('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToNumpad('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToNumpad('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValueNumpad()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToNumpad('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToNumpad('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToNumpad('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack closeModalNumpad" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToNumpad('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkNumpad()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
             </div>
         </div>
         <div id="ModalPassword" class="Modal">
@@ -256,7 +296,7 @@ async function hideFlickeringElements() {
                 <button onclick="appendToResult('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
                 <button onclick="appendToResult('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
                 <button onclick="appendToResult('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
-                <button class="inputbtnblack close" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button class="inputbtnblack closeModalPassword" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
                 <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
                 <button onclick="appendToResult('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
                 <button onclick="checkPassword()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
@@ -267,17 +307,21 @@ async function hideFlickeringElements() {
         <p style="position: absolute; top: 59px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px;">Время до отключения дисплея</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 56px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr id="InputText1" style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p id="InputText2" style="position: absolute; top: 61px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">30</p>
-        <p id="InputText3" style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        <div id="InputText1">
+            <hr style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText2" style="position: absolute; top: 61px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">30</p>
+            <p style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
             style="position: absolute; top: 97px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 99px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Время до отключения заставки</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 95px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr id="InputText4" style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p id="InputText5" style="position: absolute; top: 101px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">15</p>
-        <p id="InputText6" style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        <div id="InputText3">
+            <hr style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText4" style="position: absolute; top: 101px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">15</p>
+            <p style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Music.png') }}"
             style="position: absolute; top: 130px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Зуммер</p>
