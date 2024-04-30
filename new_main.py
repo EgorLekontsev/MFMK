@@ -206,11 +206,11 @@ class Home(tk.Frame):
     def next(self, controller, p_value):
         App.Pumps_active = p_value
         controller.show_frame("Frame1_1")
-        controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
-        controller.frames["Frame1_1"].Pumps_active = App.Pumps_active
-        controller.frames["Frame1_2"].Pumps_active = App.Pumps_active
-        controller.frames["Frame1_3"].Pumps_active = App.Pumps_active
-        controller.frames["Frame1_4"].Pumps_active = App.Pumps_active
+        controller.frames["Frame20"].pumpsWorking_label.config(text=p_value)
+        controller.frames["Frame1_1"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_2"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_3"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_4"].initialization_pumps(App.Pumps_active)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -289,24 +289,8 @@ class Frame1_1(tk.Frame):
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-    def update_right(self, event):
-        if self.right_img.cget("file") == r"new_images/red.png":
-            self.right_img = PhotoImage(file=r"new_images/blue.png")
-        elif self.right_img.cget("file") == r"new_images/blue.png":
-            self.right_img = PhotoImage(file=r"new_images/green.png")
-        elif self.right_img.cget("file") == r"new_images/green.png":
-            self.right_img = PhotoImage(file=r"new_images/pink.png")
-        elif self.right_img.cget("file") == r"new_images/pink.png":
-            self.right_img = PhotoImage(file=r"new_images/orange.png")
-        elif self.right_img.cget("file") == r"new_images/orange.png":
-            self.right_img = PhotoImage(file=r"new_images/yellow.png")
-        elif self.right_img.cget("file") == r"new_images/yellow.png":
-            self.right_img = PhotoImage(file=r"new_images/red.png")
-        self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
-        self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
-        match (App.Pumps_active):
+    def initialization_pumps(self, Pumps_active):
+        match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
                 self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
@@ -350,7 +334,6 @@ class Frame1_1(tk.Frame):
                 self.Pump_two = self.canvas.create_image(220, 400, image=self.img_pump_on)
                 self.Pump_one = self.canvas.create_image(120, 400, image=self.img_pump_on)
 
-
         self.canvas.create_image(87, 342.435, image=self.img_blue_rectangle)
         self.canvas.create_image(87, 456.435, image=self.img_blue_rectangle)
 
@@ -370,7 +353,23 @@ class Frame1_1(tk.Frame):
         self.label4.place(x=130, y=420)
         self.label5.place(x=130, y=445)
 
-
+    def update_right(self, event):
+        if self.right_img.cget("file") == r"new_images/red.png":
+            self.right_img = PhotoImage(file=r"new_images/blue.png")
+        elif self.right_img.cget("file") == r"new_images/blue.png":
+            self.right_img = PhotoImage(file=r"new_images/green.png")
+        elif self.right_img.cget("file") == r"new_images/green.png":
+            self.right_img = PhotoImage(file=r"new_images/pink.png")
+        elif self.right_img.cget("file") == r"new_images/pink.png":
+            self.right_img = PhotoImage(file=r"new_images/orange.png")
+        elif self.right_img.cget("file") == r"new_images/orange.png":
+            self.right_img = PhotoImage(file=r"new_images/yellow.png")
+        elif self.right_img.cget("file") == r"new_images/yellow.png":
+            self.right_img = PhotoImage(file=r"new_images/red.png")
+        self.right_button = self.canvas.create_image(770, 180, image=self.right_img)
+        self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
 
 class Frame1_2(tk.Frame):
     def __init__(self, parent, controller):
@@ -442,11 +441,8 @@ class Frame1_2(tk.Frame):
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
-        match (App.Pumps_active):
+    def initialization_pumps(self, Pumps_active):
+        match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
                 self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
@@ -508,6 +504,9 @@ class Frame1_2(tk.Frame):
         self.label3.place(x=130, y=390)
         self.label4.place(x=130, y=420)
         self.label5.place(x=130, y=445)
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
 
 
 class Frame1_3(tk.Frame):
@@ -646,10 +645,8 @@ class Frame1_3(tk.Frame):
         self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
         self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
 
-
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
-        match (App.Pumps_active):
+    def initialization_pumps(self, Pumps_active):
+        match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
                 self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
@@ -711,6 +708,11 @@ class Frame1_3(tk.Frame):
         self.label3.place(x=130, y=390)
         self.label4.place(x=130, y=420)
         self.label5.place(x=130, y=445)
+
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
+
 
 class Frame1_4(tk.Frame):
     def __init__(self, parent, controller):
@@ -782,10 +784,8 @@ class Frame1_4(tk.Frame):
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
-        match (App.Pumps_active):
+    def initialization_pumps(self, Pumps_active):
+        match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
                 self.Pump_five = self.canvas.create_image(520, 400, image=self.img_pump_off)
@@ -847,6 +847,10 @@ class Frame1_4(tk.Frame):
         self.label3.place(x=130, y=390)
         self.label4.place(x=130, y=420)
         self.label5.place(x=130, y=445)
+
+    def update_clock(self, current_time):
+        self.clock_label.config(text=current_time)
+
 
 class Frame2(tk.Frame):
     def __init__(self, parent, controller):
@@ -4276,9 +4280,6 @@ class Frame19(tk.Frame, NetInfo):
         self.canvas.place(x=0, y=0)
         self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
         self.clock_label.place(x=680, y=5)
-
-        self.new_window = None
-
         self.font = ImageFont.truetype("Roboto-Bold.ttf", 18)
         self.img_screen = Image.open(r"new_images/screen.png")
         self.img_calendar = Image.open(r"new_images/calendar.png")
@@ -4430,10 +4431,6 @@ class Frame19(tk.Frame, NetInfo):
                                font=('Roboto Bold', 12))
         self.label9.place(x=259, y=372)
 
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
-
         self.ip_ = NetInfo().ipv4
         self.result_IP = self.ip_.split(".")
 
@@ -4514,6 +4511,10 @@ class Frame19(tk.Frame, NetInfo):
         self.data_seconds = self.canvas.create_image(735, 245, image=self.img_rectangle_s)
         self.data_seconds_label = tk.Label(self.canvas, text="Секунды", fg='white', bg='black', font=('Roboto Bold', 12))
         self.data_seconds_label.place(x=715, y=237, width=66, height=19)
+
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
 
         self.ip_rectangle_1 = self.canvas.create_image(428.75, 302.5, image=self.img_rectangle_s)
         self.ip_rectangle_2 = self.canvas.create_image(530.75, 302.5, image=self.img_rectangle_s)
@@ -4640,10 +4641,10 @@ class Frame19(tk.Frame, NetInfo):
             self.gateway_4.place(x=717, y=374)
 
     def check_password(self, event=None):
-        #self.master.grab_set()
         self.keypad_instance = keypad.Keypad()
+        self.keypad_instance.grab_set()
         self.keypad_instance.callback_function = self.update_switch
-        #self.keypad_instance.protocol("WM_DELETE_WINDOW", self.update_switch)
+
     def update_switch(self, event=None): #Смена переключателей
         print(f"test:{self.keypad_instance.enter_password}")
         if self.keypad_instance.enter_password == "123":

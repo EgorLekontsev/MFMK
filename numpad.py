@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas, messagebox
-class Keypad(tk.Toplevel):
+class Numpad(tk.Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
-        self.title("Кейпад")
+        self.title("Нумпад")
         self.geometry("300x400")
         self.resizable(width=False, height=False)
         self.canvas = tk.Canvas(
@@ -21,10 +21,6 @@ class Keypad(tk.Toplevel):
 
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
         self.entry_label.place(x=15, y=54, width=271, height=51)
-
-        self.info_label = tk.Label(self.canvas, text="Введите пароль", fg='#A70000', bg='black', font=('Roboto Bold', 18),
-                                    anchor='c')
-        self.info_label.place(x=0, y=0, width=300, height=39)
 
         self.button_seven = tk.Button(self, text='7', font=('Roboto Bold', 18), bg='black', fg='white', relief="groove",
                                 activebackground="black", activeforeground="white", command=self.seven_func)
@@ -66,7 +62,7 @@ class Keypad(tk.Toplevel):
         self.button_esc.place(x=225, y=254, width=61, height=61)
 
         self.button_comma = tk.Button(self, text='.', font=('Roboto Bold', 18), bg='black', fg='white', relief="groove",
-                                    activebackground="black", activeforeground="white")
+                                    activebackground="black", activeforeground="white", command=self.cammo_func)
         self.button_comma.place(x=15, y=324, width=61, height=61)
         self.button_zero = tk.Button(self, text='0', font=('Roboto Bold', 18), bg='black', fg='white', relief="groove",
                                       activebackground="black", activeforeground="white", command=self.zero_func)
@@ -76,50 +72,37 @@ class Keypad(tk.Toplevel):
         self.button_enter.place(x=155, y=324, width=131, height=61)
 
 
-    ''' ЗАПЯТАЯ 
-    def cammo_func(self, event):
-        self.enter_password.config(text=self.enter_password.cget('text')+".")
-    '''
+        self.min_label = tk.Label(self.canvas, text="MIN:", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.min_label.place(x=14, y=17)
+        self.min_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.min_value.place(x=62, y=17)
+        self.max_label = tk.Label(self.canvas, text="MAX:", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.max_label.place(x=165, y=17)
+        self.max_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.max_value.place(x=220, y=17)
+    def cammo_func(self):
+        self.entry_label.config(text=self.enter_password.cget('text')+".")
+
     def zero_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "0"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"0")
     def one_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "1"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"1")
     def two_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "2"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"2")
     def three_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "3"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"3")
     def four_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "4"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"4")
     def five_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "5"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"5")
     def six_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "6"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"6")
     def seven_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "7"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"7")
     def eight_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "8"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"8")
     def nine_func(self):
-        if len(self.enter_password) != 8:
-            self.enter_password = self.enter_password + "9"
-            self.entry_label.config(text=self.entry_label.cget('text')+"*")
+        self.entry_label.config(text=self.entry_label.cget('text')+"9")
     def clear_all_button_func(self):
         self.enter_password = ""
         self.entry_label.config(text="")
@@ -145,5 +128,5 @@ class Keypad(tk.Toplevel):
         self.destroy()
 
 
-#app = Keypad()
-#app.mainloop()
+app = Numpad()
+app.mainloop()
