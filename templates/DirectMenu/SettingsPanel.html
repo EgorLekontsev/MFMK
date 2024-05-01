@@ -119,6 +119,8 @@ OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
     collectednumbernumpad = '';
+    input2check = false;
+    input4check = false;
 }
 
 function appendToNumpad(value) {
@@ -184,35 +186,50 @@ function checkNumpad() {
     if (input2check === true) {
         if(collectednumbernumpad > 30) {
             input2.innerText = "30";
+            collectednumbernumpad = "";
         }
         else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
             input2.innerText = "0";
+            collectednumbernumpad = "";
         }
         else if (collectednumbernumpad.length > 1 && collectednumbernumpad.startsWith('0')) {
             collectednumbernumpad = parseInt(collectednumbernumpad, 10);
             input2.innerText = collectednumbernumpad;
+            collectednumbernumpad = "";
+        }
+        else if (collectednumbernumpad == "") {
+            input2.innerText = "0";
+            collectednumbernumpad = "";
         }
         else {
             input2.innerText = collectednumbernumpad;
+            collectednumbernumpad = "";
         }
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
-    }
-    if (input4check === true) {
+    } else if (input4check === true) {
         if(collectednumbernumpad > 30) {
             input4.innerText = "30";
+            collectednumbernumpad = '';
         }
         else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
             input4.innerText = "0";
+            collectednumbernumpad = '';
         }
         else if (collectednumbernumpad.length > 1 && collectednumbernumpad.startsWith('0')){
             collectednumbernumpad = parseInt(collectednumbernumpad, 10);
             input4.innerText = collectednumbernumpad;
+            collectednumbernumpad = '';
+        }
+        else if (collectednumbernumpad == ""){
+            input4.innerText = "0";
+            collectednumbernumpad = '';
         }
         else {
             input4.innerText = collectednumbernumpad;
+            collectednumbernumpad = '';
         }
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';

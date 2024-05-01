@@ -10,7 +10,7 @@ p {
     font-size: 16px;
     color: white;
     font-weight: bold;
-    width: 200px;
+    width: 250px;
     height: 20px;
     margin: 0px;
 }
@@ -100,9 +100,193 @@ hr {
     <div id="clock"></div>
 {% endblock %}
 
+{% block script %}
+var collectednumber = '';
+var collectednumbernumpad = '';
+
+function appendToResult(value) {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result.length < 8) {
+        collectednumber += value;
+        document.getElementById('passwordresult').innerText += '*';
+    }
+}
+function clearResult() {
+var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = '';
+        document.getElementById('passwordresult').innerText = '';
+    }
+}
+function clearLastValue() {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = collectednumber.slice(0, -1);
+        document.getElementById('passwordresult').innerText = result.slice(0, -1);
+    }
+}
+
+var ModalPassword = document.getElementById('ModalPassword');
+var OffModelPassword = document.getElementsByClassName("closeModalPassword")[0];
+var OffModelNumpad = document.getElementsByClassName("closeModalNumpad")[0];
+var currectpassword = false;
+var input1 = document.getElementById('InputText1');
+var input2 = document.getElementById('InputText2');
+var input2check = false;
+
+OffModelPassword.onclick = function() {
+    ModalPassword.style.display = "none";
+    document.getElementById('passwordresult').innerText = '';
+    collectednumber = '';
+    input2check = false;
+}
+
+OffModelNumpad.onclick = function() {
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    collectednumbernumpad = '';
+}
+
+function appendToNumpad(value) {
+    var result = document.getElementById('numpad').innerText;
+    if (input2check === true) {
+        if (value === "0" && result.length === 0) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+        else if(collectednumbernumpad === "0" && value === ".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+<!--        if (/^[0-9]*$/.test(result) &&-->
+<!--        if (result.length < 2) {-->
+<!--            collectednumbernumpad += value;-->
+<!--            document.getElementById('numpad').innerText += value;-->
+<!--        }-->
+<!--        else if (value === ".") {-->
+<!--            collectednumbernumpad += value;-->
+<!--            document.getElementById('numpad').innerText += value;-->
+<!--        }-->
+    }
+}
+function clearNumpad() {
+var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+    }
+}
+function clearLastValueNumpad() {
+    var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = collectednumber.slice(0, -1);
+        document.getElementById('numpad').innerText = result.slice(0, -1);
+    }
+}
+
+input1.onclick = function() {
+    if (currectpassword === true) {
+        if(input1.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.00';
+            document.getElementById('max').innerText = '99.99';
+            input2check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+var resultpassword = '7531';
+function checkPassword() {
+    if (collectednumber === resultpassword) {
+        console.log('Пароль верный!');
+        var result = document.getElementById('passwordresult').innerText;
+        ModalPassword.style.display = "none";
+        document.getElementById('passwordresult').innerText = '';
+        collectednumber = '';
+        hideFlickeringElements()
+    } else {
+        console.log('Неправильный пароль!');
+    }
+}
+function delay(t) {
+    return new Promise(res => {
+        timerId = setTimeout(res, t);
+    });
+}
+async function hideFlickeringElements() {
+    var flickeringElements = document.querySelectorAll('.flickering');
+    await delay(300);
+    flickeringElements.forEach(function(element) {
+        element.style.display = 'none';
+        currectpassword = true;
+    });
+    await delay(25000);
+    flickeringElements.forEach(function(element) {
+        element.style.display = '';
+        currectpassword = false;
+    });
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    collectednumbernumpad = '';
+}
+{% endblock %}
+
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
+        <div id="ModalNumpad" class="Modal">
+            <div class="ModalContent">
+                <p style="position: absolute; top: 17px; left: 14px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MIN:</p>
+                <p id="min" style="position: absolute; top: 17px; left: 56px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
+                <p style="position: absolute; top: 17px; left: 191px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MAX:</p>
+                <p id="max" style="position: absolute; top: 17px; left: 238px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
+                <div class="passwordprint">
+                    <p id="numpad" style="text-align: right; position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+                <button onclick="appendToNumpad('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToNumpad('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToNumpad('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearNumpad()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToNumpad('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToNumpad('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToNumpad('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValueNumpad()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToNumpad('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToNumpad('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToNumpad('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack closeModalNumpad" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button onclick="appendToNumpad('.')" class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToNumpad('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkNumpad()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
+            </div>
+        </div>
+        <div id="ModalPassword" class="Modal">
+            <div class="ModalContent">
+                <div class="backgroundblack">
+                    <p class="passswordp">Введите пароль</p>
+                </div>
+                <div class="passwordprint">
+                    <p id="passwordresult" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+                <button onclick="appendToResult('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToResult('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToResult('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearResult()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToResult('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToResult('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToResult('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValue()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToResult('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToResult('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToResult('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack closeModalPassword" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToResult('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkPassword()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
+            </div>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}"
             style="position: absolute; top: 18px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 19px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Источник уставки</p>
@@ -110,15 +294,18 @@ hr {
         <img src="{{ url_for('static', filename='iconsbutton/User.png') }}"
             style="position: absolute; top: 62px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 67px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Уставка пользователя</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 62px; left: 579px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 60px; left: 623px; border: 3px solid white; width: 154px; height: 26px; border-radius: 10px;">
-        <p style="position: absolute; top: 66px; left: 750px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+            style="position: absolute; top: 62px; left: 594px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+        <div id="InputText1" class="click">
+            <hr style="position: absolute; top: 60px; left: 623px; border: 3px solid white; width: 154px; height: 26px; border-radius: 10px;">
+            <p id="InputText2" style="position: absolute; top: 65px; left: 640px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">3.00</p>
+            <p style="position: absolute; top: 66px; left: 750px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+        </div>
         <hr style="position: absolute; top: 100px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
             style="position: absolute; top: 112px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 116px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px;">Настройка дней недели</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 108px; left: 479px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <button class="buttonblue" style="position: absolute; top: 105px; left: 510px;">ПН</button>
         <button class="buttonblue" style="position: absolute; top: 105px; left: 550px;">ВТ</button>
@@ -138,7 +325,7 @@ hr {
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 213px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 217px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">Утро</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 214px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 210px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
         <p style="position: absolute; top: 215px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -151,7 +338,7 @@ hr {
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 258px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 261px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">День</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 259px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 258px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
         <p style="position: absolute; top: 264px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -164,7 +351,7 @@ hr {
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 303px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 305px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Вечер</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 304px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 300px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
         <p style="position: absolute; top: 306px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -177,7 +364,7 @@ hr {
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 348px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 349px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">Ночь</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 349px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 345px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
         <p style="position: absolute; top: 351px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
