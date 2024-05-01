@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas, messagebox
 class Numpad(tk.Toplevel):
-    def __init__(self, master=None):
+    def __init__(self, master=None, word=None):
         super().__init__(master)
         self.title("Нумпад")
         self.geometry("300x400")
@@ -15,6 +15,7 @@ class Numpad(tk.Toplevel):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        self.word = word
 
         self.password = "123"
         self.enter_password = ""
@@ -71,6 +72,7 @@ class Numpad(tk.Toplevel):
                                     activebackground="#008000", activeforeground="white", command=self.enter_button_func)
         self.button_enter.place(x=155, y=324, width=131, height=61)
 
+        self.controller = 0
 
         self.min_label = tk.Label(self.canvas, text="MIN:", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.min_label.place(x=14, y=17)
@@ -81,28 +83,47 @@ class Numpad(tk.Toplevel):
         self.max_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.max_value.place(x=220, y=17)
     def cammo_func(self):
-        self.entry_label.config(text=self.enter_password.cget('text')+".")
+        if self.word != "Pumps":
+            if self.entry_label.cget('text') != "":
+                if "." not in self.entry_label.cget('text'):
+                    self.entry_label.config(text=self.entry_label.cget('text')+".")
 
     def zero_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"0")
+        if self.word != "Pumps":
+            self.entry_label.config(text=self.entry_label.cget('text')+"0")
     def one_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"1")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"1")
     def two_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"2")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"2")
     def three_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"3")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"3")
     def four_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"4")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"4")
     def five_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"5")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"5")
     def six_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"6")
+        if self.word == "Pumps":
+            if len(self.entry_label.cget('text')) != 1:
+                self.entry_label.config(text=self.entry_label.cget('text')+"6")
     def seven_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"7")
+        if self.word != "Pumps":
+            self.entry_label.config(text=self.entry_label.cget('text')+"7")
     def eight_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"8")
+        if self.word != "Pumps":
+            self.entry_label.config(text=self.entry_label.cget('text')+"8")
     def nine_func(self):
-        self.entry_label.config(text=self.entry_label.cget('text')+"9")
+        if self.word != "Pumps":
+            self.entry_label.config(text=self.entry_label.cget('text')+"9")
     def clear_all_button_func(self):
         self.enter_password = ""
         self.entry_label.config(text="")
@@ -112,21 +133,17 @@ class Numpad(tk.Toplevel):
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
     def enter_button_func(self):
-        if self.enter_password == self.password:
-
+        self.current_value = self.entry_label.cget('text')
+        if self.current_value != "":
             self.entry_label.config(text="")
-            print("Успешный вход!")
+            print("Успешный ввод!")
             if self.callback_function:
                 self.callback_function()
                 self.destroy()
-                self.enter_password = ""
-
-        else:
-            messagebox.showerror("Ошибка!", "Введен неправильный пароль!")
 
     def escape_button_func(self):
         self.destroy()
 
 
-app = Numpad()
-app.mainloop()
+#app = Numpad()
+#app.mainloop()

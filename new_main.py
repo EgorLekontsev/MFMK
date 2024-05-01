@@ -9,6 +9,7 @@ from socket import socket, AF_INET, SOCK_DGRAM
 import wmi
 import psutil
 import keypad
+import numpad
 
 '''def check_os():
     os = system()
@@ -45,7 +46,7 @@ Frame20 - Контакты
 '''
 class App(tk.Tk): # Основной класс с характеристиками окна
 
-    Pumps_active = 0
+    Pumps_active = 1
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -64,13 +65,13 @@ class App(tk.Tk): # Основной класс с характеристика�
         При добавлении фрейма, обновить кортеж снизу!!!
         Так же не забыть создать класс для нового фрейма, по аналогии!!!
         '''
-        for F in (Home, Frame1_1, Frame1_2, Frame1_3, Frame1_4, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
+        for F in (Frame1_1, Frame1_2, Frame1_3, Frame1_4, Frame2, Frame3, Frame4, Frame5, Frame6, Frame7, Frame8, Frame9, Frame10, Frame11, Frame12, Frame13, Frame14, Frame15, Frame16, Frame17, Frame18, Frame19, Frame20):
             page_name = F.__name__
             frame = F(parent=self.container, controller=self)
             self.frames[page_name] = frame
             frame.grid(row=0, column=0, sticky="nsew")
 
-        self.show_frame("Home")
+        self.show_frame("Frame1_1")
         self.update_clock()
 
     def show_frame(self, page_name): # Смена фреймов
@@ -78,8 +79,6 @@ class App(tk.Tk): # Основной класс с характеристика�
         frame.tkraise()
 
         match page_name: # Смена названий окна
-            case "Home":
-                self.title("Лимбо")
             case "Frame1_1":
                 self.title("Главный экран")
             case "Frame1_2":
@@ -137,83 +136,6 @@ class App(tk.Tk): # Основной класс с характеристика�
             self.frames[frame_name].update_clock(current_time)
         self.after(500, self.update_clock) # Тик-так
 
-class Home(tk.Frame):
-    def __init__(self, parent, controller):
-        tk.Frame.__init__(self, parent)
-        self.canvas = Canvas(
-            self,
-            bg="black",
-            height=480,
-            width=800,
-            bd=0,
-            highlightthickness=0,
-            relief="ridge")
-        self.canvas.place(x=0, y=0)
-
-
-        self.clock_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.clock_label.place(x=680, y=5)
-
-        self.hello = tk.Label(self.canvas, text="Добро пожаловать",
-                                fg='white', bg='black',
-                                font=('Roboto Bold', 24))
-
-        self.hello.place(x=255, y=37)
-
-        self.pumps_label = tk.Label(self.canvas, text="Количество насосов для запуска:",
-                                     fg='white', bg='black',
-                                     font=('Roboto Bold', 12))
-
-        self.pumps_label.place(x=185, y=114)
-
-        self.pumps_value = tk.Label(self.canvas, text="6",
-                            fg='white', bg='black',
-                            font=('Roboto Bold', 14))
-
-        self.pumps_value.place(x=458, y=113)
-
-        button_one = tk.Button(self, text="1", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                           activebackground="#626262", activeforeground="white",
-                           relief="groove", command=lambda: self.pumps_value.config(text="1"))
-        button_one.place(x=185, y=196, width=55, height=55)
-        button_two = tk.Button(self, text="2", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                               activebackground="#626262", activeforeground="white",
-                               relief="groove", command=lambda: self.pumps_value.config(text="2"))
-        button_two.place(x=260, y=196, width=55, height=55)
-        button_three = tk.Button(self, text="3", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                               activebackground="#626262", activeforeground="white",
-                               relief="groove", command=lambda: self.pumps_value.config(text="3"))
-        button_three.place(x=335, y=196, width=55, height=55)
-        button_four = tk.Button(self, text="4", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                               activebackground="#626262", activeforeground="white",
-                               relief="groove", command=lambda: self.pumps_value.config(text="4"))
-        button_four.place(x=410, y=196, width=55, height=55)
-        button_five = tk.Button(self, text="5", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                               activebackground="#626262", activeforeground="white",
-                               relief="groove", command=lambda: self.pumps_value.config(text="5"))
-        button_five.place(x=485, y=196, width=55, height=55)
-        button_six = tk.Button(self, text="6", fg='white', bg='#626262', font=('Roboto Bold', 14),
-                                 activebackground="#626262", activeforeground="white",
-                                 relief="groove", command=lambda: self.pumps_value.config(text="6"))
-        button_six.place(x=560, y=196, width=55, height=55)
-
-        button_continue = tk.Button(self, text="Подтвердить", fg='white', bg='#005400', font=('Roboto Bold', 14),
-                               activebackground="#005400", activeforeground="white",
-                               relief="groove", command=lambda: self.next(controller, int(self.pumps_value.cget('text'))))
-        button_continue.place(x=215, y=320, width=370, height=54)
-        #lambda: controller.show_frame("Frame1_1")
-
-    def next(self, controller, p_value):
-        App.Pumps_active = p_value
-        controller.show_frame("Frame1_1")
-        controller.frames["Frame20"].pumpsWorking_label.config(text=p_value)
-        controller.frames["Frame1_1"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_2"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_3"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_4"].initialization_pumps(App.Pumps_active)
-
-    def update_clock(self, current_time):
-        self.clock_label.config(text=current_time)
 
 class Frame1_1(tk.Frame):
     def __init__(self, parent, controller):
@@ -289,7 +211,9 @@ class Frame1_1(tk.Frame):
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-    def initialization_pumps(self, Pumps_active):
+        self.initialization_pumps()
+
+    def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
@@ -441,7 +365,9 @@ class Frame1_2(tk.Frame):
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-    def initialization_pumps(self, Pumps_active):
+
+        self.initialization_pumps()
+    def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
@@ -598,6 +524,9 @@ class Frame1_3(tk.Frame):
         self.button6_img = PhotoImage(file=r"new_images/ON.png")
         self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
         self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
+
+        self.initialization_pumps()
+
     def update_button1(self, event):
         if self.button1_img.cget("file") == r"new_images/OFF.png":
             self.button1_img = PhotoImage(file=r"new_images/ON.png")
@@ -645,7 +574,7 @@ class Frame1_3(tk.Frame):
         self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
         self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
 
-    def initialization_pumps(self, Pumps_active):
+    def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
@@ -784,7 +713,9 @@ class Frame1_4(tk.Frame):
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-    def initialization_pumps(self, Pumps_active):
+        self.initialization_pumps()
+
+    def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
@@ -864,27 +795,6 @@ class Frame2(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-
-        button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove", activebackground="#0F91DA", activeforeground="white")
-        button_day1.place(x=510, y=107, width=35, height=35)
-        button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day2.place(x=550, y=107, width=35, height=35)
-        button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day3.place(x=590, y=107, width=35, height=35)
-        button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day4.place(x=630, y=107, width=35, height=35)
-        button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day5.place(x=670, y=107, width=35, height=35)
-        button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white")
-        button_day6.place(x=710, y=107, width=35, height=35)
-        button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white")
-        button_day7.place(x=750, y=107, width=35, height=35)
 
         self.img_share = PhotoImage(file=r"new_images/share.png")
         self.img_user = PhotoImage(file=r"new_images/user.png")
@@ -1130,6 +1040,29 @@ class Frame2(tk.Frame):
         self.label36 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label36.place(x=757, y=350, width=28, height=19)
+
+        button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day1.place(x=510, y=107, width=35, height=35)
+        button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day2.place(x=550, y=107, width=35, height=35)
+        button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day3.place(x=590, y=107, width=35, height=35)
+        button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day4.place(x=630, y=107, width=35, height=35)
+        button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white")
+        button_day5.place(x=670, y=107, width=35, height=35)
+        button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white")
+        button_day6.place(x=710, y=107, width=35, height=35)
+        button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white")
+        button_day7.place(x=750, y=107, width=35, height=35)
+
         # Кликабельная зона
 
         self.day = tk.Label(self.canvas, text="", fg='white', bg='black',
@@ -4645,9 +4578,9 @@ class Frame19(tk.Frame, NetInfo):
         self.keypad_instance.grab_set()
         self.keypad_instance.callback_function = self.update_switch
 
-    def update_switch(self, event=None): #Смена переключателей
-        print(f"test:{self.keypad_instance.enter_password}")
-        if self.keypad_instance.enter_password == "123":
+    def update_switch(self, event=None):  # Смена переключателей
+        print(f"test:{self.keypad_instance.access}")
+        if self.keypad_instance.access < 2:
             print("step 1")
             self.img_shield = None
             if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
@@ -4660,9 +4593,7 @@ class Frame19(tk.Frame, NetInfo):
             self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
             self.canvas.update()
         else:
-            messagebox.showerror("Ошибка!", "Введен неправильный пароль!")
-
-
+            messagebox.showerror("Ошибка входа!", "Недостаточный уровень прав!")
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
@@ -4841,8 +4772,52 @@ class Frame20(tk.Frame):
         self.productCode3_label.place(x=632, y=166)
         self.pumpsAll_label = tk.Label(self.canvas, text="6", fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsAll_label.place(x=444, y=207)
-        self.pumpsWorking_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.pumpsWorking_label = tk.Label(self.canvas, text="1", fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsWorking_label.place(x=651, y=207)
+        self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps(controller))
+
+    def numpad_for_pumps(self, controller):
+        print(controller)
+        self.numpad_instance = numpad.Numpad(None, "Pumps")
+        self.numpad_instance.max_value.config(text="6")
+        self.numpad_instance.min_value.config(text="1")
+        self.numpad_instance.grab_set()
+        self.numpad_instance.controller = controller
+        self.numpad_instance.callback_function = self.change_active_pumps
+
+    def change_active_pumps(self):
+        controller = self.numpad_instance.controller
+        App.Pumps_active = int(self.numpad_instance.current_value)
+        controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_six)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_five)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_four)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_three)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_two)
+        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_one)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_six)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_five)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_four)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_three)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_two)
+        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_one)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_six)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_five)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_four)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_three)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_two)
+        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_one)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_six)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_five)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_four)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_three)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_two)
+        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_one)
+        controller.frames["Frame1_1"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_2"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_3"].initialization_pumps(App.Pumps_active)
+        controller.frames["Frame1_4"].initialization_pumps(App.Pumps_active)
+
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 

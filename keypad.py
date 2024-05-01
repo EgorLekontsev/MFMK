@@ -16,7 +16,7 @@ class Keypad(tk.Toplevel):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.password = "123"
+        self.passwords = {"7531":0, "159":1, "221":2}
         self.enter_password = ""
 
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
@@ -129,17 +129,17 @@ class Keypad(tk.Toplevel):
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
     def enter_button_func(self):
-        if self.enter_password == self.password:
-
+        if self.passwords.get(self.enter_password, 100) == 100:
+            messagebox.showerror("Ошибка входа!", "Такого пароля не существует!")
+        else:
+            self.access = self.passwords.get(self.enter_password)
             self.entry_label.config(text="")
             print("Успешный вход!")
+            print(f"Уровень доступа: {self.access}")
             if self.callback_function:
                 self.callback_function()
                 self.destroy()
                 self.enter_password = ""
-
-        else:
-            messagebox.showerror("Ошибка!", "Введен неправильный пароль!")
 
     def escape_button_func(self):
         self.destroy()
