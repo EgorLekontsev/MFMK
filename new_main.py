@@ -47,6 +47,9 @@ Frame20 - Контакты
 class App(tk.Tk): # Основной класс с характеристиками окна
 
     Pumps_active = 1
+    LVL_access = 10
+    session_access = False
+
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -1192,6 +1195,13 @@ class Frame2(tk.Frame):
         button8 = tk.Button(self, image=self.combined_photo8, bg='black', relief="groove", activebackground="black",
                             command=lambda: controller.show_frame("Frame20"))
         button8.place(x=0, y=420, width=200, height=60)
+
+    def check_password(self, event=None):
+        self.keypad_instance = keypad.Keypad()
+        self.keypad_instance.grab_set()
+        #self.keypad_instance.callback_function = self.update_switch
+
+
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -4574,15 +4584,33 @@ class Frame19(tk.Frame, NetInfo):
             self.gateway_4.place(x=717, y=374)
 
     def check_password(self, event=None):
-        self.keypad_instance = keypad.Keypad()
-        self.keypad_instance.grab_set()
-        self.keypad_instance.callback_function = self.update_switch
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                self.update_switch(self)
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.update_switch
+
 
     def update_switch(self, event=None):  # Смена переключателей
         print(f"test:{self.keypad_instance.access}")
-        if self.keypad_instance.access < 2:
+        if App.session_access == False:
+            App.session_access = True
+            self.canvas.itemconfig(self.shield1, state='hidden')
+            self.canvas.itemconfig(self.shield2, state='hidden')
+            self.canvas.itemconfig(self.shield3, state='hidden')
+            self.canvas.itemconfig(self.shield4, state='hidden')
+            self.canvas.itemconfig(self.shield5, state='hidden')
+            self.canvas.itemconfig(self.shield6, state='hidden')
+            self.canvas.itemconfig(self.shield7, state='hidden')
+            self.canvas.itemconfig(self.shield8, state='hidden')
+            self.after(5000, self.update_shield)
+        App.LVL_access = self.keypad_instance.access
+        if App.LVL_access < 2:
             print("step 1")
-            self.img_shield = None
             if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
                 self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
                 print("step 2")
@@ -4594,6 +4622,19 @@ class Frame19(tk.Frame, NetInfo):
             self.canvas.update()
         else:
             messagebox.showerror("Ошибка входа!", "Недостаточный уровень прав!")
+    def update_shield(self):
+        print("TESTTTTT")
+        self.canvas.itemconfig(self.shield1, state='normal')
+        self.canvas.itemconfig(self.shield2, state='normal')
+        self.canvas.itemconfig(self.shield3, state='normal')
+        self.canvas.itemconfig(self.shield4, state='normal')
+        self.canvas.itemconfig(self.shield5, state='normal')
+        self.canvas.itemconfig(self.shield6, state='normal')
+        self.canvas.itemconfig(self.shield7, state='normal')
+        self.canvas.itemconfig(self.shield8, state='normal')
+        self.canvas.update()
+        App.session_access = False
+        App.LVL_access = 10
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
