@@ -40,13 +40,28 @@ hr {
     font-size: 16px;
     color: white;
 }
+.buttongray {
+    border: none;
+    padding: 0px;
+    width: 35px;
+    height: 35px;
+    background-color: #535353;
+    color: white;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
 .buttonblue:hover {
     color: white;
-    background-color: #2073A1;
+    background-color: var(--hover-color) !important;
 }
 .buttonred:hover {
     color: white;
-    background-color: #601515;
+    background-color: var(--hover-color) !important;
+}
+.buttongray:hover {
+    color: white;
+    background-color: var(--hover-color) !important;
 }
 {% endblock %}
 
@@ -134,39 +149,82 @@ var input1 = document.getElementById('InputText1');
 var input2 = document.getElementById('InputText2');
 var input2check = false;
 
+var btn1 = document.getElementById('Button1');
+btn1.classList.add('buttonblue');
+var btn1BackgroundColor = window.getComputedStyle(btn1).backgroundColor;
+btn1.style.setProperty('--hover-color', '#2073A1');
+
+var btn2 = document.getElementById('Button2');
+btn2.classList.add('buttonblue');
+var btn2BackgroundColor = window.getComputedStyle(btn2).backgroundColor;
+btn2.style.setProperty('--hover-color', '#2073A1');
+
+var btn3 = document.getElementById('Button3');
+btn3.classList.add('buttonblue');
+var btn3BackgroundColor = window.getComputedStyle(btn3).backgroundColor;
+btn3.style.setProperty('--hover-color', '#2073A1');
+
+var btn4 = document.getElementById('Button4');
+btn4.classList.add('buttonblue');
+var btn4BackgroundColor = window.getComputedStyle(btn4).backgroundColor;
+btn4.style.setProperty('--hover-color', '#2073A1');
+
+var btn5 = document.getElementById('Button5');
+btn5.classList.add('buttonblue');
+var btn5BackgroundColor = window.getComputedStyle(btn5).backgroundColor;
+btn5.style.setProperty('--hover-color', '#2073A1');
+
+var btn6 = document.getElementById('Button6');
+btn6.classList.add('buttonred');
+var btn6BackgroundColor = window.getComputedStyle(btn6).backgroundColor;
+btn6.style.setProperty('--hover-color', '#601515');
+
+var btn7 = document.getElementById('Button7');
+btn7.classList.add('buttonred');
+var btn7BackgroundColor = window.getComputedStyle(btn7).backgroundColor;
+btn7.style.setProperty('--hover-color', '#601515');
+
 OffModelPassword.onclick = function() {
     ModalPassword.style.display = "none";
     document.getElementById('passwordresult').innerText = '';
     collectednumber = '';
-    input2check = false;
 }
 
 OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
     collectednumbernumpad = '';
+    input2check = false;
 }
 
 function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
     if (input2check === true) {
-        if (value === "0" && result.length === 0) {
+        if (value==="0" && result.length === 0){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0] ==="0"){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length<4 && value>=0 && value<=9 && result[1] ==="."){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 0 && value>=0 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 1 && value==='.') {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 1 && value>=0 && value<=9 && result[0]!=="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 2 && result[0]>0 && result[0]<=9 && result[1]>=0 && result[1]<=9 && value===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result[2]==="." && value>=0 && value<=9 && result.length<5) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         }
-        else if(collectednumbernumpad === "0" && value === ".") {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
-        }
-<!--        if (/^[0-9]*$/.test(result) &&-->
-<!--        if (result.length < 2) {-->
-<!--            collectednumbernumpad += value;-->
-<!--            document.getElementById('numpad').innerText += value;-->
-<!--        }-->
-<!--        else if (value === ".") {-->
-<!--            collectednumbernumpad += value;-->
-<!--            document.getElementById('numpad').innerText += value;-->
-<!--        }-->
     }
 }
 function clearNumpad() {
@@ -179,7 +237,7 @@ var result = document.getElementById('numpad').innerText;
 function clearLastValueNumpad() {
     var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = collectednumber.slice(0, -1);
+        collectednumbernumpad = collectednumbernumpad.slice(0, -1);
         document.getElementById('numpad').innerText = result.slice(0, -1);
     }
 }
@@ -195,6 +253,241 @@ input1.onclick = function() {
     } else {
         ModalPassword.style.display = "block";
     }
+}
+
+btn1.onclick = function() {
+    if (currectpassword === true) {
+        if(btn1.onclick) {
+            if (btn1BackgroundColor === 'rgb(15, 145, 218)') {
+                btn1.style.backgroundColor = '#871212';
+                btn1BackgroundColor = 'rgb(135, 18, 18)';
+                btn1.style.setProperty('--hover-color', '#601515');
+                btn1.classList.remove('buttonblue');
+                btn1.classList.add('buttonred');
+            } else if (btn1BackgroundColor === 'rgb(135, 18, 18)') {
+                btn1.style.backgroundColor = '#535353';
+                btn1BackgroundColor = 'rgb(83, 83, 83)';
+                btn1.classList.remove('buttonred');
+                btn1.classList.add('buttongray');
+                btn1.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn1BackgroundColor === 'rgb(83, 83, 83)') {
+                btn1.style.backgroundColor = '#0F91DA';
+                btn1BackgroundColor = 'rgb(15, 145, 218)';
+                btn1.classList.remove('buttongray');
+                btn1.classList.add('buttonblue');
+                btn1.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn2.onclick = function() {
+    if (currectpassword === true) {
+        if(btn2.onclick) {
+            if (btn2BackgroundColor === 'rgb(15, 145, 218)') {
+                btn2.style.backgroundColor = '#871212';
+                btn2BackgroundColor = 'rgb(135, 18, 18)';
+                btn2.style.setProperty('--hover-color', '#601515');
+                btn2.classList.remove('buttonblue');
+                btn2.classList.add('buttonred');
+            } else if (btn2BackgroundColor === 'rgb(135, 18, 18)') {
+                btn2.style.backgroundColor = '#535353';
+                btn2BackgroundColor = 'rgb(83, 83, 83)';
+                btn2.classList.remove('buttonred');
+                btn2.classList.add('buttongray');
+                btn2.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn2BackgroundColor === 'rgb(83, 83, 83)') {
+                btn2.style.backgroundColor = '#0F91DA';
+                btn2BackgroundColor = 'rgb(15, 145, 218)';
+                btn2.classList.remove('buttongray');
+                btn2.classList.add('buttonblue');
+                btn2.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn3.onclick = function() {
+    if (currectpassword === true) {
+        if(btn3.onclick) {
+            if (btn3BackgroundColor === 'rgb(15, 145, 218)') {
+                btn3.style.backgroundColor = '#871212';
+                btn3BackgroundColor = 'rgb(135, 18, 18)';
+                btn3.style.setProperty('--hover-color', '#601515');
+                btn3.classList.remove('buttonblue');
+                btn3.classList.add('buttonred');
+            } else if (btn3BackgroundColor === 'rgb(135, 18, 18)') {
+                btn3.style.backgroundColor = '#535353';
+                btn3BackgroundColor = 'rgb(83, 83, 83)';
+                btn3.classList.remove('buttonred');
+                btn3.classList.add('buttongray');
+                btn3.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn3BackgroundColor === 'rgb(83, 83, 83)') {
+                btn3.style.backgroundColor = '#0F91DA';
+                btn3BackgroundColor = 'rgb(15, 145, 218)';
+                btn3.classList.remove('buttongray');
+                btn3.classList.add('buttonblue');
+                btn3.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn4.onclick = function() {
+    if (currectpassword === true) {
+        if(btn4.onclick) {
+            if (btn4BackgroundColor === 'rgb(15, 145, 218)') {
+                btn4.style.backgroundColor = '#871212';
+                btn4BackgroundColor = 'rgb(135, 18, 18)';
+                btn4.style.setProperty('--hover-color', '#601515');
+                btn4.classList.remove('buttonblue');
+                btn4.classList.add('buttonred');
+            } else if (btn4BackgroundColor === 'rgb(135, 18, 18)') {
+                btn4.style.backgroundColor = '#535353';
+                btn4BackgroundColor = 'rgb(83, 83, 83)';
+                btn4.classList.remove('buttonred');
+                btn4.classList.add('buttongray');
+                btn4.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn4BackgroundColor === 'rgb(83, 83, 83)') {
+                btn4.style.backgroundColor = '#0F91DA';
+                btn4BackgroundColor = 'rgb(15, 145, 218)';
+                btn4.classList.remove('buttongray');
+                btn4.classList.add('buttonblue');
+                btn4.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn5.onclick = function() {
+    if (currectpassword === true) {
+        if(btn5.onclick) {
+            if (btn5BackgroundColor === 'rgb(15, 145, 218)') {
+                btn5.style.backgroundColor = '#871212';
+                btn5BackgroundColor = 'rgb(135, 18, 18)';
+                btn5.style.setProperty('--hover-color', '#601515');
+                btn5.classList.remove('buttonblue');
+                btn5.classList.add('buttonred');
+            } else if (btn5BackgroundColor === 'rgb(135, 18, 18)') {
+                btn5.style.backgroundColor = '#535353';
+                btn5BackgroundColor = 'rgb(83, 83, 83)';
+                btn5.classList.remove('buttonred');
+                btn5.classList.add('buttongray');
+                btn5.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn5BackgroundColor === 'rgb(83, 83, 83)') {
+                btn5.style.backgroundColor = '#0F91DA';
+                btn5BackgroundColor = 'rgb(15, 145, 218)';
+                btn5.classList.remove('buttongray');
+                btn5.classList.add('buttonblue');
+                btn5.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn6.onclick = function() {
+    if (currectpassword === true) {
+        if(btn6.onclick) {
+            if (btn6BackgroundColor === 'rgb(15, 145, 218)') {
+                btn6.style.backgroundColor = '#871212';
+                btn6BackgroundColor = 'rgb(135, 18, 18)';
+                btn6.style.setProperty('--hover-color', '#601515');
+                btn6.classList.remove('buttonblue');
+                btn6.classList.add('buttonred');
+            } else if (btn6BackgroundColor === 'rgb(135, 18, 18)') {
+                btn6.style.backgroundColor = '#535353';
+                btn6BackgroundColor = 'rgb(83, 83, 83)';
+                btn6.classList.remove('buttonred');
+                btn6.classList.add('buttongray');
+                btn6.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn6BackgroundColor === 'rgb(83, 83, 83)') {
+                btn6.style.backgroundColor = '#0F91DA';
+                btn6BackgroundColor = 'rgb(15, 145, 218)';
+                btn6.classList.remove('buttongray');
+                btn6.classList.add('buttonblue');
+                btn6.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+btn7.onclick = function() {
+    if (currectpassword === true) {
+        if(btn7.onclick) {
+            if (btn7BackgroundColor === 'rgb(15, 145, 218)') {
+                btn7.style.backgroundColor = '#871212';
+                btn7BackgroundColor = 'rgb(135, 18, 18)';
+                btn7.style.setProperty('--hover-color', '#601515');
+                btn7.classList.remove('buttonblue');
+                btn7.classList.add('buttonred');
+            } else if (btn7BackgroundColor === 'rgb(135, 18, 18)') {
+                btn7.style.backgroundColor = '#535353';
+                btn7BackgroundColor = 'rgb(83, 83, 83)';
+                btn7.classList.remove('buttonred');
+                btn7.classList.add('buttongray');
+                btn7.style.setProperty('--hover-color', '#3C3C3C');
+            } else if (btn7BackgroundColor === 'rgb(83, 83, 83)') {
+                btn7.style.backgroundColor = '#0F91DA';
+                btn7BackgroundColor = 'rgb(15, 145, 218)';
+                btn7.classList.remove('buttongray');
+                btn7.classList.add('buttonblue');
+                btn7.style.setProperty('--hover-color', '#2073A1');
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+function checkNumpad() {
+    if (input2check === true) {
+        if (collectednumbernumpad.length===0){
+            <!---->
+        } else if (collectednumbernumpad==="0"){
+            input2.innerText = collectednumbernumpad + ".00";
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad.length===2) {
+            input2.innerText = collectednumbernumpad + "00";
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]==="0") {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]>=0 && collectednumbernumpad[2]<=9 && collectednumbernumpad.length===3) {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]>=0 && collectednumbernumpad[2]<=9 && collectednumbernumpad.length===4) {
+            input2.innerText = collectednumbernumpad;
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad.length===1) {
+            input2.innerText = collectednumbernumpad + ".00";
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad.length===2 && collectednumbernumpad[1]===".") {
+            input2.innerText = collectednumbernumpad + "00";
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[1]===".") {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[1]===".") {
+            input2.innerText = collectednumbernumpad;
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===2) {
+            input2.innerText = collectednumbernumpad + ".00";
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[2]===".") {
+            input2.innerText = collectednumbernumpad + "00";
+        } else if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=9 && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[2]==="." && collectednumbernumpad[3]>=0 && collectednumbernumpad[3]<=9) {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad.length===5) {
+            input2.innerText = collectednumbernumpad;
+        }
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input2check = false;
+    }
+
 }
 
 var resultpassword = '7531';
@@ -230,6 +523,7 @@ async function hideFlickeringElements() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
     collectednumbernumpad = '';
+    input2check = false;
 }
 {% endblock %}
 
@@ -307,13 +601,13 @@ async function hideFlickeringElements() {
         <p style="position: absolute; top: 116px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px;">Настройка дней недели</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 108px; left: 479px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <button class="buttonblue" style="position: absolute; top: 105px; left: 510px;">ПН</button>
-        <button class="buttonblue" style="position: absolute; top: 105px; left: 550px;">ВТ</button>
-        <button class="buttonblue" style="position: absolute; top: 105px; left: 590px;">СР</button>
-        <button class="buttonblue" style="position: absolute; top: 105px; left: 630px;">ЧТ</button>
-        <button class="buttonblue" style="position: absolute; top: 105px; left: 670px;">ПТ</button>
-        <button class="buttonred" style="position: absolute; top: 105px; left: 710px;">СБ</button>
-        <button class="buttonred" style="position: absolute; top: 105px; left: 750px;">ВС</button>
+        <button id="Button1" class="click" style="position: absolute; top: 105px; left: 510px;">ПН</button>
+        <button id="Button2" class="click" style="position: absolute; top: 105px; left: 550px;">ВТ</button>
+        <button id="Button3" class="click" style="position: absolute; top: 105px; left: 590px;">СР</button>
+        <button id="Button4" class="click" style="position: absolute; top: 105px; left: 630px;">ЧТ</button>
+        <button id="Button5" class="click" style="position: absolute; top: 105px; left: 670px;">ПТ</button>
+        <button id="Button6" class="click" style="position: absolute; top: 105px; left: 710px;">СБ</button>
+        <button id="Button7" class="click" style="position: absolute; top: 105px; left: 750px;">ВС</button>
         <hr style="position: absolute; top: 146px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
         <p style="position: absolute; top: 155px; left: 208px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; color: #616161; width: 90px;">Планировщик</p>
         <p style="position: absolute; top: 179px; left: 231px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 130px;">Время перехода:</p>
