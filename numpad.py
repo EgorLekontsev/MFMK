@@ -72,8 +72,6 @@ class Numpad(tk.Toplevel):
                                     activebackground="#008000", activeforeground="white", command=self.enter_button_func)
         self.button_enter.place(x=155, y=324, width=131, height=61)
 
-        self.controller = 0
-
         self.min_label = tk.Label(self.canvas, text="MIN:", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.min_label.place(x=14, y=17)
         self.min_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
@@ -83,47 +81,86 @@ class Numpad(tk.Toplevel):
         self.max_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.max_value.place(x=220, y=17)
     def cammo_func(self):
-        if self.word != "Pumps":
+        if self.word != "Pumps" and self.word != "Minutes":
             if self.entry_label.cget('text') != "":
                 if "." not in self.entry_label.cget('text'):
                     self.entry_label.config(text=self.entry_label.cget('text')+".")
 
     def zero_func(self):
-        if self.word != "Pumps":
+        if self.word != "Pumps" and self.word != "Minutes":
             self.entry_label.config(text=self.entry_label.cget('text')+"0")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                self.entry_label.config(text=self.entry_label.cget('text') + "0")
     def one_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"1")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "1")
     def two_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"2")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "2")
     def three_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"3")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "3")
     def four_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"4")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "4")
     def five_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"5")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "5")
     def six_func(self):
         if self.word == "Pumps":
             if len(self.entry_label.cget('text')) != 1:
                 self.entry_label.config(text=self.entry_label.cget('text')+"6")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "6")
     def seven_func(self):
         if self.word != "Pumps":
             self.entry_label.config(text=self.entry_label.cget('text')+"7")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "7")
     def eight_func(self):
         if self.word != "Pumps":
             self.entry_label.config(text=self.entry_label.cget('text')+"8")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "8")
     def nine_func(self):
         if self.word != "Pumps":
             self.entry_label.config(text=self.entry_label.cget('text')+"9")
+        elif self.word == "Minutes":
+            if self.entry_label.cget('text') != 2:
+                if self.entry_label.cget('text') != "0":
+                    self.entry_label.config(text=self.entry_label.cget('text') + "9")
     def clear_all_button_func(self):
         self.enter_password = ""
         self.entry_label.config(text="")

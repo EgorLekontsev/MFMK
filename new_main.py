@@ -49,6 +49,7 @@ class App(tk.Tk): # Основной класс с характеристика�
     Pumps_active = 1
     LVL_access = 10
     session_access = False
+    global_controller = None
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -76,6 +77,325 @@ class App(tk.Tk): # Основной класс с характеристика�
 
         self.show_frame("Frame1_1")
         self.update_clock()
+
+    def shields_hide(event=None):
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                 state='hidden')
+        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield8,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                  state='hidden')
+        App.global_controller.frames["Frame1_1"].after(5000, App.shields_show)
+
+    def shields_show(event=None):
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                 state='normal')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                 state='normal')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                 state='normal')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                 state='normal')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                 state='normal')
+        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                 state='normal')
+        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                 state='normal')
+        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                  state='normal')
+        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield8,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                  state='normal')
+        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                  state='normal')
+        App.session_access = False
+        App.LVL_access = 10
+
+
+
+
 
     def show_frame(self, page_name): # Смена фреймов
         frame = self.frames[page_name]
@@ -137,7 +457,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         current_time = datetime.now().strftime('%d/%m/%y %H:%M')
         for frame_name in self.frames:
             self.frames[frame_name].update_clock(current_time)
-        self.after(500, self.update_clock) # Тик-так
+        self.after(500000, self.update_clock) # Тик-так
 
 
 class Frame1_1(tk.Frame):
@@ -152,6 +472,7 @@ class Frame1_1(tk.Frame):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
+        App.global_controller = controller
         button = tk.Button(self, text="Настройки", fg='white', bg='black', font=('Roboto Bold', 14), activebackground="black", activeforeground="white",
                            relief="groove", command=lambda: controller.show_frame("Frame2"))
         button.place(x=0, y=0, width=135, height=37)
@@ -814,12 +1135,13 @@ class Frame2(tk.Frame):
         self.canvas.create_image(231, 271, image=self.img_day)
         self.canvas.create_image(231, 316, image=self.img_day)
         self.canvas.create_image(231, 361, image=self.img_day)
-        self.canvas.create_image(594, 77, image=self.img_shield)
-        self.canvas.create_image(491, 122, image=self.img_shield)
-        self.canvas.create_image(354, 227, image=self.img_shield)
-        self.canvas.create_image(354, 273, image=self.img_shield)
-        self.canvas.create_image(354, 318, image=self.img_shield)
-        self.canvas.create_image(354, 363, image=self.img_shield)
+
+        self.shield1 = self.canvas.create_image(594, 77, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(491, 122, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(354, 227, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(354, 273, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(354, 318, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(354, 363, image=self.img_shield)
 
         self.canvas.create_line(210, 50, 790, 50, fill="gray", width=1)
         self.canvas.create_line(210, 100, 790, 100, fill="gray", width=1)
@@ -1728,15 +2050,15 @@ class Frame9(tk.Frame):
         self.canvas.create_image(229, 388, image=self.img_arrow_left)
         self.canvas.create_image(229, 424, image=self.img_arrow_right)
 
-        self.canvas.create_image(624, 75, image=self.img_shield)
-        self.canvas.create_image(624, 113, image=self.img_shield)
-        self.canvas.create_image(624, 151, image=self.img_shield)
-        self.canvas.create_image(624, 189, image=self.img_shield)
-        self.canvas.create_image(624, 227, image=self.img_shield)
-        self.canvas.create_image(624, 289, image=self.img_shield)
-        self.canvas.create_image(624, 327, image=self.img_shield)
-        self.canvas.create_image(624, 386, image=self.img_shield)
-        self.canvas.create_image(624, 424, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 113, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 151, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 189, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 227, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 289, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(624, 327, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(624, 386, image=self.img_shield)
+        self.shield9 = self.canvas.create_image(624, 424, image=self.img_shield)
 
 
 
@@ -2050,8 +2372,8 @@ class Frame10(tk.Frame):
                                font=('Roboto Bold', 12))
         self.label11.place(x=758, y=261)
 
-        self.canvas.create_image(624, 75, image=self.img_shield)
-        self.canvas.create_image(624, 113, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 113, image=self.img_shield)
 
         # Кликабельная зона
         self.rectangle_s_nominal = self.canvas.create_image(718, 75, image=self.img_rectangle_l)
@@ -2204,12 +2526,12 @@ class Frame11(tk.Frame):
         self.canvas.create_line(215, 173, 795, 173, fill="gray", width=1)
         self.canvas.create_line(215, 294, 795, 294, fill="gray", width=1)
 
-        self.canvas.create_image(624, 75, image=self.img_shield)
-        self.canvas.create_image(624, 114, image=self.img_shield)
-        self.canvas.create_image(624, 153, image=self.img_shield)
-        self.canvas.create_image(624, 193, image=self.img_shield)
-        self.canvas.create_image(624, 231, image=self.img_shield)
-        self.canvas.create_image(624, 269, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 114, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 153, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 193, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 231, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 269, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Минимальная частота работы",
                                fg='white', bg='black',
@@ -2430,14 +2752,14 @@ class Frame12(tk.Frame):
         self.canvas.create_image(233, 387, image=self.img_frequency)
         self.canvas.create_image(232.995, 427.995, image=self.img_time)
 
-        self.canvas.create_image(624, 69, image=self.img_shield)
-        self.canvas.create_image(624, 144, image=self.img_shield)
-        self.canvas.create_image(624, 183, image=self.img_shield)
-        self.canvas.create_image(624, 246, image=self.img_shield)
-        self.canvas.create_image(624, 285, image=self.img_shield)
-        self.canvas.create_image(624, 348, image=self.img_shield)
-        self.canvas.create_image(624, 387, image=self.img_shield)
-        self.canvas.create_image(624, 426, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 69, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 144, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 183, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 246, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 285, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 348, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(624, 387, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(624, 426, image=self.img_shield)
 
         self.canvas.create_line(215, 101, 795, 101, fill="gray", width=1)
         self.canvas.create_line(215, 209, 795, 209, fill="gray", width=1)
@@ -2698,14 +3020,14 @@ class Frame13(tk.Frame):
         self.canvas.create_image(233, 387, image=self.img_frequency)
         self.canvas.create_image(232.995, 427.995, image=self.img_time)
 
-        self.canvas.create_image(624, 69, image=self.img_shield)
-        self.canvas.create_image(624, 144, image=self.img_shield)
-        self.canvas.create_image(624, 183, image=self.img_shield)
-        self.canvas.create_image(624, 246, image=self.img_shield)
-        self.canvas.create_image(624, 285, image=self.img_shield)
-        self.canvas.create_image(624, 348, image=self.img_shield)
-        self.canvas.create_image(624, 387, image=self.img_shield)
-        self.canvas.create_image(624, 426, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 69, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 144, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 183, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 246, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 285, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 348, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(624, 387, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(624, 426, image=self.img_shield)
 
         self.canvas.create_line(215, 101, 795, 101, fill="gray", width=1)
         self.canvas.create_line(215, 209, 795, 209, fill="gray", width=1)
@@ -2968,13 +3290,13 @@ class Frame14(tk.Frame):
         self.canvas.create_image(233, 402.375, image=self.img_eye)
         self.canvas.create_image(233, 440.375, image=self.img_eye)
 
-        self.canvas.create_image(624, 83, image=self.img_shield)
-        self.canvas.create_image(624, 120, image=self.img_shield)
-        self.canvas.create_image(624, 157, image=self.img_shield)
-        self.canvas.create_image(624, 194, image=self.img_shield)
-        self.canvas.create_image(624, 231, image=self.img_shield)
-        self.canvas.create_image(624, 268, image=self.img_shield)
-        self.canvas.create_image(624, 305, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 83, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 120, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 157, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 194, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 231, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 268, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(624, 305, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Параметры энергосбережения",
                                fg='white', bg='black',
@@ -3251,15 +3573,15 @@ class Frame15(tk.Frame):
         self.canvas.create_image(233, 405, image=self.img_stop_crit_pressure)
         self.canvas.create_image(233, 450, image=self.img_pipe)
 
-        self.canvas.create_image(624, 75, image=self.img_shield)
-        self.canvas.create_image(624, 113, image=self.img_shield)
-        self.canvas.create_image(624, 152, image=self.img_shield)
-        self.canvas.create_image(624, 222, image=self.img_shield)
-        self.canvas.create_image(624, 261, image=self.img_shield)
-        self.canvas.create_image(624, 300, image=self.img_shield)
-        self.canvas.create_image(624, 364, image=self.img_shield)
-        self.canvas.create_image(624, 402, image=self.img_shield)
-        self.canvas.create_image(624, 438, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(624, 75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 113, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 152, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(624, 222, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(624, 261, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(624, 300, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(624, 364, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(624, 402, image=self.img_shield)
+        self.shield9 = self.canvas.create_image(624, 438, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Реле перепада давления",
                                fg='white', bg='black',
@@ -3493,12 +3815,12 @@ class Frame16(tk.Frame):
 
         self.canvas.create_line(220, 280, 790, 280, fill="gray", width=1)
 
-        self.canvas.create_image(620.25, 62.75, image=self.img_shield)
-        self.canvas.create_image(620.25, 99.75, image=self.img_shield)
-        self.canvas.create_image(620.25, 139.75, image=self.img_shield)
-        self.canvas.create_image(620.25, 178.75, image=self.img_shield)
-        self.canvas.create_image(620.25, 215.75, image=self.img_shield)
-        self.canvas.create_image(620.25, 252.75, image=self.img_shield)
+        self.shield1 = self.canvas.create_image(620.25, 62.75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(620.25, 99.75, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(620.25, 139.75, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(620.25, 178.75, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(620.25, 215.75, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(620.25, 252.75, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Пропорциональный коэффициент", fg='white', bg='black',
                                font=('Roboto Bold', 12))
@@ -3859,14 +4181,15 @@ class Frame18(tk.Frame):
         self.canvas.create_image(233, 303, image=self.img_ip)
         self.canvas.create_image(233, 342, image=self.img_mask)
         self.canvas.create_image(233, 381, image=self.img_gateway)
-        self.canvas.create_image(624, 70, image=self.img_shield)
-        self.canvas.create_image(624, 109, image=self.img_shield)
-        self.canvas.create_image(624, 147, image=self.img_shield)
-        self.canvas.create_image(461.25, 201.75, image=self.img_shield)
-        self.canvas.create_image(461.25, 242.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 302.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 342.75, image=self.img_shield)
-        self.canvas.create_image(362.25, 380.75, image=self.img_shield)
+
+        self.shield1 = self.canvas.create_image(624, 70, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(624, 109, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(624, 147, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(461.25, 201.75, image=self.img_shield)
+        self.shield5 = self.canvas.create_image(461.25, 242.75, image=self.img_shield)
+        self.shield6 = self.canvas.create_image(362.25, 302.75, image=self.img_shield)
+        self.shield7 = self.canvas.create_image(362.25, 342.75, image=self.img_shield)
+        self.shield8 = self.canvas.create_image(362.25, 380.75, image=self.img_shield)
 
         self.label1 = tk.Label(self.canvas, text="Ethernet", fg='white', bg='black',
                                font=('Roboto Bold', 10))
@@ -4426,15 +4749,22 @@ class Frame19(tk.Frame, NetInfo):
 
         # Кликабельная зона
         self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
-        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.time_rectangle_1, "<Button-1>", lambda event: self.check_password("click1"))
         self.time_display_1 = tk.Label(self.canvas, text="30", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_1.place(x=645, y=58)
+        self.time_display_1.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_label_1.place(x=738, y=59, width=47, height=19)
+        self.time_label_1.bind("<Button-1>", lambda event: self.check_password("click1"))
+
+        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.time_rectangle_2, "<Button-1>", lambda event: self.check_password("click2"))
         self.time_display_2 = tk.Label(self.canvas, text="15", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_2.place(x=645, y=98)
+        self.time_display_2.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_label_2.place(x=738, y=99, width=47, height=19)
+        self.time_label_2.bind("<Button-1>", lambda event: self.check_password("click2"))
 
         self.data_days = self.canvas.create_image(525, 205, image=self.img_rectangle_s)
         self.data_days_label = tk.Label(self.canvas, text="День", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -4457,7 +4787,7 @@ class Frame19(tk.Frame, NetInfo):
 
         self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
         self.ip_rectangle_1 = self.canvas.create_image(428.75, 302.5, image=self.img_rectangle_s)
         self.ip_rectangle_2 = self.canvas.create_image(530.75, 302.5, image=self.img_rectangle_s)
@@ -4583,58 +4913,58 @@ class Frame19(tk.Frame, NetInfo):
             self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',font=('Roboto Bold', 12))
             self.gateway_4.place(x=717, y=374)
 
-    def check_password(self, event=None):
+    def check_password(self, word): #Сверка пароля и вызов необходимого метода, путем слова
+        print("check_password")
         if App.session_access == True:
             if App.LVL_access < 2:
-                self.update_switch(self)
+                if word == "switch": #Переключатель
+                    print("CALL FUNCTION")
+                    self.update_switch(self)
+                elif word == "click1": #Первое поле
+                    self.numpad_instance = numpad.Numpad(None, "Minutes")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2": #Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "Minutes")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
             self.keypad_instance = keypad.Keypad()
             self.keypad_instance.grab_set()
-            self.keypad_instance.callback_function = self.update_switch
+            self.keypad_instance.callback_function = self.set_access
+
+    #Получение доступа
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+
+    def click1(self):
+        App.global_controller.frames["Frame19"].time_display_1.config(text=self.numpad_instance.current_value)
+    def click2(self):
+        App.global_controller.frames["Frame19"].time_display_2.config(text=self.numpad_instance.current_value)
 
 
     def update_switch(self, event=None):  # Смена переключателей
-        print(f"test:{self.keypad_instance.access}")
-        if App.session_access == False:
-            App.session_access = True
-            self.canvas.itemconfig(self.shield1, state='hidden')
-            self.canvas.itemconfig(self.shield2, state='hidden')
-            self.canvas.itemconfig(self.shield3, state='hidden')
-            self.canvas.itemconfig(self.shield4, state='hidden')
-            self.canvas.itemconfig(self.shield5, state='hidden')
-            self.canvas.itemconfig(self.shield6, state='hidden')
-            self.canvas.itemconfig(self.shield7, state='hidden')
-            self.canvas.itemconfig(self.shield8, state='hidden')
-            self.after(5000, self.update_shield)
-        App.LVL_access = self.keypad_instance.access
-        if App.LVL_access < 2:
-            print("step 1")
-            if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
-                self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
-                print("step 2")
-            elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
-                self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
-                print("step 3")
-            self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-            self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password)
-            self.canvas.update()
-        else:
-            messagebox.showerror("Ошибка входа!", "Недостаточный уровень прав!")
-    def update_shield(self):
-        print("TESTTTTT")
-        self.canvas.itemconfig(self.shield1, state='normal')
-        self.canvas.itemconfig(self.shield2, state='normal')
-        self.canvas.itemconfig(self.shield3, state='normal')
-        self.canvas.itemconfig(self.shield4, state='normal')
-        self.canvas.itemconfig(self.shield5, state='normal')
-        self.canvas.itemconfig(self.shield6, state='normal')
-        self.canvas.itemconfig(self.shield7, state='normal')
-        self.canvas.itemconfig(self.shield8, state='normal')
+        print("step 1")
+        if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
+            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
+            print("step 2")
+        elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
+            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+            print("step 3")
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         self.canvas.update()
-        App.session_access = False
-        App.LVL_access = 10
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
@@ -4815,49 +5145,46 @@ class Frame20(tk.Frame):
         self.pumpsAll_label.place(x=444, y=207)
         self.pumpsWorking_label = tk.Label(self.canvas, text="1", fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsWorking_label.place(x=651, y=207)
-        self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps(controller))
+        self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps())
 
-    def numpad_for_pumps(self, controller):
-        print(controller)
+    def numpad_for_pumps(self):
         self.numpad_instance = numpad.Numpad(None, "Pumps")
         self.numpad_instance.max_value.config(text="6")
         self.numpad_instance.min_value.config(text="1")
         self.numpad_instance.grab_set()
-        self.numpad_instance.controller = controller
         self.numpad_instance.callback_function = self.change_active_pumps
 
     def change_active_pumps(self):
-        controller = self.numpad_instance.controller
         App.Pumps_active = int(self.numpad_instance.current_value)
-        controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_six)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_five)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_four)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_three)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_two)
-        controller.frames["Frame1_1"].canvas.delete(controller.frames["Frame1_1"].Pump_one)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_six)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_five)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_four)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_three)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_two)
-        controller.frames["Frame1_2"].canvas.delete(controller.frames["Frame1_2"].Pump_one)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_six)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_five)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_four)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_three)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_two)
-        controller.frames["Frame1_3"].canvas.delete(controller.frames["Frame1_3"].Pump_one)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_six)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_five)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_four)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_three)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_two)
-        controller.frames["Frame1_4"].canvas.delete(controller.frames["Frame1_4"].Pump_one)
-        controller.frames["Frame1_1"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_2"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_3"].initialization_pumps(App.Pumps_active)
-        controller.frames["Frame1_4"].initialization_pumps(App.Pumps_active)
+        App.global_controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_six)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_five)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_four)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_three)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_two)
+        App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_one)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_six)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_five)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_four)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_three)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_two)
+        App.global_controller.frames["Frame1_2"].canvas.delete(App.global_controller.frames["Frame1_2"].Pump_one)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_six)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_five)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_four)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_three)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_two)
+        App.global_controller.frames["Frame1_3"].canvas.delete(App.global_controller.frames["Frame1_3"].Pump_one)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_six)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_five)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_four)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_three)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_two)
+        App.global_controller.frames["Frame1_4"].canvas.delete(App.global_controller.frames["Frame1_4"].Pump_one)
+        App.global_controller.frames["Frame1_1"].initialization_pumps(App.Pumps_active)
+        App.global_controller.frames["Frame1_2"].initialization_pumps(App.Pumps_active)
+        App.global_controller.frames["Frame1_3"].initialization_pumps(App.Pumps_active)
+        App.global_controller.frames["Frame1_4"].initialization_pumps(App.Pumps_active)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
