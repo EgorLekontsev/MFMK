@@ -3868,30 +3868,45 @@ class Frame16(tk.Frame):
 
         # Кликабельная зона
         self.img_rectangle_l = PhotoImage(file=r"new_images/rectangle_long.png")
+
         self.p_rectangle = self.canvas.create_image(715, 62.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.p_rectangle, "<Button-1>", lambda event: self.check_password("click1"))
         self.p_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.p_k.place(x=646, y=52)
+        self.p_k.bind("<Button-1>", lambda event: self.check_password("click1"))
+
         self.i_rectangle = self.canvas.create_image(715, 101.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.i_rectangle, "<Button-1>", lambda event: self.check_password("click2"))
         self.i_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.i_k.place(x=646, y=91)
+        self.i_k.bind("<Button-1>", lambda event: self.check_password("click2"))
+
         self.d_rectangle = self.canvas.create_image(715, 140.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.d_rectangle, "<Button-1>", lambda event: self.check_password("click3"))
         self.d_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.d_k.place(x=646, y=130)
+        self.d_k.bind("<Button-1>", lambda event: self.check_password("click3"))
+
         self.integral_rectangle = self.canvas.create_image(715, 179.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.integral_rectangle, "<Button-1>", lambda event: self.check_password("click4"))
         self.const_integral = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.const_integral.place(x=646, y=169)
+        self.const_integral.bind("<Button-1>", lambda event: self.check_password("click4"))
+
         self.set_rectangle = self.canvas.create_image(715, 257.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.set_rectangle, "<Button-1>", lambda event: self.check_password("click5"))
         self.setpoint = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.setpoint.place(x=646, y=246)
+        self.setpoint.bind("<Button-1>", lambda event: self.check_password("click5"))
 
         self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 219, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
         self.current_press = tk.Label(self.canvas, text="0.00", fg='#008000', bg='black',
                                 font=('Roboto Bold', 10))
@@ -3919,6 +3934,40 @@ class Frame16(tk.Frame):
         self.frequency.place(x=379, y=429)
         # Кликабельная зона
 
+    def check_password(self, word):  # Сверка пароля и вызов необходимого метода, путем слова
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "switch":  # Переключатель
+                    print("CALL FUNCTION")
+                    self.update_switch(self)
+                elif word == "click1":  # Первое поле
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    #self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
+                    self.numpad_instance.grab_set()
+                    #self.numpad_instance.callback_function = self.click1
+                elif word == "click2":  # Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    #self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
+                    self.numpad_instance.grab_set()
+                    #self.numpad_instance.callback_function = self.click2
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    # Получение доступа
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
@@ -4064,6 +4113,26 @@ class Frame17(tk.Frame):
         self.switch_btn_ai4_button = self.canvas.create_image(705, 249, image=self.switch_btn_ai4_img)
         self.switch_btn_ai5_img = PhotoImage(file=r"new_images/Switch1-0.png")
         self.switch_btn_ai5_button = self.canvas.create_image(729, 249, image=self.switch_btn_ai5_img)
+
+        self.label1 = tk.Label(self.canvas, text="AI1:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label1.place(x=244, y=358, width=30, height=14)
+        self.label2 = tk.Label(self.canvas, text="AI2:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label2.place(x=244, y=378, width=30, height=14)
+        self.label3 = tk.Label(self.canvas, text="AI3:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label3.place(x=244, y=398, width=30, height=14)
+        self.label4 = tk.Label(self.canvas, text="AI4:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label4.place(x=244, y=418, width=30, height=14)
+        self.label5 = tk.Label(self.canvas, text="AI5:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label5.place(x=244, y=438, width=30, height=14)
+
+        self.label6 = tk.Label(self.canvas, text="AQ1:", fg='white', bg='black',
+                                font=('Roboto Bold', 10))
+        self.label6.place(x=600, y=358, width=30, height=14)
 
         self.labelA1 = tk.Label(self.canvas, text="0", fg='white', bg='black',
                                font=('Roboto Bold', 10))
@@ -4287,15 +4356,22 @@ class Frame18(tk.Frame):
 
         # Кликабельная зона
         self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
-        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.time_rectangle_1, "<Button-1>", lambda event: self.check_password("click1"))
         self.time_display_1 = tk.Label(self.canvas, text="30", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_1.place(x=645, y=58)
+        self.time_display_1.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_label_1.place(x=738, y=59, width=47, height=19)
+        self.time_label_1.bind("<Button-1>", lambda event: self.check_password("click1"))
+
+        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
+        self.canvas.tag_bind(self.time_rectangle_2, "<Button-1>", lambda event: self.check_password("click2"))
         self.time_display_2 = tk.Label(self.canvas, text="15", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_2.place(x=645, y=98)
+        self.time_display_2.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_label_2.place(x=738, y=99, width=47, height=19)
+        self.time_label_2.bind("<Button-1>", lambda event: self.check_password("click2"))
 
         self.data_days = self.canvas.create_image(525, 205, image=self.img_rectangle_s)
         self.data_days_label = tk.Label(self.canvas, text="День", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -4331,6 +4407,7 @@ class Frame18(tk.Frame):
         self.gateway_rectangle_4 = self.canvas.create_image(734.75, 382.5, image=self.img_rectangle_s)
 
         # Кликабельная зона
+
 
         def show_data_and_time():
             now = datetime.now()
@@ -4466,15 +4543,58 @@ class Frame18(tk.Frame):
                                       font=('Roboto Bold', 12))
             self.gateway_4.place(x=717, y=374)
 
-    def update_switch(self, event):
-        #self.new_window = Keypad("Frame19")
-        # self.new_window.grab_set() блок
-        if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
+    def check_password(self, word):  # Сверка пароля и вызов необходимого метода, путем слова
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "switch":  # Переключатель
+                    print("CALL FUNCTION")
+                    self.update_switch(self)
+                elif word == "click1":  # Первое поле
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":  # Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    # Получение доступа
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+
+    def click1(self):
+        App.global_controller.frames["Frame18"].time_display_1.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame18"].time_display_2.config(text=self.numpad_instance.current_value)
+
+    def update_switch(self, event=None):  # Смена переключателей
+        print("step 1")
+        if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
-        elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
+            print("step 2")
+        elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+            print("step 3")
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
+        self.canvas.update()
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -4921,14 +5041,14 @@ class Frame19(tk.Frame, NetInfo):
                     print("CALL FUNCTION")
                     self.update_switch(self)
                 elif word == "click1": #Первое поле
-                    self.numpad_instance = numpad.Numpad(None, "Minutes")
+                    self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
                     self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
                 elif word == "click2": #Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "Minutes")
+                    self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
                     self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
@@ -5148,9 +5268,10 @@ class Frame20(tk.Frame):
         self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps())
 
     def numpad_for_pumps(self):
-        self.numpad_instance = numpad.Numpad(None, "Pumps")
+        self.numpad_instance = numpad.Numpad(None, "INT")
         self.numpad_instance.max_value.config(text="6")
         self.numpad_instance.min_value.config(text="1")
+        self.numpad_instance.entry_label.config(text=self.pumpsWorking_label.cget('text'))
         self.numpad_instance.grab_set()
         self.numpad_instance.callback_function = self.change_active_pumps
 

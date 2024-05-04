@@ -74,104 +74,83 @@ class Numpad(tk.Toplevel):
 
         self.min_label = tk.Label(self.canvas, text="MIN:", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.min_label.place(x=14, y=17)
-        self.min_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.min_value = tk.Label(self.canvas, text="0", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.min_value.place(x=62, y=17)
         self.max_label = tk.Label(self.canvas, text="MAX:", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.max_label.place(x=165, y=17)
-        self.max_value = tk.Label(self.canvas, text="#####", fg='white', bg='#626262', font=('Roboto Bold', 16))
+        self.max_value = tk.Label(self.canvas, text="30", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.max_value.place(x=220, y=17)
+
     def cammo_func(self):
-        if self.word != "Pumps" and self.word != "Minutes":
+        if self.word != "INT":
             if self.entry_label.cget('text') != "":
                 if "." not in self.entry_label.cget('text'):
-                    self.entry_label.config(text=self.entry_label.cget('text')+".")
+                    self.entry_label.config(text=self.entry_label.cget('text') + ".")
 
     def zero_func(self):
-        if self.word != "Pumps" and self.word != "Minutes":
-            self.entry_label.config(text=self.entry_label.cget('text')+"0")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                self.entry_label.config(text=self.entry_label.cget('text') + "0")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+
     def one_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"1")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "1")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+
     def two_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"2")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "2")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+
     def three_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"3")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "3")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+
     def four_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"4")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "4")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+
     def five_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"5")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "5")
+        if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+
     def six_func(self):
-        if self.word == "Pumps":
-            if len(self.entry_label.cget('text')) != 1:
-                self.entry_label.config(text=self.entry_label.cget('text')+"6")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "6")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+
     def seven_func(self):
-        if self.word != "Pumps":
-            self.entry_label.config(text=self.entry_label.cget('text')+"7")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "7")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+
     def eight_func(self):
-        if self.word != "Pumps":
-            self.entry_label.config(text=self.entry_label.cget('text')+"8")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "8")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+
     def nine_func(self):
-        if self.word != "Pumps":
-            self.entry_label.config(text=self.entry_label.cget('text')+"9")
-        elif self.word == "Minutes":
-            if self.entry_label.cget('text') != 2:
-                if self.entry_label.cget('text') != "0":
-                    self.entry_label.config(text=self.entry_label.cget('text') + "9")
+        if len(str(self.entry_label.cget('text'))) != 8:
+            self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+
     def clear_all_button_func(self):
-        self.enter_password = ""
         self.entry_label.config(text="")
+
     def clear_button_func(self):
-        past_text = self.entry_label.cget('text')
+        past_text = str(self.entry_label.cget('text'))
         new_text = past_text[:-1]
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
+
     def enter_button_func(self):
         self.current_value = self.entry_label.cget('text')
         if self.current_value != "":
+            if self.word == "INT":
+                self.current_value = int(self.current_value)
+                if int(self.min_value.cget('text')) <= self.current_value <= int(self.max_value.cget('text')):
+                    self.current_value = str(self.current_value)
+                else:
+                    return
+            elif self.word == "FLOAT":
+                self.current_value = float(self.current_value)
+                if float(self.min_value.cget('text')) <= self.current_value <= float(self.max_value.cget('text')):
+                    self.current_value = str(self.current_value)
+                else:
+                    return
             self.entry_label.config(text="")
             print("Успешный ввод!")
             if self.callback_function:
@@ -183,4 +162,6 @@ class Numpad(tk.Toplevel):
 
 
 #app = Numpad()
+#app = Numpad(None, "Pumps")
+#app = Numpad(None, "Minutes")
 #app.mainloop()
