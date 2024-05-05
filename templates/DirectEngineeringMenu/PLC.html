@@ -4,6 +4,12 @@
 <title>PLC</title>
 {% endblock %}
 
+{% block clockhide %}
+#clock {
+  display: none;
+}
+{% endblock %}
+
 {% block container %}
 <div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
@@ -24,4 +30,8 @@
 
     <button onclick="window.location.href='/Backup'" class="button200x60">Бэкап</button>
 </div>
+{% endblock %}
+
+{% block clock %}
+    <div id="clock"></div>
 {% endblock %}
