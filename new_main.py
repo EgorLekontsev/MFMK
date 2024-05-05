@@ -2160,27 +2160,141 @@ class Frame9(tk.Frame):
 
         self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png")
         self.Switch_Flat_first_button = self.canvas.create_image(689, 386.5, image=self.Switch_Flat_first_img)
-        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
         self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png")
         self.Switch_Flat_second_button = self.canvas.create_image(689, 424.5, image=self.Switch_Flat_second_img)
-        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
+
+        self.canvas.tag_bind(self.rectangle_voltage, "<Button-1>", lambda event: self.check_password("click1"))
+        self.voltage_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.voltage_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_current, "<Button-1>", lambda event: self.check_password("click2"))
+        self.current_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.current_label.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.canvas.tag_bind(self.rectangle_frequency, "<Button-1>", lambda event: self.check_password("click3"))
+        self.frequency_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.frequency_label.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.canvas.tag_bind(self.rectangle_speed, "<Button-1>", lambda event: self.check_password("click4"))
+        self.speed_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.speed_label.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.canvas.tag_bind(self.rectangle_power, "<Button-1>",
+                             lambda event: self.check_password("click5"))
+        self.power_value.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.power_label.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.canvas.tag_bind(self.rectangle_boost, "<Button-1>", lambda event: self.check_password("click6"))
+        self.boost_value.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.boost_label.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.canvas.tag_bind(self.rectangle_braking, "<Button-1>", lambda event: self.check_password("click7"))
+        self.braking_value.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.braking_label.bind("<Button-1>", lambda event: self.check_password("click7"))
         # Кликабельная зона
-    def update_switch_first(self, event):
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="100")
+                    self.numpad_instance.max_value.config(text="1000")
+                    self.numpad_instance.entry_label.config(text=self.voltage_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.entry_label.config(text=self.current_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.entry_label.config(text=self.frequency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="9999")
+                    self.numpad_instance.entry_label.config(text=self.speed_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="655.35")
+                    self.numpad_instance.entry_label.config(text=self.power_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.entry_label.config(text=self.boost_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+                elif word == "click7":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.entry_label.config(text=self.braking_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click7
+                elif word == "switch1":
+                    self.update_switch_first()
+                elif word == "switch2":
+                    self.update_switch_second()
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame9"].voltage_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame9"].current_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame9"].frequency_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame9"].speed_value.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame9"].power_value.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        App.global_controller.frames["Frame9"].boost_value.config(text=self.numpad_instance.current_value)
+
+    def click7(self):
+        App.global_controller.frames["Frame9"].braking_value.config(text=self.numpad_instance.current_value)
+
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+    def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGray.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGreen.png")
         elif self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGreen.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png")
         self.Switch_Flat_first_button = self.canvas.create_image(689, 386.5, image=self.Switch_Flat_first_img)
-        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
-    def update_switch_second(self, event):
+    def update_switch_second(self):
         if self.Switch_Flat_second_img.cget("file") == "new_images/RecordingGray.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGreen.png")
         elif self.Switch_Flat_second_img.cget("file") == "new_images/RecordingGreen.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png")
         self.Switch_Flat_second_button = self.canvas.create_image(689, 424.5, image=self.Switch_Flat_second_img)
-        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -2394,7 +2508,49 @@ class Frame10(tk.Frame):
                                 fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.d_label.place(x=756, y=105)
+        self.canvas.tag_bind(self.rectangle_s_nominal, "<Button-1>", lambda event: self.check_password("click1"))
+        self.nominal_s_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.s_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_d_nominal, "<Button-1>", lambda event: self.check_password("click2"))
+        self.nominal_d_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.d_label.bind("<Button-1>", lambda event: self.check_password("click2"))
         # Кликабельная зона
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.nominal_s_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.nominal_d_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame10"].nominal_s_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame10"].nominal_d_value.config(text=self.numpad_instance.current_value)
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -2580,17 +2736,18 @@ class Frame11(tk.Frame):
 
         self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_first_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_first_img)
-        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
         self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_second_button = self.canvas.create_image(670, 194, image=self.Switch_Flat_second_img)
-        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
 
         self.rectangle_interval = self.canvas.create_image(718, 230, image=self.img_rectangle_l)
         self.interval_value = tk.Label(self.canvas, text="0",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.interval_value.place(x=649, y=220)
+
         self.interval_label = tk.Label(self.canvas, text="час",
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
@@ -2604,23 +2761,97 @@ class Frame11(tk.Frame):
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.time_label.place(x=759, y=260)
+        self.canvas.tag_bind(self.rectangle_min_f, "<Button-1>", lambda event: self.check_password("click1"))
+        self.min_f_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.min_f_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_max_f, "<Button-1>", lambda event: self.check_password("click2"))
+        self.max_f_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.max_f_label.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.canvas.tag_bind(self.rectangle_interval, "<Button-1>", lambda event: self.check_password("click3"))
+        self.interval_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.interval_label.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.canvas.tag_bind(self.rectangle_time, "<Button-1>", lambda event: self.check_password("click4"))
+        self.time_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.time_label.bind("<Button-1>", lambda event: self.check_password("click4"))
         # Кликабельная зона
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="15.0")
+                    self.numpad_instance.max_value.config(text="30.0")
+                    self.numpad_instance.entry_label.config(text=self.min_f_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="40.00")
+                    self.numpad_instance.max_value.config(text="50.00")
+                    self.numpad_instance.entry_label.config(text=self.max_f_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="24")
+                    self.numpad_instance.max_value.config(text="72")
+                    self.numpad_instance.entry_label.config(text=self.interval_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.time_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "switch1":
+                    self.update_switch_first()
+                elif word == "switch2":
+                    self.update_switch_second()
 
-    def update_switch_first(self, event):
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame11"].min_f_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame11"].max_f_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame11"].interval_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame11"].time_value.config(text=self.numpad_instance.current_value)
+
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+
+    def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") ==  "new_images/Switch-0.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_first_img.cget("file") == "new_images/Switch-1.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_first_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_first_img)
-        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", self.update_switch_first)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
-    def update_switch_second(self, event):
+    def update_switch_second(self):
         if self.Switch_Flat_second_img.cget("file") == "new_images/Switch-0.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_second_img.cget("file") == "new_images/Switch-1.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_second_button = self.canvas.create_image(670, 194, image=self.Switch_Flat_second_img)
-        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", self.update_switch_second)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 
@@ -2886,8 +3117,128 @@ class Frame12(tk.Frame):
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.time_work_on_label.place(x=756, y=414)
+        self.canvas.tag_bind(self.rectangle_master_f_on, "<Button-1>", lambda event: self.check_password("click1"))
+        self.master_f_on_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.master_f_on_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_acceptable_drawdown, "<Button-1>", lambda event: self.check_password("click2"))
+        self.acceptable_drawdown_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.acceptable_drawdown_label.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.canvas.tag_bind(self.rectangle_acceptable_сooldown_on, "<Button-1>", lambda event: self.check_password("click3"))
+        self.acceptable_сooldown_on_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.acceptable_сooldown_on_label.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.canvas.tag_bind(self.rectangle_crit_drawdown, "<Button-1>", lambda event: self.check_password("click4"))
+        self.crit_drawdown_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.crit_drawdown_label.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.canvas.tag_bind(self.rectangle_crit_сooldown_on, "<Button-1>",lambda event: self.check_password("click5"))
+        self.crit_сooldown_on_value.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.crit_сooldown_on_label.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.canvas.tag_bind(self.rectangle_fix_сooldown_on, "<Button-1>", lambda event: self.check_password("click6"))
+        self.fix_сooldown_on_value.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.fix_сooldown_on_label.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.canvas.tag_bind(self.rectangle_fix_f_on, "<Button-1>", lambda event: self.check_password("click7"))
+        self.fix_f_on_value.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.fix_f_on_label.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.canvas.tag_bind(self.rectangle_time_work_on, "<Button-1>", lambda event: self.check_password("click8"))
+        self.time_work_on_value.bind("<Button-1>", lambda event: self.check_password("click8"))
+        self.time_work_on_label.bind("<Button-1>", lambda event: self.check_password("click8"))
         # Кликабельная зона
 
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="35.0")
+                    self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.entry_label.config(text=self.master_f_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_drawdown_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.entry_label.config(text=self.crit_drawdown_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.crit_сooldown_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="9.9")
+                    self.numpad_instance.entry_label.config(text=self.fix_сooldown_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+                elif word == "click7":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.entry_label.config(text=self.fix_f_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click7
+                elif word == "click8":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_work_on_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click8
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame12"].master_f_on_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=self.numpad_instance.current_value)
+
+    def click7(self):
+        App.global_controller.frames["Frame12"].fix_f_on_value.config(text=self.numpad_instance.current_value)
+
+    def click8(self):
+        App.global_controller.frames["Frame12"].time_work_on_value.config(text=self.numpad_instance.current_value)
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -3154,8 +3505,127 @@ class Frame13(tk.Frame):
                                            fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.time_work_off_label.place(x=756, y=414)
+        self.canvas.tag_bind(self.rectangle_master_f_off, "<Button-1>", lambda event: self.check_password("click1"))
+        self.master_f_off_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.master_f_off_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_acceptable_jump, "<Button-1>", lambda event: self.check_password("click2"))
+        self.acceptable_jump_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.acceptable_jump_label.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.canvas.tag_bind(self.rectangle_acceptable_сooldown_off, "<Button-1>", lambda event: self.check_password("click3"))
+        self.acceptable_сooldown_off_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.acceptable_сooldown_off_label.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.canvas.tag_bind(self.rectangle_crit_jump, "<Button-1>", lambda event: self.check_password("click4"))
+        self.crit_jump_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.crit_jump_label.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.canvas.tag_bind(self.rectangle_crit_сooldown_off, "<Button-1>", lambda event: self.check_password("click5"))
+        self.crit_сooldown_off_value.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.crit_сooldown_off_label.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.canvas.tag_bind(self.rectangle_fix_сooldown_off, "<Button-1>", lambda event: self.check_password("click6"))
+        self.fix_сooldown_off_value.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.fix_сooldown_off_label.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.canvas.tag_bind(self.rectangle_fix_f_off, "<Button-1>", lambda event: self.check_password("click7"))
+        self.fix_f_off_value.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.fix_f_off_label.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.canvas.tag_bind(self.rectangle_time_work_off, "<Button-1>", lambda event: self.check_password("click8"))
+        self.time_work_off_value.bind("<Button-1>", lambda event: self.check_password("click8"))
+        self.time_work_off_label.bind("<Button-1>", lambda event: self.check_password("click8"))
         # Кликабельная зона
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="35.0")
+                    self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.entry_label.config(text=self.master_f_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_jump_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.entry_label.config(text=self.crit_jump_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.crit_сooldown_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="9.9")
+                    self.numpad_instance.entry_label.config(text=self.fix_сooldown_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+                elif word == "click7":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.entry_label.config(text=self.fix_f_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click7
+                elif word == "click8":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.time_work_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click8
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
 
+    def click1(self):
+        App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame13"].max_emergency_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame13"].crit_jump_value.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=self.numpad_instance.current_value)
+
+    def click7(self):
+        App.global_controller.frames["Frame13"].fix_f_off_value.config(text=self.numpad_instance.current_value)
+
+    def click8(self):
+        App.global_controller.frames["Frame13"].time_work_off_value.config(text=self.numpad_instance.current_value)
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 class Frame14(tk.Frame):
@@ -3361,7 +3831,7 @@ class Frame14(tk.Frame):
         # Кликабельная зона
         self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
         self.rectangle_start_mod = self.canvas.create_image(714, 115, image=self.img_rectangle_l)
         self.start_mod_value = tk.Label(self.canvas, text="0",
@@ -3417,6 +3887,24 @@ class Frame14(tk.Frame):
                                                fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.acceptable_frequency_label.place(x=759, y=295)
+        self.canvas.tag_bind(self.rectangle_start_mod, "<Button-1>", lambda event: self.check_password("click1"))
+        self.start_mod_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.start_mod_label.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.canvas.tag_bind(self.rectangle_upper_pressure, "<Button-1>", lambda event: self.check_password("click2"))
+        self.upper_pressure_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.upper_pressure_label.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.canvas.tag_bind(self.rectangle_lower_pressure, "<Button-1>", lambda event: self.check_password("click3"))
+        self.lower_pressure_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.lower_pressure_label.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.canvas.tag_bind(self.rectangle_swing_time, "<Button-1>", lambda event: self.check_password("click4"))
+        self.swing_time_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.swing_time_label.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.canvas.tag_bind(self.acceptable_range, "<Button-1>", lambda event: self.check_password("click5"))
+        self.acceptable_range_value.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.acceptable_range_label.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.canvas.tag_bind(self.acceptable_frequency, "<Button-1>", lambda event: self.check_password("click6"))
+        self.acceptable_frequency_value.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.acceptable_frequency_label.bind("<Button-1>", lambda event: self.check_password("click6"))
         # Кликабельная зона
 
         self.current_swing_pressure = tk.Label(self.canvas, text="0.00",
@@ -3431,13 +3919,92 @@ class Frame14(tk.Frame):
                                                 fg='white', bg='black',
                                                 font=('Roboto Bold', 12))
         self.out_alg.place(x=645, y=428)
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "switch":
+                    print("CALL FUNCTION")
+                    self.update_switch(self)
+                elif word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="9999")
+                    self.numpad_instance.entry_label.config(text=self.start_mod_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.upper_pressure_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.lower_pressure_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.entry_label.config(text=self.swing_time_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_range_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="5.0")
+                    self.numpad_instance.entry_label.config(text=self.acceptable_frequency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame14"].start_mod_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame14"].upper_pressure_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame14"].lower_pressure_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame14"].swing_time_value.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame14"].acceptable_range_value.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=self.numpad_instance.current_value)
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -3636,7 +4203,7 @@ class Frame15(tk.Frame):
         self.canvas.create_line(215, 326, 795, 326, fill="gray", width=1)
         # Кликабельная зона
         self.response_frequency = self.canvas.create_image(716, 73, image=self.img_rectangle_l)
-        self.response_frequency_value = tk.Label(self.canvas, text="0.0",
+        self.response_frequency_value = tk.Label(self.canvas, text="4.0",
                                                    fg='white', bg='black',
                                                    font=('Roboto Bold', 12))
         self.response_frequency_value.place(x=645, y=63)
@@ -3644,8 +4211,11 @@ class Frame15(tk.Frame):
                                                    fg='white', bg='black',
                                                    font=('Roboto Bold', 12))
         self.response_frequency_label.place(x=759, y=63)
+        self.canvas.tag_bind(self.response_frequency, "<Button-1>", lambda event: self.check_password("click1"))
+        self.response_frequency_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.response_frequency_label.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.cooldown_emergency = self.canvas.create_image(716, 111, image=self.img_rectangle_l)
-        self.cooldown_emergency_value = tk.Label(self.canvas, text="**",
+        self.cooldown_emergency_value = tk.Label(self.canvas, text="10",
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.cooldown_emergency_value.place(x=645, y=101)
@@ -3653,6 +4223,9 @@ class Frame15(tk.Frame):
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.cooldown_emergency_label.place(x=753, y=101)
+        self.canvas.tag_bind(self.cooldown_emergency, "<Button-1>", lambda event: self.check_password("click2"))
+        self.cooldown_emergency_value.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.cooldown_emergency_label.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.max_emergency = self.canvas.create_image(716, 150, image=self.img_rectangle_l)
         self.max_emergency_value = tk.Label(self.canvas, text="3",
                                                  fg='white', bg='black',
@@ -3662,6 +4235,9 @@ class Frame15(tk.Frame):
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.max_emergency_label.place(x=753, y=140)
+        self.canvas.tag_bind(self.max_emergency, "<Button-1>", lambda event: self.check_password("click3"))
+        self.max_emergency_value.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.max_emergency_label.bind("<Button-1>", lambda event: self.check_password("click3"))
         self.warnings = self.canvas.create_image(716, 220, image=self.img_rectangle_l)
         self.warnings_value = tk.Label(self.canvas, text="0.00",
                                                  fg='white', bg='black',
@@ -3671,6 +4247,9 @@ class Frame15(tk.Frame):
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.warnings_label.place(x=753, y=210)
+        self.canvas.tag_bind(self.warnings, "<Button-1>", lambda event: self.check_password("click4"))
+        self.warnings_value.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.warnings_label.bind("<Button-1>", lambda event: self.check_password("click4"))
         self.emergency = self.canvas.create_image(716, 259, image=self.img_rectangle_l)
         self.emergency_value = tk.Label(self.canvas, text="0.00",
                                        fg='white', bg='black',
@@ -3680,6 +4259,9 @@ class Frame15(tk.Frame):
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.emergency_label.place(x=753, y=249)
+        self.canvas.tag_bind(self.max_emergency, "<Button-1>", lambda event: self.check_password("click5"))
+        self.max_emergency_value.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.max_emergency_label.bind("<Button-1>", lambda event: self.check_password("click5"))
         self.cd_emergency = self.canvas.create_image(716, 298, image=self.img_rectangle_l)
         self.cd_emergency_value = tk.Label(self.canvas, text="0",
                                         fg='white', bg='black',
@@ -3689,6 +4271,9 @@ class Frame15(tk.Frame):
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.cd_emergency_label.place(x=753, y=288)
+        self.canvas.tag_bind(self.cd_emergency, "<Button-1>", lambda event: self.check_password("click6"))
+        self.cd_emergency_value.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.cd_emergency_label.bind("<Button-1>", lambda event: self.check_password("click6"))
         self.cd_off = self.canvas.create_image(716, 362, image=self.img_rectangle_l)
         self.cd_off_value = tk.Label(self.canvas, text="0",
                                            fg='white', bg='black',
@@ -3698,8 +4283,11 @@ class Frame15(tk.Frame):
                                            fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.cd_off_label.place(x=753, y=352)
+        self.canvas.tag_bind(self.cd_off, "<Button-1>", lambda event: self.check_password("click7"))
+        self.cd_off_value.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.cd_off_label.bind("<Button-1>", lambda event: self.check_password("click7"))
         self.stop_crit_pressure = self.canvas.create_image(716, 400, image=self.img_rectangle_l)
-        self.stop_crit_pressure_value = tk.Label(self.canvas, text="0.00",
+        self.stop_crit_pressure_value = tk.Label(self.canvas, text="10.00",
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 12))
         self.stop_crit_pressure_value.place(x=645, y=390)
@@ -3707,12 +4295,115 @@ class Frame15(tk.Frame):
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 12))
         self.stop_crit_pressure_label.place(x=753, y=390)
+        self.canvas.tag_bind(self.stop_crit_pressure, "<Button-1>", lambda event: self.check_password("click8"))
+        self.stop_crit_pressure_value.bind("<Button-1>", lambda event: self.check_password("click8"))
+        self.stop_crit_pressure_label.bind("<Button-1>", lambda event: self.check_password("click8"))
 
 
         self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
         self.Switch_Flat_button = self.canvas.create_image(674, 440, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         # Кликабельная зона
+
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "switch":
+                    print("CALL FUNCTION")
+                    self.update_switch(self)
+                elif word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    self.numpad_instance.min_value.config(text="0.0")
+                    self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.entry_label.config(text=self.response_frequency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="10")
+                    self.numpad_instance.entry_label.config(text=self.cooldown_emergency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="99")
+                    self.numpad_instance.entry_label.config(text=self.max_emergency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.warnings_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.emergency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="99")
+                    self.numpad_instance.entry_label.config(text=self.cd_emergency_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+                elif word == "click7":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="5")
+                    self.numpad_instance.entry_label.config(text=self.cd_off_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click7
+                elif word == "click8":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.stop_crit_pressure_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click8
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame15"].response_frequency_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame15"].max_emergency_value.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame15"].warnings_value.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame15"].emergency_value.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        App.global_controller.frames["Frame15"].cd_emergency_value.config(text=self.numpad_instance.current_value)
+
+    def click7(self):
+        App.global_controller.frames["Frame15"].cd_off_value.config(text=self.numpad_instance.current_value)
+
+    def click8(self):
+        App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=self.numpad_instance.current_value)
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/_NO_YES.png":
@@ -3720,7 +4411,7 @@ class Frame15(tk.Frame):
         elif self.Switch_Flat_img.cget("file") == "new_images/_YES_NO.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
         self.Switch_Flat_button = self.canvas.create_image(674, 440, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -3871,35 +4562,35 @@ class Frame16(tk.Frame):
 
         self.p_rectangle = self.canvas.create_image(715, 62.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.p_rectangle, "<Button-1>", lambda event: self.check_password("click1"))
-        self.p_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.p_k = tk.Label(self.canvas, text="1.000", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.p_k.place(x=646, y=52)
         self.p_k.bind("<Button-1>", lambda event: self.check_password("click1"))
 
         self.i_rectangle = self.canvas.create_image(715, 101.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.i_rectangle, "<Button-1>", lambda event: self.check_password("click2"))
-        self.i_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.i_k = tk.Label(self.canvas, text="2.000", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.i_k.place(x=646, y=91)
         self.i_k.bind("<Button-1>", lambda event: self.check_password("click2"))
 
         self.d_rectangle = self.canvas.create_image(715, 140.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.d_rectangle, "<Button-1>", lambda event: self.check_password("click3"))
-        self.d_k = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.d_k = tk.Label(self.canvas, text="0.200", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.d_k.place(x=646, y=130)
         self.d_k.bind("<Button-1>", lambda event: self.check_password("click3"))
 
         self.integral_rectangle = self.canvas.create_image(715, 179.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.integral_rectangle, "<Button-1>", lambda event: self.check_password("click4"))
-        self.const_integral = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.const_integral = tk.Label(self.canvas, text="0.300", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.const_integral.place(x=646, y=169)
         self.const_integral.bind("<Button-1>", lambda event: self.check_password("click4"))
 
         self.set_rectangle = self.canvas.create_image(715, 257.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.set_rectangle, "<Button-1>", lambda event: self.check_password("click5"))
-        self.setpoint = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.setpoint = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.setpoint.place(x=646, y=246)
         self.setpoint.bind("<Button-1>", lambda event: self.check_password("click5"))
@@ -3942,25 +4633,62 @@ class Frame16(tk.Frame):
                     print("CALL FUNCTION")
                     self.update_switch(self)
                 elif word == "click1":  # Первое поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    #self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    self.numpad_instance.min_value.config(text="0.000")
+                    self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.entry_label.config(text=self.p_k.cget('text'))
                     self.numpad_instance.grab_set()
-                    #self.numpad_instance.callback_function = self.click1
+                    self.numpad_instance.callback_function = self.click1
                 elif word == "click2":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    #self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    self.numpad_instance.min_value.config(text="0.000")
+                    self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.entry_label.config(text=self.i_k.cget('text'))
                     self.numpad_instance.grab_set()
-                    #self.numpad_instance.callback_function = self.click2
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":  # Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    self.numpad_instance.min_value.config(text="0.000")
+                    self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.entry_label.config(text=self.d_k.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":  # Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    self.numpad_instance.min_value.config(text="0.000")
+                    self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.entry_label.config(text=self.const_integral.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":  # Второе поле
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.setpoint.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
             self.keypad_instance = keypad.Keypad()
             self.keypad_instance.grab_set()
             self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame16"].p_k.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        App.global_controller.frames["Frame16"].i_k.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        App.global_controller.frames["Frame16"].d_k.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        App.global_controller.frames["Frame16"].const_integral.config(text=self.numpad_instance.current_value)
+
+    def click5(self):
+        App.global_controller.frames["Frame16"].setpoint.config(text=self.numpad_instance.current_value)
+
 
     # Получение доступа
     def set_access(self, event=None):
@@ -3975,7 +4703,7 @@ class Frame16(tk.Frame):
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 219, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password("switch"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)

@@ -88,44 +88,205 @@ class Numpad(tk.Toplevel):
                     self.entry_label.config(text=self.entry_label.cget('text') + ".")
 
     def zero_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "0")
 
     def one_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "1")
 
     def two_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "2")
 
     def three_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "3")
 
     def four_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "4")
 
     def five_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
                 self.entry_label.config(text=str(self.entry_label.cget('text')) + "5")
 
     def six_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "6")
 
     def seven_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "7")
 
     def eight_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "8")
 
     def nine_func(self):
-        if len(str(self.entry_label.cget('text'))) != 8:
-            self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+        if self.word == "FLOAT3":
+            if len(str(self.entry_label.cget('text'))) != 5:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+        elif self.word == "FLOAT2":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 2:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+        elif self.word == "FLOAT1":
+            if '.' in str(self.entry_label.cget('text')):
+                if len(str(self.entry_label.cget('text')).split('.')[1]) != 1:
+                    self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+            else:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+        elif self.word == "INT":
+            if len(str(self.entry_label.cget('text'))) != 8:
+                self.entry_label.config(text=str(self.entry_label.cget('text')) + "9")
+
 
     def clear_all_button_func(self):
         self.entry_label.config(text="")
@@ -145,7 +306,23 @@ class Numpad(tk.Toplevel):
                     self.current_value = str(self.current_value)
                 else:
                     return
-            elif self.word == "FLOAT":
+            elif self.word == "FLOAT3":
+                self.current_value = float(self.current_value)
+                if float(self.min_value.cget('text')) <= self.current_value <= float(self.max_value.cget('text')):
+                    self.current_value = str(self.current_value)
+                    for _ in range(5 - len(self.current_value)):
+                        self.current_value += "0"
+                else:
+                    return
+            elif self.word == "FLOAT2":
+                self.current_value = float(self.current_value)
+                if float(self.min_value.cget('text')) <= self.current_value <= float(self.max_value.cget('text')):
+                    self.current_value = str(self.current_value)
+                    for _ in range(2-len(self.current_value.split('.')[1])):
+                        self.current_value += "0"
+                else:
+                    return
+            elif self.word == "FLOAT1":
                 self.current_value = float(self.current_value)
                 if float(self.min_value.cget('text')) <= self.current_value <= float(self.max_value.cget('text')):
                     self.current_value = str(self.current_value)

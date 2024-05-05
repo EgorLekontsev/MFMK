@@ -129,9 +129,7 @@ class Keypad(tk.Toplevel):
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
     def enter_button_func(self):
-        if self.passwords.get(self.enter_password, 100) == 100:
-            messagebox.showerror("Ошибка входа!", "Такого пароля не существует!")
-        else:
+        if self.passwords.get(self.enter_password, 100) != 100:
             self.access = self.passwords.get(self.enter_password)
             self.entry_label.config(text="")
             print("Успешный вход!")
