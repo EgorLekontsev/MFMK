@@ -233,7 +233,7 @@ class App(tk.Tk): # Основной класс с характеристика�
                                                                   state='hidden')
         App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
                                                                   state='hidden')
-        App.global_controller.frames["Frame1_1"].after(5000, App.shields_show)
+        App.global_controller.frames["Frame1_1"].after(500000, App.shields_show)
 
     def shields_show(event=None):
         App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
@@ -1244,15 +1244,12 @@ class Frame2(tk.Frame):
 
         #Кликабельная зона
         self.setpoint = self.canvas.create_image(703, 76, image=self.img_field_l)
-        self.canvas.tag_bind(self.setpoint, "<Button-1>", lambda event: print(1))
         self.label28 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label28.place(x=750, y=66, width=28, height=19)
-        self.label28.bind("<Button-1>", lambda event: print(1))
         self.setpoint_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
-        self.setpoint_value.place(x=644, y=67, width=33, height=19)
-        self.setpoint_value.bind("<Button-1>", lambda event: print(1))
+        self.setpoint_value.place(x=644, y=64)
 
         self.weekdays_morning_h = tk.Label(self.canvas, text="05", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
@@ -1317,25 +1314,25 @@ class Frame2(tk.Frame):
 
         self.weekdays_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                        font=('Roboto Bold', 12))
-        self.weekdays_morning_value.place(x=599, y=216, width=42, height=19)
+        self.weekdays_morning_value.place(x=599, y=214)
         self.label29 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label29.place(x=653, y=215, width=28, height=19)
         self.weekdays_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                font=('Roboto Bold', 12))
-        self.weekdays_afternoon_value.place(x=599, y=265, width=42, height=19)
+        self.weekdays_afternoon_value.place(x=599, y=262)
         self.label30 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label30.place(x=653, y=264, width=28, height=19)
         self.weekdays_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                font=('Roboto Bold', 12))
-        self.weekdays_evening_value.place(x=599, y=307, width=42, height=19)
+        self.weekdays_evening_value.place(x=599, y=304)
         self.label31 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label31.place(x=653, y=306, width=28, height=19)
         self.weekdays_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                font=('Roboto Bold', 12))
-        self.weekdays_night_value.place(x=599, y=350, width=42, height=19)
+        self.weekdays_night_value.place(x=599, y=348)
         self.label32 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label32.place(x=653, y=351, width=28, height=19)
@@ -1343,51 +1340,100 @@ class Frame2(tk.Frame):
 
         self.weekends_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                font=('Roboto Bold', 12))
-        self.weekends_morning_value.place(x=704, y=216, width=42, height=19)
+        self.weekends_morning_value.place(x=704, y=214)
         self.label33 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label33.place(x=757, y=215, width=28, height=19)
         self.weekends_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
-        self.weekends_afternoon_value.place(x=704, y=265, width=42, height=19)
+        self.weekends_afternoon_value.place(x=704, y=262)
         self.label34 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label34.place(x=757, y=265, width=28, height=19)
         self.weekends_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                                font=('Roboto Bold', 12))
-        self.weekends_evening_value.place(x=704, y=307, width=42, height=19)
+        self.weekends_evening_value.place(x=704, y=304)
         self.label35 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label35.place(x=757, y=306, width=28, height=19)
         self.weekends_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
                                              font=('Roboto Bold', 12))
-        self.weekends_night_value.place(x=704, y=350, width=42, height=19)
+        self.weekends_night_value.place(x=704, y=348)
         self.label36 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label36.place(x=757, y=350, width=28, height=19)
 
-        button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day1.place(x=510, y=107, width=35, height=35)
-        button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day2.place(x=550, y=107, width=35, height=35)
-        button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day3.place(x=590, y=107, width=35, height=35)
-        button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day4.place(x=630, y=107, width=35, height=35)
-        button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white")
-        button_day5.place(x=670, y=107, width=35, height=35)
-        button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white")
-        button_day6.place(x=710, y=107, width=35, height=35)
-        button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white")
-        button_day7.place(x=750, y=107, width=35, height=35)
+        self.button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button1"))
+        self.button_day1.place(x=510, y=107, width=35, height=35)
+        self.button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button2"))
+        self.button_day2.place(x=550, y=107, width=35, height=35)
+        self.button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button3"))
+        self.button_day3.place(x=590, y=107, width=35, height=35)
+        self.button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button4"))
+        self.button_day4.place(x=630, y=107, width=35, height=35)
+        self.button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
+                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button5"))
+        self.button_day5.place(x=670, y=107, width=35, height=35)
+        self.button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white", command=lambda: self.check_password("button6"))
+        self.button_day6.place(x=710, y=107, width=35, height=35)
+        self.button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
+                                activebackground="#871212", activeforeground="white", command=lambda: self.check_password("button7"))
+        self.button_day7.place(x=750, y=107, width=35, height=35)
+        self.button_dict = {"Понедельник": self.button_day1.cget('bg'), "Вторник": self.button_day2.cget('bg'), "Среда": self.button_day3.cget('bg'),
+                            "Четверг": self.button_day4.cget('bg'), "Пятница": self.button_day5.cget('bg'), "Суббота": self.button_day6.cget('bg'),
+                            "Воскресенье": self.button_day7.cget('bg')}
 
+        self.canvas.tag_bind(self.setpoint, "<Button-1>", lambda event: self.check_password("click1"))
+        self.setpoint_value.bind("<Button-1>", lambda event: self.check_password("click1"))
+        self.label28.bind("<Button-1>", lambda event: self.check_password("click1"))
+
+        self.weekdays_morning_h.bind("<Button-1>", lambda event: self.check_password("click2"))
+        self.weekdays_afternoon_h.bind("<Button-1>", lambda event: self.check_password("click3"))
+        self.weekdays_evening_h.bind("<Button-1>", lambda event: self.check_password("click4"))
+        self.weekdays_night_h.bind("<Button-1>", lambda event: self.check_password("click5"))
+        self.weekdays_morning_m.bind("<Button-1>", lambda event: self.check_password("click6"))
+        self.weekdays_afternoon_m.bind("<Button-1>", lambda event: self.check_password("click7"))
+        self.weekdays_evening_m.bind("<Button-1>", lambda event: self.check_password("click8"))
+        self.weekdays_night_m.bind("<Button-1>", lambda event: self.check_password("click9"))
+        self.weekends_morning_h.bind("<Button-1>", lambda event: self.check_password("click10"))
+        self.weekends_afternoon_h.bind("<Button-1>", lambda event: self.check_password("click11"))
+        self.weekends_evening_h.bind("<Button-1>", lambda event: self.check_password("click12"))
+        self.weekends_night_h.bind("<Button-1>", lambda event: self.check_password("click13"))
+        self.weekends_morning_m.bind("<Button-1>", lambda event: self.check_password("click14"))
+        self.weekends_afternoon_m.bind("<Button-1>", lambda event: self.check_password("click15"))
+        self.weekends_evening_m.bind("<Button-1>", lambda event: self.check_password("click16"))
+        self.weekends_night_m.bind("<Button-1>", lambda event: self.check_password("click17"))
+
+        self.canvas.tag_bind(self.weekdays_morning_field, "<Button-1>", lambda event: self.check_password("click18"))
+        self.weekdays_morning_value.bind("<Button-1>", lambda event: self.check_password("click18"))
+        self.label29.bind("<Button-1>", lambda event: self.check_password("click18"))
+        self.canvas.tag_bind(self.weekdays_afternoon_field, "<Button-1>", lambda event: self.check_password("click19"))
+        self.weekdays_afternoon_value.bind("<Button-1>", lambda event: self.check_password("click19"))
+        self.label30.bind("<Button-1>", lambda event: self.check_password("click19"))
+        self.canvas.tag_bind(self.weekdays_evening_field, "<Button-1>", lambda event: self.check_password("click20"))
+        self.weekdays_evening_value.bind("<Button-1>", lambda event: self.check_password("click20"))
+        self.label31.bind("<Button-1>", lambda event: self.check_password("click20"))
+        self.canvas.tag_bind(self.weekdays_night_field, "<Button-1>", lambda event: self.check_password("click21"))
+        self.weekdays_night_value.bind("<Button-1>", lambda event: self.check_password("click21"))
+        self.label32.bind("<Button-1>", lambda event: self.check_password("click21"))
+
+        self.canvas.tag_bind(self.weekends_morning_field, "<Button-1>", lambda event: self.check_password("click22"))
+        self.weekends_morning_value.bind("<Button-1>", lambda event: self.check_password("click22"))
+        self.label33.bind("<Button-1>", lambda event: self.check_password("click22"))
+        self.canvas.tag_bind(self.weekends_afternoon_field, "<Button-1>", lambda event: self.check_password("click23"))
+        self.weekends_afternoon_value.bind("<Button-1>", lambda event: self.check_password("click23"))
+        self.label34.bind("<Button-1>", lambda event: self.check_password("click23"))
+        self.canvas.tag_bind(self.weekends_evening_field, "<Button-1>", lambda event: self.check_password("click24"))
+        self.weekends_evening_value.bind("<Button-1>", lambda event: self.check_password("click24"))
+        self.label35.bind("<Button-1>", lambda event: self.check_password("click24"))
+        self.canvas.tag_bind(self.weekends_night_field, "<Button-1>", lambda event: self.check_password("click25"))
+        self.weekends_night_value.bind("<Button-1>", lambda event: self.check_password("click25"))
+        self.label36.bind("<Button-1>", lambda event: self.check_password("click25"))
         # Кликабельная зона
 
         self.day = tk.Label(self.canvas, text="", fg='white', bg='black',
@@ -1396,7 +1442,7 @@ class Frame2(tk.Frame):
         self.weekday = self.current_day.weekday() + 1
         match (self.weekday):
             case 1:
-                self.day.config(text = "Понедельник")
+                self.day.config(text="Понедельник")
             case 2:
                 self.day.config(text="Вторник")
             case 3:
@@ -1415,7 +1461,8 @@ class Frame2(tk.Frame):
                             font=('Roboto Bold', 12))
         self.type_setpoint.place(x=354, y=444)
 
-        self.type_day = tk.Label(self.canvas, text="Не определен", fg='white', bg='black',
+
+        self.type_day = tk.Label(self.canvas, text="", fg='white', bg='black',
                                       font=('Roboto Bold', 12))
         self.type_day.place(x=625, y=414)
 
@@ -1518,10 +1565,376 @@ class Frame2(tk.Frame):
                             command=lambda: controller.show_frame("Frame20"))
         button8.place(x=0, y=420, width=200, height=60)
 
-    def check_password(self, event=None):
-        self.keypad_instance = keypad.Keypad()
-        self.keypad_instance.grab_set()
-        #self.keypad_instance.callback_function = self.update_switch
+        self.update_type_day()
+
+    def update_type_day(self):
+        self.button_dict = {"Понедельник": self.button_day1.cget('bg'), "Вторник": self.button_day2.cget('bg'),
+                            "Среда": self.button_day3.cget('bg'),
+                            "Четверг": self.button_day4.cget('bg'), "Пятница": self.button_day5.cget('bg'),
+                            "Суббота": self.button_day6.cget('bg'),
+                            "Воскресенье": self.button_day7.cget('bg')}
+        match (self.button_dict[self.day.cget('text')]):
+            case "#3C3C3C":
+                self.type_day.config(text="Не определен")
+            case "#0F91DA":
+                self.type_day.config(text="Будний")
+            case "#871212":
+                self.type_day.config(text="Выходной")
+    def check_password(self, word):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access < 2:
+                if word == "click1":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.setpoint_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click1
+                elif word == "click2":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click2
+                elif word == "click3":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click3
+                elif word == "click4":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click4
+                elif word == "click5":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_night_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click5
+                elif word == "click6":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click6
+                elif word == "click7":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click7
+                elif word == "click8":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click8
+                elif word == "click9":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_night_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click9
+                elif word == "click10":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekends_morning_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click10
+                elif word == "click11":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click11
+                elif word == "click12":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekends_evening_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click12
+                elif word == "click13":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.entry_label.config(text=self.weekends_night_h.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click13
+                elif word == "click14":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekends_morning_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click14
+                elif word == "click15":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click15
+                elif word == "click16":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekends_evening_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click16
+                elif word == "click17":
+                    self.numpad_instance = numpad.Numpad(None, "INT")
+                    self.numpad_instance.min_value.config(text="0")
+                    self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.entry_label.config(text=self.weekends_night_m.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click17
+                elif word == "click18":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click18
+                elif word == "click19":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click19
+                elif word == "click20":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click20
+                elif word == "click21":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekdays_night_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click21
+                elif word == "click22":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekends_morning_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click22
+                elif word == "click23":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click23
+                elif word == "click24":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekends_evening_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click24
+                elif word == "click25":
+                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    self.numpad_instance.min_value.config(text="0.00")
+                    self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.entry_label.config(text=self.weekends_night_value.cget('text'))
+                    self.numpad_instance.grab_set()
+                    self.numpad_instance.callback_function = self.click25
+                elif word == "button1":
+                    if self.button_day1.cget('bg') == "#3C3C3C":
+                        self.button_day1.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day1.cget('bg') == "#0F91DA":
+                        self.button_day1.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day1.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button2":
+                    if self.button_day2.cget('bg') == "#3C3C3C":
+                        self.button_day2.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day2.cget('bg') == "#0F91DA":
+                        self.button_day2.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day2.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button3":
+                    if self.button_day3.cget('bg') == "#3C3C3C":
+                        self.button_day3.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day3.cget('bg') == "#0F91DA":
+                        self.button_day3.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day3.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button4":
+                    if self.button_day4.cget('bg') == "#3C3C3C":
+                        self.button_day4.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day4.cget('bg') == "#0F91DA":
+                        self.button_day4.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day4.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button5":
+                    if self.button_day5.cget('bg') == "#3C3C3C":
+                        self.button_day5.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day5.cget('bg') == "#0F91DA":
+                        self.button_day5.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day5.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button6":
+                    if self.button_day6.cget('bg') == "#3C3C3C":
+                        self.button_day6.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day6.cget('bg') == "#0F91DA":
+                        self.button_day6.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day6.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+                elif word == "button7":
+                    if self.button_day7.cget('bg') == "#3C3C3C":
+                        self.button_day7.config(bg="#0F91DA", activebackground="#0F91DA")
+                    elif self.button_day7.cget('bg') == "#0F91DA":
+                        self.button_day7.config(bg="#871212", activebackground="#871212")
+                    else:
+                        self.button_day7.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                    self.update_type_day()
+
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def click1(self):
+        App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
+
+    def click2(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_morning_h.config(text=self.numpad_instance.current_value)
+
+    def click3(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_afternoon_h.config(text=self.numpad_instance.current_value)
+
+    def click4(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_evening_h.config(text=self.numpad_instance.current_value)
+    def click5(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_night_h.config(text=self.numpad_instance.current_value)
+
+    def click6(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_morning_m.config(text=self.numpad_instance.current_value)
+
+    def click7(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_afternoon_m.config(text=self.numpad_instance.current_value)
+
+    def click8(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_evening_m.config(text=self.numpad_instance.current_value)
+
+    def click9(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_night_m.config(text=self.numpad_instance.current_value)
+
+    def click10(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_morning_h.config(text=self.numpad_instance.current_value)
+
+    def click11(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_afternoon_h.config(text=self.numpad_instance.current_value)
+
+    def click12(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_evening_h.config(text=self.numpad_instance.current_value)
+
+    def click13(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_night_h.config(text=self.numpad_instance.current_value)
+
+    def click14(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_morning_m.config(text=self.numpad_instance.current_value)
+
+    def click15(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_afternoon_m.config(text=self.numpad_instance.current_value)
+
+    def click16(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_evening_m.config(text=self.numpad_instance.current_value)
+
+    def click17(self):
+        if len(self.numpad_instance.current_value) == 1:
+            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_night_m.config(text=self.numpad_instance.current_value)
+
+    def click18(self):
+        App.global_controller.frames["Frame2"].weekdays_morning_value.config(text=self.numpad_instance.current_value)
+
+    def click19(self):
+        App.global_controller.frames["Frame2"].weekdays_afternoon_value.config(text=self.numpad_instance.current_value)
+
+    def click20(self):
+        App.global_controller.frames["Frame2"].weekdays_evening_value.config(text=self.numpad_instance.current_value)
+
+    def click21(self):
+        App.global_controller.frames["Frame2"].weekdays_night_value.config(text=self.numpad_instance.current_value)
+
+    def click22(self):
+        App.global_controller.frames["Frame2"].weekends_morning_value.config(text=self.numpad_instance.current_value)
+
+    def click23(self):
+        App.global_controller.frames["Frame2"].weekends_afternoon_value.config(text=self.numpad_instance.current_value)
+
+    def click24(self):
+        App.global_controller.frames["Frame2"].weekends_evening_value.config(text=self.numpad_instance.current_value)
+
+    def click25(self):
+        App.global_controller.frames["Frame2"].weekends_night_value.config(text=self.numpad_instance.current_value)
+
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
 
 
 
