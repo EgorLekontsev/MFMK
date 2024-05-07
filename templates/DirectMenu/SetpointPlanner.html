@@ -1140,6 +1140,17 @@ input1.onclick = function() {
     }
 }
 
+var date = new Date();
+var dayOfWeek = date.getDay();
+var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+var currentDayOfWeek = daysOfWeek[dayOfWeek];
+document.getElementById('currentDayOfWeek').innerText = currentDayOfWeek;
+if(currentDayOfWeek!== "Суббота" && currentDayOfWeek!== "Воскресенье") {
+    document.getElementById('currentTypeOfDay').innerText = "Будний";
+} else {
+    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+}
+
 btn1.onclick = function() {
     if (currectpassword === true) {
         if(btn1.onclick) {
@@ -1149,18 +1160,27 @@ btn1.onclick = function() {
                 btn1.style.setProperty('--hover-color', '#601515');
                 btn1.classList.remove('buttonblue');
                 btn1.classList.add('buttonred');
+                if (currentDayOfWeek==="Понедельник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn1BackgroundColor === 'rgb(135, 18, 18)') {
                 btn1.style.backgroundColor = '#535353';
                 btn1BackgroundColor = 'rgb(83, 83, 83)';
                 btn1.classList.remove('buttonred');
                 btn1.classList.add('buttongray');
                 btn1.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Понедельник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn1BackgroundColor === 'rgb(83, 83, 83)') {
                 btn1.style.backgroundColor = '#0F91DA';
                 btn1BackgroundColor = 'rgb(15, 145, 218)';
                 btn1.classList.remove('buttongray');
                 btn1.classList.add('buttonblue');
                 btn1.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Понедельник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1177,18 +1197,27 @@ btn2.onclick = function() {
                 btn2.style.setProperty('--hover-color', '#601515');
                 btn2.classList.remove('buttonblue');
                 btn2.classList.add('buttonred');
+                if (currentDayOfWeek==="Вторник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn2BackgroundColor === 'rgb(135, 18, 18)') {
                 btn2.style.backgroundColor = '#535353';
                 btn2BackgroundColor = 'rgb(83, 83, 83)';
                 btn2.classList.remove('buttonred');
                 btn2.classList.add('buttongray');
                 btn2.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Вторник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn2BackgroundColor === 'rgb(83, 83, 83)') {
                 btn2.style.backgroundColor = '#0F91DA';
                 btn2BackgroundColor = 'rgb(15, 145, 218)';
                 btn2.classList.remove('buttongray');
                 btn2.classList.add('buttonblue');
                 btn2.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Вторник") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1205,18 +1234,27 @@ btn3.onclick = function() {
                 btn3.style.setProperty('--hover-color', '#601515');
                 btn3.classList.remove('buttonblue');
                 btn3.classList.add('buttonred');
+                if (currentDayOfWeek==="Среда") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn3BackgroundColor === 'rgb(135, 18, 18)') {
                 btn3.style.backgroundColor = '#535353';
                 btn3BackgroundColor = 'rgb(83, 83, 83)';
                 btn3.classList.remove('buttonred');
                 btn3.classList.add('buttongray');
                 btn3.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Среда") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn3BackgroundColor === 'rgb(83, 83, 83)') {
                 btn3.style.backgroundColor = '#0F91DA';
                 btn3BackgroundColor = 'rgb(15, 145, 218)';
                 btn3.classList.remove('buttongray');
                 btn3.classList.add('buttonblue');
                 btn3.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Среда") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1233,18 +1271,27 @@ btn4.onclick = function() {
                 btn4.style.setProperty('--hover-color', '#601515');
                 btn4.classList.remove('buttonblue');
                 btn4.classList.add('buttonred');
+                if (currentDayOfWeek==="Четверг") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn4BackgroundColor === 'rgb(135, 18, 18)') {
                 btn4.style.backgroundColor = '#535353';
                 btn4BackgroundColor = 'rgb(83, 83, 83)';
                 btn4.classList.remove('buttonred');
                 btn4.classList.add('buttongray');
                 btn4.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Четверг") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn4BackgroundColor === 'rgb(83, 83, 83)') {
                 btn4.style.backgroundColor = '#0F91DA';
                 btn4BackgroundColor = 'rgb(15, 145, 218)';
                 btn4.classList.remove('buttongray');
                 btn4.classList.add('buttonblue');
                 btn4.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Четверг") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1261,18 +1308,27 @@ btn5.onclick = function() {
                 btn5.style.setProperty('--hover-color', '#601515');
                 btn5.classList.remove('buttonblue');
                 btn5.classList.add('buttonred');
+                if (currentDayOfWeek==="Пятница") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn5BackgroundColor === 'rgb(135, 18, 18)') {
                 btn5.style.backgroundColor = '#535353';
                 btn5BackgroundColor = 'rgb(83, 83, 83)';
                 btn5.classList.remove('buttonred');
                 btn5.classList.add('buttongray');
                 btn5.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Пятница") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn5BackgroundColor === 'rgb(83, 83, 83)') {
                 btn5.style.backgroundColor = '#0F91DA';
                 btn5BackgroundColor = 'rgb(15, 145, 218)';
                 btn5.classList.remove('buttongray');
                 btn5.classList.add('buttonblue');
                 btn5.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Пятница") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1289,18 +1345,27 @@ btn6.onclick = function() {
                 btn6.style.setProperty('--hover-color', '#601515');
                 btn6.classList.remove('buttonblue');
                 btn6.classList.add('buttonred');
+                if (currentDayOfWeek==="Суббота") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn6BackgroundColor === 'rgb(135, 18, 18)') {
                 btn6.style.backgroundColor = '#535353';
                 btn6BackgroundColor = 'rgb(83, 83, 83)';
                 btn6.classList.remove('buttonred');
                 btn6.classList.add('buttongray');
                 btn6.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Суббота") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn6BackgroundColor === 'rgb(83, 83, 83)') {
                 btn6.style.backgroundColor = '#0F91DA';
                 btn6BackgroundColor = 'rgb(15, 145, 218)';
                 btn6.classList.remove('buttongray');
                 btn6.classList.add('buttonblue');
                 btn6.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Суббота") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -1317,18 +1382,27 @@ btn7.onclick = function() {
                 btn7.style.setProperty('--hover-color', '#601515');
                 btn7.classList.remove('buttonblue');
                 btn7.classList.add('buttonred');
+                if (currentDayOfWeek==="Воскресенье") {
+                    document.getElementById('currentTypeOfDay').innerText = "Выходной";
+                }
             } else if (btn7BackgroundColor === 'rgb(135, 18, 18)') {
                 btn7.style.backgroundColor = '#535353';
                 btn7BackgroundColor = 'rgb(83, 83, 83)';
                 btn7.classList.remove('buttonred');
                 btn7.classList.add('buttongray');
                 btn7.style.setProperty('--hover-color', '#3C3C3C');
+                if (currentDayOfWeek==="Воскресенье") {
+                    document.getElementById('currentTypeOfDay').innerText = "Не определен";
+                }
             } else if (btn7BackgroundColor === 'rgb(83, 83, 83)') {
                 btn7.style.backgroundColor = '#0F91DA';
                 btn7BackgroundColor = 'rgb(15, 145, 218)';
                 btn7.classList.remove('buttongray');
                 btn7.classList.add('buttonblue');
                 btn7.style.setProperty('--hover-color', '#2073A1');
+                if (currentDayOfWeek==="Воскресенье") {
+                    document.getElementById('currentTypeOfDay').innerText = "Будний";
+                }
             }
         }
     } else {
@@ -2068,7 +2142,9 @@ async function hideFlickeringElements() {
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 414px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 414px; left: 252px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">Текущий день</p>
+        <p id="currentDayOfWeek" style="position: absolute; top: 414px; left: 371px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;"></p>
         <p style="position: absolute; top: 414px; left: 553px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Тип дня</p>
+        <p id="currentTypeOfDay" style="position: absolute; top: 414px; left: 625px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;"></p>
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
             style="position: absolute; top: 444px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 444px; left: 251px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;">Тип уставки</p>
