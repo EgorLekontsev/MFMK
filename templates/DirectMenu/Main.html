@@ -28,6 +28,8 @@
 {% endblock %}
 
 {% block page_script %}
+var count = localStorage.getItem('countpumps');
+console.log(count);
 function changeImage() {
     var image = document.getElementById('Switch');
     if (image.src.match("/static/Main/red.png")) {
