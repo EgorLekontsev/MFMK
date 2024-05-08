@@ -215,7 +215,7 @@ plans22 = false;
 plans23 = false;
 plans24 = false;
 
-
+<!--Кнопки-->
 plans[0].onclick = function() {
     if (currectpassword === true) {
         if(plans[0].onclick) {
@@ -661,9 +661,6 @@ function appendToNumpad(value) {
         if (value==="0" && result.length=== 0) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
             if(value>=1 && value<=9 && result.length===0){
                 collectednumbernumpad += value;
@@ -691,9 +688,6 @@ function appendToNumpad(value) {
         }
     } else if (plans4 === true) {
         if (value==="0" && result.length=== 0) {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
@@ -777,9 +771,6 @@ function appendToNumpad(value) {
         if (value==="0" && result.length=== 0) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
             if(value>=1 && value<=9 && result.length===0){
                 collectednumbernumpad += value;
@@ -807,9 +798,6 @@ function appendToNumpad(value) {
         }
     } else if (plans10 === true) {
         if (value==="0" && result.length=== 0) {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
@@ -893,9 +881,6 @@ function appendToNumpad(value) {
         if (value==="0" && result.length=== 0) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
             if(value>=1 && value<=9 && result.length===0){
                 collectednumbernumpad += value;
@@ -923,9 +908,6 @@ function appendToNumpad(value) {
         }
     } else if (plans16 === true) {
         if (value==="0" && result.length=== 0) {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
@@ -1009,9 +991,6 @@ function appendToNumpad(value) {
         if (value==="0" && result.length=== 0) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
             if(value>=1 && value<=9 && result.length===0){
                 collectednumbernumpad += value;
@@ -1039,9 +1018,6 @@ function appendToNumpad(value) {
         }
     } else if (plans22 === true) {
         if (value==="0" && result.length=== 0) {
-            collectednumbernumpad += value;
-            document.getElementById('numpad').innerText += value;
-        } else if (result[0]==="0" && result.length === 1 && value === "0") {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]!=="0") {
@@ -1409,6 +1385,231 @@ btn7.onclick = function() {
     }
 }
 
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    input2.textContent = data.User_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('1').textContent = data.Setpoint_Planner_Morning_Weekday_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('2').textContent = data.Setpoint_Planner_Morning_Weekday_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('3').textContent = data.Setpoint_Planner_Morning_Weekend_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('4').textContent = data.Setpoint_Planner_Morning_Weekend_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('5').textContent = data.Setpoint_Planner_Morning_Weekday_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('6').textContent = data.Setpoint_Planner_Morning_Weekend_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('7').textContent = data.Setpoint_Planner_Day_Weekday_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('8').textContent = data.Setpoint_Planner_Day_Weekday_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('9').textContent = data.Setpoint_Planner_Day_Weekend_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('10').textContent = data.Setpoint_Planner_Day_Weekend_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('11').textContent = data.Setpoint_Planner_Day_Weekday_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('12').textContent = data.Setpoint_Planner_Day_Weekend_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('13').textContent = data.Setpoint_Planner_Evening_Weekday_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('14').textContent = data.Setpoint_Planner_Evening_Weekday_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('15').textContent = data.Setpoint_Planner_Evening_Weekend_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('16').textContent = data.Setpoint_Planner_Evening_Weekend_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('17').textContent = data.Setpoint_Planner_Evening_Weekday_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('18').textContent = data.Setpoint_Planner_Evening_Weekend_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('19').textContent = data.Setpoint_Planner_Night_Weekday_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('20').textContent = data.Setpoint_Planner_Night_Weekday_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('21').textContent = data.Setpoint_Planner_Night_Weekend_Hour;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('22').textContent = data.Setpoint_Planner_Night_Weekend_Minute;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('23').textContent = data.Setpoint_Planner_Night_Weekday_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('24').textContent = data.Setpoint_Planner_Night_Weekend_Setpoint;
+  })
+  .catch(error => {
+    console.error('Ошибка при получении данных:', error);
+  });
+
 function checkNumpad() {
     if (input2check === true) {
         if (collectednumbernumpad.length===0){
@@ -1417,8 +1618,10 @@ function checkNumpad() {
             input2.innerText = collectednumbernumpad + ".00";
         } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad.length===2) {
             input2.innerText = collectednumbernumpad + "00";
-        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]==="0") {
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]==="0" && collectednumbernumpad.length===3) {
             input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]==="0" && collectednumbernumpad[3]==="0" && collectednumbernumpad.length===4) {
+            input2.innerText = collectednumbernumpad;
         } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]>=0 && collectednumbernumpad[2]<=9 && collectednumbernumpad.length===3) {
             input2.innerText = collectednumbernumpad + "0";
         } else if (collectednumbernumpad[0]==="0" && collectednumbernumpad[1]==="." && collectednumbernumpad[2]>=0 && collectednumbernumpad[2]<=9 && collectednumbernumpad.length===4) {
@@ -1440,6 +1643,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             input2.innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('User_Setpoint', input2.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1452,6 +1661,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[0].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekday_Hour', plans[0].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1464,6 +1679,12 @@ function checkNumpad() {
         } else {
             plans[1].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekday_Minute', plans[1].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1476,6 +1697,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[2].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekend_Hour', plans[2].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1488,6 +1715,12 @@ function checkNumpad() {
         } else {
             plans[3].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekend_Minute', plans[3].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1522,6 +1755,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[4].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekday_Setpoint', plans[4].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1556,6 +1795,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[5].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Morning_Weekend_Setpoint', plans[5].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1568,6 +1813,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[6].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekday_Hour', plans[6].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1580,6 +1831,12 @@ function checkNumpad() {
         } else {
             plans[7].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekday_Minute', plans[7].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1592,6 +1849,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[8].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekend_Hour', plans[8].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1604,6 +1867,12 @@ function checkNumpad() {
         } else {
             plans[9].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekend_Minute', plans[9].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1638,6 +1907,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[10].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekday_Setpoint', plans[10].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1672,6 +1947,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[11].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Day_Weekend_Setpoint', plans[11].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1684,6 +1965,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[12].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekday_Hour', plans[12].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1696,6 +1983,12 @@ function checkNumpad() {
         } else {
             plans[13].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekday_Minute', plans[13].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1708,6 +2001,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[14].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekend_Hour', plans[14].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1720,6 +2019,12 @@ function checkNumpad() {
         } else {
             plans[15].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekend_Minute', plans[15].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1754,6 +2059,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[16].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekday_Setpoint', plans[16].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1788,6 +2099,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[17].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Evening_Weekend_Setpoint', plans[17].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1800,6 +2117,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[18].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekday_Hour', plans[18].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1812,6 +2135,12 @@ function checkNumpad() {
         } else {
             plans[19].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekday_Minute', plans[19].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1824,6 +2153,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===2) {
             plans[20].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekend_Hour', plans[20].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1836,6 +2171,12 @@ function checkNumpad() {
         } else {
             plans[21].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekend_Minute', plans[21].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1870,6 +2211,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[22].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekday_Setpoint', plans[22].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -1904,6 +2251,12 @@ function checkNumpad() {
         } else if (collectednumbernumpad.length===5) {
             plans[23].innerText = collectednumbernumpad;
         }
+        var formData = new FormData();
+        formData.append('Setpoint_Planner_Night_Weekend_Setpoint', plans[23].innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
@@ -2037,7 +2390,7 @@ async function hideFlickeringElements() {
             style="position: absolute; top: 62px; left: 594px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <div id="InputText1" class="click">
             <hr style="position: absolute; top: 60px; left: 623px; border: 3px solid white; width: 154px; height: 26px; border-radius: 10px;">
-            <p id="InputText2" style="position: absolute; top: 65px; left: 640px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">3.00</p>
+            <p id="InputText2" style="position: absolute; top: 65px; left: 640px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
             <p style="position: absolute; top: 66px; left: 750px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         </div>
         <hr style="position: absolute; top: 100px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
@@ -2067,18 +2420,18 @@ async function hideFlickeringElements() {
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 214px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 210px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 215px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">05</p>
+        <p class="click plan" id="1" style="position: absolute; top: 215px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 215px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 215px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="2" style="position: absolute; top: 215px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 210px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 215px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">05</p>
+        <p class="click plan" id="3" style="position: absolute; top: 215px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 215px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 215px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="4" style="position: absolute; top: 215px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 210px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 215px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="5" style="position: absolute; top: 215px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 215px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 210px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 215px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="6" style="position: absolute; top: 215px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 215px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 258px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
@@ -2086,18 +2439,18 @@ async function hideFlickeringElements() {
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 259px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 258px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 264px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">10</p>
+        <p class="click plan" id="7" style="position: absolute; top: 264px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 264px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 264px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="8" style="position: absolute; top: 264px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 258px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 264px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="9" style="position: absolute; top: 264px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 263px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 264px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="10" style="position: absolute; top: 264px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 258px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 264px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="11" style="position: absolute; top: 264px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 264px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 258px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 264px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="12" style="position: absolute; top: 264px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 264px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 303px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
@@ -2105,18 +2458,18 @@ async function hideFlickeringElements() {
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 304px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 300px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 306px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">17</p>
+        <p class="click plan" id="13" style="position: absolute; top: 306px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 306px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 306px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="14" style="position: absolute; top: 306px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 300px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 306px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">17</p>
+        <p class="click plan" id="15" style="position: absolute; top: 306px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 306px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 306px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="16" style="position: absolute; top: 306px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 300px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 306px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="17" style="position: absolute; top: 306px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 306px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 300px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 306px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="18" style="position: absolute; top: 306px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 306px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
             style="position: absolute; top: 348px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
@@ -2124,18 +2477,18 @@ async function hideFlickeringElements() {
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 349px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <hr style="position: absolute; top: 345px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 351px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">22</p>
+        <p class="click plan" id="19" style="position: absolute; top: 351px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 351px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 351px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="20" style="position: absolute; top: 351px; left: 440px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 345px; left: 477px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 351px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">22</p>
+        <p class="click plan" id="21" style="position: absolute; top: 351px; left: 492px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <p style="position: absolute; top: 351px; left: 525px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
-        <p class="click plan" style="position: absolute; top: 351px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;">00</p>
+        <p class="click plan" id="22" style="position: absolute; top: 351px; left: 544px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
         <hr style="position: absolute; top: 345px; left: 585px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 351px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="23" style="position: absolute; top: 351px; left: 599px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 351px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 345px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
-        <p class="click plan" style="position: absolute; top: 351px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;">3.00</p>
+        <p class="click plan" id="24" style="position: absolute; top: 351px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
         <p style="position: absolute; top: 351px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
         <hr style="position: absolute; top: 399px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"

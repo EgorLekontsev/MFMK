@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify, request
+import json
 
 app = Flask(__name__)
 
@@ -97,6 +98,29 @@ def ContactsScreen():
 @app.route('/Keyboard')
 def KeyboardScreen():
     return render_template('DirectInput/Keyboard.html')
+
+@app.route("/data")
+def data():
+    with open("data/jsonstorage.json", "r") as f:
+        json_data = f.read()
+
+    data = json.loads(json_data)
+
+    return jsonify(data)
+
+@app.route('/update_data', methods=['POST'])
+def update_data():
+    new_data = request.form.to_dict()
+
+    with open("data/jsonstorage.json", "r") as file:
+        json_data = json.load(file)
+
+    json_data.update(new_data)  # Обновить словарь с данными из JSON
+
+    with open("data/jsonstorage.json", "w") as file:
+        json.dump(json_data, file)
+
+    return 'Data updated successfully'
 
 if __name__ == '__main__':
     app.run(debug=True)

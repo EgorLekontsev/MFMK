@@ -126,7 +126,19 @@ OffModelNumpad.onclick = function() {
 
 function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
-    if (result.length < 8) {
+    if(result.length===0 && value>=0 && value<=9) {
+        collectednumbernumpad += value;
+        document.getElementById('numpad').innerText += value;
+    } else if (result.length===0 && value>=1 && value<=9) {
+        collectednumbernumpad += value;
+        document.getElementById('numpad').innerText += value;
+    } else if (result.length===1 && result[0]==="1") {
+        collectednumbernumpad += value;
+        document.getElementById('numpad').innerText += value;
+    } else if (result.length===1 && result[0]==="2") {
+        collectednumbernumpad += value;
+        document.getElementById('numpad').innerText += value;
+    } else if (result.length===1 && result[0]==="3" &&  value==="0") {
         collectednumbernumpad += value;
         document.getElementById('numpad').innerText += value;
     }
@@ -146,6 +158,28 @@ function clearLastValueNumpad() {
     }
 }
 
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText2').textContent = data.Time_screensaver_settings_panel;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText4').textContent = data.Time_display_settings_panel;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    if (data.Switch_settings_panel==="0") {
+        Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+    } else {
+        Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+    }
+  })
+
 input1.onclick = function() {
     if (currectpassword === true) {
         if(input1.onclick) {
@@ -158,6 +192,7 @@ input1.onclick = function() {
         ModalPassword.style.display = "block";
     }
 }
+
 input3.onclick = function() {
     if (currectpassword === true) {
         if(input3.onclick) {
@@ -170,13 +205,28 @@ input3.onclick = function() {
         ModalPassword.style.display = "block";
     }
 }
+
 Switch.onclick = function() {
     if (currectpassword === true) {
         if(Switch.onclick) {
             if (Switch.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
                 Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+                var formData = new FormData();
+                formData.append('Switch_settings_panel', "1");
+
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else {
                 Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+                var formData = new FormData();
+                formData.append('Switch_settings_panel', "0");
+
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -185,57 +235,29 @@ Switch.onclick = function() {
 }
 function checkNumpad() {
     if (input2check === true) {
-        if(collectednumbernumpad > 30) {
-            input2.innerText = "30";
-            collectednumbernumpad = "";
-        }
-        else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
-            input2.innerText = "0";
-            collectednumbernumpad = "";
-        }
-        else if (collectednumbernumpad.length > 1 && collectednumbernumpad.startsWith('0')) {
-            collectednumbernumpad = parseInt(collectednumbernumpad, 10);
-            input2.innerText = collectednumbernumpad;
-            collectednumbernumpad = "";
-        }
-        else if (collectednumbernumpad == "") {
-            input2.innerText = "0";
-            collectednumbernumpad = "";
-        }
-        else {
-            input2.innerText = collectednumbernumpad;
-            collectednumbernumpad = "";
-        }
+        input2.innerText = collectednumbernumpad;
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = new FormData();
+        formData.append('Time_screensaver_settings_panel', input2.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
     } else if (input4check === true) {
-        if(collectednumbernumpad > 30) {
-            input4.innerText = "30";
-            collectednumbernumpad = '';
-        }
-        else if (collectednumbernumpad.length > 1 && /^[0]*$/.test(collectednumbernumpad)) {
-            input4.innerText = "0";
-            collectednumbernumpad = '';
-        }
-        else if (collectednumbernumpad.length > 1 && collectednumbernumpad.startsWith('0')){
-            collectednumbernumpad = parseInt(collectednumbernumpad, 10);
-            input4.innerText = collectednumbernumpad;
-            collectednumbernumpad = '';
-        }
-        else if (collectednumbernumpad == ""){
-            input4.innerText = "0";
-            collectednumbernumpad = '';
-        }
-        else {
-            input4.innerText = collectednumbernumpad;
-            collectednumbernumpad = '';
-        }
+        input4.innerText = collectednumbernumpad;
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
+        var formData = new FormData();
+        formData.append('Time_display_settings_panel', input4.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
     }
 }
 var resultpassword = '7531';
@@ -337,7 +359,7 @@ async function hideFlickeringElements() {
             style="position: absolute; top: 56px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <div id="InputText1" class="click">
             <hr style="position: absolute; top: 53px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-            <p id="InputText2" style="position: absolute; top: 61px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">30</p>
+            <p id="InputText2" style="position: absolute; top: 61px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
             <p style="position: absolute; top: 59px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         </div>
         <img src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
@@ -347,7 +369,7 @@ async function hideFlickeringElements() {
             style="position: absolute; top: 95px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <div id="InputText3" class="click">
             <hr style="position: absolute; top: 93px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-            <p id="InputText4" style="position: absolute; top: 101px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">15</p>
+            <p id="InputText4" style="position: absolute; top: 101px; left: 654px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
             <p style="position: absolute; top: 99px; left: 738px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">минут</p>
         </div>
         <img src="{{ url_for('static', filename='iconsbutton/Music.png') }}"
@@ -355,8 +377,8 @@ async function hideFlickeringElements() {
         <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Зуммер</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 133px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="Switch" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
-            style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+<!--        src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"-->
+        <img id="Switch" style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
         <hr style="position: absolute; top: 178px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
             style="position: absolute; top: 189px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">

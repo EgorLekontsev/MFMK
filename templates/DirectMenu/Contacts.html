@@ -73,24 +73,37 @@ hr {
 {% block script %}
 var pump = document.getElementById('Pumps');
 var OffModelNumpad = document.getElementsByClassName("closeModalNumpad")[0];
+
 OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
 }
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('Pumps').textContent = data.Pumps;
+  })
+
 pump.onclick = function() {
     if(pump.onclick){
         ModalNumpad.style.display = "block";
         document.getElementById('numpad').innerText = document.getElementById('Pumps').innerText;
     }
 }
+
 function checkNumpad() {
     pump.innerText = document.getElementById('numpad').innerText;
     ModalNumpad.style.display = "none";
-    document.getElementById('numpad').innerText = '';
-    localStorage.setItem('countpumps', pump.innerText);
+
+    var formData = new FormData();
+    formData.append('Pumps', document.getElementById('numpad').innerText);
+
+    fetch('/update_data', {
+        method: 'POST',
+        body: formData
+    })
 }
-var count = localStorage.getItem('countpumps');
-pump.innerText = count;
 
 function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
