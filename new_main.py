@@ -49,12 +49,15 @@ Frame20 - Контакты
 class App(tk.Tk):
     # Основной класс с характеристиками окна
     # Будет содержать какие-то глобальные значения внутри сессии
-    Pumps_active = 1
+    journal_data = json_methods.load_data(r"data/journal.json")
+    storage_data = json_methods.load_data(r"data/desktop_storage.json")
+
+    Pumps_active = int(storage_data["Pumps"])
     LVL_access = 10
     session_access = False
     global_controller = None
 
-    journal_data = json_methods.load_data(r"data/journal.json")
+
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -6075,7 +6078,7 @@ class Frame19(tk.Frame, NetInfo):
         # Кликабельная зона
         self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.time_rectangle_1, "<Button-1>", lambda event: self.check_password("click1"))
-        self.time_display_1 = tk.Label(self.canvas, text="30", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_1 = tk.Label(self.canvas, text=App.storage_data["Time_screensaver_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_1.place(x=645, y=58)
         self.time_display_1.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -6084,7 +6087,7 @@ class Frame19(tk.Frame, NetInfo):
 
         self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.time_rectangle_2, "<Button-1>", lambda event: self.check_password("click2"))
-        self.time_display_2 = tk.Label(self.canvas, text="15", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_2 = tk.Label(self.canvas, text=App.storage_data["Time_display_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_2.place(x=645, y=98)
         self.time_display_2.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -6110,7 +6113,7 @@ class Frame19(tk.Frame, NetInfo):
         self.data_seconds_label = tk.Label(self.canvas, text="Секунды", fg='white', bg='black', font=('Roboto Bold', 12))
         self.data_seconds_label.place(x=715, y=237, width=66, height=19)
 
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Switch_settings_panel"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
@@ -6274,8 +6277,12 @@ class Frame19(tk.Frame, NetInfo):
         App.shields_hide()
 
     def click1(self):
+        App.storage_data["Time_screensaver_settings_panel"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame19"].time_display_1.config(text=self.numpad_instance.current_value)
     def click2(self):
+        App.storage_data["Time_display_settings_panel"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame19"].time_display_2.config(text=self.numpad_instance.current_value)
 
 
@@ -6284,9 +6291,12 @@ class Frame19(tk.Frame, NetInfo):
         if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
             print("step 2")
+            App.storage_data["Switch_settings_panel"] = "1"
         elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
             print("step 3")
+            App.storage_data["Switch_settings_panel"] = "0"
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         self.canvas.update()
@@ -6468,7 +6478,7 @@ class Frame20(tk.Frame):
         self.productCode3_label.place(x=632, y=166)
         self.pumpsAll_label = tk.Label(self.canvas, text="6", fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsAll_label.place(x=444, y=207)
-        self.pumpsWorking_label = tk.Label(self.canvas, text="1", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.pumpsWorking_label = tk.Label(self.canvas, text=App.storage_data["Pumps"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsWorking_label.place(x=651, y=207)
         self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps())
 
@@ -6482,6 +6492,8 @@ class Frame20(tk.Frame):
 
     def change_active_pumps(self):
         App.Pumps_active = int(self.numpad_instance.current_value)
+        App.storage_data["Pumps"] = App.Pumps_active
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
         App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_six)
         App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_five)
