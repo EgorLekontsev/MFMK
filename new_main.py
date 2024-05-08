@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import PhotoImage, Canvas, messagebox
+from tkinter import PhotoImage, Canvas, messagebox, ttk
 from datetime import datetime
 from PIL import Image, ImageDraw, ImageFont, ImageTk
 from platform import system
@@ -8,8 +8,10 @@ from subprocess import check_output
 from socket import socket, AF_INET, SOCK_DGRAM
 import wmi
 import psutil
+
 import keypad
 import numpad
+import json_methods
 
 '''def check_os():
     os = system()
@@ -44,12 +46,15 @@ Frame18 - Инженерное меню(Бэкап)
 Frame19 - Настройки панели
 Frame20 - Контакты
 '''
-class App(tk.Tk): # Основной класс с характеристиками окна
-
+class App(tk.Tk):
+    # Основной класс с характеристиками окна
+    # Будет содержать какие-то глобальные значения внутри сессии
     Pumps_active = 1
     LVL_access = 10
     session_access = False
     global_controller = None
+
+    journal_data = json_methods.load_data(r"data/journal.json")
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -78,7 +83,24 @@ class App(tk.Tk): # Основной класс с характеристика�
         self.show_frame("Frame1_1")
         self.update_clock()
 
-    def shields_hide(event=None):
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        App.journal_data = self.save_journal_data(App.global_controller.frames["Frame8"].tree)
+        json_methods.save_data(r"data/journal.json", App.journal_data)
+        self.destroy()
+
+    def save_journal_data(self, treeview):
+        data = []
+        for item_id in treeview.get_children():
+            date = treeview.item(item_id)['values'][0]  # Получаем данные из первой колонки
+            time = treeview.item(item_id)['values'][1]  # Получаем данные из второй колонки
+            comment = treeview.item(item_id)['values'][2]  # Получаем данные из третьей колонки
+            info = treeview.item(item_id)['values'][3]  # Получаем данные из четвертой колонки
+            data.append({"Date":date, "Time":time, "Comment":comment, "Info":info})
+        return data
+
+    def shields_hide(event=None): #Сокрытие щитов, а также вызов метода показа щитов
         App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
                                                                  state='hidden')
         App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
@@ -457,7 +479,7 @@ class App(tk.Tk): # Основной класс с характеристика�
         current_time = datetime.now().strftime('%d/%m/%y %H:%M')
         for frame_name in self.frames:
             self.frames[frame_name].update_clock(current_time)
-        self.after(500000, self.update_clock) # Тик-так
+        self.after(500, self.update_clock) # Тик-так
 
 
 class Frame1_1(tk.Frame):
@@ -537,7 +559,7 @@ class Frame1_1(tk.Frame):
 
         self.initialization_pumps()
 
-    def initialization_pumps(self, Pumps_active=App.Pumps_active):
+    def initialization_pumps(self, Pumps_active=App.Pumps_active): #Показ насосов
         match (Pumps_active):
             case 1:
                 self.Pump_six = self.canvas.create_image(620, 400, image=self.img_pump_off)
@@ -1824,6 +1846,7 @@ class Frame2(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
@@ -2326,6 +2349,47 @@ class Frame8(tk.Frame):
         button5 = tk.Button(self, image=self.combined_photo5, bg='black', relief="groove", activebackground="black",
                             command=lambda: controller.show_frame("Frame8"))
         button5.place(x=0, y=240, width=200, height=60)
+
+        self.style = ttk.Style()
+        self.style.theme_use("clam")
+        self.style.configure("Treeview",
+                        font=('Roboto', 12),
+                        rowheight=25,
+                        background="black",
+                        foreground="white",
+                        fieldbackground="black",
+                        bordercolor="white")
+        self.style.map("Treeview",
+                  background=[('selected', 'gray')])
+
+        self.tree = ttk.Treeview(self, columns=("Date", "Time", "Comment", "Info"))
+        self.tree["show"] = "headings"
+        # Устанавливаем заголовки столбцов
+        self.tree.heading("Date", text="Дата", command=lambda: self.sort_column("Date", False))
+        self.tree.heading("Time", text="Время", command=lambda: self.sort_column("Time", False))
+        self.tree.heading("Comment", text="Комментарий", command=lambda: self.sort_column("Comment", False))
+        self.tree.heading("Info", text="Информация", command=lambda: self.sort_column("Info", False))
+        self.tree.column("Date", anchor="w", width=50)
+        self.tree.column("Time", anchor="w", width=50)
+        self.tree.column("Comment", anchor="w", width=200)
+        self.tree.column("Info", anchor="w", width=100)
+
+        # Добавляем данные в TreeView
+        for item in App.journal_data:
+            self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"]))
+
+        #self.tree.insert("", tk.END, values=("1", "2", "3", "4"))
+        self.tree.place(x=206, y=39, width=588, height=434)
+
+    def sort_column(self, col, reverse):
+        data = [(self.tree.set(child, col), child) for child in self.tree.get_children("")]
+        data.sort(reverse=reverse)
+
+        for index, (value, child) in enumerate(data):
+            self.tree.move(child, "", index)
+
+        self.tree.heading(col, command=lambda: self.sort_column(col, not reverse))
+
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
