@@ -150,40 +150,119 @@ var input1 = document.getElementById('InputText1');
 var input2 = document.getElementById('InputText2');
 var input2check = false;
 
+var date = new Date();
+var dayOfWeek = date.getDay();
+var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+var currentDayOfWeek = daysOfWeek[dayOfWeek];
+document.getElementById('currentDayOfWeek').innerText = currentDayOfWeek;
+<!--if(currentDayOfWeek!== "Суббота" && currentDayOfWeek!== "Воскресенье") {-->
+<!--    document.getElementById('currentTypeOfDay').innerText = "Будний";-->
+<!--} else {-->
+<!--    document.getElementById('currentTypeOfDay').innerText = "Выходной";-->
+<!--}-->
+
 var btn1 = document.getElementById('Button1');
-btn1.classList.add('buttonblue');
-var btn1BackgroundColor = window.getComputedStyle(btn1).backgroundColor;
-btn1.style.setProperty('--hover-color', '#2073A1');
-
+var btn1BackgroundColor;
 var btn2 = document.getElementById('Button2');
-btn2.classList.add('buttonblue');
-var btn2BackgroundColor = window.getComputedStyle(btn2).backgroundColor;
-btn2.style.setProperty('--hover-color', '#2073A1');
-
+var btn2BackgroundColor;
 var btn3 = document.getElementById('Button3');
-btn3.classList.add('buttonblue');
-var btn3BackgroundColor = window.getComputedStyle(btn3).backgroundColor;
-btn3.style.setProperty('--hover-color', '#2073A1');
-
+var btn3BackgroundColor;
 var btn4 = document.getElementById('Button4');
-btn4.classList.add('buttonblue');
-var btn4BackgroundColor = window.getComputedStyle(btn4).backgroundColor;
-btn4.style.setProperty('--hover-color', '#2073A1');
-
+var btn4BackgroundColor;
 var btn5 = document.getElementById('Button5');
-btn5.classList.add('buttonblue');
-var btn5BackgroundColor = window.getComputedStyle(btn5).backgroundColor;
-btn5.style.setProperty('--hover-color', '#2073A1');
-
+var btn5BackgroundColor;
 var btn6 = document.getElementById('Button6');
-btn6.classList.add('buttonred');
-var btn6BackgroundColor = window.getComputedStyle(btn6).backgroundColor;
-btn6.style.setProperty('--hover-color', '#601515');
-
+var btn6BackgroundColor;
 var btn7 = document.getElementById('Button7');
-btn7.classList.add('buttonred');
-var btn7BackgroundColor = window.getComputedStyle(btn7).backgroundColor;
-btn7.style.setProperty('--hover-color', '#601515');
+var btn7BackgroundColor;
+fetch('/data')
+    .then(response => response.json())
+    .then(data => {
+        btn1.classList.add(data.Button_one_color);
+        btn1BackgroundColor = window.getComputedStyle(btn1).backgroundColor;
+        btn1.style.setProperty('--hover-color', data.Button_one_hover);
+        if(currentDayOfWeek==="Понедельник"){
+            if(data.Button_one_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_one_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn2.classList.add(data.Button_two_color);
+        btn2BackgroundColor = window.getComputedStyle(btn2).backgroundColor;
+        btn2.style.setProperty('--hover-color', data.Button_two_hover);
+        if(currentDayOfWeek==="Вторник"){
+            if(data.Button_two_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_two_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn3.classList.add(data.Button_three_color);
+        btn3BackgroundColor = window.getComputedStyle(btn3).backgroundColor;
+        btn3.style.setProperty('--hover-color', data.Button_three_hover);
+        if(currentDayOfWeek==="Среда"){
+            if(data.Button_three_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_three_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn4.classList.add(data.Button_four_color);
+        btn4BackgroundColor = window.getComputedStyle(btn4).backgroundColor;
+        btn4.style.setProperty('--hover-color', data.Button_four_hover);
+        if(currentDayOfWeek==="Четверг"){
+            if(data.Button_four_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_four_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn5.classList.add(data.Button_five_color);
+        btn5BackgroundColor = window.getComputedStyle(btn5).backgroundColor;
+        btn5.style.setProperty('--hover-color', data.Button_five_hover);
+        if(currentDayOfWeek==="Пятница"){
+            if(data.Button_five_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_five_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn6.classList.add(data.Button_six_color);
+        btn6BackgroundColor = window.getComputedStyle(btn6).backgroundColor;
+        btn6.style.setProperty('--hover-color', data.Button_six_hover);
+        if(currentDayOfWeek==="Суббота"){
+            if(data.Button_six_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_six_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+        btn7.classList.add(data.Button_seven_color);
+        btn7BackgroundColor = window.getComputedStyle(btn7).backgroundColor;
+        btn7.style.setProperty('--hover-color', data.Button_seven_hover);
+        if(currentDayOfWeek==="Воскресенье"){
+            if(data.Button_seven_color==="buttonblue"){
+                document.getElementById('currentTypeOfDay').innerText = "Будний";
+            } else if(data.Button_seven_color==="buttonred"){
+                document.getElementById('currentTypeOfDay').innerText = "Выходной";
+            } else {
+                document.getElementById('currentTypeOfDay').innerText = "Не определен";
+            }
+        }
+})
 
 var plans = document.querySelectorAll(".plan");
 var plans1, plans2, plans3, plans4, plans5, plans6;
@@ -1115,17 +1194,6 @@ input1.onclick = function() {
     }
 }
 
-var date = new Date();
-var dayOfWeek = date.getDay();
-var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
-var currentDayOfWeek = daysOfWeek[dayOfWeek];
-document.getElementById('currentDayOfWeek').innerText = currentDayOfWeek;
-if(currentDayOfWeek!== "Суббота" && currentDayOfWeek!== "Воскресенье") {
-    document.getElementById('currentTypeOfDay').innerText = "Будний";
-} else {
-    document.getElementById('currentTypeOfDay').innerText = "Выходной";
-}
-
 btn1.onclick = function() {
     if (currectpassword === true) {
         if(btn1.onclick) {
@@ -1138,6 +1206,13 @@ btn1.onclick = function() {
                 if (currentDayOfWeek==="Понедельник") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_one_color', 'buttonred');
+                formData.append('Button_one_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn1BackgroundColor === 'rgb(135, 18, 18)') {
                 btn1.style.backgroundColor = '#535353';
                 btn1BackgroundColor = 'rgb(83, 83, 83)';
@@ -1147,6 +1222,13 @@ btn1.onclick = function() {
                 if (currentDayOfWeek==="Понедельник") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_one_color', 'buttongray');
+                formData.append('Button_one_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn1BackgroundColor === 'rgb(83, 83, 83)') {
                 btn1.style.backgroundColor = '#0F91DA';
                 btn1BackgroundColor = 'rgb(15, 145, 218)';
@@ -1156,6 +1238,13 @@ btn1.onclick = function() {
                 if (currentDayOfWeek==="Понедельник") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_one_color', 'buttonblue');
+                formData.append('Button_one_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1175,6 +1264,13 @@ btn2.onclick = function() {
                 if (currentDayOfWeek==="Вторник") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_two_color', 'buttonred');
+                formData.append('Button_two_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn2BackgroundColor === 'rgb(135, 18, 18)') {
                 btn2.style.backgroundColor = '#535353';
                 btn2BackgroundColor = 'rgb(83, 83, 83)';
@@ -1184,6 +1280,13 @@ btn2.onclick = function() {
                 if (currentDayOfWeek==="Вторник") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_two_color', 'buttongray');
+                formData.append('Button_two_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn2BackgroundColor === 'rgb(83, 83, 83)') {
                 btn2.style.backgroundColor = '#0F91DA';
                 btn2BackgroundColor = 'rgb(15, 145, 218)';
@@ -1193,6 +1296,13 @@ btn2.onclick = function() {
                 if (currentDayOfWeek==="Вторник") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_two_color', 'buttonblue');
+                formData.append('Button_two_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1212,6 +1322,13 @@ btn3.onclick = function() {
                 if (currentDayOfWeek==="Среда") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_three_color', 'buttonred');
+                formData.append('Button_three_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn3BackgroundColor === 'rgb(135, 18, 18)') {
                 btn3.style.backgroundColor = '#535353';
                 btn3BackgroundColor = 'rgb(83, 83, 83)';
@@ -1221,6 +1338,13 @@ btn3.onclick = function() {
                 if (currentDayOfWeek==="Среда") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_three_color', 'buttongray');
+                formData.append('Button_three_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn3BackgroundColor === 'rgb(83, 83, 83)') {
                 btn3.style.backgroundColor = '#0F91DA';
                 btn3BackgroundColor = 'rgb(15, 145, 218)';
@@ -1230,6 +1354,13 @@ btn3.onclick = function() {
                 if (currentDayOfWeek==="Среда") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_three_color', 'buttonblue');
+                formData.append('Button_three_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1249,6 +1380,13 @@ btn4.onclick = function() {
                 if (currentDayOfWeek==="Четверг") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_four_color', 'buttonred');
+                formData.append('Button_four_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn4BackgroundColor === 'rgb(135, 18, 18)') {
                 btn4.style.backgroundColor = '#535353';
                 btn4BackgroundColor = 'rgb(83, 83, 83)';
@@ -1258,6 +1396,13 @@ btn4.onclick = function() {
                 if (currentDayOfWeek==="Четверг") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_four_color', 'buttongray');
+                formData.append('Button_four_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn4BackgroundColor === 'rgb(83, 83, 83)') {
                 btn4.style.backgroundColor = '#0F91DA';
                 btn4BackgroundColor = 'rgb(15, 145, 218)';
@@ -1267,6 +1412,13 @@ btn4.onclick = function() {
                 if (currentDayOfWeek==="Четверг") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_four_color', 'buttonblue');
+                formData.append('Button_four_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1286,6 +1438,13 @@ btn5.onclick = function() {
                 if (currentDayOfWeek==="Пятница") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_five_color', 'buttonred');
+                formData.append('Button_five_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn5BackgroundColor === 'rgb(135, 18, 18)') {
                 btn5.style.backgroundColor = '#535353';
                 btn5BackgroundColor = 'rgb(83, 83, 83)';
@@ -1295,6 +1454,13 @@ btn5.onclick = function() {
                 if (currentDayOfWeek==="Пятница") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_five_color', 'buttongray');
+                formData.append('Button_five_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn5BackgroundColor === 'rgb(83, 83, 83)') {
                 btn5.style.backgroundColor = '#0F91DA';
                 btn5BackgroundColor = 'rgb(15, 145, 218)';
@@ -1304,6 +1470,13 @@ btn5.onclick = function() {
                 if (currentDayOfWeek==="Пятница") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_five_color', 'buttonblue');
+                formData.append('Button_five_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1323,6 +1496,13 @@ btn6.onclick = function() {
                 if (currentDayOfWeek==="Суббота") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_six_color', 'buttonred');
+                formData.append('Button_six_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn6BackgroundColor === 'rgb(135, 18, 18)') {
                 btn6.style.backgroundColor = '#535353';
                 btn6BackgroundColor = 'rgb(83, 83, 83)';
@@ -1332,6 +1512,13 @@ btn6.onclick = function() {
                 if (currentDayOfWeek==="Суббота") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_six_color', 'buttongray');
+                formData.append('Button_six_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn6BackgroundColor === 'rgb(83, 83, 83)') {
                 btn6.style.backgroundColor = '#0F91DA';
                 btn6BackgroundColor = 'rgb(15, 145, 218)';
@@ -1341,6 +1528,13 @@ btn6.onclick = function() {
                 if (currentDayOfWeek==="Суббота") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_six_color', 'buttonblue');
+                formData.append('Button_six_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1360,6 +1554,13 @@ btn7.onclick = function() {
                 if (currentDayOfWeek==="Воскресенье") {
                     document.getElementById('currentTypeOfDay').innerText = "Выходной";
                 }
+                var formData = new FormData();
+                formData.append('Button_seven_color', 'buttonred');
+                formData.append('Button_seven_hover', '#601515');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn7BackgroundColor === 'rgb(135, 18, 18)') {
                 btn7.style.backgroundColor = '#535353';
                 btn7BackgroundColor = 'rgb(83, 83, 83)';
@@ -1369,6 +1570,13 @@ btn7.onclick = function() {
                 if (currentDayOfWeek==="Воскресенье") {
                     document.getElementById('currentTypeOfDay').innerText = "Не определен";
                 }
+                var formData = new FormData();
+                formData.append('Button_seven_color', 'buttongray');
+                formData.append('Button_seven_hover', '#3C3C3C');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             } else if (btn7BackgroundColor === 'rgb(83, 83, 83)') {
                 btn7.style.backgroundColor = '#0F91DA';
                 btn7BackgroundColor = 'rgb(15, 145, 218)';
@@ -1378,6 +1586,13 @@ btn7.onclick = function() {
                 if (currentDayOfWeek==="Воскресенье") {
                     document.getElementById('currentTypeOfDay').innerText = "Будний";
                 }
+                var formData = new FormData();
+                formData.append('Button_seven_color', 'buttonblue');
+                formData.append('Button_seven_hover', '#2073A1');
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
             }
         }
     } else {
@@ -1395,220 +1610,33 @@ fetch('/data')
   });
 
 fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('1').textContent = data.Setpoint_Planner_Morning_Weekday_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('2').textContent = data.Setpoint_Planner_Morning_Weekday_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('3').textContent = data.Setpoint_Planner_Morning_Weekend_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('4').textContent = data.Setpoint_Planner_Morning_Weekend_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('5').textContent = data.Setpoint_Planner_Morning_Weekday_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('6').textContent = data.Setpoint_Planner_Morning_Weekend_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('7').textContent = data.Setpoint_Planner_Day_Weekday_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('8').textContent = data.Setpoint_Planner_Day_Weekday_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('9').textContent = data.Setpoint_Planner_Day_Weekend_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('10').textContent = data.Setpoint_Planner_Day_Weekend_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('11').textContent = data.Setpoint_Planner_Day_Weekday_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('12').textContent = data.Setpoint_Planner_Day_Weekend_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('13').textContent = data.Setpoint_Planner_Evening_Weekday_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('14').textContent = data.Setpoint_Planner_Evening_Weekday_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('15').textContent = data.Setpoint_Planner_Evening_Weekend_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('16').textContent = data.Setpoint_Planner_Evening_Weekend_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('17').textContent = data.Setpoint_Planner_Evening_Weekday_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('18').textContent = data.Setpoint_Planner_Evening_Weekend_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('19').textContent = data.Setpoint_Planner_Night_Weekday_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('20').textContent = data.Setpoint_Planner_Night_Weekday_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('21').textContent = data.Setpoint_Planner_Night_Weekend_Hour;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('22').textContent = data.Setpoint_Planner_Night_Weekend_Minute;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('23').textContent = data.Setpoint_Planner_Night_Weekday_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    document.getElementById('24').textContent = data.Setpoint_Planner_Night_Weekend_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('1').textContent = data.Setpoint_Planner_Morning_Weekday_Hour;
+        document.getElementById('2').textContent = data.Setpoint_Planner_Morning_Weekday_Minute;
+        document.getElementById('3').textContent = data.Setpoint_Planner_Morning_Weekend_Hour;
+        document.getElementById('4').textContent = data.Setpoint_Planner_Morning_Weekend_Minute;
+        document.getElementById('5').textContent = data.Setpoint_Planner_Morning_Weekday_Setpoint;
+        document.getElementById('6').textContent = data.Setpoint_Planner_Morning_Weekend_Setpoint;
+        document.getElementById('7').textContent = data.Setpoint_Planner_Day_Weekday_Hour;
+        document.getElementById('8').textContent = data.Setpoint_Planner_Day_Weekday_Minute;
+        document.getElementById('9').textContent = data.Setpoint_Planner_Day_Weekend_Hour;
+        document.getElementById('10').textContent = data.Setpoint_Planner_Day_Weekend_Minute;
+        document.getElementById('11').textContent = data.Setpoint_Planner_Day_Weekday_Setpoint;
+        document.getElementById('12').textContent = data.Setpoint_Planner_Day_Weekend_Setpoint;
+        document.getElementById('13').textContent = data.Setpoint_Planner_Evening_Weekday_Hour;
+        document.getElementById('14').textContent = data.Setpoint_Planner_Evening_Weekday_Minute;
+        document.getElementById('15').textContent = data.Setpoint_Planner_Evening_Weekend_Hour;
+        document.getElementById('16').textContent = data.Setpoint_Planner_Evening_Weekend_Minute;
+        document.getElementById('17').textContent = data.Setpoint_Planner_Evening_Weekday_Setpoint;
+        document.getElementById('18').textContent = data.Setpoint_Planner_Evening_Weekend_Setpoint;
+        document.getElementById('19').textContent = data.Setpoint_Planner_Night_Weekday_Hour;
+        document.getElementById('20').textContent = data.Setpoint_Planner_Night_Weekday_Minute;
+        document.getElementById('21').textContent = data.Setpoint_Planner_Night_Weekend_Hour;
+        document.getElementById('22').textContent = data.Setpoint_Planner_Night_Weekend_Minute;
+        document.getElementById('23').textContent = data.Setpoint_Planner_Night_Weekday_Setpoint;
+        document.getElementById('24').textContent = data.Setpoint_Planner_Night_Weekend_Setpoint;
+    })
 
 function checkNumpad() {
     if (input2check === true) {

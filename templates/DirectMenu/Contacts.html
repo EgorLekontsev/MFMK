@@ -88,14 +88,14 @@ fetch('/data')
 pump.onclick = function() {
     if(pump.onclick){
         ModalNumpad.style.display = "block";
-        document.getElementById('numpad').innerText = document.getElementById('Pumps').innerText;
     }
 }
 
 function checkNumpad() {
-    pump.innerText = document.getElementById('numpad').innerText;
-    ModalNumpad.style.display = "none";
-
+    if (document.getElementById('numpad').innerText !== "") {
+        pump.innerText = document.getElementById('numpad').innerText;
+        ModalNumpad.style.display = "none";
+    }
     var formData = new FormData();
     formData.append('Pumps', document.getElementById('numpad').innerText);
 
@@ -103,6 +103,7 @@ function checkNumpad() {
         method: 'POST',
         body: formData
     })
+    document.getElementById('numpad').innerText = '';
 }
 
 function appendToNumpad(value) {
