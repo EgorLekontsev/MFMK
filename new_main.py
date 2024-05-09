@@ -1272,59 +1272,59 @@ class Frame2(tk.Frame):
         self.label28 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label28.place(x=750, y=66, width=28, height=19)
-        self.setpoint_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.setpoint_value = tk.Label(self.canvas, text=App.storage_data["User_Setpoint"], fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.setpoint_value.place(x=644, y=64)
 
-        self.weekdays_morning_h = tk.Label(self.canvas, text="05", fg='white', bg='black',
+        self.weekdays_morning_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekday_Hour"], fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.weekdays_morning_h.place(x=388, y=216, width=19, height=19)
-        self.weekdays_afternoon_h = tk.Label(self.canvas, text="10", fg='white', bg='black',
+        self.weekdays_afternoon_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekday_Hour"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekdays_afternoon_h.place(x=388, y=265, width=19, height=19)
-        self.weekdays_evening_h = tk.Label(self.canvas, text="17", fg='white', bg='black',
+        self.weekdays_evening_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Evening_Weekday_Hour"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekdays_evening_h.place(x=388, y=307, width=19, height=19)
-        self.weekdays_night_h = tk.Label(self.canvas, text="22", fg='white', bg='black',
+        self.weekdays_night_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekday_Hour"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekdays_night_h.place(x=388, y=350, width=19, height=19)
 
-        self.weekdays_morning_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekdays_morning_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekday_Minute"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekdays_morning_m.place(x=440, y=216, width=19, height=19)
-        self.weekdays_afternoon_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekdays_afternoon_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekday_Minute"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekdays_afternoon_m.place(x=440, y=265, width=19, height=19)
-        self.weekdays_evening_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekdays_evening_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Evening_Weekday_Minute"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekdays_evening_m.place(x=440, y=307, width=19, height=19)
-        self.weekdays_night_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekdays_night_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekday_Minute"], fg='white', bg='black',
                                          font=('Roboto Bold', 12))
         self.weekdays_night_m.place(x=440, y=350, width=19, height=19)
 
-        self.weekends_morning_h = tk.Label(self.canvas, text="05", fg='white', bg='black',
+        self.weekends_morning_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekend_Hour"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekends_morning_h.place(x=492, y=216, width=19, height=19)
-        self.weekends_afternoon_h = tk.Label(self.canvas, text="10", fg='white', bg='black',
+        self.weekends_afternoon_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekend_Hour"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekends_afternoon_h.place(x=492, y=265, width=19, height=19)
-        self.weekends_evening_h = tk.Label(self.canvas, text="17", fg='white', bg='black',
+        self.weekends_evening_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekend_Hour"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekends_evening_h.place(x=492, y=307, width=19, height=19)
-        self.weekends_night_h = tk.Label(self.canvas, text="22", fg='white', bg='black',
+        self.weekends_night_h = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekend_Hour"], fg='white', bg='black',
                                          font=('Roboto Bold', 12))
         self.weekends_night_h.place(x=492, y=350, width=19, height=19)
 
-        self.weekends_morning_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekends_morning_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekend_Minute"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekends_morning_m.place(x=544, y=216, width=19, height=19)
-        self.weekends_afternoon_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekends_afternoon_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekend_Minute"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekends_afternoon_m.place(x=544, y=265, width=19, height=19)
-        self.weekends_evening_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekends_evening_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Evening_Weekend_Minute"], fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.weekends_evening_m.place(x=544, y=307, width=19, height=19)
-        self.weekends_night_m = tk.Label(self.canvas, text="00", fg='white', bg='black',
+        self.weekends_night_m = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekend_Minute"], fg='white', bg='black',
                                          font=('Roboto Bold', 12))
         self.weekends_night_m.place(x=544, y=350, width=19, height=19)
 
@@ -1337,25 +1337,25 @@ class Frame2(tk.Frame):
         self.weekends_evening_field = self.canvas.create_image(741, 316, image=self.img_field_s)
         self.weekends_night_field = self.canvas.create_image(741, 361, image=self.img_field_s)
 
-        self.weekdays_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekdays_morning_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekday_Setpoint"], fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.weekdays_morning_value.place(x=599, y=214)
         self.label29 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label29.place(x=653, y=215, width=28, height=19)
-        self.weekdays_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekdays_afternoon_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekday_Setpoint"], fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.weekdays_afternoon_value.place(x=599, y=262)
         self.label30 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label30.place(x=653, y=264, width=28, height=19)
-        self.weekdays_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekdays_evening_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Evening_Weekday_Setpoint"], fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.weekdays_evening_value.place(x=599, y=304)
         self.label31 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label31.place(x=653, y=306, width=28, height=19)
-        self.weekdays_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekdays_night_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekday_Setpoint"], fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.weekdays_night_value.place(x=599, y=348)
         self.label32 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
@@ -1363,51 +1363,51 @@ class Frame2(tk.Frame):
         self.label32.place(x=653, y=351, width=28, height=19)
 
 
-        self.weekends_morning_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekends_morning_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Morning_Weekend_Setpoint"], fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.weekends_morning_value.place(x=704, y=214)
         self.label33 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label33.place(x=757, y=215, width=28, height=19)
-        self.weekends_afternoon_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekends_afternoon_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Day_Weekend_Setpoint"], fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.weekends_afternoon_value.place(x=704, y=262)
         self.label34 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label34.place(x=757, y=265, width=28, height=19)
-        self.weekends_evening_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekends_evening_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Evening_Weekend_Setpoint"], fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.weekends_evening_value.place(x=704, y=304)
         self.label35 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label35.place(x=757, y=306, width=28, height=19)
-        self.weekends_night_value = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.weekends_night_value = tk.Label(self.canvas, text=App.storage_data["Setpoint_Planner_Night_Weekend_Setpoint"], fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.weekends_night_value.place(x=704, y=348)
         self.label36 = tk.Label(self.canvas, text="Бар", fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.label36.place(x=757, y=350, width=28, height=19)
 
-        self.button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button1"))
+        self.button_day1 = tk.Button(self, text='ПН', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_one_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_one_color"]), activeforeground="white", command=lambda: self.check_password("button1"))
         self.button_day1.place(x=510, y=107, width=35, height=35)
-        self.button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button2"))
+        self.button_day2 = tk.Button(self, text='ВТ', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_two_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_two_color"]), activeforeground="white", command=lambda: self.check_password("button2"))
         self.button_day2.place(x=550, y=107, width=35, height=35)
-        self.button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button3"))
+        self.button_day3 = tk.Button(self, text='СР', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_three_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_three_color"]), activeforeground="white", command=lambda: self.check_password("button3"))
         self.button_day3.place(x=590, y=107, width=35, height=35)
-        self.button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button4"))
+        self.button_day4 = tk.Button(self, text='ЧТ', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_four_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_four_color"]), activeforeground="white", command=lambda: self.check_password("button4"))
         self.button_day4.place(x=630, y=107, width=35, height=35)
-        self.button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg='#0F91DA', fg='white', relief="groove",
-                                activebackground="#0F91DA", activeforeground="white", command=lambda: self.check_password("button5"))
+        self.button_day5 = tk.Button(self, text='ПТ', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_five_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_five_color"]), activeforeground="white", command=lambda: self.check_password("button5"))
         self.button_day5.place(x=670, y=107, width=35, height=35)
-        self.button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white", command=lambda: self.check_password("button6"))
+        self.button_day6 = tk.Button(self, text='СБ', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_six_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_six_color"]), activeforeground="white", command=lambda: self.check_password("button6"))
         self.button_day6.place(x=710, y=107, width=35, height=35)
-        self.button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg='#871212', fg='white', relief="groove",
-                                activebackground="#871212", activeforeground="white", command=lambda: self.check_password("button7"))
+        self.button_day7 = tk.Button(self, text='ВС', font=('Roboto Bold', 12), bg=self.colors_button(App.storage_data["Button_seven_color"]), fg='white', relief="groove",
+                                activebackground=self.colors_button(App.storage_data["Button_seven_color"]), activeforeground="white", command=lambda: self.check_password("button7"))
         self.button_day7.place(x=750, y=107, width=35, height=35)
         self.button_dict = {"Понедельник": self.button_day1.cget('bg'), "Вторник": self.button_day2.cget('bg'), "Среда": self.button_day3.cget('bg'),
                             "Четверг": self.button_day4.cget('bg'), "Пятница": self.button_day5.cget('bg'), "Суббота": self.button_day6.cget('bg'),
@@ -1591,6 +1591,15 @@ class Frame2(tk.Frame):
         button8.place(x=0, y=420, width=200, height=60)
 
         self.update_type_day()
+
+    def colors_button(self, choice):
+        match (choice):
+            case "buttonblue":
+                return "#0F91DA"
+            case "buttonred":
+                return "#871212"
+            case "buttongray":
+                return "#3C3C3C"
 
     def update_type_day(self):
         self.button_dict = {"Понедельник": self.button_day1.cget('bg'), "Вторник": self.button_day2.cget('bg'),
@@ -1787,60 +1796,81 @@ class Frame2(tk.Frame):
                 elif word == "button1":
                     if self.button_day1.cget('bg') == "#3C3C3C":
                         self.button_day1.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_one_color"] = "buttonblue"
                     elif self.button_day1.cget('bg') == "#0F91DA":
                         self.button_day1.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_one_color"] = "buttonred"
                     else:
                         self.button_day1.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_one_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button2":
                     if self.button_day2.cget('bg') == "#3C3C3C":
                         self.button_day2.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_two_color"] = "buttonblue"
                     elif self.button_day2.cget('bg') == "#0F91DA":
                         self.button_day2.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_two_color"] = "buttonred"
                     else:
                         self.button_day2.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_two_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button3":
                     if self.button_day3.cget('bg') == "#3C3C3C":
                         self.button_day3.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_three_color"] = "buttonblue"
                     elif self.button_day3.cget('bg') == "#0F91DA":
                         self.button_day3.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_three_color"] = "buttonred"
                     else:
                         self.button_day3.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_three_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button4":
                     if self.button_day4.cget('bg') == "#3C3C3C":
                         self.button_day4.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_four_color"] = "buttonblue"
                     elif self.button_day4.cget('bg') == "#0F91DA":
                         self.button_day4.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_four_color"] = "buttonred"
                     else:
                         self.button_day4.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_four_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button5":
                     if self.button_day5.cget('bg') == "#3C3C3C":
                         self.button_day5.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_five_color"] = "buttonblue"
                     elif self.button_day5.cget('bg') == "#0F91DA":
                         self.button_day5.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_five_color"] = "buttonred"
                     else:
                         self.button_day5.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_five_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button6":
                     if self.button_day6.cget('bg') == "#3C3C3C":
                         self.button_day6.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_six_color"] = "buttonblue"
                     elif self.button_day6.cget('bg') == "#0F91DA":
                         self.button_day6.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_six_color"] = "buttonred"
                     else:
                         self.button_day6.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_six_color"] = "buttongray"
                     self.update_type_day()
                 elif word == "button7":
                     if self.button_day7.cget('bg') == "#3C3C3C":
                         self.button_day7.config(bg="#0F91DA", activebackground="#0F91DA")
+                        App.storage_data["Button_seven_color"] = "buttonblue"
                     elif self.button_day7.cget('bg') == "#0F91DA":
                         self.button_day7.config(bg="#871212", activebackground="#871212")
+                        App.storage_data["Button_seven_color"] = "buttonred"
                     else:
                         self.button_day7.config(bg="#3C3C3C", activebackground="#3C3C3C")
+                        App.storage_data["Button_seven_color"] = "buttongray"
                     self.update_type_day()
-
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -1851,109 +1881,158 @@ class Frame2(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["User_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
     def click2(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_morning_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click3(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_afternoon_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click4(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_evening_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
     def click5(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_night_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click6(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_morning_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click7(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_afternoon_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click8(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_evening_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click9(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekdays_night_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click10(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_morning_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click11(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_afternoon_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click12(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_evening_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click13(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_night_h.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Hour"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click14(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_morning_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click15(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_afternoon_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click16(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_evening_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click17(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].weekends_night_m.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Minute"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click18(self):
         App.global_controller.frames["Frame2"].weekdays_morning_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click19(self):
         App.global_controller.frames["Frame2"].weekdays_afternoon_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click20(self):
         App.global_controller.frames["Frame2"].weekdays_evening_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click21(self):
         App.global_controller.frames["Frame2"].weekdays_night_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click22(self):
         App.global_controller.frames["Frame2"].weekends_morning_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click23(self):
         App.global_controller.frames["Frame2"].weekends_afternoon_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click24(self):
         App.global_controller.frames["Frame2"].weekends_evening_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click25(self):
         App.global_controller.frames["Frame2"].weekends_night_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Setpoint"] = self.numpad_instance.current_value
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
 
     def set_access(self, event=None):
@@ -2616,33 +2695,33 @@ class Frame9(tk.Frame):
                                 font=('Roboto Bold', 12))
         self.braking_label.place(x=750, y=310)
 
-        self.voltage_value = tk.Label(self.canvas, text="0", fg='white', bg='black',
+        self.voltage_value = tk.Label(self.canvas, text=App.storage_data["Voltage"], fg='white', bg='black',
                                       font=('Roboto Bold', 12))
         self.voltage_value.place(x=646, y=60)
-        self.current_value = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.current_value = tk.Label(self.canvas, text=App.storage_data["Amperage"], fg='white', bg='black',
                                       font=('Roboto Bold', 12))
         self.current_value.place(x=646, y=100)
-        self.frequency_value = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.frequency_value = tk.Label(self.canvas, text=App.storage_data["Frequency"], fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.frequency_value.place(x=646, y=140)
-        self.speed_value = tk.Label(self.canvas, text="0", fg='white', bg='black',
+        self.speed_value = tk.Label(self.canvas, text=App.storage_data["Speed"], fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.speed_value.place(x=646, y=180)
-        self.power_value = tk.Label(self.canvas, text="0.00", fg='white', bg='black',
+        self.power_value = tk.Label(self.canvas, text=App.storage_data["Power"], fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.power_value.place(x=646, y=220)
-        self.boost_value = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.boost_value = tk.Label(self.canvas, text=App.storage_data["Acceleration_Time"], fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.boost_value.place(x=646, y=270)
-        self.braking_value = tk.Label(self.canvas, text="0.0", fg='white', bg='black',
+        self.braking_value = tk.Label(self.canvas, text=App.storage_data["Braking_Time"], fg='white', bg='black',
                                       font=('Roboto Bold', 12))
         self.braking_value.place(x=646, y=310)
 
-        self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png")
+        self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png") if App.storage_data["Reading_Settings"] == "0" else PhotoImage(file=r"new_images/ReadingGreen.png")
         self.Switch_Flat_first_button = self.canvas.create_image(689, 386.5, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
-        self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png")
+        self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png") if App.storage_data["Recording_Settings"] == "0" else PhotoImage(file=r"new_images/RecordingGreen.png")
         self.Switch_Flat_second_button = self.canvas.create_image(689, 424.5, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
 
@@ -2658,8 +2737,7 @@ class Frame9(tk.Frame):
         self.canvas.tag_bind(self.rectangle_speed, "<Button-1>", lambda event: self.check_password("click4"))
         self.speed_value.bind("<Button-1>", lambda event: self.check_password("click4"))
         self.speed_label.bind("<Button-1>", lambda event: self.check_password("click4"))
-        self.canvas.tag_bind(self.rectangle_power, "<Button-1>",
-                             lambda event: self.check_password("click5"))
+        self.canvas.tag_bind(self.rectangle_power, "<Button-1>", lambda event: self.check_password("click5"))
         self.power_value.bind("<Button-1>", lambda event: self.check_password("click5"))
         self.power_label.bind("<Button-1>", lambda event: self.check_password("click5"))
         self.canvas.tag_bind(self.rectangle_boost, "<Button-1>", lambda event: self.check_password("click6"))
@@ -2726,6 +2804,7 @@ class Frame9(tk.Frame):
                     self.update_switch_first()
                 elif word == "switch2":
                     self.update_switch_second()
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -2734,26 +2813,46 @@ class Frame9(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.voltage_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].voltage_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Voltage"] = self.numpad_instance.current_value
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+        datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+        f"{self.current_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].current_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Amperage"] = self.numpad_instance.current_value
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].frequency_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Frequency"] = self.numpad_instance.current_value
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
+            f"{self.speed_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].speed_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Speed"] = self.numpad_instance.current_value
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.power_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].power_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Power"] = self.numpad_instance.current_value
     def click6(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
+            f"{self.boost_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].boost_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Acceleration_Time"] = self.numpad_instance.current_value
     def click7(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
+            f"{self.braking_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame9"].braking_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Braking_Time"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -2763,16 +2862,32 @@ class Frame9(tk.Frame):
     def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGray.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGreen.png")
+            App.storage_data["Reading_Settings"] = "1"
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
+                f"OFF -> ON"))
         elif self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGreen.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png")
+            App.storage_data["Reading_Settings"] = "0"
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
+                f"ON -> OFF"))
         self.Switch_Flat_first_button = self.canvas.create_image(689, 386.5, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
     def update_switch_second(self):
         if self.Switch_Flat_second_img.cget("file") == "new_images/RecordingGray.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGreen.png")
+            App.storage_data["Recording_Settings"] = "1"
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
+                f"OFF -> ON"))
         elif self.Switch_Flat_second_img.cget("file") == "new_images/RecordingGreen.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png")
+            App.storage_data["Recording_Settings"] = "0"
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
+                f"ON -> OFF"))
         self.Switch_Flat_second_button = self.canvas.create_image(689, 424.5, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
 
@@ -3021,9 +3136,15 @@ class Frame10(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+        datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+        f"{self.nominal_s_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame10"].nominal_s_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.nominal_d_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame10"].nominal_d_value.config(text=self.numpad_instance.current_value)
 
     def set_access(self, event=None):
@@ -3299,15 +3420,27 @@ class Frame11(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
+            f"{self.min_f_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame11"].min_f_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+            f"{self.max_f_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame11"].max_f_value.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
+            f"{self.interval_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame11"].interval_value.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.time_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame11"].time_value.config(text=self.numpad_instance.current_value)
 
 
@@ -3319,16 +3452,28 @@ class Frame11(tk.Frame):
 
     def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") ==  "new_images/Switch-0.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+                f"OFF -> ON"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_first_img.cget("file") == "new_images/Switch-1.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+                f"ON -> OFF"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_first_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
     def update_switch_second(self):
         if self.Switch_Flat_second_img.cget("file") == "new_images/Switch-0.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+                f"OFF -> ON"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_second_img.cget("file") == "new_images/Switch-1.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+                f"ON -> OFF"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_second_button = self.canvas.create_image(670, 194, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
@@ -3691,27 +3836,51 @@ class Frame12(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
+            f"{self.master_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].master_f_on_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.acceptable_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.acceptable_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.crit_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=self.numpad_instance.current_value)
 
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
+            f"{self.crit_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=self.numpad_instance.current_value)
 
     def click6(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
+            f"{self.fix_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=self.numpad_instance.current_value)
 
     def click7(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
+            f"{self.fix_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].fix_f_on_value.config(text=self.numpad_instance.current_value)
 
     def click8(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
+            f"{self.time_work_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].time_work_on_value.config(text=self.numpad_instance.current_value)
 
     def set_access(self, event=None):
@@ -4078,27 +4247,51 @@ class Frame13(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
+            f"{self.acceptable_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.acceptable_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].max_emergency_value.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.crit_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].crit_jump_value.config(text=self.numpad_instance.current_value)
 
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
+            f"{self.crit_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=self.numpad_instance.current_value)
 
     def click6(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
+            f"{self.fix_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=self.numpad_instance.current_value)
 
     def click7(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
+            f"{self.fix_f_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].fix_f_off_value.config(text=self.numpad_instance.current_value)
 
     def click8(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
+            f"{self.time_work_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].time_work_off_value.config(text=self.numpad_instance.current_value)
 
     def set_access(self, event=None):
@@ -4456,21 +4649,39 @@ class Frame14(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.start_mod_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].start_mod_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.upper_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].upper_pressure_value.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
+            f"{self.lower_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].lower_pressure_value.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.swing_time_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].swing_time_value.config(text=self.numpad_instance.current_value)
 
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
+            f"{self.acceptable_range_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].acceptable_range_value.config(text=self.numpad_instance.current_value)
 
     def click6(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
+            f"{self.acceptable_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=self.numpad_instance.current_value)
 
     def set_access(self, event=None):
@@ -4480,8 +4691,14 @@ class Frame14(tk.Frame):
         App.shields_hide()
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+                f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+                f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
@@ -4856,27 +5073,51 @@ class Frame15(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+            f"{self.response_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].response_frequency_value.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.cooldown_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].max_emergency_value.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.warnings_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].warnings_value.config(text=self.numpad_instance.current_value)
 
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
+            f"{self.emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].emergency_value.config(text=self.numpad_instance.current_value)
 
     def click6(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
+            f"{self.cd_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cd_emergency_value.config(text=self.numpad_instance.current_value)
 
     def click7(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
+            f"{self.cd_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cd_off_value.config(text=self.numpad_instance.current_value)
 
     def click8(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
+            f"{self.stop_crit_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=self.numpad_instance.current_value)
 
     def set_access(self, event=None):
@@ -4887,8 +5128,14 @@ class Frame15(tk.Frame):
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/_NO_YES.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
+                f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_YES_NO.png")
         elif self.Switch_Flat_img.cget("file") == "new_images/_YES_NO.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
+                f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
         self.Switch_Flat_button = self.canvas.create_image(674, 440, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
@@ -5155,18 +5402,33 @@ class Frame16(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
+            f"{self.p_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].p_k.config(text=self.numpad_instance.current_value)
 
     def click2(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
+            f"{self.i_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].i_k.config(text=self.numpad_instance.current_value)
 
     def click3(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
+            f"{self.d_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].d_k.config(text=self.numpad_instance.current_value)
 
     def click4(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
+            f"{self.const_integral.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].const_integral.config(text=self.numpad_instance.current_value)
 
     def click5(self):
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+            datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
+            f"{self.setpoint.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].setpoint.config(text=self.numpad_instance.current_value)
 
 
@@ -5179,8 +5441,14 @@ class Frame16(tk.Frame):
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
+                f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
+            App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
+                datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
+                f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 219, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password("switch"))
@@ -6492,7 +6760,7 @@ class Frame20(tk.Frame):
 
     def change_active_pumps(self):
         App.Pumps_active = int(self.numpad_instance.current_value)
-        App.storage_data["Pumps"] = App.Pumps_active
+        App.storage_data["Pumps"] = str(App.Pumps_active)
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
         App.global_controller.frames["Frame1_1"].canvas.delete(App.global_controller.frames["Frame1_1"].Pump_six)
