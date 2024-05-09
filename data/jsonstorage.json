@@ -3,7 +3,7 @@
   "Switch_settings_panel": "0",
   "Time_screensaver_settings_panel": "30",
   "Time_display_settings_panel": "15",
-  "User_Setpoint": "3.00",
+  "User_Setpoint": "100",
   "Setpoint_Planner_Morning_Weekday_Hour": "05",
   "Setpoint_Planner_Morning_Weekday_Minute": "00",
   "Setpoint_Planner_Morning_Weekend_Hour": "05",
