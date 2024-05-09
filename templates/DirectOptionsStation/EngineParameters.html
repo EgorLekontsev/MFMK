@@ -10,12 +10,60 @@ p {
     font-size: 16px;
     color: white;
     font-weight: bold;
+    width: 250px;
     height: 20px;
     margin: 0px;
 }
 hr {
     margin: 0px;
     border-color: #616161;
+}
+#SwitchRecording {
+    position: absolute;
+    top: 410px;
+    left: 651px;
+    width: 76px;
+    height: 29px;
+    border-radius: 8px;
+    border: 0px solid white;
+    overflow: hidden;
+}
+
+#SwitchRecording::after {
+    content: "Запись";
+    color: white;
+    position: absolute;
+    font-family: Roboto;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#SwitchReading {
+    position: absolute;
+    top: 372px;
+    left: 651px;
+    width: 76px;
+    height: 29px;
+    border-radius: 8px;
+    border: 0px solid white;
+    overflow: hidden;
+}
+
+#SwitchReading::after {
+    content: "Чтение";
+    color: white;
+    position: absolute;
+    font-family: Roboto;
+    font-size: 13px;
+    color: white;
+    font-weight: bold;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 {% endblock %}
 
@@ -66,97 +114,646 @@ hr {
 {% endblock %}
 
 {% block switch %}
-function changeSwitchReading() {
-    var image = document.getElementById("SwitchReading");
-    if (image.src.match("{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}")) {
-        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOn.png') }}";
-    } else {
-        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}";
+var collectednumber = '';
+var collectednumbernumpad = '';
+
+function appendToResult(value) {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result.length < 8) {
+        collectednumber += value;
+        document.getElementById('passwordresult').innerText += '*';
     }
 }
-function changeSwitchRecording() {
-    var image = document.getElementById("SwitchRecording");
-    if (image.src.match("{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}")) {
-        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOn.png') }}";
-    } else {
-        image.src = "{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}";
+function clearResult() {
+var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = '';
+        document.getElementById('passwordresult').innerText = '';
     }
+}
+function clearLastValue() {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = collectednumber.slice(0, -1);
+        document.getElementById('passwordresult').innerText = result.slice(0, -1);
+    }
+}
+
+var ModalPassword = document.getElementById('ModalPassword');
+var OffModelPassword = document.getElementsByClassName("closeModalPassword")[0];
+var OffModelNumpad = document.getElementsByClassName("closeModalNumpad")[0];
+
+var input1 = document.getElementById('InputText1');
+var input2 = document.getElementById('InputText2');
+var input3 = document.getElementById('InputText3');
+var input4 = document.getElementById('InputText4');
+var input5 = document.getElementById('InputText5');
+var input6 = document.getElementById('InputText6');
+var input7 = document.getElementById('InputText7');
+var input8 = document.getElementById('InputText8');
+var input9 = document.getElementById('InputText9');
+var input10 = document.getElementById('InputText10');
+var input11 = document.getElementById('InputText11');
+var input12 = document.getElementById('InputText12');
+var input13 = document.getElementById('InputText13');
+var input14 = document.getElementById('InputText14');
+var input2check = false;
+var input4check = false;
+var input6check = false;
+var input8check = false;
+var input10check = false;
+var input12check = false;
+var input14check = false;
+
+var currectpassword = false;
+
+var SwitchReading = document.getElementById('SwitchReading');
+var SwitchRecording = document.getElementById('SwitchRecording');
+
+OffModelPassword.onclick = function() {
+    ModalPassword.style.display = "none";
+    document.getElementById('passwordresult').innerText = '';
+    collectednumber = '';
+}
+
+OffModelNumpad.onclick = function() {
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    collectednumbernumpad = '';
+    input2check = false;
+    input4check = false;
+    input6check = false;
+    input8check = false;
+    input10check = false;
+    input12check = false;
+    input14check = false;
+}
+
+function appendToNumpad(value) {
+    var result = document.getElementById('numpad').innerText;
+    if (input2check === true) {
+        if(result.length===0 && value==="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else {
+            if(result.length===0 && value>=1 && value<=9) {
+                collectednumbernumpad += value;
+                document.getElementById('numpad').innerText += value;
+            } else if (result.length===1 && value>=0 && value<=9 && result[0]!=="0") {
+                collectednumbernumpad += value;
+                document.getElementById('numpad').innerText += value;
+            } else if (result.length===2 && value>=0 && value<=9 && result[0]!=="0") {
+                collectednumbernumpad += value;
+                document.getElementById('numpad').innerText += value;
+            } else if (result.length===3 && result[0]==="1" && result[1]==="0" && result[2]==="0" && value==="0") {
+                collectednumbernumpad += value;
+                document.getElementById('numpad').innerText += value;
+            }
+        }
+    } else if(input4check === true) {
+        if(result.length===0 && value==="0"){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0]==="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="0" && result[0]==="0" && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===0 && value>=1 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9 && result[0]>=0 && result[0]<=9 && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value>=0 && value<=9 && result[0]>=1 && result[0]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="." && result[0]>=1 && result[0]<=9 && result[1]>=0 && result[1]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value <=9 && result[2]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if(input6check === true) {
+        if(result.length===0 && value==="0"){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0]==="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="0" && result[0]==="0" && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===0 && value>=1 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9 && result[0]>=0 && result[0]<=9 && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value>=0 && value<=9 && result[0]>=1 && result[0]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="." && result[0]>=1 && result[0]<=9 && result[1]>=0 && result[1]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value <=9 && result[2]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    }
+
+<!--    } else if(input8check === true) {-->
+
+<!--    } else if(input10check === true) {-->
+
+    else if(input12check === true) {
+        if(result.length===0 && value==="0"){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0]==="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="0" && result[0]==="0" && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===0 && value>=1 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9 && result[0]>=0 && result[0]<=9 && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value>=0 && value<=9 && result[0]>=1 && result[0]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="." && result[0]>=1 && result[0]<=9 && result[1]>=0 && result[1]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value <=9 && result[2]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if(input14check === true) {
+        if(result.length===0 && value==="0"){
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0]==="0") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="0" && result[0]==="0" && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===0 && value>=1 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9 && result[0]>=0 && result[0]<=9 && result[1]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value>=0 && value<=9 && result[0]>=1 && result[0]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value==="." && result[0]>=1 && result[0]<=9 && result[1]>=0 && result[1]<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value <=9 && result[2]===".") {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    }
+}
+function clearNumpad() {
+var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+    }
+}
+function clearLastValueNumpad() {
+    var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        collectednumbernumpad = collectednumber.slice(0, -1);
+        document.getElementById('numpad').innerText = result.slice(0, -1);
+    }
+}
+
+input1.onclick = function() {
+    if (currectpassword === true) {
+        if(input1.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '100';
+            document.getElementById('max').innerText = '1000';
+            document.getElementById('maxtext').style.left = "196px";
+            document.getElementById('max').style.left = "243px";
+            input2check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input3.onclick = function() {
+    if (currectpassword === true) {
+        if(input3.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.0';
+            document.getElementById('max').innerText = '99.9';
+            document.getElementById('maxtext').style.left = "200px";
+            document.getElementById('max').style.left = "248px";
+            input4check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input5.onclick = function() {
+    if (currectpassword === true) {
+        if(input5.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.0';
+            document.getElementById('max').innerText = '99.9';
+            document.getElementById('maxtext').style.left = "200px";
+            document.getElementById('max').style.left = "248px";
+            input6check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+<!--input7.onclick = function() {-->
+<!--    if (currectpassword === true) {-->
+<!--        if(input7.onclick) {-->
+<!--            ModalNumpad.style.display = "block";-->
+<!--            document.getElementById('min').innerText = '0';-->
+<!--            document.getElementById('max').innerText = '9999';-->
+<!--            document.getElementById('maxtext').style.left = "196px";-->
+<!--            document.getElementById('max').style.left = "243px";-->
+<!--            input8check = true;-->
+<!--        }-->
+<!--    } else {-->
+<!--        ModalPassword.style.display = "block";-->
+<!--    }-->
+<!--}-->
+
+<!--input9.onclick = function() {-->
+<!--    if (currectpassword === true) {-->
+<!--        if(input9.onclick) {-->
+<!--            ModalNumpad.style.display = "block";-->
+<!--            document.getElementById('min').innerText = '0.00';-->
+<!--            document.getElementById('max').innerText = '655.35';-->
+<!--            document.getElementById('maxtext').style.left = "180px";-->
+<!--            document.getElementById('max').style.left = "228px";-->
+<!--            input10check = true;-->
+<!--        }-->
+<!--    } else {-->
+<!--        ModalPassword.style.display = "block";-->
+<!--    }-->
+<!--}-->
+
+input11.onclick = function() {
+    if (currectpassword === true) {
+        if(input11.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.0';
+            document.getElementById('max').innerText = '99.9';
+            document.getElementById('maxtext').style.left = "200px";
+            document.getElementById('max').style.left = "248px";
+            input12check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input13.onclick = function() {
+    if (currectpassword === true) {
+        if(input13.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.0';
+            document.getElementById('max').innerText = '99.9';
+            document.getElementById('maxtext').style.left = "200px";
+            document.getElementById('max').style.left = "248px";
+            input14check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText2').textContent = data.Voltage;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText4').textContent = data.Amperage;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText6').textContent = data.Frequency;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText8').textContent = data.Speed;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText10').textContent = data.Power;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText12').textContent = data.Acceleration_Time;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText14').textContent = data.Braking_Time;
+  })
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    if (data.Reading_Settings==="0") {
+        SwitchReading.style.backgroundColor = '#606060';
+    } else {
+        SwitchReading.style.backgroundColor = '#006C5F';
+    }
+  })
+
+SwitchReading.onclick = function() {
+    if (currectpassword === true) {
+        if(SwitchReading.onclick) {
+            if (SwitchReading.style.backgroundColor === 'rgb(96, 96, 96)') {
+                SwitchReading.style.backgroundColor = '#006C5F';
+                var formData = new FormData();
+                formData.append('Reading_Settings', "1");
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+            } else {
+                SwitchReading.style.backgroundColor = '#606060';
+                var formData = new FormData();
+                formData.append('Reading_Settings', "0");
+
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    if (data.Recording_Settings==="0") {
+        SwitchRecording.style.backgroundColor = '#606060';
+    } else {
+        SwitchRecording.style.backgroundColor = '#006C5F';
+    }
+  })
+
+SwitchRecording.onclick = function() {
+    if (currectpassword === true) {
+        if(SwitchRecording.onclick) {
+            if (SwitchRecording.style.backgroundColor === 'rgb(96, 96, 96)') {
+                SwitchRecording.style.backgroundColor = '#006C5F';
+                var formData = new FormData();
+                formData.append('Recording_Settings', "1");
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+            } else {
+                SwitchRecording.style.backgroundColor = '#606060';
+                var formData = new FormData();
+                formData.append('Recording_Settings', "0");
+
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+var resultpassword = '7531';
+function checkPassword() {
+    if (collectednumber === resultpassword) {
+        console.log('Пароль верный!');
+        var result = document.getElementById('passwordresult').innerText;
+        ModalPassword.style.display = "none";
+        document.getElementById('passwordresult').innerText = '';
+        collectednumber = '';
+        hideFlickeringElements()
+    } else {
+        console.log('Неправильный пароль!');
+    }
+}
+function delay(t) {
+    return new Promise(res => {
+        timerId = setTimeout(res, t);
+    });
+}
+async function hideFlickeringElements() {
+    var flickeringElements = document.querySelectorAll('.flickering');
+    await delay(300);
+    flickeringElements.forEach(function(element) {
+        element.style.display = 'none';
+        currectpassword = true;
+    });
+    await delay(250000);
+    flickeringElements.forEach(function(element) {
+        element.style.display = '';
+        currectpassword = false;
+    });
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    collectednumbernumpad = '';
+    input2check = false;
+    input4check = false;
+    input6check = false;
+    input8check = false;
+    input10check = false;
+    input12check = false;
+    input14check = false;
 }
 {% endblock %}
 
 {% block interface %}
 <div class="rightbody">
     <div style="width: 600px; height: 480px;">
+        <div id="ModalNumpad" class="Modal">
+            <div class="ModalContent">
+                <p style="position: absolute; top: 17px; left: 14px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MIN:</p>
+                <p id="min" style="position: absolute; top: 17px; left: 56px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
+                <p id="maxtext" style="position: absolute; top: 17px; left: 191px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MAX:</p>
+                <p id="max" style="position: absolute; top: 17px; left: 238px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
+                <div class="passwordprint">
+                    <p id="numpad" style="text-align: right; position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+                <button onclick="appendToNumpad('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToNumpad('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToNumpad('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearNumpad()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToNumpad('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToNumpad('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToNumpad('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValueNumpad()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToNumpad('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToNumpad('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToNumpad('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack closeModalNumpad" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button onclick="appendToNumpad('.')" class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToNumpad('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkNumpad()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
+            </div>
+        </div>
+        <div id="ModalPassword" class="Modal">
+            <div class="ModalContent">
+                <div class="backgroundblack">
+                    <p class="passswordp">Введите пароль</p>
+                </div>
+                <div class="passwordprint">
+                    <p id="passwordresult" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
+                </div>
+                <button onclick="appendToResult('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
+                <button onclick="appendToResult('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
+                <button onclick="appendToResult('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
+                <button onclick="clearResult()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
+                <button onclick="appendToResult('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
+                <button onclick="appendToResult('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
+                <button onclick="appendToResult('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
+                <button onclick="clearLastValue()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
+                <button onclick="appendToResult('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
+                <button onclick="appendToResult('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
+                <button onclick="appendToResult('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
+                <button class="inputbtnblack closeModalPassword" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
+                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
+                <button onclick="appendToResult('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
+                <button onclick="checkPassword()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
+            </div>
+        </div>
         <p style="position: absolute; top: 41px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 150px;">Параметры двигателей</p>
         <img src="{{ url_for('static', filename='iconsbutton/Voltage.png') }}"
             style="position: absolute; top: 62px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;">Напряжение</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 66px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">В</p>
+        <div id="InputText1" class="click">
+            <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText2" style="position: absolute; top: 67px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 66px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">В</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Current.png') }}"
             style="position: absolute; top: 98px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Ток</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 105px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">А</p>
+        <div id="InputText3" class="click">
+            <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText4" style="position: absolute; top: 105px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 105px; left: 768px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">А</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Frequency.png') }}"
             style="position: absolute; top: 138px; left: 222px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 143px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Частота</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 137px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 137px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 144px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 15px;">Гц</p>
+        <div id="InputText5" class="click">
+            <hr style="position: absolute; top: 137px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText6" style="position: absolute; top: 144px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 144px; left: 764px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 15px;">Гц</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Speed.png') }}"
             style="position: absolute; top: 176px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 182px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 80px;">Скорость</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 177px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 176px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 183px; left: 727px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Об/мин</p>
+        <div id="InputText7" class="click">
+            <hr style="position: absolute; top: 176px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText8" style="position: absolute; top: 183px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 183px; left: 727px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Об/мин</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/Power.png') }}"
             style="position: absolute; top: 215px; left: 223px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 221px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 80px;">Мощность</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 216px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 215px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 222px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">кВт</p>
+        <div id="InputText9" class="click">
+            <hr style="position: absolute; top: 215px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText10" style="position: absolute; top: 222px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 222px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">кВт</p>
+        </div>
         <hr style="position: absolute; top: 254px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
         <p style="position: absolute; top: 258px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 140px;">Разгон и торможение</p>
         <img src="{{ url_for('static', filename='iconsbutton/AccelerationTime.png') }}"
             style="position: absolute; top: 275px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 280px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Время ускорения</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 275px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 271px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 278px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <div id="InputText11" class="click">
+            <hr style="position: absolute; top: 271px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText12" style="position: absolute; top: 278px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 278px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        </div>
         <img src="{{ url_for('static', filename='iconsbutton/BrakingTime.png') }}"
             style="position: absolute; top: 311px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 317px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px;">Время торможения</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 313px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 311px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-        <p style="position: absolute; top: 318px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        <div id="InputText13" class="click">
+            <hr style="position: absolute; top: 311px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+            <p id="InputText14" style="position: absolute; top: 318px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+            <p style="position: absolute; top: 318px; left: 754px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Сек</p>
+        </div>
         <hr style="position: absolute; top: 351px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
         <p style="position: absolute; top: 355px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 190px;">Управление параметрами ПЧ</p>
         <img src="{{ url_for('static', filename='iconsbutton/Reading.png') }}"
             style="position: absolute; top: 375px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 380px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Считывание настроек с ПЧ</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 372px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="SwitchReading" onclick="changeSwitchReading()" src="{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}"
-            style="position: absolute; top: 372px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
-        <p onclick="changeSwitchReading()" style="position: absolute; top: 378px; left: 667px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; cursor: pointer; width: 50px;">Чтение</p>
+        <hr class="click" id="SwitchReading">
         <img src="{{ url_for('static', filename='iconsbutton/Recording.png') }}"
             style="position: absolute; top: 409px; left: 216px; right: 0px; bottom: 0px; border: none; padding: 0px;">
         <p style="position: absolute; top: 414px; left: 258px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 170px;">Запись настроек в ПЧ</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
+        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 410px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="SwitchRecording" onclick="changeSwitchRecording()" src="{{ url_for('static', filename='iconsbutton/ButtonOff.png') }}"
-            style="position: absolute; top: 410px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
-        <p onclick="changeSwitchRecording()" style="position: absolute; top: 416px; left: 667px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; cursor: pointer; width: 50px;">Запись</p>
+        <hr class="click" id="SwitchRecording">
         <p style="position: absolute; top: 453px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; color: #FFFF00; width: 470px;">Внимание запись и считывание настроек возможна только в режиме стоп</p>
     </div>
 </div>

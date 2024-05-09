@@ -71,10 +71,8 @@ hr {
 {% endblock %}
 
 {% block script %}
-
 var collectednumber = '';
 var collectednumbernumpad = '';
-
 
 function appendToResult(value) {
     var result = document.getElementById('passwordresult').innerText;
@@ -101,6 +99,7 @@ function clearLastValue() {
 var ModalPassword = document.getElementById('ModalPassword');
 var OffModelPassword = document.getElementsByClassName("closeModalPassword")[0];
 var OffModelNumpad = document.getElementsByClassName("closeModalNumpad")[0];
+
 var input1 = document.getElementById('InputText1');
 var input2 = document.getElementById('InputText2');
 var input3 = document.getElementById('InputText3');
@@ -213,7 +212,6 @@ Switch.onclick = function() {
                 Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
                 var formData = new FormData();
                 formData.append('Switch_settings_panel', "1");
-
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
@@ -233,6 +231,7 @@ Switch.onclick = function() {
         ModalPassword.style.display = "block";
     }
 }
+
 function checkNumpad() {
     if (input2check === true) {
         input2.innerText = collectednumbernumpad;
@@ -377,7 +376,6 @@ async function hideFlickeringElements() {
         <p style="position: absolute; top: 136px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Зуммер</p>
         <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
             style="position: absolute; top: 133px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-<!--        src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"-->
         <img id="Switch" style="position: absolute; top: 131px; left: 642px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
         <hr style="position: absolute; top: 178px; left: 214px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
         <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
