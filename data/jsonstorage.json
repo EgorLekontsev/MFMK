@@ -1,9 +1,9 @@
 {
-  "Pumps": 1,
+  "Pumps": "1",
   "Switch_settings_panel": "0",
   "Time_screensaver_settings_panel": "30",
   "Time_display_settings_panel": "15",
-  "User_Setpoint": "100",
+  "User_Setpoint": "3:00",
   "Setpoint_Planner_Morning_Weekday_Hour": "05",
   "Setpoint_Planner_Morning_Weekday_Minute": "00",
   "Setpoint_Planner_Morning_Weekend_Hour": "05",
@@ -50,5 +50,13 @@
   "Acceleration_Time": "0.0",
   "Braking_Time": "0.0",
   "Reading_Settings": "0",
-  "Recording_Settings": "0"
+  "Recording_Settings": "0",
+  "Suction_Rating": "10.00",
+  "Discharge_Rating": "16.00",
+  "Minimum_Frequency": "25.0",
+  "Maximum_Frequency": "50.0",
+  "Start_The_Master": "0",
+  "Pump_Rotation": "0",
+  "Pump_Rotation_Interval": "0",
+  "Rotation_Time_Of_Day": "23"
 }
