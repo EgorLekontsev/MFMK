@@ -306,7 +306,10 @@ function appendToNumpad(value) {
         if (value>=1 && value<=3 && result.length===0) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
-        } else if (result[0]>=1 && result[0]<=2 && result.length===1 && value>=5 && value<=9) {
+        } else if (result[0]==="1" && result.length===1 && value>=5 && value<=9) {
+            collectednumbernumpad += value;
+            document.getElementById('numpad').innerText += value;
+        }else if (result[0]==="2" && result.length===1 && value>=0 && value<=9) {
             collectednumbernumpad += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]==="3" && result.length===1 && value==="0") {
@@ -376,49 +379,103 @@ function appendToNumpad(value) {
     }
 }
 
-<!--function checkNumpad() {-->
-<!--    if (input2check === true) {-->
-<!--        if (collectednumbernumpad.length===0){-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--        }-->
-<!--    } else if (input4check === true) {-->
-<!--        if (collectednumbernumpad.length===0){-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--        }-->
-<!--    } else if (input6check === true) {-->
-<!--        if (collectednumbernumpad.length===0){-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--        } else {-->
-<!--            input6.innerText = collectednumbernumpad;-->
-<!--        }-->
-<!--        var formData = new FormData();-->
-<!--        formData.append('Pump_Rotation_Interval', input6.innerText);-->
-<!--        fetch('/update_data', {-->
-<!--            method: 'POST',-->
-<!--            body: formData-->
-<!--        })-->
-<!--        ModalNumpad.style.display = "none";-->
-<!--        collectednumbernumpad = '';-->
-<!--        document.getElementById('numpad').innerText = '';-->
-<!--        input6check = false;-->
-<!--    } else if (input8check === true) {-->
-<!--        if (collectednumbernumpad.length===0){-->
-<!--            &lt;!&ndash;&ndash;&gt;-->
-<!--        } else {-->
-<!--            input8.innerText = collectednumbernumpad;-->
-<!--        }-->
-<!--        var formData = new FormData();-->
-<!--        formData.append('Rotation_Time_Of_Day', input8.innerText);-->
-<!--        fetch('/update_data', {-->
-<!--            method: 'POST',-->
-<!--            body: formData-->
-<!--        })-->
-<!--        ModalNumpad.style.display = "none";-->
-<!--        collectednumbernumpad = '';-->
-<!--        document.getElementById('numpad').innerText = '';-->
-<!--        input8check = false;-->
-<!--    }-->
-<!--}-->
+function checkNumpad() {
+    if (input2check === true) {
+        if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=3 && collectednumbernumpad.length===1){
+            <!---->
+        } else if (collectednumbernumpad.length===0) {
+            <!---->
+        }else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===2) {
+            input2.innerText = collectednumbernumpad + ".0";
+        } else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[2]===".") {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[2]===".") {
+            input2.innerText = collectednumbernumpad;
+        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===2)  {
+            input2.innerText = collectednumbernumpad + ".0";
+        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[2]===".") {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[2]===".") {
+            input2.innerText = collectednumbernumpad;
+        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===2) {
+            input2.innerText = collectednumbernumpad + ".0";
+        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===3) {
+            input2.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===4) {
+            input2.innerText = collectednumbernumpad;
+        }
+        var formData = new FormData();
+        formData.append('Minimum_Frequency', input2.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input2check = false;
+    } else if (input4check === true) {
+        if (collectednumbernumpad.length===0){
+            <!---->
+        } else if (collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad.length===1) {
+            <!---->
+        } else if (collectednumbernumpad.length===2 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0") {
+            input4.innerText = collectednumbernumpad + ".0";
+        } else if (collectednumbernumpad.length===3 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0" && collectednumbernumpad[2]===".") {
+            input4.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad.length===4 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0" && collectednumbernumpad[2]==="." && collectednumbernumpad[3]==="0") {
+            input4.innerText = collectednumbernumpad;
+        } else if (collectednumbernumpad.length===2 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9) {
+            input4.innerText = collectednumbernumpad + ".0";
+        } else if (collectednumbernumpad.length===3 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad[2]===".") {
+            input4.innerText = collectednumbernumpad + "0";
+        } else if (collectednumbernumpad.length===4 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad[2]==="." && collectednumbernumpad[3]>=0 && collectednumbernumpad[3]<=9) {
+            input4.innerText = collectednumbernumpad;
+        }
+        var formData = new FormData();
+        formData.append('Maximum_Frequency', input4.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input4check = false;
+    } else if (input6check === true) {
+        if (collectednumbernumpad.length===0){
+            <!---->
+        } else {
+            input6.innerText = collectednumbernumpad;
+        }
+        var formData = new FormData();
+        formData.append('Pump_Rotation_Interval', input6.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input6check = false;
+    } else if (input8check === true) {
+        if (collectednumbernumpad.length===0){
+            <!---->
+        } else {
+            input8.innerText = collectednumbernumpad;
+        }
+        var formData = new FormData();
+        formData.append('Rotation_Time_Of_Day', input8.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        collectednumbernumpad = '';
+        document.getElementById('numpad').innerText = '';
+        input8check = false;
+    }
+}
 
 var resultpassword = '7531';
 function checkPassword() {

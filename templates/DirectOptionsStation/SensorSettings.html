@@ -234,7 +234,7 @@ function checkNumpad() {
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
-    } else if (input2check === true) {
+    } else if (input4check === true) {
         if (collectednumbernumpad.length===0){
             <!---->
         } else if (collectednumbernumpad==="0"){
@@ -267,7 +267,7 @@ function checkNumpad() {
             input4.innerText = collectednumbernumpad;
         }
         var formData = new FormData();
-        formData.append('Discharge_Rating', input2.innerText);
+        formData.append('Discharge_Rating', input4.innerText);
         fetch('/update_data', {
             method: 'POST',
             body: formData
@@ -275,7 +275,7 @@ function checkNumpad() {
         ModalNumpad.style.display = "none";
         collectednumbernumpad = '';
         document.getElementById('numpad').innerText = '';
-        input2check = false;
+        input4check = false;
     }
 }
 
