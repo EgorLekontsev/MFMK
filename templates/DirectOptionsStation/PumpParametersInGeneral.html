@@ -147,43 +147,18 @@ fetch('/data')
   .then(response => response.json())
   .then(data => {
     document.getElementById('InputText2').textContent = data.Minimum_Frequency;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText4').textContent = data.Maximum_Frequency;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     if (data.Start_The_Master==="0") {
         Switch1.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
     } else {
         Switch1.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
     }
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     if (data.Pump_Rotation==="0") {
         Switch2.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
     } else {
         Switch2.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
     }
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText6').textContent = data.Pump_Rotation_Interval;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText8').textContent = data.Rotation_Time_Of_Day;
   })
 
@@ -502,7 +477,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(250000);
+    await delay(25000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;
