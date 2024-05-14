@@ -432,7 +432,7 @@ function appendToNumpad(value) {
             document.getElementById('numpad').innerText += value;
         }
     } else if (input16check === true) {
-        if (result.length===0 && value>=0 && value<=3) {
+        if (result.length===0 && value>=0 && value<=9) {
             cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
@@ -447,23 +447,203 @@ function appendToNumpad(value) {
 
 function checkNumpad() {
     if (input2check === true) {
-        if (cnn.length===1 && cnn) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input2.innerText = cnn + ".0";
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]===".") {
+            input2.innerText = cnn + "0";
+        } else if (cnn.length===3 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9) {
+            input2.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9) {
+            input2.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn[2]===".") {
+            input2.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn[2]==="." && cnn[3]>=0 && cnn[3]<=9) {
+            input2.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]==="5" && cnn[1]==="0") {
+            input2.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]==="5" && cnn[1]==="0" && cnn[2]===".") {
+            input2.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]==="5" && cnn[1]==="0" && cnn[2]==="." && cnn[2]==="0") {
+            input2.innerText = cnn;
         }
+        var formData = new FormData();
+        formData.append('Frequency_Master_Enabled', input2.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input2check = false;
     } else if (input4check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=4) {
+            input4.innerText = cnn + ".00";
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]===".") {
+            input4.innerText = cnn + "00";
+        } else if (cnn.length===3 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9) {
+            input4.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9 && cnn[3]>=0 && cnn[3]<=9) {
+            input4.innerText = cnn;
+        } else if (cnn.length===1 && cnn[0]==="5") {
+            input4.innerText = cnn + ".00";
+        } else if (cnn.length===2 && cnn[0]==="5" && cnn[1]===".") {
+            input4.innerText = cnn + "00";
+        } else if (cnn.length===3 && cnn[0]==="5" && cnn[1]==="." && cnn[2]==="0") {
+            input4.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]==="5" && cnn[1]==="." && cnn[2]==="0" && cnn[3]==="0") {
+            input4.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Acceptable_Drawdown_Start', input4.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input4check = false;
     } else if (input6check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input6.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9) {
+            input6.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Power_Delay_One', input6.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input6check = false;
     } else if (input8check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=4) {
+            input8.innerText = cnn + ".00";
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]===".") {
+            input8.innerText = cnn + "00";
+        } else if (cnn.length===3 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9) {
+            input8.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]>=0 && cnn[0]<=4 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9 && cnn[3]>=0 && cnn[3]<=9) {
+            input8.innerText = cnn;
+        } else if (cnn.length===1 && cnn[0]==="5") {
+            input8.innerText = cnn + ".00";
+        } else if (cnn.length===2 && cnn[0]==="5" && cnn[1]===".") {
+            input8.innerText = cnn + "00";
+        } else if (cnn.length===3 && cnn[0]==="5" && cnn[1]==="." && cnn[2]==="0") {
+            input8.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]==="5" && cnn[1]==="." && cnn[2]==="0" && cnn[3]==="0") {
+            input8.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Critical_Drawdown_Start', input8.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input8check = false;
     } else if (input10check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input10.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9) {
+            input10.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Power_Delay_Two', input10.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input10check = false;
     } else if (input12check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input12.innerText = cnn + ".0";
+        } else if (cnn.length===2 && cnn[1]===".") {
+            input12.innerText = cnn + "0";
+        } else if (cnn.length===3) {
+            input12.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Delayed_Care_One', input12.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input12check = false;
     } else if (input14check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input14.innerText = cnn + ".0";
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]===".") {
+            input14.innerText = cnn + "0";
+        } else if (cnn.length===3 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9) {
+            input14.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9) {
+            input14.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn[2]===".") {
+            input14.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn[2]==="." && cnn[3]>=0 && cnn[3]<=9) {
+            input14.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]==="5" && cnn[1]==="0") {
+            input14.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]==="5" && cnn[1]==="0" && cnn[2]===".") {
+            input14.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]==="5" && cnn[1]==="0" && cnn[2]==="." && cnn[2]==="0") {
+            input14.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Fixed_Frequency_One', input14.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input14check = false;
     } else if (input16check === true) {
-
+        if (cnn.length===0) {
+            <!---->
+        } else if (cnn.length===1 && cnn[0]>=0 && cnn[0]<=9) {
+            input16.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]>=0 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9) {
+            input16.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Working_Hours_One', input16.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input16check = false;
     }
 }
 
@@ -492,7 +672,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(250000);
+    await delay(25000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;

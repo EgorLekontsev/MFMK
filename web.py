@@ -95,10 +95,6 @@ def SettingsPanelScreen():
 def ContactsScreen():
     return render_template('DirectMenu/Contacts.html')
 
-@app.route('/Keyboard')
-def KeyboardScreen():
-    return render_template('DirectInput/Keyboard.html')
-
 @app.route("/data")
 def data():
     with open("data/jsonstorage.json", "r") as f:
