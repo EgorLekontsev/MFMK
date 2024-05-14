@@ -179,6 +179,9 @@
         .click {
             cursor: pointer;
         }
+        img {
+            pointer-events: none;
+        }
         {% block button135x37 %}{% endblock %}
         {% block styleforrightbody %}{% endblock %}
     </style>
@@ -203,6 +206,9 @@
             document.getElementById('clock').textContent = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes;
         }
         setInterval(updateClock, 50);
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
         {% block script %}{% endblock %}
         {% block currentdate %}{% endblock %}
     </script>
