@@ -4,6 +4,49 @@
 <title>Журнал изменений</title>
 {% endblock %}
 
+{% block styleforrightbody %}
+table {
+    border-collapse: collapse;
+    width: 600px;
+    position: absolute;
+    top: 40px;
+    left: 200px;
+}
+tr {
+    border: 1px solid #8E8E8E;
+    text-align: left;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
+
+th {
+    border: 1px solid #8E8E8E;
+    text-align: left;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
+
+td {
+    border: 1px solid #8E8E8E;
+    text-align: left;
+    font-family: Roboto;
+    font-size: 16px;
+    color: white;
+}
+
+table {
+  table-layout: fixed; /* Фиксированная ширина столбцов */
+}
+
+td {
+  white-space: nowrap; /* Текст не переносится на другую строку */
+  text-overflow: ellipsis; /* Показывается многоточие, если текст обрезается */
+  overflow: hidden; /* Скрыть часть текста, которая не помещается */
+}
+{% endblock %}
+
 {% block container %}
 <div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
@@ -30,6 +73,65 @@
     <img onclick="window.location.href='/OnlineTrends'" src="{{ url_for('static', filename='iconsbutton/Triangle.png') }}"
          style="position: absolute; top: 251px; left: 181px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 </div>
+{% endblock %}
+
+{% block switch %}
+fetch('/data_log')
+    .then(response => response.json())
+    .then(data => {
+        var table = document.createElement('table');
+
+        var tr_All = document.createElement('tr');
+
+        var th_Date = document.createElement('th');
+        th_Date.textContent = 'Дата';
+        th_Date.style.width = '50px';
+        th_Date.style.height = '20px';
+        tr_All.appendChild(th_Date);
+
+        var th_Time = document.createElement('th');
+        th_Time.textContent = 'Время';
+        th_Time.style.width = '40px';
+        th_Time.style.height = '20px';
+        tr_All.appendChild(th_Time);
+
+        var th_Comment = document.createElement('th');
+        th_Comment.textContent = 'Комментарии';
+        th_Comment.style.width = '190px';
+        th_Comment.style.height = '20px';
+        tr_All.appendChild(th_Comment);
+
+        var th_Info = document.createElement('th');
+        th_Info.textContent = 'Информация';
+        th_Info.style.width = '85px';
+        th_Info.style.height = '20px';
+        tr_All.appendChild(th_Info);
+
+        table.appendChild(tr_All);
+
+        for (let i = 0; i < data.length; i++) {
+            var tr_All = document.createElement('tr');
+
+            var td_Date_Text = document.createElement('td');
+            td_Date_Text.textContent = data[i].Date;
+            tr_All.appendChild(td_Date_Text);
+
+            var td_Time_Text = document.createElement('td');
+            td_Time_Text.textContent = data[i].Time;
+            tr_All.appendChild(td_Time_Text);
+
+            var td_Comment_Text = document.createElement('td');
+            td_Comment_Text.textContent = data[i].Comment;
+            tr_All.appendChild(td_Comment_Text);
+
+            var td_Info_Text = document.createElement('td');
+            td_Info_Text.textContent = data[i].Info;
+            tr_All.appendChild(td_Info_Text);
+
+            table.appendChild(tr_All);
+        }
+        document.body.appendChild(table);
+})
 {% endblock %}
 
 {% block clock %}

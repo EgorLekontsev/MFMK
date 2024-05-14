@@ -67,6 +67,10 @@ hr {
 {% endblock %}
 
 {% block switch %}
+var currentDate = new Date();
+var currentDateString = currentDate.toLocaleDateString();
+var currentTimeString = currentDate.toLocaleTimeString();
+
 var collectednumber = '';
 var cnn = '';
 

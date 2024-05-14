@@ -116,6 +116,9 @@ hr {
 {% endblock %}
 
 {% block script %}
+var currentDate = new Date();
+var currentDateString = currentDate.toLocaleDateString();
+var currentTimeString = currentDate.toLocaleTimeString();
 var collectednumber = '';
 var cnn = '';
 
@@ -1637,8 +1640,11 @@ fetch('/data')
         document.getElementById('24').textContent = data.Setpoint_Planner_Night_Weekend_Setpoint;
     })
 
+var write;
+
 function checkNumpad() {
     if (input2check === true) {
+        write = input2.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -1680,6 +1686,19 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Уставка пользователя",
+            "Info": `${write} -> ${input2.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (plans1 === true) {
         if (cnn[0] === "0" && cnn.length===1) {
             plans[0].innerText = "0" + cnn;
