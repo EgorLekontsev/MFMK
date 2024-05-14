@@ -100,7 +100,7 @@ class App(tk.Tk):
             time = treeview.item(item_id)['values'][1]  # Получаем данные из второй колонки
             comment = treeview.item(item_id)['values'][2]  # Получаем данные из третьей колонки
             info = treeview.item(item_id)['values'][3]  # Получаем данные из четвертой колонки
-            data.append({"Date":date, "Time":time, "Comment":comment, "Info":info})
+            data.append({"Date": date, "Time":time, "Comment":comment, "Info":info})
         return data
 
     def shields_hide(event=None): #Сокрытие щитов, а также вызов метода показа щитов
@@ -560,7 +560,23 @@ class Frame1_1(tk.Frame):
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
+        self.red_line = self.canvas.create_line(0, 0, 0, 0, fill="red", width=2)
+        self.x = 45
+        self.y = 302
+
+        #self.initialization_graphic()
         self.initialization_pumps()
+
+    def initialization_graphic(self):
+        if self.x == 730:
+            self.x = 45
+        else:
+            self.x = self.x + 5
+        self.canvas.coords(self.red_line, 50, self.y, self.x, self.y)
+        self.canvas.update()
+        #self.red_line = self.canvas.create_line(50, 302, self.x, 302, fill="red", width=2)
+        #self.canvas.after(500, self.initialization_graphic())
+
 
     def initialization_pumps(self, Pumps_active=App.Pumps_active): #Показ насосов
         match (Pumps_active):
@@ -643,6 +659,7 @@ class Frame1_1(tk.Frame):
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+        self.initialization_graphic()
 
 class Frame1_2(tk.Frame):
     def __init__(self, parent, controller):
@@ -1482,7 +1499,7 @@ class Frame2(tk.Frame):
                 self.day.config(text="Воскресенье")
         self.day.place(x=375, y=414)
 
-        self.type_setpoint = tk.Label(self.canvas, text="Пользователь", fg='white', bg='black',
+        self.type_setpoint = tk.Label(self.canvas, text="Пользователь" if App.storage_data["Substitution_Setpoint"] == "0" else "PID", fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.type_setpoint.place(x=354, y=444)
 
@@ -1591,6 +1608,19 @@ class Frame2(tk.Frame):
         button8.place(x=0, y=420, width=200, height=60)
 
         self.update_type_day()
+        self.after(500, self.update_setpoints)
+
+    def update_setpoints(self):
+        if self.type_setpoint.cget('text') == "Пользователь":
+            self.current_setpoint.config(text=self.setpoint_value.cget('text'))
+        elif self.type_setpoint.cget('text') == "PID":
+            self.current_setpoint.config(text=App.global_controller.frames["Frame16"].setpoint.cget('text'))
+        App.global_controller.frames["Frame1_1"].task_value.config(text=self.current_setpoint.cget('text'))
+        App.global_controller.frames["Frame1_2"].task_value.config(text=self.current_setpoint.cget('text'))
+        App.global_controller.frames["Frame1_3"].task_value.config(text=self.current_setpoint.cget('text'))
+        App.global_controller.frames["Frame1_4"].task_value.config(text=self.current_setpoint.cget('text'))
+        App.global_controller.frames["Frame16"].current_setpoint.config(text=self.current_setpoint.cget('text'))
+
 
     def colors_button(self, choice):
         match (choice):
@@ -1883,6 +1913,7 @@ class Frame2(tk.Frame):
         App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
         App.storage_data["User_Setpoint"] = self.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
+        self.update_setpoints()
     def click2(self):
         if len(self.numpad_instance.current_value) == 1:
             self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
@@ -3086,7 +3117,7 @@ class Frame10(tk.Frame):
 
         # Кликабельная зона
         self.rectangle_s_nominal = self.canvas.create_image(718, 75, image=self.img_rectangle_l)
-        self.nominal_s_value = tk.Label(self.canvas, text="10.00",
+        self.nominal_s_value = tk.Label(self.canvas, text=App.storage_data["Suction_Rating"],
                                 fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.nominal_s_value.place(x=649, y=65)
@@ -3095,7 +3126,7 @@ class Frame10(tk.Frame):
                                font=('Roboto Bold', 12))
         self.s_label.place(x=756, y=65)
         self.rectangle_d_nominal = self.canvas.create_image(718, 115, image=self.img_rectangle_l)
-        self.nominal_d_value = tk.Label(self.canvas, text="16.00",
+        self.nominal_d_value = tk.Label(self.canvas, text=App.storage_data["Discharge_Rating"],
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.nominal_d_value.place(x=649, y=105)
@@ -3128,6 +3159,7 @@ class Frame10(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.nominal_d_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -3140,12 +3172,15 @@ class Frame10(tk.Frame):
         datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
         f"{self.nominal_s_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame10"].nominal_s_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Suction_Rating"] = self.numpad_instance.current_value
+
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.nominal_d_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame10"].nominal_d_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Discharge_Rating"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -3317,7 +3352,7 @@ class Frame11(tk.Frame):
 
         # Кликабельная зона
         self.rectangle_min_f = self.canvas.create_image(718, 75, image=self.img_rectangle_l)
-        self.min_f_value = tk.Label(self.canvas, text="25.0",
+        self.min_f_value = tk.Label(self.canvas, text=App.storage_data["Minimum_Frequency"],
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.min_f_value.place(x=649, y=65)
@@ -3326,7 +3361,7 @@ class Frame11(tk.Frame):
                                 font=('Roboto Bold', 12))
         self.min_f_label.place(x=759, y=65)
         self.rectangle_max_f = self.canvas.create_image(718, 115, image=self.img_rectangle_l)
-        self.max_f_value = tk.Label(self.canvas, text="50.0",
+        self.max_f_value = tk.Label(self.canvas, text=App.storage_data["Maximum_Frequency"],
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.max_f_value.place(x=649, y=105)
@@ -3335,16 +3370,16 @@ class Frame11(tk.Frame):
                                 font=('Roboto Bold', 12))
         self.max_f_label.place(x=759, y=105)
 
-        self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Start_The_Master"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
         self.Switch_Flat_first_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
-        self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Pump_Rotation"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
         self.Switch_Flat_second_button = self.canvas.create_image(670, 194, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
 
         self.rectangle_interval = self.canvas.create_image(718, 230, image=self.img_rectangle_l)
-        self.interval_value = tk.Label(self.canvas, text="0",
+        self.interval_value = tk.Label(self.canvas, text=App.storage_data["Pump_Rotation_Interval"],
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.interval_value.place(x=649, y=220)
@@ -3354,7 +3389,7 @@ class Frame11(tk.Frame):
                                     font=('Roboto Bold', 12))
         self.interval_label.place(x=759, y=220)
         self.rectangle_time = self.canvas.create_image(718, 270, image=self.img_rectangle_l)
-        self.time_value = tk.Label(self.canvas, text="23",
+        self.time_value = tk.Label(self.canvas, text=App.storage_data["Rotation_Time_Of_Day"],
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.time_value.place(x=649, y=260)
@@ -3411,6 +3446,7 @@ class Frame11(tk.Frame):
                     self.update_switch_first()
                 elif word == "switch2":
                     self.update_switch_second()
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -3451,30 +3487,34 @@ class Frame11(tk.Frame):
         App.shields_hide()
 
     def update_switch_first(self):
-        if self.Switch_Flat_first_img.cget("file") ==  "new_images/Switch-0.png":
+        if self.Switch_Flat_first_img.cget("file") ==  r"new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
                 f"OFF -> ON"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-1.png")
-        elif self.Switch_Flat_first_img.cget("file") == "new_images/Switch-1.png":
+            App.storage_data["Start_The_Master"] = "1"
+        elif self.Switch_Flat_first_img.cget("file") == r"new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
                 f"ON -> OFF"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
+            App.storage_data["Start_The_Master"] = "0"
         self.Switch_Flat_first_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
 
     def update_switch_second(self):
-        if self.Switch_Flat_second_img.cget("file") == "new_images/Switch-0.png":
+        if self.Switch_Flat_second_img.cget("file") == r"new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
                 f"OFF -> ON"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-1.png")
-        elif self.Switch_Flat_second_img.cget("file") == "new_images/Switch-1.png":
+            App.storage_data["Pump_Rotation"] = "1"
+        elif self.Switch_Flat_second_img.cget("file") == r"new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
                 f"ON -> OFF"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
+            App.storage_data["Pump_Rotation"] = "0"
         self.Switch_Flat_second_button = self.canvas.create_image(670, 194, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
     def update_clock(self, current_time):
@@ -3668,7 +3708,7 @@ class Frame12(tk.Frame):
 
         # Кликабельная зона
         self.rectangle_master_f_on = self.canvas.create_image(718, 70, image=self.img_rectangle_l)
-        self.master_f_on_value = tk.Label(self.canvas, text="50.0",
+        self.master_f_on_value = tk.Label(self.canvas, text=App.storage_data["Frequency_Master_Enabled"],
                                     fg='white', bg='black',
                                     font=('Roboto Bold', 12))
         self.master_f_on_value.place(x=649, y=60)
@@ -3678,7 +3718,7 @@ class Frame12(tk.Frame):
         self.master_f_on_label.place(x=759, y=60)
 
         self.rectangle_acceptable_drawdown = self.canvas.create_image(718, 145, image=self.img_rectangle_l)
-        self.acceptable_drawdown_value = tk.Label(self.canvas, text="0.20",
+        self.acceptable_drawdown_value = tk.Label(self.canvas, text=App.storage_data["Acceptable_Drawdown_Start"],
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.acceptable_drawdown_value.place(x=649, y=135)
@@ -3687,7 +3727,7 @@ class Frame12(tk.Frame):
                                        font=('Roboto Bold', 12))
         self.acceptable_drawdown_label.place(x=756, y=135)
         self.rectangle_acceptable_сooldown_on = self.canvas.create_image(718, 185, image=self.img_rectangle_l)
-        self.acceptable_сooldown_on_value = tk.Label(self.canvas, text="2",
+        self.acceptable_сooldown_on_value = tk.Label(self.canvas, text=App.storage_data["Power_Delay_One"],
                                                   fg='white', bg='black',
                                                   font=('Roboto Bold', 12))
         self.acceptable_сooldown_on_value.place(x=649, y=175)
@@ -3697,7 +3737,7 @@ class Frame12(tk.Frame):
         self.acceptable_сooldown_on_label.place(x=756, y=175)
 
         self.rectangle_crit_drawdown = self.canvas.create_image(718, 245, image=self.img_rectangle_l)
-        self.crit_drawdown_value = tk.Label(self.canvas, text="1.00",
+        self.crit_drawdown_value = tk.Label(self.canvas, text=App.storage_data["Critical_Drawdown_Start"],
                                                   fg='white', bg='black',
                                                   font=('Roboto Bold', 12))
         self.crit_drawdown_value.place(x=649, y=235)
@@ -3706,7 +3746,7 @@ class Frame12(tk.Frame):
                                                   font=('Roboto Bold', 12))
         self.crit_drawdown_label.place(x=756, y=235)
         self.rectangle_crit_сooldown_on = self.canvas.create_image(718, 285, image=self.img_rectangle_l)
-        self.crit_сooldown_on_value = tk.Label(self.canvas, text="1",
+        self.crit_сooldown_on_value = tk.Label(self.canvas, text=App.storage_data["Power_Delay_Two"],
                                           fg='white', bg='black',
                                           font=('Roboto Bold', 12))
         self.crit_сooldown_on_value.place(x=649, y=275)
@@ -3716,7 +3756,7 @@ class Frame12(tk.Frame):
         self.crit_сooldown_on_label.place(x=756, y=275)
 
         self.rectangle_fix_сooldown_on = self.canvas.create_image(718, 347, image=self.img_rectangle_l)
-        self.fix_сooldown_on_value = tk.Label(self.canvas, text="0.5",
+        self.fix_сooldown_on_value = tk.Label(self.canvas, text=App.storage_data["Delayed_Care_One"],
                                                fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.fix_сooldown_on_value.place(x=649, y=337)
@@ -3725,7 +3765,7 @@ class Frame12(tk.Frame):
                                                font=('Roboto Bold', 12))
         self.fix_сooldown_on_label.place(x=756, y=337)
         self.rectangle_fix_f_on = self.canvas.create_image(718, 386, image=self.img_rectangle_l)
-        self.fix_f_on_value = tk.Label(self.canvas, text="30.0",
+        self.fix_f_on_value = tk.Label(self.canvas, text=App.storage_data["Fixed_Frequency_One"],
                                               fg='white', bg='black',
                                               font=('Roboto Bold', 12))
         self.fix_f_on_value.place(x=649, y=376)
@@ -3734,7 +3774,7 @@ class Frame12(tk.Frame):
                                               font=('Roboto Bold', 12))
         self.fix_f_on_label.place(x=759, y=376)
         self.rectangle_time_work_on = self.canvas.create_image(718, 424, image=self.img_rectangle_l)
-        self.time_work_on_value = tk.Label(self.canvas, text="2",
+        self.time_work_on_value = tk.Label(self.canvas, text=App.storage_data["Working_Hours_One"],
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.time_work_on_value.place(x=649, y=414)
@@ -3828,6 +3868,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.time_work_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -3840,48 +3881,56 @@ class Frame12(tk.Frame):
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
             f"{self.master_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].master_f_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Frequency_Master_Enabled"] = self.numpad_instance.current_value
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.acceptable_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Acceptable_Drawdown_Start"] = self.numpad_instance.current_value
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
             f"{self.acceptable_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Power_Delay_One"] = self.numpad_instance.current_value
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
             f"{self.crit_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Critical_Drawdown_Start"] = self.numpad_instance.current_value
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
             f"{self.crit_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Power_Delay_Two"] = self.numpad_instance.current_value
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
             f"{self.fix_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Delayed_Care_One"] = self.numpad_instance.current_value
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
             f"{self.fix_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].fix_f_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Fixed_Frequency_One"] = self.numpad_instance.current_value
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
             f"{self.time_work_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame12"].time_work_on_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Working_Hours_One"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -4080,7 +4129,7 @@ class Frame13(tk.Frame):
 
         # Кликабельная зона
         self.rectangle_master_f_off = self.canvas.create_image(718, 70, image=self.img_rectangle_l)
-        self.master_f_off_value = tk.Label(self.canvas, text="50.0",
+        self.master_f_off_value = tk.Label(self.canvas, text=App.storage_data["Frequency_Master_Shutdown"],
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.master_f_off_value.place(x=649, y=60)
@@ -4090,7 +4139,7 @@ class Frame13(tk.Frame):
         self.master_f_off_label.place(x=759, y=60)
 
         self.rectangle_acceptable_jump = self.canvas.create_image(718, 145, image=self.img_rectangle_l)
-        self.acceptable_jump_value = tk.Label(self.canvas, text="0.20",
+        self.acceptable_jump_value = tk.Label(self.canvas, text=App.storage_data["Acceptable_Drawdown_Stop"],
                                                   fg='white', bg='black',
                                                   font=('Roboto Bold', 12))
         self.acceptable_jump_value.place(x=649, y=135)
@@ -4099,7 +4148,7 @@ class Frame13(tk.Frame):
                                                   font=('Roboto Bold', 12))
         self.acceptable_jump_label.place(x=756, y=135)
         self.rectangle_acceptable_сooldown_off = self.canvas.create_image(718, 185, image=self.img_rectangle_l)
-        self.acceptable_сooldown_off_value = tk.Label(self.canvas, text="2",
+        self.acceptable_сooldown_off_value = tk.Label(self.canvas, text=App.storage_data["Shutdown_Delay_One"],
                                                      fg='white', bg='black',
                                                      font=('Roboto Bold', 12))
         self.acceptable_сooldown_off_value.place(x=649, y=175)
@@ -4109,7 +4158,7 @@ class Frame13(tk.Frame):
         self.acceptable_сooldown_off_label.place(x=756, y=175)
 
         self.rectangle_crit_jump = self.canvas.create_image(718, 245, image=self.img_rectangle_l)
-        self.crit_jump_value = tk.Label(self.canvas, text="1.00",
+        self.crit_jump_value = tk.Label(self.canvas, text=App.storage_data["Critical_Drawdown_Stop"],
                                             fg='white', bg='black',
                                             font=('Roboto Bold', 12))
         self.crit_jump_value.place(x=649, y=235)
@@ -4118,7 +4167,7 @@ class Frame13(tk.Frame):
                                             font=('Roboto Bold', 12))
         self.crit_jump_label.place(x=756, y=235)
         self.rectangle_crit_сooldown_off = self.canvas.create_image(718, 285, image=self.img_rectangle_l)
-        self.crit_сooldown_off_value = tk.Label(self.canvas, text="1",
+        self.crit_сooldown_off_value = tk.Label(self.canvas, text=App.storage_data["Shutdown_Delay_Two"],
                                                fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.crit_сooldown_off_value.place(x=649, y=275)
@@ -4128,7 +4177,7 @@ class Frame13(tk.Frame):
         self.crit_сooldown_off_label.place(x=756, y=275)
 
         self.rectangle_fix_сooldown_off = self.canvas.create_image(718, 347, image=self.img_rectangle_l)
-        self.fix_сooldown_off_value = tk.Label(self.canvas, text="0.5",
+        self.fix_сooldown_off_value = tk.Label(self.canvas, text=App.storage_data["Delayed_Care_Two"],
                                               fg='white', bg='black',
                                               font=('Roboto Bold', 12))
         self.fix_сooldown_off_value.place(x=649, y=337)
@@ -4137,7 +4186,7 @@ class Frame13(tk.Frame):
                                               font=('Roboto Bold', 12))
         self.fix_сooldown_off_label.place(x=756, y=337)
         self.rectangle_fix_f_off = self.canvas.create_image(718, 386, image=self.img_rectangle_l)
-        self.fix_f_off_value = tk.Label(self.canvas, text="30.0",
+        self.fix_f_off_value = tk.Label(self.canvas, text=App.storage_data["Fixed_Frequency_Two"],
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.fix_f_off_value.place(x=649, y=376)
@@ -4146,7 +4195,7 @@ class Frame13(tk.Frame):
                                        font=('Roboto Bold', 12))
         self.fix_f_off_label.place(x=759, y=376)
         self.rectangle_time_work_off = self.canvas.create_image(718, 424, image=self.img_rectangle_l)
-        self.time_work_off_value = tk.Label(self.canvas, text="2",
+        self.time_work_off_value = tk.Label(self.canvas, text=App.storage_data["Working_Hours_Two"],
                                            fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.time_work_off_value.place(x=649, y=414)
@@ -4239,6 +4288,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.time_work_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -4251,48 +4301,52 @@ class Frame13(tk.Frame):
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
             f"{self.acceptable_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Frequency_Master_Shutdown"] = self.numpad_instance.current_value
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.acceptable_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Acceptable_Drawdown_Stop"] = self.numpad_instance.current_value
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
             f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].max_emergency_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Shutdown_Delay_One"] = self.numpad_instance.current_value
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
             f"{self.crit_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].crit_jump_value.config(text=self.numpad_instance.current_value)
-
+        App.storage_data["Critical_Drawdown_Stop"] = self.numpad_instance.current_value
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
             f"{self.crit_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Shutdown_Delay_Two"] = self.numpad_instance.current_value
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
             f"{self.fix_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Delayed_Care_Two"] = self.numpad_instance.current_value
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
             f"{self.fix_f_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].fix_f_off_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Fixed_Frequency_Two"] = self.numpad_instance.current_value
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
             f"{self.time_work_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame13"].time_work_off_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Working_Hours_Two"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -4502,12 +4556,12 @@ class Frame14(tk.Frame):
         self.canvas.create_line(215, 326, 795, 326, fill="gray", width=1)
 
         # Кликабельная зона
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Power_Savingmode"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
         self.rectangle_start_mod = self.canvas.create_image(714, 115, image=self.img_rectangle_l)
-        self.start_mod_value = tk.Label(self.canvas, text="0",
+        self.start_mod_value = tk.Label(self.canvas, text=App.storage_data["Starting_Power_Savingmode"],
                                 fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.start_mod_value.place(x=645, y=105)
@@ -4516,7 +4570,7 @@ class Frame14(tk.Frame):
                                 font=('Roboto Bold', 12))
         self.start_mod_label.place(x=754, y=105)
         self.rectangle_upper_pressure = self.canvas.create_image(714, 153, image=self.img_rectangle_l)
-        self.upper_pressure_value = tk.Label(self.canvas, text="0.00",
+        self.upper_pressure_value = tk.Label(self.canvas, text=App.storage_data["Pressure_Drawdown"],
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.upper_pressure_value.place(x=645, y=143)
@@ -4525,7 +4579,7 @@ class Frame14(tk.Frame):
                                         font=('Roboto Bold', 12))
         self.upper_pressure_label.place(x=754, y=143)
         self.rectangle_lower_pressure = self.canvas.create_image(714, 191, image=self.img_rectangle_l)
-        self.lower_pressure_value = tk.Label(self.canvas, text="0.00",
+        self.lower_pressure_value = tk.Label(self.canvas, text=App.storage_data["Pressure_Increase"],
                                              fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.lower_pressure_value.place(x=645, y=181)
@@ -4534,7 +4588,7 @@ class Frame14(tk.Frame):
                                              font=('Roboto Bold', 12))
         self.lower_pressure_label.place(x=754, y=181)
         self.rectangle_swing_time = self.canvas.create_image(714, 229, image=self.img_rectangle_l)
-        self.swing_time_value = tk.Label(self.canvas, text="0",
+        self.swing_time_value = tk.Label(self.canvas, text=App.storage_data["Swing_Time"],
                                              fg='white', bg='black',
                                              font=('Roboto Bold', 12))
         self.swing_time_value.place(x=645, y=219)
@@ -4543,7 +4597,7 @@ class Frame14(tk.Frame):
                                              font=('Roboto Bold', 12))
         self.swing_time_label.place(x=754, y=219)
         self.acceptable_range = self.canvas.create_image(714, 267, image=self.img_rectangle_l)
-        self.acceptable_range_value = tk.Label(self.canvas, text="0.00",
+        self.acceptable_range_value = tk.Label(self.canvas, text=App.storage_data["Pressure_Range"],
                                          fg='white', bg='black',
                                          font=('Roboto Bold', 12))
         self.acceptable_range_value.place(x=645, y=257)
@@ -4552,7 +4606,7 @@ class Frame14(tk.Frame):
                                          font=('Roboto Bold', 12))
         self.acceptable_range_label.place(x=754, y=257)
         self.acceptable_frequency = self.canvas.create_image(714, 305, image=self.img_rectangle_l)
-        self.acceptable_frequency_value = tk.Label(self.canvas, text="0.0",
+        self.acceptable_frequency_value = tk.Label(self.canvas, text=App.storage_data["Frequency_Range"],
                                                fg='white', bg='black',
                                                font=('Roboto Bold', 12))
         self.acceptable_frequency_value.place(x=645, y=295)
@@ -4641,6 +4695,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.acceptable_frequency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -4653,36 +4708,42 @@ class Frame14(tk.Frame):
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.start_mod_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].start_mod_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Starting_Power_Savingmode"] = self.numpad_instance.current_value
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
             f"{self.upper_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].upper_pressure_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Pressure_Drawdown"] = self.numpad_instance.current_value
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
             f"{self.lower_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].lower_pressure_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Pressure_Increase"] = self.numpad_instance.current_value
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
             f"{self.swing_time_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].swing_time_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Swing_Time"] = self.numpad_instance.current_value
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
             f"{self.acceptable_range_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].acceptable_range_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Pressure_Range"] = self.numpad_instance.current_value
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
             f"{self.acceptable_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Frequency_Range"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -4695,11 +4756,13 @@ class Frame14(tk.Frame):
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
                 f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
+            App.storage_data["Power_Savingmode"] = "1"
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
                 f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+            App.storage_data["Power_Savingmode"] = "0"
         self.Switch_Flat_button = self.canvas.create_image(670, 78, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
@@ -4900,7 +4963,7 @@ class Frame15(tk.Frame):
         self.canvas.create_line(215, 326, 795, 326, fill="gray", width=1)
         # Кликабельная зона
         self.response_frequency = self.canvas.create_image(716, 73, image=self.img_rectangle_l)
-        self.response_frequency_value = tk.Label(self.canvas, text="4.0",
+        self.response_frequency_value = tk.Label(self.canvas, text=App.storage_data["Response_Frequency"],
                                                    fg='white', bg='black',
                                                    font=('Roboto Bold', 12))
         self.response_frequency_value.place(x=645, y=63)
@@ -4912,7 +4975,7 @@ class Frame15(tk.Frame):
         self.response_frequency_value.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.response_frequency_label.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.cooldown_emergency = self.canvas.create_image(716, 111, image=self.img_rectangle_l)
-        self.cooldown_emergency_value = tk.Label(self.canvas, text="10",
+        self.cooldown_emergency_value = tk.Label(self.canvas, text=App.storage_data["Delay_Accident_One"],
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.cooldown_emergency_value.place(x=645, y=101)
@@ -4924,7 +4987,7 @@ class Frame15(tk.Frame):
         self.cooldown_emergency_value.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.cooldown_emergency_label.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.max_emergency = self.canvas.create_image(716, 150, image=self.img_rectangle_l)
-        self.max_emergency_value = tk.Label(self.canvas, text="3",
+        self.max_emergency_value = tk.Label(self.canvas, text=App.storage_data["Number_Accidents"],
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.max_emergency_value.place(x=645, y=140)
@@ -4936,7 +4999,7 @@ class Frame15(tk.Frame):
         self.max_emergency_value.bind("<Button-1>", lambda event: self.check_password("click3"))
         self.max_emergency_label.bind("<Button-1>", lambda event: self.check_password("click3"))
         self.warnings = self.canvas.create_image(716, 220, image=self.img_rectangle_l)
-        self.warnings_value = tk.Label(self.canvas, text="0.00",
+        self.warnings_value = tk.Label(self.canvas, text=App.storage_data["Warnings"],
                                                  fg='white', bg='black',
                                                  font=('Roboto Bold', 12))
         self.warnings_value.place(x=645, y=210)
@@ -4948,7 +5011,7 @@ class Frame15(tk.Frame):
         self.warnings_value.bind("<Button-1>", lambda event: self.check_password("click4"))
         self.warnings_label.bind("<Button-1>", lambda event: self.check_password("click4"))
         self.emergency = self.canvas.create_image(716, 259, image=self.img_rectangle_l)
-        self.emergency_value = tk.Label(self.canvas, text="0.00",
+        self.emergency_value = tk.Label(self.canvas, text=App.storage_data["Crash"],
                                        fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.emergency_value.place(x=645, y=249)
@@ -4960,7 +5023,7 @@ class Frame15(tk.Frame):
         self.max_emergency_value.bind("<Button-1>", lambda event: self.check_password("click5"))
         self.max_emergency_label.bind("<Button-1>", lambda event: self.check_password("click5"))
         self.cd_emergency = self.canvas.create_image(716, 298, image=self.img_rectangle_l)
-        self.cd_emergency_value = tk.Label(self.canvas, text="0",
+        self.cd_emergency_value = tk.Label(self.canvas, text=App.storage_data["Delay_Accident_Two"],
                                         fg='white', bg='black',
                                         font=('Roboto Bold', 12))
         self.cd_emergency_value.place(x=645, y=288)
@@ -4972,7 +5035,7 @@ class Frame15(tk.Frame):
         self.cd_emergency_value.bind("<Button-1>", lambda event: self.check_password("click6"))
         self.cd_emergency_label.bind("<Button-1>", lambda event: self.check_password("click6"))
         self.cd_off = self.canvas.create_image(716, 362, image=self.img_rectangle_l)
-        self.cd_off_value = tk.Label(self.canvas, text="0",
+        self.cd_off_value = tk.Label(self.canvas, text=App.storage_data["Shutdown_Delay"],
                                            fg='white', bg='black',
                                            font=('Roboto Bold', 12))
         self.cd_off_value.place(x=645, y=352)
@@ -4984,7 +5047,7 @@ class Frame15(tk.Frame):
         self.cd_off_value.bind("<Button-1>", lambda event: self.check_password("click7"))
         self.cd_off_label.bind("<Button-1>", lambda event: self.check_password("click7"))
         self.stop_crit_pressure = self.canvas.create_image(716, 400, image=self.img_rectangle_l)
-        self.stop_crit_pressure_value = tk.Label(self.canvas, text="10.00",
+        self.stop_crit_pressure_value = tk.Label(self.canvas, text=App.storage_data["Pressure_Stop"],
                                      fg='white', bg='black',
                                      font=('Roboto Bold', 12))
         self.stop_crit_pressure_value.place(x=645, y=390)
@@ -4997,7 +5060,7 @@ class Frame15(tk.Frame):
         self.stop_crit_pressure_label.bind("<Button-1>", lambda event: self.check_password("click8"))
 
 
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png") if App.storage_data["Gap_Control"] == "0" else PhotoImage(file=r"new_images/_YES_NO.png")
         self.Switch_Flat_button = self.canvas.create_image(674, 440, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         # Кликабельная зона
@@ -5065,6 +5128,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.stop_crit_pressure_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -5077,48 +5141,56 @@ class Frame15(tk.Frame):
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
             f"{self.response_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].response_frequency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Response_Frequency"] = self.numpad_instance.current_value
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.cooldown_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Delay_Accident_One"] = self.numpad_instance.current_value
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
             f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].max_emergency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Number_Accidents"] = self.numpad_instance.current_value
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
             f"{self.warnings_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].warnings_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Warnings"] = self.numpad_instance.current_value
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
             f"{self.emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].emergency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Crash"] = self.numpad_instance.current_value
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
             f"{self.cd_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cd_emergency_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Delay_Accident_Two"] = self.numpad_instance.current_value
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
             f"{self.cd_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].cd_off_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Shutdown_Delay"] = self.numpad_instance.current_value
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
             f"{self.stop_crit_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=self.numpad_instance.current_value)
+        App.storage_data["Pressure_Stop"] = self.numpad_instance.current_value
 
     def set_access(self, event=None):
         print("set_access")
@@ -5132,11 +5204,13 @@ class Frame15(tk.Frame):
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
                 f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_YES_NO.png")
+            App.storage_data["Gap_Control"] = "1"
         elif self.Switch_Flat_img.cget("file") == "new_images/_YES_NO.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
                 f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
+            App.storage_data["Gap_Control"] = "0"
         self.Switch_Flat_button = self.canvas.create_image(674, 440, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
@@ -5289,40 +5363,40 @@ class Frame16(tk.Frame):
 
         self.p_rectangle = self.canvas.create_image(715, 62.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.p_rectangle, "<Button-1>", lambda event: self.check_password("click1"))
-        self.p_k = tk.Label(self.canvas, text="1.000", fg='white', bg='black',
+        self.p_k = tk.Label(self.canvas, text=App.storage_data["Proportional_Coefficient"], fg='white', bg='black',
                                 font=('Roboto Bold', 12))
         self.p_k.place(x=646, y=52)
         self.p_k.bind("<Button-1>", lambda event: self.check_password("click1"))
 
         self.i_rectangle = self.canvas.create_image(715, 101.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.i_rectangle, "<Button-1>", lambda event: self.check_password("click2"))
-        self.i_k = tk.Label(self.canvas, text="2.000", fg='white', bg='black',
+        self.i_k = tk.Label(self.canvas, text=App.storage_data["Integral_Coefficient"], fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.i_k.place(x=646, y=91)
         self.i_k.bind("<Button-1>", lambda event: self.check_password("click2"))
 
         self.d_rectangle = self.canvas.create_image(715, 140.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.d_rectangle, "<Button-1>", lambda event: self.check_password("click3"))
-        self.d_k = tk.Label(self.canvas, text="0.200", fg='white', bg='black',
+        self.d_k = tk.Label(self.canvas, text=App.storage_data["Differential_Coefficient"], fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.d_k.place(x=646, y=130)
         self.d_k.bind("<Button-1>", lambda event: self.check_password("click3"))
 
         self.integral_rectangle = self.canvas.create_image(715, 179.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.integral_rectangle, "<Button-1>", lambda event: self.check_password("click4"))
-        self.const_integral = tk.Label(self.canvas, text="0.300", fg='white', bg='black',
+        self.const_integral = tk.Label(self.canvas, text=App.storage_data["Constant_Integrations"], fg='white', bg='black',
                             font=('Roboto Bold', 12))
         self.const_integral.place(x=646, y=169)
         self.const_integral.bind("<Button-1>", lambda event: self.check_password("click4"))
 
         self.set_rectangle = self.canvas.create_image(715, 257.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.set_rectangle, "<Button-1>", lambda event: self.check_password("click5"))
-        self.setpoint = tk.Label(self.canvas, text="3.00", fg='white', bg='black',
+        self.setpoint = tk.Label(self.canvas, text=App.storage_data["Setting_Substitution"], fg='white', bg='black',
                                        font=('Roboto Bold', 12))
         self.setpoint.place(x=646, y=246)
         self.setpoint.bind("<Button-1>", lambda event: self.check_password("click5"))
 
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Substitution_Setpoint"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
         self.Switch_Flat_button = self.canvas.create_image(670, 219, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
 
@@ -5394,6 +5468,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.setpoint.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -5406,30 +5481,36 @@ class Frame16(tk.Frame):
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
             f"{self.p_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].p_k.config(text=self.numpad_instance.current_value)
+        App.storage_data["Proportional_Coefficient"] = self.numpad_instance.current_value
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
             f"{self.i_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].i_k.config(text=self.numpad_instance.current_value)
+        App.storage_data["Integral_Coefficient"] = self.numpad_instance.current_value
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
             f"{self.d_k.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].d_k.config(text=self.numpad_instance.current_value)
+        App.storage_data["Differential_Coefficient"] = self.numpad_instance.current_value
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
             f"{self.const_integral.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].const_integral.config(text=self.numpad_instance.current_value)
+        App.storage_data["Constant_Integrations"] = self.numpad_instance.current_value
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
             f"{self.setpoint.cget('text')} -> {self.numpad_instance.current_value}"))
         App.global_controller.frames["Frame16"].setpoint.config(text=self.numpad_instance.current_value)
+        App.storage_data["Setting_Substitution"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].update_setpoints()
 
 
     # Получение доступа
@@ -5445,13 +5526,18 @@ class Frame16(tk.Frame):
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
                 f"OFF -> ON"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
+            App.storage_data["Substitution_Setpoint"] = "1"
+            App.global_controller.frames["Frame2"].type_setpoint.config(text="PID")
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
                 f"ON -> OFF"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
+            App.storage_data["Substitution_Setpoint"] = "0"
+            App.global_controller.frames["Frame2"].type_setpoint.config(text="Пользователь")
         self.Switch_Flat_button = self.canvas.create_image(670, 219, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.check_password("switch"))
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
+        App.global_controller.frames["Frame2"].update_setpoints()
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -5764,9 +5850,6 @@ class Frame18(tk.Frame):
                                font=('Roboto Bold', 12))
         self.label9.place(x=259, y=372)
 
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", self.update_switch)
 
         self.ip_ = NetInfo().ipv4
         self.result_IP = self.ip_.split(".")
@@ -5831,9 +5914,13 @@ class Frame18(tk.Frame):
             self.netmask_1.place(x=717, y=332)
 
         # Кликабельная зона
+        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Switch_settings_panel"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
+        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
+        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
+
         self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.time_rectangle_1, "<Button-1>", lambda event: self.check_password("click1"))
-        self.time_display_1 = tk.Label(self.canvas, text="30", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_1 = tk.Label(self.canvas, text=App.storage_data["Time_screensaver_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_1.place(x=645, y=58)
         self.time_display_1.bind("<Button-1>", lambda event: self.check_password("click1"))
         self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -5842,7 +5929,7 @@ class Frame18(tk.Frame):
 
         self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
         self.canvas.tag_bind(self.time_rectangle_2, "<Button-1>", lambda event: self.check_password("click2"))
-        self.time_display_2 = tk.Label(self.canvas, text="15", fg='white', bg='black', font=('Roboto Bold', 12))
+        self.time_display_2 = tk.Label(self.canvas, text=App.storage_data["Time_display_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.time_display_2.place(x=645, y=98)
         self.time_display_2.bind("<Button-1>", lambda event: self.check_password("click2"))
         self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
@@ -6040,6 +6127,7 @@ class Frame18(tk.Frame):
                     self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -6056,18 +6144,23 @@ class Frame18(tk.Frame):
 
     def click1(self):
         App.global_controller.frames["Frame18"].time_display_1.config(text=self.numpad_instance.current_value)
+        App.storage_data["Time_screensaver_settings_panel"] = self.numpad_instance.current_value
+
 
     def click2(self):
         App.global_controller.frames["Frame18"].time_display_2.config(text=self.numpad_instance.current_value)
+        App.storage_data["Time_display_settings_panel"] = self.numpad_instance.current_value
 
     def update_switch(self, event=None):  # Смена переключателей
         print("step 1")
         if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
             print("step 2")
+            App.storage_data["Switch_settings_panel"] = "1"
         elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
             print("step 3")
+            App.storage_data["Switch_settings_panel"] = "0"
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         self.canvas.update()
@@ -6530,6 +6623,7 @@ class Frame19(tk.Frame, NetInfo):
                     self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
@@ -6546,11 +6640,9 @@ class Frame19(tk.Frame, NetInfo):
 
     def click1(self):
         App.storage_data["Time_screensaver_settings_panel"] = self.numpad_instance.current_value
-        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame19"].time_display_1.config(text=self.numpad_instance.current_value)
     def click2(self):
         App.storage_data["Time_display_settings_panel"] = self.numpad_instance.current_value
-        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame19"].time_display_2.config(text=self.numpad_instance.current_value)
 
 
@@ -6564,7 +6656,6 @@ class Frame19(tk.Frame, NetInfo):
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
             print("step 3")
             App.storage_data["Switch_settings_panel"] = "0"
-        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
         self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
         self.canvas.update()

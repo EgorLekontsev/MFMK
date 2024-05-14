@@ -17,9 +17,6 @@ class Numpad(tk.Toplevel):
         self.canvas.place(x=0, y=0)
         self.word = word
 
-        self.password = "123"
-        self.enter_password = ""
-
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
         self.entry_label.place(x=15, y=54, width=271, height=51)
 
@@ -294,7 +291,6 @@ class Numpad(tk.Toplevel):
     def clear_button_func(self):
         past_text = str(self.entry_label.cget('text'))
         new_text = past_text[:-1]
-        self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
 
     def enter_button_func(self):
