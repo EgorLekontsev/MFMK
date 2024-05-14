@@ -68,7 +68,7 @@ hr {
 
 {% block switch %}
 var collectednumber = '';
-var collectednumbernumpad = '';
+var cnn = '';
 
 function appendToResult(value) {
     var result = document.getElementById('passwordresult').innerText;
@@ -133,7 +133,7 @@ OffModelPassword.onclick = function() {
 OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     var input2check = false;
     input4check = false;
     input6check = false;
@@ -147,14 +147,14 @@ OffModelNumpad.onclick = function() {
 function clearNumpad() {
 var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
     }
 }
 function clearLastValueNumpad() {
     var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = collectednumber.slice(0, -1);
+        cnn = collectednumber.slice(0, -1);
         document.getElementById('numpad').innerText = result.slice(0, -1);
     }
 }
@@ -294,11 +294,177 @@ input15.onclick = function() {
 
 function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
-
+    if (input2check === true) {
+        if (result.length===0 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="0" && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]>=0 && result[0]<=9 && result[1]==="." && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]>=1 && result[0]<=4 && result[1]>=0 && result[1]<=9 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]==="5" && result[1]==="0" && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[0]>=1 && result[0]<=4 && result[1]>=0 && result[1]<=9 && result[2]==="." && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[0]==="5" && result[1]==="0" && result[2]==="." && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input4check === true) {
+        if (result.length===0 && value>=0 && value<=5) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=0 && result[0]<=5 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]>=0 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]>=0 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input6check === true) {
+        if (result.length===0 && value>=0 && value<=3) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="3" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input8check === true) {
+        if (result.length===0 && value>=0 && value<=5) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=0 && result[0]<=5 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]>=0 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]>=0 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input10check === true) {
+        if (result.length===0 && value>=0 && value<=3) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="3" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input12check === true) {
+        if (result.length===0 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input14check === true) {
+        if (result.length===0 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="0" && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=9 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]>=0 && result[0]<=9 && result[1]==="." && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="5" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]>=1 && result[0]<=4 && result[1]>=0 && result[1]<=9 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[0]==="5" && result[1]==="0" && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[0]>=1 && result[0]<=4 && result[1]>=0 && result[1]<=9 && result[2]==="." && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[0]==="5" && result[1]==="0" && result[2]==="." && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input16check === true) {
+        if (result.length===0 && value>=0 && value<=3) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && result[0]==="3" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    }
 }
 
 function checkNumpad() {
+    if (input2check === true) {
+        if (cnn.length===1 && cnn) {
 
+        }
+    } else if (input4check === true) {
+
+    } else if (input6check === true) {
+
+    } else if (input8check === true) {
+
+    } else if (input10check === true) {
+
+    } else if (input12check === true) {
+
+    } else if (input14check === true) {
+
+    } else if (input16check === true) {
+
+    }
 }
 
 var resultpassword = '7531';
@@ -333,7 +499,7 @@ async function hideFlickeringElements() {
     });
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     input2check = false;
     input4check = false;
     input6check = false;

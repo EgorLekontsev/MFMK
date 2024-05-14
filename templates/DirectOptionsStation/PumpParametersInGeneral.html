@@ -68,7 +68,7 @@ hr {
 
 {% block switch %}
 var collectednumber = '';
-var collectednumbernumpad = '';
+var cnn = '';
 
 function appendToResult(value) {
     var result = document.getElementById('passwordresult').innerText;
@@ -121,7 +121,7 @@ OffModelPassword.onclick = function() {
 OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     input2check = false;
     input4check = false;
     input6check = false;
@@ -131,14 +131,14 @@ OffModelNumpad.onclick = function() {
 function clearNumpad() {
 var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
     }
 }
 function clearLastValueNumpad() {
     var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = collectednumber.slice(0, -1);
+        cnn = collectednumber.slice(0, -1);
         document.getElementById('numpad').innerText = result.slice(0, -1);
     }
 }
@@ -279,76 +279,76 @@ function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
     if (input2check === true) {
         if (value>=1 && value<=3 && result.length===0) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]==="1" && result.length===1 && value>=5 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         }else if (result[0]==="2" && result.length===1 && value>=0 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]==="3" && result.length===1 && value==="0") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]>=1 && result[0]<=2 && result[1]>=0 && result[1]<=9 && result.length===2 && value===".") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result[0]==="3" && result[1]==="0" && result.length===2 && value===".") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===3 && result[0]>=1 && result[0]<=2) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===3 && result[0]==="3" && value==='0') {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         }
     } else if (input4check === true) {
         if (result.length===0 && value>=4 && value<=5) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if(result.length===1 && value>=0 && value<=9 && result[0]==="4") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && value==="0" && result[0]==="5") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===2 && result[0]==="5" && result[1]==="0" && value===".") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===2 && result[0]==="4" && result[1]>=0 && result[1]<=9 && value===".") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===3 && result[0]==="4" && value>=0 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===3 && result[0]==="5" && value==="0") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         }
     } else if (input6check === true) {
         if (result.length===0 && value>=2 && value<=7) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]>=3 && result[0]<=6 && value>=0 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]==="2" && value>=4 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]==="7" && value>=0 && value<=2) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         }
     } else if (input8check === true) {
         if (result.length===0 && value>=0 && value<=9) {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && value>=0 && value<=9 && result[0]==="1") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && value>=0 && value<=4 && result[0]==="2") {
-            collectednumbernumpad += value;
+            cnn += value;
             document.getElementById('numpad').innerText += value;
         }
     }
@@ -356,28 +356,28 @@ function appendToNumpad(value) {
 
 function checkNumpad() {
     if (input2check === true) {
-        if (collectednumbernumpad[0]>=1 && collectednumbernumpad[0]<=3 && collectednumbernumpad.length===1){
+        if (cnn[0]>=1 && cnn[0]<=3 && cnn.length===1){
             <!---->
-        } else if (collectednumbernumpad.length===0) {
+        } else if (cnn.length===0) {
             <!---->
-        }else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===2) {
-            input2.innerText = collectednumbernumpad + ".0";
-        } else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[2]===".") {
-            input2.innerText = collectednumbernumpad + "0";
-        } else if (collectednumbernumpad[0]==="1" && collectednumbernumpad[1]>=5 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[2]===".") {
-            input2.innerText = collectednumbernumpad;
-        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===2)  {
-            input2.innerText = collectednumbernumpad + ".0";
-        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===3 && collectednumbernumpad[2]===".") {
-            input2.innerText = collectednumbernumpad + "0";
-        } else if (collectednumbernumpad[0]==="2" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad.length===4 && collectednumbernumpad[2]===".") {
-            input2.innerText = collectednumbernumpad;
-        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===2) {
-            input2.innerText = collectednumbernumpad + ".0";
-        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===3) {
-            input2.innerText = collectednumbernumpad + "0";
-        } else if (collectednumbernumpad[0]==="3" && collectednumbernumpad.length===4) {
-            input2.innerText = collectednumbernumpad;
+        }else if (cnn[0]==="1" && cnn[1]>=5 && cnn[1]<=9 && cnn.length===2) {
+            input2.innerText = cnn + ".0";
+        } else if (cnn[0]==="1" && cnn[1]>=5 && cnn[1]<=9 && cnn.length===3 && cnn[2]===".") {
+            input2.innerText = cnn + "0";
+        } else if (cnn[0]==="1" && cnn[1]>=5 && cnn[1]<=9 && cnn.length===4 && cnn[2]===".") {
+            input2.innerText = cnn;
+        } else if (cnn[0]==="2" && cnn[1]>=0 && cnn[1]<=9 && cnn.length===2)  {
+            input2.innerText = cnn + ".0";
+        } else if (cnn[0]==="2" && cnn[1]>=0 && cnn[1]<=9 && cnn.length===3 && cnn[2]===".") {
+            input2.innerText = cnn + "0";
+        } else if (cnn[0]==="2" && cnn[1]>=0 && cnn[1]<=9 && cnn.length===4 && cnn[2]===".") {
+            input2.innerText = cnn;
+        } else if (cnn[0]==="3" && cnn.length===2) {
+            input2.innerText = cnn + ".0";
+        } else if (cnn[0]==="3" && cnn.length===3) {
+            input2.innerText = cnn + "0";
+        } else if (cnn[0]==="3" && cnn.length===4) {
+            input2.innerText = cnn;
         }
         var formData = new FormData();
         formData.append('Minimum_Frequency', input2.innerText);
@@ -386,26 +386,26 @@ function checkNumpad() {
             body: formData
         })
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
     } else if (input4check === true) {
-        if (collectednumbernumpad.length===0){
+        if (cnn.length===0){
             <!---->
-        } else if (collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad.length===1) {
+        } else if (cnn[0]>=4 && cnn[0]<=5 && cnn.length===1) {
             <!---->
-        } else if (collectednumbernumpad.length===2 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0") {
-            input4.innerText = collectednumbernumpad + ".0";
-        } else if (collectednumbernumpad.length===3 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0" && collectednumbernumpad[2]===".") {
-            input4.innerText = collectednumbernumpad + "0";
-        } else if (collectednumbernumpad.length===4 && collectednumbernumpad[0]>=4 && collectednumbernumpad[0]<=5 && collectednumbernumpad[1]==="0" && collectednumbernumpad[2]==="." && collectednumbernumpad[3]==="0") {
-            input4.innerText = collectednumbernumpad;
-        } else if (collectednumbernumpad.length===2 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9) {
-            input4.innerText = collectednumbernumpad + ".0";
-        } else if (collectednumbernumpad.length===3 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad[2]===".") {
-            input4.innerText = collectednumbernumpad + "0";
-        } else if (collectednumbernumpad.length===4 && collectednumbernumpad[0]==="4" && collectednumbernumpad[1]>=0 && collectednumbernumpad[1]<=9 && collectednumbernumpad[2]==="." && collectednumbernumpad[3]>=0 && collectednumbernumpad[3]<=9) {
-            input4.innerText = collectednumbernumpad;
+        } else if (cnn.length===2 && cnn[0]>=4 && cnn[0]<=5 && cnn[1]==="0") {
+            input4.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]>=4 && cnn[0]<=5 && cnn[1]==="0" && cnn[2]===".") {
+            input4.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]>=4 && cnn[0]<=5 && cnn[1]==="0" && cnn[2]==="." && cnn[3]==="0") {
+            input4.innerText = cnn;
+        } else if (cnn.length===2 && cnn[0]==="4" && cnn[1]>=0 && cnn[1]<=9) {
+            input4.innerText = cnn + ".0";
+        } else if (cnn.length===3 && cnn[0]==="4" && cnn[1]>=0 && cnn[1]<=9 && cnn[2]===".") {
+            input4.innerText = cnn + "0";
+        } else if (cnn.length===4 && cnn[0]==="4" && cnn[1]>=0 && cnn[1]<=9 && cnn[2]==="." && cnn[3]>=0 && cnn[3]<=9) {
+            input4.innerText = cnn;
         }
         var formData = new FormData();
         formData.append('Maximum_Frequency', input4.innerText);
@@ -414,14 +414,14 @@ function checkNumpad() {
             body: formData
         })
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
     } else if (input6check === true) {
-        if (collectednumbernumpad.length===0){
+        if (cnn.length===0){
             <!---->
         } else {
-            input6.innerText = collectednumbernumpad;
+            input6.innerText = cnn;
         }
         var formData = new FormData();
         formData.append('Pump_Rotation_Interval', input6.innerText);
@@ -430,14 +430,14 @@ function checkNumpad() {
             body: formData
         })
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input6check = false;
     } else if (input8check === true) {
-        if (collectednumbernumpad.length===0){
+        if (cnn.length===0){
             <!---->
         } else {
-            input8.innerText = collectednumbernumpad;
+            input8.innerText = cnn;
         }
         var formData = new FormData();
         formData.append('Rotation_Time_Of_Day', input8.innerText);
@@ -446,7 +446,7 @@ function checkNumpad() {
             body: formData
         })
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input8check = false;
     }
@@ -484,7 +484,7 @@ async function hideFlickeringElements() {
     });
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     input2check = false;
     input4check = false;
     input6check = false;

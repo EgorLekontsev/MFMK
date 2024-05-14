@@ -72,7 +72,7 @@ hr {
 
 {% block script %}
 var collectednumber = '';
-var collectednumbernumpad = '';
+var cnn = '';
 
 function appendToResult(value) {
     var result = document.getElementById('passwordresult').innerText;
@@ -118,7 +118,7 @@ OffModelPassword.onclick = function() {
 OffModelNumpad.onclick = function() {
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     input2check = false;
     input4check = false;
 }
@@ -126,33 +126,33 @@ OffModelNumpad.onclick = function() {
 function appendToNumpad(value) {
     var result = document.getElementById('numpad').innerText;
     if(result.length===0 && value>=0 && value<=9) {
-        collectednumbernumpad += value;
+        cnn += value;
         document.getElementById('numpad').innerText += value;
     } else if (result.length===0 && value>=1 && value<=9) {
-        collectednumbernumpad += value;
+        cnn += value;
         document.getElementById('numpad').innerText += value;
     } else if (result.length===1 && result[0]==="1") {
-        collectednumbernumpad += value;
+        cnn += value;
         document.getElementById('numpad').innerText += value;
     } else if (result.length===1 && result[0]==="2") {
-        collectednumbernumpad += value;
+        cnn += value;
         document.getElementById('numpad').innerText += value;
     } else if (result.length===1 && result[0]==="3" &&  value==="0") {
-        collectednumbernumpad += value;
+        cnn += value;
         document.getElementById('numpad').innerText += value;
     }
 }
 function clearNumpad() {
 var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
     }
 }
 function clearLastValueNumpad() {
     var result = document.getElementById('numpad').innerText;
     if (result !== '') {
-        collectednumbernumpad = collectednumber.slice(0, -1);
+        cnn = collectednumber.slice(0, -1);
         document.getElementById('numpad').innerText = result.slice(0, -1);
     }
 }
@@ -234,9 +234,9 @@ Switch.onclick = function() {
 
 function checkNumpad() {
     if (input2check === true) {
-        input2.innerText = collectednumbernumpad;
+        input2.innerText = cnn;
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
         var formData = new FormData();
@@ -246,9 +246,9 @@ function checkNumpad() {
             body: formData
         })
     } else if (input4check === true) {
-        input4.innerText = collectednumbernumpad;
+        input4.innerText = cnn;
         ModalNumpad.style.display = "none";
-        collectednumbernumpad = '';
+        cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
         var formData = new FormData();
@@ -291,7 +291,7 @@ async function hideFlickeringElements() {
     });
     ModalNumpad.style.display = "none";
     document.getElementById('numpad').innerText = '';
-    collectednumbernumpad = '';
+    cnn = '';
     input2check = false;
     input4check = false;
 }
