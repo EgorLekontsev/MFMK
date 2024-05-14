@@ -236,6 +236,19 @@ Switch1.onclick = function() {
                     method: 'POST',
                     body: formData
                 })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Использовать пуск мастера с 0Гц",
+                    "Info": `Off -> On`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
             } else {
                 Switch1.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
                 var formData = new FormData();
@@ -244,6 +257,19 @@ Switch1.onclick = function() {
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Использовать пуск мастера с 0Гц",
+                    "Info": `On -> Off`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
             }
         }
@@ -263,6 +289,19 @@ Switch2.onclick = function() {
                     method: 'POST',
                     body: formData
                 })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Использовать ротацию насосов",
+                    "Info": `Off -> On`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
             } else {
                 Switch2.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
                 var formData = new FormData();
@@ -271,6 +310,19 @@ Switch2.onclick = function() {
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Использовать ротацию насосов",
+                    "Info": `On -> Off`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
             }
         }
@@ -358,8 +410,11 @@ function appendToNumpad(value) {
     }
 }
 
+var write;
+
 function checkNumpad() {
     if (input2check === true) {
+        write = input2.innerText;
         if (cnn[0]>=1 && cnn[0]<=3 && cnn.length===1){
             <!---->
         } else if (cnn.length===0) {
@@ -393,7 +448,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Минимальная частота работы",
+            "Info": `${write} -> ${input2.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input4check === true) {
+        write = input4.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn[0]>=4 && cnn[0]<=5 && cnn.length===1) {
@@ -421,7 +490,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Максимальная частота работы",
+            "Info": `${write} -> ${input4.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input6check === true) {
+        write = input6.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -437,7 +520,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input6check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Интервал ротации насосов",
+            "Info": `${write} -> ${input6.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input8check === true) {
+        write = input8.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -453,6 +550,19 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input8check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Время суток ротации",
+            "Info": `${write} -> ${input8.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     }
 }
 

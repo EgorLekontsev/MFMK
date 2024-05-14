@@ -195,8 +195,11 @@ function clearLastValueNumpad() {
     }
 }
 
+var write;
+
 function checkNumpad() {
     if (input2check === true) {
+        write = input2.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -238,7 +241,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Номинал датчика на всасывание",
+            "Info": `${write} -> ${input2.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input4check === true) {
+        write = input4.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -280,6 +297,19 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Номинал датчика на нагнетание",
+            "Info": `${write} -> ${input4.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     }
 }
 

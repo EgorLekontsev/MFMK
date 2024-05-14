@@ -194,6 +194,19 @@ Switch.onclick = function() {
                     method: 'POST',
                     body: formData
                 })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Контроль разрыва трубопровода",
+                    "Info": `Off -> On`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
             } else {
                 Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchNo.png') }}";
                 var formData = new FormData();
@@ -201,6 +214,19 @@ Switch.onclick = function() {
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Контроль разрыва трубопровода",
+                    "Info": `On -> Off`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
             }
         }
@@ -470,8 +496,11 @@ function appendToNumpad(value) {
     }
 }
 
+var write;
+
 function checkNumpad() {
     if (input2check === true) {
+        write = input2.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn.length===1 && cnn[0]==="0") {
@@ -499,7 +528,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Частота срабатывания",
+            "Info": `${write} -> ${input2.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input4check === true) {
+        write = input4.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -515,7 +558,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Задержка аварии",
+            "Info": `${write} -> ${input4.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input6check === true) {
+        write = input6.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -531,7 +588,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input6check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Максимальное число аварий",
+            "Info": `${write} -> ${input6.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input8check === true) {
+        write = input8.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -573,7 +644,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input8check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Предупреждение",
+            "Info": `${write} -> ${input8.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input10check === true) {
+        write = input10.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -615,7 +700,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input10check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Авария",
+            "Info": `${write} -> ${input10.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input12check === true) {
+        write = input12.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -631,7 +730,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input12check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Задержка аварии",
+            "Info": `${write} -> ${input12.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input14check === true) {
+        write = input14.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -647,7 +760,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input14check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Задержка выключения",
+            "Info": `${write} -> ${input14.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input16check === true) {
+        write = input16.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn==="0"){
@@ -689,6 +816,19 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input16check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Стоп по критическому давлению",
+            "Info": `${write} -> ${input16.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     }
 }
 

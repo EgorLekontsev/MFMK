@@ -521,8 +521,11 @@ input13.onclick = function() {
     }
 }
 
+var write;
+
 function checkNumpad() {
     if (input2check === true) {
+        write = input2.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn<100) {
@@ -540,7 +543,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Напряжение",
+            "Info": `${write} -> ${input2.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input4check === true) {
+        write = input4.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn.length===1 && cnn[0]==="0") {
@@ -568,7 +585,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input4check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Ток",
+            "Info": `${write} -> ${input4.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input6check === true) {
+        write = input6.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn.length===1 && cnn[0]==="0") {
@@ -596,7 +627,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input6check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Частота",
+            "Info": `${write} -> ${input6.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input8check === true) {
+        write = input8.innerText;
         if (cnn.length===0){
             <!---->
         } else {
@@ -612,7 +657,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input8check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Скорость",
+            "Info": `${write} -> ${input8.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input10check === true) {
+        write = input10.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn[0]>=0 && cnn[0]<=9 && cnn.length===1) {
@@ -650,7 +709,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input10check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Мощность",
+            "Info": `${write} -> ${input10.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input12check === true) {
+        write = input12.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn.length===1 && cnn[0]==="0") {
@@ -678,7 +751,21 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input12check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Время ускорения",
+            "Info": `${write} -> ${input12.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     } else if (input14check === true) {
+        write = input14.innerText;
         if (cnn.length===0){
             <!---->
         } else if (cnn.length===1 && cnn[0]==="0") {
@@ -706,6 +793,19 @@ function checkNumpad() {
         cnn = '';
         document.getElementById('numpad').innerText = '';
         input14check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Время торможения",
+            "Info": `${write} -> ${input14.innerText}`
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
     }
 }
 
@@ -772,6 +872,19 @@ SwitchReading.onclick = function() {
                     method: 'POST',
                     body: formData
                 })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Считывание настроек с ПЧ",
+                    "Info": `Off -> On`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
             } else {
                 SwitchReading.style.backgroundColor = '#606060';
                 var formData = new FormData();
@@ -780,6 +893,19 @@ SwitchReading.onclick = function() {
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Считывание настроек с ПЧ",
+                    "Info": `On -> Off`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
             }
         }
@@ -809,6 +935,19 @@ SwitchRecording.onclick = function() {
                     method: 'POST',
                     body: formData
                 })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Запись настроек в ПЧ",
+                    "Info": `Off -> On`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
             } else {
                 SwitchRecording.style.backgroundColor = '#606060';
                 var formData = new FormData();
@@ -817,6 +956,19 @@ SwitchRecording.onclick = function() {
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Запись настроек в ПЧ",
+                    "Info": `On -> Off`
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
                 })
             }
         }
