@@ -157,11 +157,6 @@ var dayOfWeek = date.getDay();
 var daysOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 var currentDayOfWeek = daysOfWeek[dayOfWeek];
 document.getElementById('currentDayOfWeek').innerText = currentDayOfWeek;
-<!--if(currentDayOfWeek!== "Суббота" && currentDayOfWeek!== "Воскресенье") {-->
-<!--    document.getElementById('currentTypeOfDay').innerText = "Будний";-->
-<!--} else {-->
-<!--    document.getElementById('currentTypeOfDay').innerText = "Выходной";-->
-<!--}-->
 
 var btn1 = document.getElementById('Button1');
 var btn1BackgroundColor;
@@ -296,364 +291,183 @@ plans22 = false;
 plans23 = false;
 plans24 = false;
 
-<!--Кнопки-->
-plans[0].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[0].onclick) {
+for (let i = 0; i < plans.length; i++) {
+    plans[i].onclick = function() {
+        if (currectpassword === true) {
             ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans1 = true;
+            switch(i) {
+                case 0:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans1 = true;
+                    break;
+                case 1:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans2 = true;
+                    break;
+                case 2:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans3 = true;
+                    break;
+                case 3:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans4 = true;
+                    break;
+                case 4:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans5 = true;
+                    break;
+                case 5:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans6 = true;
+                    break;
+                case 6:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans7 = true;
+                    break;
+                case 7:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans8 = true;
+                    break;
+                case 8:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans9 = true;
+                    break;
+                case 9:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans10 = true;
+                    break;
+                case 10:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans11 = true;
+                    break;
+                case 11:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans12 = true;
+                    break;
+                case 12:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans13 = true;
+                    break;
+                case 13:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans14 = true;
+                    break;
+                case 14:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans15 = true;
+                    break;
+                case 15:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans16 = true;
+                    break;
+                case 16:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans17 = true;
+                    break;
+                case 17:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans18 = true;
+                    break;
+                case 18:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans19 = true;
+                    break;
+                case 19:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans20 = true;
+                    break;
+                case 20:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '23';
+                    plans21 = true;
+                    break;
+                case 21:
+                    document.getElementById('min').innerText = '0';
+                    document.getElementById('maxtext').style.left = "216px";
+                    document.getElementById('max').style.left = "264px";
+                    document.getElementById('max').innerText = '59';
+                    plans22 = true;
+                    break;
+                case 22:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans23 = true;
+                    break;
+                case 23:
+                    document.getElementById('min').innerText = '0.00';
+                    document.getElementById('maxtext').style.left = "191px";
+                    document.getElementById('max').style.left = "238px";
+                    document.getElementById('max').innerText = '99.99';
+                    plans24 = true;
+                    break;
+            }
+        } else {
+            ModalPassword.style.display = "block";
         }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[1].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[1].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans2 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[2].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[2].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans3 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[3].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[3].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans4 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[4].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[4].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans5 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[5].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[5].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans6 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[6].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[6].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans7 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[7].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[7].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans8 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[8].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[8].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans9 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[9].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[9].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans10 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[10].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[10].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans11 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[11].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[11].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans12 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[12].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[12].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans13 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[13].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[13].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans14 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[14].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[14].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans15 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[15].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[15].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans16 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[16].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[16].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans17 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[17].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[17].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans18 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[18].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[18].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans19 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[19].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[19].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans20 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[20].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[20].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '23';
-            plans21 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[21].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[21].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0';
-            document.getElementById('maxtext').style.left = "216px";
-            document.getElementById('max').style.left = "264px";
-            document.getElementById('max').innerText = '59';
-            plans22 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[22].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[22].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans23 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
-    }
-}
-
-plans[23].onclick = function() {
-    if (currectpassword === true) {
-        if(plans[23].onclick) {
-            ModalNumpad.style.display = "block";
-            document.getElementById('min').innerText = '0.00';
-            document.getElementById('maxtext').style.left = "191px";
-            document.getElementById('max').style.left = "238px";
-            document.getElementById('max').innerText = '99.99';
-            plans24 = true;
-        }
-    } else {
-        ModalPassword.style.display = "block";
     }
 }
 
@@ -1603,17 +1417,9 @@ btn7.onclick = function() {
 }
 
 fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    input2.textContent = data.User_Setpoint;
-  })
-  .catch(error => {
-    console.error('Ошибка при получении данных:', error);
-  });
-
-fetch('/data')
     .then(response => response.json())
     .then(data => {
+        input2.textContent = data.User_Setpoint;
         document.getElementById('1').textContent = data.Setpoint_Planner_Morning_Weekday_Hour;
         document.getElementById('2').textContent = data.Setpoint_Planner_Morning_Weekday_Minute;
         document.getElementById('3').textContent = data.Setpoint_Planner_Morning_Weekend_Hour;
@@ -2372,26 +2178,21 @@ async function hideFlickeringElements() {
 {% endblock %}
 
 {% block interface %}
-<img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}"
-    style="position: absolute; top: 18px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}" style="position: absolute; top: 18px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 19px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Источник уставки</p>
 <hr style="position: absolute; top: 50px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
-<img src="{{ url_for('static', filename='iconsbutton/User.png') }}"
-    style="position: absolute; top: 62px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/User.png') }}" style="position: absolute; top: 62px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 67px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 180px;">Уставка пользователя</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 62px; left: 594px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 62px; left: 594px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <div id="InputText1" class="click">
     <hr style="position: absolute; top: 60px; left: 623px; border: 3px solid white; width: 154px; height: 26px; border-radius: 10px;">
     <p id="InputText2" style="position: absolute; top: 65px; left: 640px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
     <p style="position: absolute; top: 66px; left: 750px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
 </div>
 <hr style="position: absolute; top: 100px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
-<img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
-    style="position: absolute; top: 112px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}" style="position: absolute; top: 112px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 116px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px;">Настройка дней недели</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 108px; left: 479px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 108px; left: 479px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <button id="Button1" class="click" style="position: absolute; top: 105px; left: 510px;">ПН</button>
 <button id="Button2" class="click" style="position: absolute; top: 105px; left: 550px;">ВТ</button>
 <button id="Button3" class="click" style="position: absolute; top: 105px; left: 590px;">СР</button>
@@ -2407,11 +2208,9 @@ async function hideFlickeringElements() {
 <p style="position: absolute; top: 179px; left: 572px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Уставка</p>
 <p style="position: absolute; top: 179px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Будни</p>
 <p style="position: absolute; top: 179px; left: 707px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 90px;">Выходные</p>
-<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
-    style="position: absolute; top: 213px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}" style="position: absolute; top: 213px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 217px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">Утро</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 214px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 214px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <hr style="position: absolute; top: 210px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="1" style="position: absolute; top: 215px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
 <p style="position: absolute; top: 215px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -2426,11 +2225,9 @@ async function hideFlickeringElements() {
 <hr style="position: absolute; top: 210px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="6" style="position: absolute; top: 215px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
 <p style="position: absolute; top: 215px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
-    style="position: absolute; top: 258px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}" style="position: absolute; top: 258px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 261px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">День</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 259px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 259px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <hr style="position: absolute; top: 258px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="7" style="position: absolute; top: 264px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
 <p style="position: absolute; top: 264px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -2445,11 +2242,9 @@ async function hideFlickeringElements() {
 <hr style="position: absolute; top: 258px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="12" style="position: absolute; top: 264px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
 <p style="position: absolute; top: 264px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
-    style="position: absolute; top: 303px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}" style="position: absolute; top: 303px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 305px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Вечер</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 304px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 304px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <hr style="position: absolute; top: 300px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="13" style="position: absolute; top: 306px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
 <p style="position: absolute; top: 306px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -2464,11 +2259,9 @@ async function hideFlickeringElements() {
 <hr style="position: absolute; top: 300px; left: 690px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="18" style="position: absolute; top: 306px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
 <p style="position: absolute; top: 306px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}"
-    style="position: absolute; top: 348px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Calendar.png') }}" style="position: absolute; top: 348px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 349px; left: 260px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 40px;">Ночь</p>
-<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-    style="position: absolute; top: 349px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 349px; left: 342px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <hr style="position: absolute; top: 345px; left: 372px; border: 3px solid white; width: 96px; height: 26px; border-radius: 10px;">
 <p class="click plan" id="19" style="position: absolute; top: 351px; left: 388px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 20px;"></p>
 <p style="position: absolute; top: 351px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px;">:</p>
@@ -2484,14 +2277,12 @@ async function hideFlickeringElements() {
 <p class="click plan" id="24" style="position: absolute; top: 351px; left: 704px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 16px; width: 33px;"></p>
 <p style="position: absolute; top: 351px; left: 758px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
 <hr style="position: absolute; top: 399px; left: 207px; right: 0px; width: 584px; height: 0px; border-top: 0px;">
-<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-    style="position: absolute; top: 414px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 414px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 414px; left: 252px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">Текущий день</p>
 <p id="currentDayOfWeek" style="position: absolute; top: 414px; left: 371px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;"></p>
 <p style="position: absolute; top: 414px; left: 553px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px;">Тип дня</p>
 <p id="currentTypeOfDay" style="position: absolute; top: 414px; left: 625px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;"></p>
-<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-    style="position: absolute; top: 444px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 444px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
 <p style="position: absolute; top: 444px; left: 251px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;">Тип уставки</p>
 <p style="position: absolute; top: 444px; left: 519px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Текущая уставка</p>
 <p style="position: absolute; top: 444px; left: 744px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>

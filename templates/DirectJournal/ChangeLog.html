@@ -4,13 +4,33 @@
 <title>Журнал изменений</title>
 {% endblock %}
 
+{% block clockhide %}
+#clock {
+  display: none;
+}
+{% endblock %}
+
 {% block styleforrightbody %}
 table {
     border-collapse: collapse;
-    width: 600px;
-    position: absolute;
-    top: 40px;
+    width: 583px;
+    top: 0px;
     left: 200px;
+}
+
+.contents {
+    float: left;
+    max-height: 480px;
+    width: 200px;
+    height: 480px;
+    overflow: auto;
+    overflow: hidden;
+}
+.content {
+    max-height: 480px;
+    height: 480px;
+    width: 600px;
+    overflow: auto;
 }
 tr {
     border: 1px solid #8E8E8E;
@@ -79,6 +99,8 @@ td {
 fetch('/data_log')
     .then(response => response.json())
     .then(data => {
+        var div_content = document.createElement('div');
+        div_content.classList.add("content");
         var table = document.createElement('table');
 
         var tr_All = document.createElement('tr');
@@ -97,13 +119,13 @@ fetch('/data_log')
 
         var th_Comment = document.createElement('th');
         th_Comment.textContent = 'Комментарии';
-        th_Comment.style.width = '190px';
+        th_Comment.style.width = '170px';
         th_Comment.style.height = '20px';
         tr_All.appendChild(th_Comment);
 
         var th_Info = document.createElement('th');
         th_Info.textContent = 'Информация';
-        th_Info.style.width = '85px';
+        th_Info.style.width = '65px';
         th_Info.style.height = '20px';
         tr_All.appendChild(th_Info);
 
@@ -130,7 +152,8 @@ fetch('/data_log')
 
             table.appendChild(tr_All);
         }
-        document.body.appendChild(table);
+        div_content.appendChild(table);
+        document.body.appendChild(div_content);
 })
 {% endblock %}
 

@@ -7,6 +7,9 @@
             width: 800px;
             height: 480px;
         }
+        .content {
+
+        }
         body {
             background-color: black;
             margin-left: 0px;
@@ -16,6 +19,7 @@
             width: 800px;
             height: 480px;
             user-select: none;
+            overflow: hidden;
         }
         {% block clockhide %}{% endblock %}
         #clock {
@@ -185,7 +189,7 @@
     {% block title %}{% endblock %}
 </head>
 <body>
-    <div>
+    <div class="contents">
         {% block container %}{% endblock %}
         <div class="rightbody">
             <div style="width: 600px; height: 480px;">
