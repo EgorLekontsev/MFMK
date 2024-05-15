@@ -127,68 +127,42 @@ function clearLastValueNumpad() {
 {% endblock %}
 
 {% block interface %}
-<div class="rightbody">
-    <div style="width: 600px; height: 480px;">
-        <div id="ModalNumpad" class="Modal">
-            <div class="ModalContent">
-                <div class="passwordprint">
-                    <p id="numpad" style="text-align: right; position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
-                </div>
-                <button class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
-                <button class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
-                <button class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
-                <button onclick="clearNumpad()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
-                <button onclick="appendToNumpad('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
-                <button onclick="appendToNumpad('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
-                <button onclick="appendToNumpad('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
-                <button onclick="clearLastValueNumpad()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
-                <button onclick="appendToNumpad('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
-                <button onclick="appendToNumpad('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
-                <button onclick="appendToNumpad('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
-                <button class="inputbtnblack closeModalNumpad" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
-                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
-                <button onclick="appendToNumpad('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
-                <button onclick="checkNumpad()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
-            </div>
-        </div>
-        <img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
-            style="position: absolute; top: 48px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 50px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Программное обеспечение</p>
-        <p style="position: absolute; top: 50px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 220px;">HVS_ONE_WO0.00.00.2.empt</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
-            style="position: absolute; top: 83px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 86px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px;">Версия EasyBuilder</p>
-        <p style="position: absolute; top: 86px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">60901</p>
-        <img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
-            style="position: absolute; top: 119px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 122px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Дата компиляции</p>
-        <p style="position: absolute; top: 122px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 90px;">23.04.2023</p>
-        <hr style="position: absolute; top: 156px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
-        <img src="{{ url_for('static', filename='iconsbutton/Key.png') }}"
-            style="position: absolute; top: 164px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 168px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">Код продукта</p>
-        <p style="position: absolute; top: 168px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
-        <p style="position: absolute; top: 168px; left: 526px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
-        <p style="position: absolute; top: 168px; left: 632px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
-        <img src="{{ url_for('static', filename='iconsbutton/SensorSettings.png') }}"
-            style="position: absolute; top: 202px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 207px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 160px;">Количество насосов</p>
-        <p style="position: absolute; top: 207px; left: 444px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">6</p>
-        <p style="position: absolute; top: 207px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px;">из них работающих</p>
-        <p class="click" id="Pumps" style="position: absolute; top: 207px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
-        <hr style="position: absolute; top: 240px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
-        <img src="{{ url_for('static', filename='iconsbutton/Mail.png') }}"
-            style="position: absolute; top: 255px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 255px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Почта</p>
-        <p style="position: absolute; top: 255px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">info@mfmc.ru</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Web.png') }}"
-            style="position: absolute; top: 288px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 288px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Вэб-сайт</p>
-        <p style="position: absolute; top: 288px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">www.mfmc.ru</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Telephone.png') }}"
-            style="position: absolute; top: 322px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 324px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px;">Техническая поддержка</p>
-        <p style="position: absolute; top: 321px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; height: 40px;">+7 (495) 122-22-62<br>+7 (800) 333-14-61</p>
-    </div>
-</div>
+<img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
+    style="position: absolute; top: 48px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 50px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Программное обеспечение</p>
+<p style="position: absolute; top: 50px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 220px;">HVS_ONE_WO0.00.00.2.empt</p>
+<img src="{{ url_for('static', filename='iconsbutton/Question.png') }}"
+    style="position: absolute; top: 83px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 86px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px;">Версия EasyBuilder</p>
+<p style="position: absolute; top: 86px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">60901</p>
+<img src="{{ url_for('static', filename='iconsbutton/SetpointPlanner.png') }}"
+    style="position: absolute; top: 119px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 122px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Дата компиляции</p>
+<p style="position: absolute; top: 122px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 90px;">23.04.2023</p>
+<hr style="position: absolute; top: 156px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Key.png') }}"
+    style="position: absolute; top: 164px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 168px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">Код продукта</p>
+<p style="position: absolute; top: 168px; left: 420px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
+<p style="position: absolute; top: 168px; left: 526px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
+<p style="position: absolute; top: 168px; left: 632px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">0</p>
+<img src="{{ url_for('static', filename='iconsbutton/SensorSettings.png') }}"
+    style="position: absolute; top: 202px; left: 218px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 207px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 160px;">Количество насосов</p>
+<p style="position: absolute; top: 207px; left: 444px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;">6</p>
+<p style="position: absolute; top: 207px; left: 485px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px;">из них работающих</p>
+<p class="click" id="Pumps" style="position: absolute; top: 207px; left: 651px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+<hr style="position: absolute; top: 240px; left: 220px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Mail.png') }}"
+    style="position: absolute; top: 255px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 255px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px;">Почта</p>
+<p style="position: absolute; top: 255px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">info@mfmc.ru</p>
+<img src="{{ url_for('static', filename='iconsbutton/Web.png') }}"
+    style="position: absolute; top: 288px; left: 220px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 288px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px;">Вэб-сайт</p>
+<p style="position: absolute; top: 288px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px;">www.mfmc.ru</p>
+<img src="{{ url_for('static', filename='iconsbutton/Telephone.png') }}"
+    style="position: absolute; top: 322px; left: 221px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 324px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px;">Техническая поддержка</p>
+<p style="position: absolute; top: 321px; left: 644px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; height: 40px;">+7 (495) 122-22-62<br>+7 (800) 333-14-61</p>
 {% endblock %}

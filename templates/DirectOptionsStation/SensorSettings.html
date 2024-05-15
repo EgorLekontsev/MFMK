@@ -394,97 +394,34 @@ async function hideFlickeringElements() {
 {% endblock %}
 
 {% block interface %}
-<div class="rightbody">
-    <div style="width: 600px; height: 480px;">
-        <div id="ModalNumpad" class="Modal">
-            <div class="ModalContent">
-                <p style="position: absolute; top: 17px; left: 14px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MIN:</p>
-                <p id="min" style="position: absolute; top: 17px; left: 56px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
-                <p id="maxtext" style="position: absolute; top: 17px; left: 191px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;">MAX:</p>
-                <p id="max" style="position: absolute; top: 17px; left: 238px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 240px; font-size: 18px;"></p>
-                <div class="passwordprint">
-                    <p id="numpad" style="text-align: right; position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
-                </div>
-                <button onclick="appendToNumpad('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
-                <button onclick="appendToNumpad('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
-                <button onclick="appendToNumpad('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
-                <button onclick="clearNumpad()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
-                <button onclick="appendToNumpad('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
-                <button onclick="appendToNumpad('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
-                <button onclick="appendToNumpad('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
-                <button onclick="clearLastValueNumpad()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
-                <button onclick="appendToNumpad('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
-                <button onclick="appendToNumpad('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
-                <button onclick="appendToNumpad('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
-                <button class="inputbtnblack closeModalNumpad" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
-                <button onclick="appendToNumpad('.')" class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
-                <button onclick="appendToNumpad('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
-                <button onclick="checkNumpad()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
-            </div>
-        </div>
-        <div id="ModalPassword" class="Modal">
-            <div class="ModalContent">
-                <div class="backgroundblack">
-                    <p class="passswordp">Введите пароль</p>
-                </div>
-                <div class="passwordprint">
-                    <p id="passwordresult" dir="rtl" style="position: absolute; top: 9px; left: 12px; right: 0px; bottom: 0px; font-family: Roboto; font-size: 28px; font-weight: bold;"></p>
-                </div>
-                <button onclick="appendToResult('7')" class="inputbtnblack" style="position: absolute; top: 114px; left: 15px; right: 0px; bottom: 0px;">7</button>
-                <button onclick="appendToResult('8')" class="inputbtnblack" style="position: absolute; top: 114px; left: 85px; right: 0px; bottom: 0px;">8</button>
-                <button onclick="appendToResult('9')" class="inputbtnblack" style="position: absolute; top: 114px; left: 155px; right: 0px; bottom: 0px;">9</button>
-                <button onclick="clearResult()" class="inputbtnc" style="position: absolute; top: 114px; left: 225px; right: 0px; bottom: 0px;">C</button>
-                <button onclick="appendToResult('4')" class="inputbtnblack" style="position: absolute; top: 184px; left: 15px; right: 0px; bottom: 0px;">4</button>
-                <button onclick="appendToResult('5')" class="inputbtnblack" style="position: absolute; top: 184px; left: 85px; right: 0px; bottom: 0px;">5</button>
-                <button onclick="appendToResult('6')" class="inputbtnblack" style="position: absolute; top: 184px; left: 155px; right: 0px; bottom: 0px;">6</button>
-                <button onclick="clearLastValue()" class="inputbtnblack" style="position: absolute; top: 184px; left: 225px; right: 0px; bottom: 0px;"><-</button>
-                <button onclick="appendToResult('1')" class="inputbtnblack" style="position: absolute; top: 254px; left: 15px; right: 0px; bottom: 0px;">1</button>
-                <button onclick="appendToResult('2')" class="inputbtnblack" style="position: absolute; top: 254px; left: 85px; right: 0px; bottom: 0px;">2</button>
-                <button onclick="appendToResult('3')" class="inputbtnblack" style="position: absolute; top: 254px; left: 155px; right: 0px; bottom: 0px;">3</button>
-                <button class="inputbtnblack closeModalPassword" style="position: absolute; top: 254px; left: 225px; right: 0px; bottom: 0px;">Esc</button>
-                <button class="inputbtnblack" style="position: absolute; top: 324px; left: 15px; right: 0px; bottom: 0px;">,</button>
-                <button onclick="appendToResult('0')" class="inputbtnblack" style="position: absolute; top: 324px; left: 85px; right: 0px; bottom: 0px;">0</button>
-                <button onclick="checkPassword()" class="inputbtngreen" style="position: absolute; top: 324px; left: 155px; right: 0px; bottom: 0px;">Enter</button>
-            </div>
-        </div>
-        <p style="position: absolute; top: 40px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 110px;">Датчик давления</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Suction.png') }}"
-            style="position: absolute; top: 60px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Номинал датчика на всасывание</p>
-        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <div id="InputText1" class="click">
-            <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-            <p id="InputText2" style="position: absolute; top: 67px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
-            <p style="position: absolute; top: 66px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-        </div>
-        <img src="{{ url_for('static', filename='iconsbutton/Pumping.png') }}"
-            style="position: absolute; top: 96px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Номинал датчика на нагнетание</p>
-        <img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <div id="InputText3" class="click">
-            <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
-            <p id="InputText4" style="position: absolute; top: 105px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
-            <p style="position: absolute; top: 105px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-        </div>
-        <hr style="position: absolute; top: 137px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
-        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-            style="position: absolute; top: 157px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 157px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 270px;">Показание датчика на всасывание</p>
-        <p style="position: absolute; top: 157px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-            style="position: absolute; top: 187px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 187px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Показание датчика на нагнетание</p>
-        <p style="position: absolute; top: 187px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-            style="position: absolute; top: 229px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 230px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 220px;">Миллиампер на всасывание </p>
-        <p style="position: absolute; top: 230px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-            style="position: absolute; top: 263px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 261px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Миллиампер на нагнетание</p>
-        <p style="position: absolute; top: 261px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
-    </div>
+<p style="position: absolute; top: 40px; left: 213px; right: 0px; bottom: 0px; border: none; padding: 0px; font-size: 13px; width: 110px;">Датчик давления</p>
+<img src="{{ url_for('static', filename='iconsbutton/Suction.png') }}" style="position: absolute; top: 60px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 65px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Номинал датчика на всасывание</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 61px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText1" class="click">
+    <hr style="position: absolute; top: 59px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+    <p id="InputText2" style="position: absolute; top: 67px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+    <p style="position: absolute; top: 66px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
 </div>
+<img src="{{ url_for('static', filename='iconsbutton/Pumping.png') }}" style="position: absolute; top: 96px; left: 219px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 103px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px;">Номинал датчика на нагнетание</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 99px; left: 612px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText3" class="click">
+    <hr style="position: absolute; top: 98px; left: 640px; border: 2px solid white; width: 148px; height: 32px; border-radius: 6px;">
+    <p id="InputText4" style="position: absolute; top: 105px; left: 648px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 10px;"></p>
+    <p style="position: absolute; top: 105px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+</div>
+<hr style="position: absolute; top: 137px; left: 219px; right: 0px; width: 564px; height: 0px; border-top: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 157px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 157px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 270px;">Показание датчика на всасывание</p>
+<p style="position: absolute; top: 157px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 187px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 187px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 260px;">Показание датчика на нагнетание</p>
+<p style="position: absolute; top: 187px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 229px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 230px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 220px;">Миллиампер на всасывание </p>
+<p style="position: absolute; top: 230px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 263px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 261px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 210px;">Миллиампер на нагнетание</p>
+<p style="position: absolute; top: 261px; left: 756px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">mA</p>
 {% endblock %}
