@@ -75,6 +75,11 @@ class Keypad(tk.Toplevel):
                                     activebackground="#008000", activeforeground="white", command=self.enter_button_func)
         self.button_enter.place(x=155, y=324, width=131, height=61)
 
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        pass
+
 
     ''' ЗАПЯТАЯ 
     def cammo_func(self, event):

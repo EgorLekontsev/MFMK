@@ -78,6 +78,11 @@ class Numpad(tk.Toplevel):
         self.max_value = tk.Label(self.canvas, text="30", fg='white', bg='#626262', font=('Roboto Bold', 16))
         self.max_value.place(x=220, y=17)
 
+        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+
+    def on_closing(self):
+        pass
+
     def cammo_func(self):
         if self.word != "INT":
             if self.entry_label.cget('text') != "":
