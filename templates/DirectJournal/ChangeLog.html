@@ -147,21 +147,21 @@ fetch('/data_log')
             td_Comment_Text.textContent = data[i].Comment;
 
             td_Comment_Text.addEventListener('click', function() {
-                if (data[i].Linc==="SetpointPlanner") {
+                if (data[i].Link==="SetpointPlanner") {
                     window.location.href = "/SetpointPlanner";
-                } else if (data[i].Linc==="EngineParameters") {
+                } else if (data[i].Link==="EngineParameters") {
                     window.location.href = "/EngineParameters";
-                } else if (data[i].Linc==="SensorSettings") {
+                } else if (data[i].Link==="SensorSettings") {
                     window.location.href = "/SensorSettings";
-                } else if (data[i].Linc==="PumpParametersInGeneral") {
+                } else if (data[i].Link==="PumpParametersInGeneral") {
                     window.location.href = "/PumpParametersInGeneral";
-                } else if (data[i].Linc==="OnAdditionalPumps") {
+                } else if (data[i].Link==="OnAdditionalPumps") {
                     window.location.href = "/OnAdditionalPumps";
-                } else if (data[i].Linc==="OffOfAdditionalPumps") {
+                } else if (data[i].Link==="OffOfAdditionalPumps") {
                     window.location.href = "/OffOfAdditionalPumps";
-                } else if (data[i].Linc==="Options") {
+                } else if (data[i].Link==="Options") {
                     window.location.href = "/Options";
-                } else if (data[i].Linc==="EmergencyModes") {
+                } else if (data[i].Link==="EmergencyModes") {
                     window.location.href = "/EmergencyModes";
                 }
             });

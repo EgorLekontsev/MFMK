@@ -246,7 +246,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Номинал датчика на всасывание",
             "Info": `${write} -> ${input2.innerText}`,
-            "Linc": "SensorSettings"
+            "Link": "SensorSettings"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -303,7 +303,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Номинал датчика на нагнетание",
             "Info": `${write} -> ${input4.innerText}`,
-            "Linc": "SensorSettings"
+            "Link": "SensorSettings"
         };
         fetch('/add_data_to_log', {
             method: 'POST',

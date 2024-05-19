@@ -555,7 +555,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Напряжение",
             "Info": `${write} -> ${input2.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -598,7 +598,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Ток",
             "Info": `${write} -> ${input4.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -641,7 +641,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Частота",
             "Info": `${write} -> ${input6.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -672,7 +672,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Скорость",
             "Info": `${write} -> ${input8.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -725,7 +725,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Мощность",
             "Info": `${write} -> ${input10.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -768,7 +768,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Время ускорения",
             "Info": `${write} -> ${input12.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -811,7 +811,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Время торможения",
             "Info": `${write} -> ${input14.innerText}`,
-            "Linc": "EngineParameters"
+            "Link": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -861,7 +861,7 @@ SwitchReading.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Считывание настроек с ПЧ",
                     "Info": `Off -> On`,
-                    "Linc": "EngineParameters"
+                    "Link": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -883,7 +883,7 @@ SwitchReading.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Считывание настроек с ПЧ",
                     "Info": `On -> Off`,
-                    "Linc": "EngineParameters"
+                    "Link": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -915,7 +915,7 @@ SwitchRecording.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Запись настроек в ПЧ",
                     "Info": `Off -> On`,
-                    "Linc": "EngineParameters"
+                    "Link": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -938,7 +938,7 @@ SwitchRecording.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Запись настроек в ПЧ",
                     "Info": `On -> Off`,
-                    "Linc": "EngineParameters"
+                    "Link": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',

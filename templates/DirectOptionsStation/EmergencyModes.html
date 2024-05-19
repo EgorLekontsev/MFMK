@@ -199,7 +199,7 @@ Switch.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Контроль разрыва трубопровода",
                     "Info": `Off -> On`,
-                    "Linc": "EmergencyModes"
+                    "Link": "EmergencyModes"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -221,7 +221,7 @@ Switch.onclick = function() {
                     "Time": currentTimeString,
                     "Comment": "Контроль разрыва трубопровода",
                     "Info": `On -> Off`,
-                    "Linc": "EmergencyModes"
+                    "Link": "EmergencyModes"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -543,7 +543,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Частота срабатывания",
             "Info": `${write} -> ${input2.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -574,7 +574,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Задержка аварии",
             "Info": `${write} -> ${input4.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -605,7 +605,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Максимальное число аварий",
             "Info": `${write} -> ${input6.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -662,7 +662,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Предупреждение",
             "Info": `${write} -> ${input8.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -719,7 +719,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Авария",
             "Info": `${write} -> ${input10.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -750,7 +750,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Задержка аварии",
             "Info": `${write} -> ${input12.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -781,7 +781,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Задержка выключения",
             "Info": `${write} -> ${input14.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -838,7 +838,7 @@ function checkNumpad() {
             "Time": currentTimeString,
             "Comment": "Стоп по критическому давлению",
             "Info": `${write} -> ${input16.innerText}`,
-            "Linc": "EmergencyModes"
+            "Link": "EmergencyModes"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
