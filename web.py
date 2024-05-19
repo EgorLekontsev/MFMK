@@ -65,7 +65,7 @@ def CurrentEventScreen():
     file_list = [os.path.splitext(filename)[0] for filename in file_list if filename.endswith('.json')]
 
     if data != formatted_date:
-        if len(file_list)==1:
+        if len(file_list) == 1:
             json_data["Current_Data"] = file_list[0]
 
             with open("data/jsonstorage.json", "w") as file:
@@ -143,6 +143,7 @@ def SettingsPanelScreen():
 def ContactsScreen():
     return render_template('DirectMenu/Contacts.html')
 
+
 @app.route("/data")
 def data():
     with open("data/jsonstorage.json", "r") as f:
@@ -151,6 +152,7 @@ def data():
     data = json.loads(json_data)
 
     return jsonify(data)
+
 
 def function_create_data(name_file, data):
     file_path = f"data/Log/{name_file}.json"
@@ -177,14 +179,13 @@ def function_create_data(name_file, data):
         return 'Data added successfully'
 
 
-
 @app.route("/data_log")
 def data_log():
     current_date = datetime.now()
     formatted_date = current_date.strftime('%d.%m.%Y')
     file_path = f"data/Log/{formatted_date}.json"
 
-    if(os.path.exists(file_path)):
+    if (os.path.exists(file_path)):
         with open("data/jsonstorage.json", "r") as file:
             json_data = json.load(file)
 
@@ -204,6 +205,7 @@ def data_log():
 
         return 'Data added successfully'
 
+
 @app.route('/update_data', methods=['POST'])
 def update_data():
     new_data = request.form.to_dict()
@@ -218,6 +220,7 @@ def update_data():
 
     return 'Data updated successfully'
 
+
 @app.route('/add_data_to_log', methods=['POST'])
 def add_data_to_log():
     new_data = request.get_json()
@@ -225,6 +228,7 @@ def add_data_to_log():
     function_create_data(new_data["Date"], new_data)
 
     return 'Data added successfully'
+
 
 @app.route('/get_file_list')
 def get_file_list():
@@ -234,6 +238,7 @@ def get_file_list():
     file_list = [os.path.splitext(filename)[0] for filename in file_list if filename.endswith('.json')]
 
     return jsonify(file_list)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

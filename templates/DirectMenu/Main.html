@@ -12,8 +12,8 @@
     height: 37px;
     background: black;
     box-shadow: inset -3px 0 0 0px #8E8E8E, inset 3px 0 0 0px #8E8E8E, inset 0 -3px 0 0px #8E8E8E, inset 0 3px 0 0px #8E8E8E;
-    font-family: Roboto; /* Устанавливаем стиль шрифта */
-    font-size: 20px; /* Устанавливаем размер шрифта */
+    font-family: Roboto;
+    font-size: 20px;
     color: white;
     font-weight: bold;
 }
@@ -21,8 +21,6 @@
 
 {% block interface %}
 <div class="container">
-<!--    <img class="pointereventnone" src="{{ url_for('static', filename='Main/SystemPump.png') }}" draggable="false" style="position: absolute; top: 335px; left: 0px;"/>-->
-<!--    <img class="pointereventnone" src="{{ url_for('static', filename='Main/Info.png') }}" draggable="false" style="position: absolute; top: 330px; left: 8px;"/>-->
     <img class="pointereventnone" src="{{ url_for('static', filename='Main/stop_icon.png') }}" draggable="false" style="position: absolute; top: 5px; left: 635px;"/>
     <a href="/Main1"><img src="{{ url_for('static', filename='Main/indicator_0.png') }}" draggable="false" style="position: absolute; top: 5px; left: 150px;"/></a>
     <img id="Switch" src="{{ url_for('static', filename='Main/red.png') }}" onclick="changeImage()" style="position: absolute; top: 43px; left: 743px;">
@@ -379,9 +377,6 @@ fetch('/data')
             container.innerHTML += img1.outerHTML;
         }
     })
-    .catch(error => {
-        <!--console.error('Ошибка при получении данных:', error);-->
-    });
 
 
 function changeImage() {
