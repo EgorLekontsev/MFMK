@@ -245,6 +245,7 @@ input1.onclick = function() {
             document.getElementById('max').innerText = '99.9';
             document.getElementById('maxtext').style.left = "200px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Частота срабатывания";
             input2check = true;
         }
     } else {
@@ -260,6 +261,7 @@ input3.onclick = function() {
             document.getElementById('max').innerText = '10';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Задержка аварии";
             input4check = true;
         }
     } else {
@@ -275,6 +277,7 @@ input5.onclick = function() {
             document.getElementById('max').innerText = '99';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Максимальное число аварий";
             input6check = true;
         }
     } else {
@@ -290,6 +293,7 @@ input7.onclick = function() {
             document.getElementById('max').innerText = '99.99';
             document.getElementById('maxtext').style.left = "191px";
             document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Предупреждения";
             input8check = true;
         }
     } else {
@@ -305,6 +309,7 @@ input9.onclick = function() {
             document.getElementById('max').innerText = '99.99';
             document.getElementById('maxtext').style.left = "191px";
             document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Авария";
             input10check = true;
         }
     } else {
@@ -320,6 +325,7 @@ input11.onclick = function() {
             document.getElementById('max').innerText = '99';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Задержка аварии";
             input12check = true;
         }
     } else {
@@ -335,6 +341,7 @@ input13.onclick = function() {
             document.getElementById('max').innerText = '5';
             document.getElementById('maxtext').style.left = "227px";
             document.getElementById('max').style.left = "274px";
+            document.getElementById('marqueeText').innerText = "Задержка выключения";
             input14check = true;
         }
     } else {
@@ -350,6 +357,7 @@ input15.onclick = function() {
             document.getElementById('max').innerText = '99.99';
             document.getElementById('maxtext').style.left = "191px";
             document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Стоп по критическому давлению";
             input16check = true;
         }
     } else {
@@ -867,7 +875,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(250000);
+    await delay(50000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;

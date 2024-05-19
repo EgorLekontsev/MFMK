@@ -184,6 +184,7 @@ input1.onclick = function() {
             document.getElementById('max').innerText = '50.0';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Частота мастера на отключение доп. насоса";
             input2check = true;
         }
     } else {
@@ -199,6 +200,7 @@ input3.onclick = function() {
             document.getElementById('max').innerText = '5.00';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Допустимый скачок (Стоп доп. насоса) при допустимом скачке";
             input4check = true;
         }
     } else {
@@ -214,6 +216,7 @@ input5.onclick = function() {
             document.getElementById('max').innerText = '30';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Задержка выключения при допустимом скачке";
             input6check = true;
         }
     } else {
@@ -229,6 +232,7 @@ input7.onclick = function() {
             document.getElementById('max').innerText = '5.00';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Критический скачок (Стоп доп. насоса) при критическом скачке";
             input8check = true;
         }
     } else {
@@ -244,6 +248,7 @@ input9.onclick = function() {
             document.getElementById('max').innerText = '30';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Задержка выключения при критическом скачке";
             input10check = true;
         }
     } else {
@@ -259,6 +264,7 @@ input11.onclick = function() {
             document.getElementById('max').innerText = '9.9';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Задержка ухода на фиксированную частоту при отключении доп. насоса";
             input12check = true;
         }
     } else {
@@ -274,6 +280,7 @@ input13.onclick = function() {
             document.getElementById('max').innerText = '50.0';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Фиксированная частота при отключении доп. насоса";
             input14check = true;
         }
     } else {
@@ -289,6 +296,7 @@ input15.onclick = function() {
             document.getElementById('max').innerText = '30';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Время работы на фиксированной частоте при отключении доп. насоса";
             input16check = true;
         }
     } else {
@@ -798,7 +806,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(25000);
+    await delay(50000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;

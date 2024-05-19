@@ -174,6 +174,7 @@ input1.onclick = function() {
             document.getElementById('max').innerText = '30.0';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Минимальная частота работы";
             input2check = true;
         }
     } else {
@@ -189,6 +190,7 @@ input3.onclick = function() {
             document.getElementById('max').innerText = '50.0';
             document.getElementById('maxtext').style.left = "202px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Максимальная частота работы";
             input4check = true;
         }
     } else {
@@ -204,6 +206,7 @@ input5.onclick = function() {
             document.getElementById('max').innerText = '72';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Интервал ротации насосов";
             input6check = true;
         }
     } else {
@@ -218,6 +221,7 @@ input7.onclick = function() {
             document.getElementById('max').innerText = '24';
             document.getElementById('maxtext').style.left = "216px";
             document.getElementById('max').style.left = "264px";
+            document.getElementById('marqueeText').innerText = "Время суток ротации";
             input8check = true;
         }
     } else {
@@ -599,7 +603,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(25000);
+    await delay(50000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;

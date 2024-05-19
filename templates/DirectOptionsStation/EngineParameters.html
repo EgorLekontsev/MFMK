@@ -424,6 +424,7 @@ input1.onclick = function() {
             document.getElementById('max').innerText = '1000';
             document.getElementById('maxtext').style.left = "196px";
             document.getElementById('max').style.left = "243px";
+            document.getElementById('marqueeText').innerText = "Напряжение";
             input2check = true;
         }
     } else {
@@ -439,6 +440,7 @@ input3.onclick = function() {
             document.getElementById('max').innerText = '99.9';
             document.getElementById('maxtext').style.left = "200px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Ток";
             input4check = true;
         }
     } else {
@@ -454,6 +456,7 @@ input5.onclick = function() {
             document.getElementById('max').innerText = '99.9';
             document.getElementById('maxtext').style.left = "200px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Частота";
             input6check = true;
         }
     } else {
@@ -469,6 +472,7 @@ input7.onclick = function() {
             document.getElementById('max').innerText = '9999';
             document.getElementById('maxtext').style.left = "196px";
             document.getElementById('max').style.left = "243px";
+            document.getElementById('marqueeText').innerText = "Скорость";
             input8check = true;
         }
     } else {
@@ -484,6 +488,7 @@ input9.onclick = function() {
             document.getElementById('max').innerText = '655.35';
             document.getElementById('maxtext').style.left = "180px";
             document.getElementById('max').style.left = "228px";
+            document.getElementById('marqueeText').innerText = "Мощность";
             input10check = true;
         }
     } else {
@@ -499,6 +504,7 @@ input11.onclick = function() {
             document.getElementById('max').innerText = '99.9';
             document.getElementById('maxtext').style.left = "200px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Время ускорения";
             input12check = true;
         }
     } else {
@@ -514,6 +520,7 @@ input13.onclick = function() {
             document.getElementById('max').innerText = '99.9';
             document.getElementById('maxtext').style.left = "200px";
             document.getElementById('max').style.left = "248px";
+            document.getElementById('marqueeText').innerText = "Время торможения";
             input14check = true;
         }
     } else {
@@ -820,51 +827,21 @@ fetch('/data')
   .then(response => response.json())
   .then(data => {
     document.getElementById('InputText2').textContent = data.Voltage;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText4').textContent = data.Amperage;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText6').textContent = data.Frequency;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText8').textContent = data.Speed;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText10').textContent = data.Power;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText12').textContent = data.Acceleration_Time;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     document.getElementById('InputText14').textContent = data.Braking_Time;
-  })
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
     if (data.Reading_Settings==="0") {
         SwitchReading.style.backgroundColor = '#606060';
     } else {
         SwitchReading.style.backgroundColor = '#006C5F';
+    }
+    if (data.Recording_Settings==="0") {
+        SwitchRecording.style.backgroundColor = '#606060';
+    } else {
+        SwitchRecording.style.backgroundColor = '#006C5F';
     }
   })
 
@@ -897,7 +874,6 @@ SwitchReading.onclick = function() {
                 SwitchReading.style.backgroundColor = '#606060';
                 var formData = new FormData();
                 formData.append('Reading_Settings', "0");
-
                 fetch('/update_data', {
                     method: 'POST',
                     body: formData
@@ -922,16 +898,6 @@ SwitchReading.onclick = function() {
         ModalPassword.style.display = "block";
     }
 }
-
-fetch('/data')
-  .then(response => response.json())
-  .then(data => {
-    if (data.Recording_Settings==="0") {
-        SwitchRecording.style.backgroundColor = '#606060';
-    } else {
-        SwitchRecording.style.backgroundColor = '#006C5F';
-    }
-  })
 
 SwitchRecording.onclick = function() {
     if (currectpassword === true) {
@@ -1013,7 +979,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(250000);
+    await delay(50000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;

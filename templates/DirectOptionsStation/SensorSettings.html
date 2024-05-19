@@ -323,6 +323,7 @@ input1.onclick = function() {
             document.getElementById('max').style.left = "238px";
             document.getElementById('min').innerText = '0.00';
             document.getElementById('max').innerText = '99.99';
+            document.getElementById('marqueeText').innerText = "Номинал датчика на всасывание";
             input2check = true;
         }
     } else {
@@ -338,6 +339,7 @@ input3.onclick = function() {
             document.getElementById('max').style.left = "238px";
             document.getElementById('min').innerText = '0.00';
             document.getElementById('max').innerText = '99.99';
+            document.getElementById('marqueeText').innerText = "Номинал датчика на нагнетание";
             input4check = true;
         }
     } else {
@@ -382,7 +384,7 @@ async function hideFlickeringElements() {
         element.style.display = 'none';
         currectpassword = true;
     });
-    await delay(250000);
+    await delay(50000);
     flickeringElements.forEach(function(element) {
         element.style.display = '';
         currectpassword = false;
