@@ -10,6 +10,7 @@ p {
     color: white;
     font-weight: bold;
     height: 20px;
+    width: 250px;
     margin: 0px;
 }
 hr {
@@ -45,69 +46,655 @@ hr {
 {% endblock %}
 
 {% block switch %}
-function changeSwitch() {
-    var image = document.getElementById("Switch");
-    if (image.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
-        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
-    } else {
-        image.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+var currentDate = new Date();
+var currentDateString = currentDate.toLocaleDateString();
+var currentTimeString = currentDate.toLocaleTimeString();
+var collectednumber = '';
+var cnn = '';
+
+function appendToResult(value) {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result.length < 8) {
+        collectednumber += value;
+        document.getElementById('passwordresult').innerText += '*';
     }
+}
+function clearResult() {
+var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = '';
+        document.getElementById('passwordresult').innerText = '';
+    }
+}
+function clearLastValue() {
+    var result = document.getElementById('passwordresult').innerText;
+    if (result !== '') {
+        collectednumber = collectednumber.slice(0, -1);
+        document.getElementById('passwordresult').innerText = result.slice(0, -1);
+    }
+}
+
+var ModalPassword = document.getElementById('ModalPassword');
+var OffModelPassword = document.getElementsByClassName("closeModalPassword")[0];
+var OffModelNumpad = document.getElementsByClassName("closeModalNumpad")[0];
+var currectpassword = false;
+var input1 = document.getElementById('InputText1');
+var input2 = document.getElementById('InputText2');
+var input3 = document.getElementById('InputText3');
+var input4 = document.getElementById('InputText4');
+var input5 = document.getElementById('InputText5');
+var input6 = document.getElementById('InputText6');
+var input7 = document.getElementById('InputText7');
+var input8 = document.getElementById('InputText8');
+var input9 = document.getElementById('InputText9');
+var input10 = document.getElementById('InputText10');
+
+var input2check = false;
+var input4check = false;
+var input6check = false;
+var input8check = false;
+var input10check = false;
+
+var Switch = document.getElementById('Switch');
+
+OffModelPassword.onclick = function() {
+    ModalPassword.style.display = "none";
+    document.getElementById('passwordresult').innerText = '';
+    collectednumber = '';
+}
+
+OffModelNumpad.onclick = function() {
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    cnn = '';
+    input2check = false;
+    input4check = false;
+    input6check = false;
+    input8check = false;
+    input10check = false;
+}
+
+function clearNumpad() {
+var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+    }
+}
+function clearLastValueNumpad() {
+    var result = document.getElementById('numpad').innerText;
+    if (result !== '') {
+        cnn = collectednumber.slice(0, -1);
+        document.getElementById('numpad').innerText = result.slice(0, -1);
+    }
+}
+
+fetch('/data')
+  .then(response => response.json())
+  .then(data => {
+    document.getElementById('InputText2').textContent = data.Proportional_Coefficient;
+    document.getElementById('InputText4').textContent = data.Integral_Coefficient;
+    document.getElementById('InputText6').textContent = data.Differential_Coefficient;
+    document.getElementById('InputText8').textContent = data.Constant_Integrations;
+    document.getElementById('InputText10').textContent = data.Setting_Substitution;
+    if (data.Substitution_Setpoint==="0") {
+        Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+    } else {
+        Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+    }
+  })
+
+Switch.onclick = function() {
+    if (currectpassword === true) {
+        if(Switch.onclick) {
+            if (Switch.src.match("{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}")) {
+                Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOn.png') }}";
+                var formData = new FormData();
+                formData.append('Substitution_Setpoint', "1");
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Подменить установку",
+                    "Info": `Off -> On`,
+                    "Link": "SettingsPID"
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+            } else {
+                Switch.src = "{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}";
+                var formData = new FormData();
+                formData.append('Substitution_Setpoint', "0");
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+                var formData = {
+                    "Date": currentDateString,
+                    "Time": currentTimeString,
+                    "Comment": "Подменить установку",
+                    "Info": `On -> Off`,
+                    "Link": "SettingsPID"
+                };
+                fetch('/add_data_to_log', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+            }
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input1.onclick = function() {
+    if (currectpassword === true) {
+        if(input1.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.000';
+            document.getElementById('max').innerText = '5.999';
+            document.getElementById('maxtext').style.left = "193px";
+            document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Пропорциональный коэффициент";
+            input2check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input3.onclick = function() {
+    if (currectpassword === true) {
+        if(input3.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.000';
+            document.getElementById('max').innerText = '5.999';
+            document.getElementById('maxtext').style.left = "193px";
+            document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Интегральный коэффициент";
+            input4check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input5.onclick = function() {
+    if (currectpassword === true) {
+        if(input5.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.000';
+            document.getElementById('max').innerText = '5.999';
+            document.getElementById('maxtext').style.left = "193px";
+            document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Диффиеренциальный  коэффициент";
+            input6check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input7.onclick = function() {
+    if (currectpassword === true) {
+        if(input7.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.000';
+            document.getElementById('max').innerText = '1.000';
+            document.getElementById('maxtext').style.left = "193px";
+            document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Постоянная интегрирования";
+            input8check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+input9.onclick = function() {
+    if (currectpassword === true) {
+        if(input9.onclick) {
+            ModalNumpad.style.display = "block";
+            document.getElementById('min').innerText = '0.00';
+            document.getElementById('max').innerText = '99.99';
+            document.getElementById('maxtext').style.left = "191px";
+            document.getElementById('max').style.left = "238px";
+            document.getElementById('marqueeText').innerText = "Установка на подмену";
+            input10check = true;
+        }
+    } else {
+        ModalPassword.style.display = "block";
+    }
+}
+
+function appendToNumpad(value) {
+    var result = document.getElementById('numpad').innerText;
+    if (input2check) {
+        if(result.length===0 && value>=0 && value<=5){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input4check) {
+        if(result.length===0 && value>=0 && value<=5){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input6check) {
+        if(result.length===0 && value>=0 && value<=5){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===4 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input8check) {
+        if (result.length===0 && value>=0 && value<=1) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]==="0" && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]==="0" && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===4 && result[1]==="." && result[0]==="0" && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===2 && result[1]==="." && result[0]==="1" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===3 && result[1]==="." && result[0]==="1" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===4 && result[1]==="." && result[0]==="1" && value==="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    } else if (input10check) {
+        if (value==="0" && result.length === 0){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length===1 && value==="." && result[0] ==="0"){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length<4 && value>=0 && value<=9 && result[1] ==="."){
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 0 && value>=0 && value<=9) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 1 && value==='.') {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 1 && value>=0 && value<=9 && result[0]!=="0") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result.length === 2 && result[0]>0 && result[0]<=9 && result[1]>=0 && result[1]<=9 && value===".") {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        } else if (result[2]==="." && value>=0 && value<=9 && result.length<5) {
+            cnn += value;
+            document.getElementById('numpad').innerText += value;
+        }
+    }
+}
+
+var write;
+
+function checkNumpad() {
+    if (input2check) {
+        write = input2.innerText;
+        if (cnn.length===0){
+            <!---->
+        } else if (cnn.length===1) {
+            input2.innerText = cnn + ".000";
+        } else if (cnn.length===2) {
+            input2.innerText = cnn + "000";
+        } else if (cnn.length===3) {
+            input2.innerText = cnn + "00";
+        } else if (cnn.length===4) {
+            input2.innerText = cnn + "0";
+        } else if (cnn.length===5) {
+            input2.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Proportional_Coefficient', input2.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input2check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Пропорциональный коэффициент",
+            "Info": `${write} -> ${input2.innerText}`,
+            "Link": "SettingsPID"
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+    } else if (input4check) {
+        write = input4.innerText;
+        if (cnn.length===0){
+            <!---->
+        } else if (cnn.length===1) {
+            input4.innerText = cnn + ".000";
+        } else if (cnn.length===2) {
+            input4.innerText = cnn + "000";
+        } else if (cnn.length===3) {
+            input4.innerText = cnn + "00";
+        } else if (cnn.length===4) {
+            input4.innerText = cnn + "0";
+        } else if (cnn.length===5) {
+            input4.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Integral_Coefficient', input4.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input4check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Интегральный коэффициент",
+            "Info": `${write} -> ${input4.innerText}`,
+            "Link": "SettingsPID"
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+    } else if (input6check) {
+        write = input6.innerText;
+        if (cnn.length===0){
+            <!---->
+        } else if (cnn.length===1) {
+            input6.innerText = cnn + ".000";
+        } else if (cnn.length===2) {
+            input6.innerText = cnn + "000";
+        } else if (cnn.length===3) {
+            input6.innerText = cnn + "00";
+        } else if (cnn.length===4) {
+            input6.innerText = cnn + "0";
+        } else if (cnn.length===5) {
+            input6.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Differential_Coefficient', input6.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input6check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Диффиеренциальный  коэффициент",
+            "Info": `${write} -> ${input6.innerText}`,
+            "Link": "SettingsPID"
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+    } else if (input8check) {
+        write = input8.innerText;
+        if (cnn.length===0){
+            <!---->
+        } else if (cnn.length===1) {
+            input8.innerText = cnn + ".000";
+        } else if (cnn.length===2) {
+            input8.innerText = cnn + "000";
+        } else if (cnn.length===3) {
+            input8.innerText = cnn + "00";
+        } else if (cnn.length===4) {
+            input8.innerText = cnn + "0";
+        } else if (cnn.length===5) {
+            input8.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Constant_Integrations', input8.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input8check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Постоянная интегрирования",
+            "Info": `${write} -> ${input8.innerText}`,
+            "Link": "SettingsPID"
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+    } else if (input10check) {
+        write = input10.innerText;
+        if (cnn.length===0){
+            <!---->
+        } else if (cnn==="0"){
+            input10.innerText = cnn + ".00";
+        } else if (cnn[0]==="0" && cnn[1]==="." && cnn.length===2) {
+            input10.innerText = cnn + "00";
+        } else if (cnn[0]==="0" && cnn[1]==="." && cnn[2]==="0" && cnn.length===3) {
+            input10.innerText = cnn + "0";
+        } else if (cnn[0]==="0" && cnn[1]==="." && cnn[2]==="0" && cnn[3]==="0" && cnn.length===4) {
+            input10.innerText = cnn;
+        } else if (cnn[0]==="0" && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9 && cnn.length===3) {
+            input10.innerText = cnn + "0";
+        } else if (cnn[0]==="0" && cnn[1]==="." && cnn[2]>=0 && cnn[2]<=9 && cnn.length===4) {
+            input10.innerText = cnn;
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn.length===1) {
+            input10.innerText = cnn + ".00";
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn.length===2 && cnn[1]===".") {
+            input10.innerText = cnn + "00";
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn.length===3 && cnn[1]===".") {
+            input10.innerText = cnn + "0";
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn.length===4 && cnn[1]===".") {
+            input10.innerText = cnn;
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn.length===2) {
+            input10.innerText = cnn + ".00";
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn.length===3 && cnn[2]===".") {
+            input10.innerText = cnn + "00";
+        } else if (cnn[0]>=1 && cnn[0]<=9 && cnn[1]>=0 && cnn[1]<=9 && cnn.length===4 && cnn[2]==="." && cnn[3]>=0 && cnn[3]<=9) {
+            input10.innerText = cnn + "0";
+        } else if (cnn.length===5) {
+            input10.innerText = cnn;
+        }
+        var formData = new FormData();
+        formData.append('Setting_Substitution', input10.innerText);
+        fetch('/update_data', {
+            method: 'POST',
+            body: formData
+        })
+        ModalNumpad.style.display = "none";
+        cnn = '';
+        document.getElementById('numpad').innerText = '';
+        input10check = false;
+        var formData = {
+            "Date": currentDateString,
+            "Time": currentTimeString,
+            "Comment": "Установка на подмену",
+            "Info": `${write} -> ${input10.innerText}`,
+            "Link": "SettingsPID"
+        };
+        fetch('/add_data_to_log', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+    }
+}
+
+var resultpassword = '7531';
+function checkPassword() {
+    if (collectednumber === resultpassword) {
+        console.log('Пароль верный!');
+        var result = document.getElementById('passwordresult').innerText;
+        ModalPassword.style.display = "none";
+        document.getElementById('passwordresult').innerText = '';
+        collectednumber = '';
+        hideFlickeringElements()
+    } else {
+        console.log('Неправильный пароль!');
+    }
+}
+function delay(t) {
+    return new Promise(res => {
+        timerId = setTimeout(res, t);
+    });
+}
+async function hideFlickeringElements() {
+    var flickeringElements = document.querySelectorAll('.flickering');
+    await delay(300);
+    flickeringElements.forEach(function(element) {
+        element.style.display = 'none';
+        currectpassword = true;
+    });
+    await delay(50000);
+    flickeringElements.forEach(function(element) {
+        element.style.display = '';
+        currectpassword = false;
+    });
+    ModalNumpad.style.display = "none";
+    document.getElementById('numpad').innerText = '';
+    cnn = '';
+    input2check = false;
+    input4check = false;
+    input6check = false;
+    input8check = false;
+    input10check = false;
 }
 {% endblock %}
 
 {% block interface %}
-<div class="rightbody">
-    <div style="width: 600px; height: 480px;">
-        <img src="{{ url_for('static', filename='iconsbutton/ProportionalCoefficient.png') }}"
-            style="position: absolute; top: 48px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 55px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px; font-size: 14px;">Пропорциональный коэффициент</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 49px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 45px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
-        <img src="{{ url_for('static', filename='iconsbutton/IntegralCoefficient.png') }}"
-            style="position: absolute; top: 89px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 95px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 200px; font-size: 14px;">Интегральный коэффициент</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 90px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 84px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
-        <img src="{{ url_for('static', filename='iconsbutton/DifferentialCoefficient.png') }}"
-            style="position: absolute; top: 129px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 135px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px; font-size: 14px;">Диффиеренциальный  коэффициент</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 129px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 124px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
-        <img src="{{ url_for('static', filename='iconsbutton/IntegrationConstant.png') }}"
-            style="position: absolute; top: 169px; left: 234px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 173px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px; font-size: 14px;">Постоянная интегрирования</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 169px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 163px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
-        <img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}"
-            style="position: absolute; top: 206px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 209px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Подменить установку</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 205px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <img id="Switch" onclick="changeSwitch()" src="{{ url_for('static', filename='iconsbutton/SwitchOff.png') }}"
-            style="position: absolute; top: 204px; left: 639px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
-        <img src="{{ url_for('static', filename='iconsbutton/Voltage.png') }}"
-            style="position: absolute; top: 242px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 246px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Установка на подмену</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Protection.png') }}"
-            style="position: absolute; top: 243px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <hr style="position: absolute; top: 237px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
-        <hr style="position: absolute; top: 279px; left: 213px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
-        <img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}"
-            style="position: absolute; top: 291px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 290px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px; font-size: 12px;">Текущее давление</p>
-        <p style="position: absolute; top: 308px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px; font-size: 12px;">Текущая уставка</p>
-        <p style="position: absolute; top: 329px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px; font-size: 12px;">Error</p>
-        <img src="{{ url_for('static', filename='iconsbutton/Oyster.png') }}"
-            style="position: absolute; top: 356px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
-        <p style="position: absolute; top: 351px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px; font-size: 12px;">Proportional</p>
-        <p style="position: absolute; top: 371px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Integral</p>
-        <p style="position: absolute; top: 394px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Derivative</p>
-        <p style="position: absolute; top: 412px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Выход PID</p>
-        <p style="position: absolute; top: 431px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Частота</p>
-    </div>
+<img src="{{ url_for('static', filename='iconsbutton/ProportionalCoefficient.png') }}" style="position: absolute; top: 48px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 55px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 230px; font-size: 14px;">Пропорциональный коэффициент</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 49px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText1" class="click">
+    <hr style="position: absolute; top: 45px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+    <p id="InputText2" style="position: absolute; top: 53px; left: 650px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
 </div>
+<img src="{{ url_for('static', filename='iconsbutton/IntegralCoefficient.png') }}" style="position: absolute; top: 89px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 95px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 200px; font-size: 14px;">Интегральный коэффициент</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 90px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText3" class="click">
+    <hr style="position: absolute; top: 84px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+    <p id="InputText4" style="position: absolute; top: 92px; left: 650px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
+</div>
+<img src="{{ url_for('static', filename='iconsbutton/DifferentialCoefficient.png') }}" style="position: absolute; top: 129px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 135px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 250px; font-size: 14px;">Диффиеренциальный  коэффициент</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 129px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText5" class="click">
+    <hr style="position: absolute; top: 124px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+    <p id="InputText6" style="position: absolute; top: 131px; left: 650px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
+</div>
+<img src="{{ url_for('static', filename='iconsbutton/IntegrationConstant.png') }}" style="position: absolute; top: 169px; left: 234px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 173px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 190px; font-size: 14px;">Постоянная интегрирования</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 169px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText7" class="click">
+    <hr style="position: absolute; top: 163px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+    <p id="InputText8" style="position: absolute; top: 170px; left: 650px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
+</div>
+<img src="{{ url_for('static', filename='iconsbutton/Installation.png') }}" style="position: absolute; top: 206px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 209px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Подменить установку</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 205px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<img id="Switch" style="position: absolute; top: 204px; left: 639px; right: 0px; bottom: 0px; border: none; padding: 0px; cursor: pointer;">
+<img src="{{ url_for('static', filename='iconsbutton/Voltage.png') }}" style="position: absolute; top: 242px; left: 226px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 246px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 150px; font-size: 14px;">Установка на подмену</p>
+<img class="flickering" src="{{ url_for('static', filename='iconsbutton/Protection.png') }}" style="position: absolute; top: 243px; left: 609px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<div id="InputText9" class="click">
+    <hr style="position: absolute; top: 237px; left: 640px; border: 2px solid white; width: 150px; height: 35px; border-radius: 8px;">
+    <p id="InputText10" style="position: absolute; top: 247px; left: 650px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;"></p>
+</div>
+<hr style="position: absolute; top: 279px; left: 213px; right: 0px; width: 574px; height: 0px; border-top: 0px;">
+<img src="{{ url_for('static', filename='iconsbutton/Eye.png') }}" style="position: absolute; top: 291px; left: 227px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 290px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 110px; font-size: 12px;">Текущее давление</p>
+<p style="position: absolute; top: 308px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px; font-size: 12px;">Текущая уставка</p>
+<p style="position: absolute; top: 329px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px; font-size: 12px;">Error</p>
+<img src="{{ url_for('static', filename='iconsbutton/Oyster.png') }}" style="position: absolute; top: 356px; left: 217px; right: 0px; bottom: 0px; border: none; padding: 0px;">
+<p style="position: absolute; top: 351px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 70px; font-size: 12px;">Proportional</p>
+<p style="position: absolute; top: 371px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Integral</p>
+<p style="position: absolute; top: 394px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Derivative</p>
+<p style="position: absolute; top: 412px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 60px; font-size: 12px;">Выход PID</p>
+<p style="position: absolute; top: 431px; left: 259px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 50px; font-size: 12px;">Частота</p>
 {% endblock %}
