@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import PhotoImage, Canvas, messagebox
+import itertools
+
 class Numpad(tk.Toplevel):
     def __init__(self, master=None, word=None):
         super().__init__(master)
@@ -16,7 +18,7 @@ class Numpad(tk.Toplevel):
             relief="ridge")
         self.canvas.place(x=0, y=0)
         self.word = word
-
+        self.current_title = ""
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
         self.entry_label.place(x=15, y=54, width=271, height=51)
 
@@ -337,6 +339,15 @@ class Numpad(tk.Toplevel):
 
     def escape_button_func(self):
         self.destroy()
+
+    def new_title(self, new_title):
+        self.current_title = new_title
+        self.after(200, self.update_title)
+    def update_title(self):
+        next_title = self.current_title[1:] + self.current_title[0]
+        self.title(next_title)
+        self.current_title = next_title
+        self.after(200, self.update_title)
 
 
 #app = Numpad()

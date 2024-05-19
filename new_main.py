@@ -1649,6 +1649,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Уставка пользователя ")
                     self.numpad_instance.entry_label.config(text=self.setpoint_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -1656,6 +1657,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Будни утро(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_morning_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -1663,6 +1665,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Будни день(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -1670,6 +1673,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Будни вечер(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_evening_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -1677,6 +1681,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Будни ночь(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_night_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -1684,6 +1689,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Будни утро(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_morning_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -1691,6 +1697,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Будни день(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click7
@@ -1698,6 +1705,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Будни вечер(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_evening_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
@@ -1705,6 +1713,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Будни ночь(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_night_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click9
@@ -1712,6 +1721,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Выходные утро(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_morning_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click10
@@ -1719,6 +1729,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Выходные день(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_afternoon_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click11
@@ -1726,6 +1737,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Выходные вечер(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_evening_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click12
@@ -1733,6 +1745,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title("Выходные ночь(часы) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_night_h.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click13
@@ -1740,6 +1753,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Выходные утро(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_morning_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click14
@@ -1747,6 +1761,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Выходные день(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_afternoon_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click15
@@ -1754,6 +1769,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Выходные вечер(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_evening_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click16
@@ -1761,6 +1777,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="59")
+                    self.numpad_instance.new_title("Выходные ночь(минуты) ")
                     self.numpad_instance.entry_label.config(text=self.weekends_night_m.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click17
@@ -1768,6 +1785,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Будни утро уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_morning_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click18
@@ -1775,6 +1793,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Будни день уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click19
@@ -1782,6 +1801,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Будни вечер уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_evening_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click20
@@ -1789,6 +1809,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Будни ночь уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekdays_night_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click21
@@ -1796,6 +1817,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Выходные утро уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekends_morning_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click22
@@ -1803,6 +1825,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Выходные день уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekends_afternoon_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click23
@@ -1810,6 +1833,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Выходные вечер уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekends_evening_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click24
@@ -1817,6 +1841,7 @@ class Frame2(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title("Выходные ночь уставка ")
                     self.numpad_instance.entry_label.config(text=self.weekends_night_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click25
@@ -1906,7 +1931,7 @@ class Frame2(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
-        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {self.numpad_instance.current_value}"))
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {self.numpad_instance.current_value}", "SetpointPlanner"))
         App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
         App.storage_data["User_Setpoint"] = self.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
@@ -2560,23 +2585,26 @@ class Frame8(tk.Frame):
         self.style.map("Treeview",
                   background=[('selected', 'gray')])
 
-        self.tree = ttk.Treeview(self, columns=("Date", "Time", "Comment", "Info"))
+        self.tree = ttk.Treeview(self, columns=("Date", "Time", "Comment", "Info", "Link"))
         self.tree["show"] = "headings"
         # Устанавливаем заголовки столбцов
         self.tree.heading("Date", text="Дата")
         self.tree.heading("Time", text="Время")
         self.tree.heading("Comment", text="Комментарий")
         self.tree.heading("Info", text="Информация") #lambda: self.sort_column("Info", False)
+        self.tree.heading("Link")
         self.tree.column("Date", anchor="w", width=50)
         self.tree.column("Time", anchor="w", width=50)
         self.tree.column("Comment", anchor="w", width=200)
         self.tree.column("Info", anchor="w", width=100)
+        self.tree.column("Link", width=0, stretch=False)
 
         # Добавляем данные в TreeView
         for item in App.journal_data:
-            self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"]))
+            self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"], item["Link"]))
 
         self.tree.place(x=206, y=39, width=588, height=434)
+        self.tree.bind('<<TreeviewSelect>>', self.handle_treeview_select)
     '''
     def sort_column(self, col, reverse):
         data = [(self.tree.set(child, col), child) for child in self.tree.get_children("")]
@@ -2587,6 +2615,40 @@ class Frame8(tk.Frame):
         self.tree.heading(col, command=lambda: self.sort_column(col, not reverse))
     '''
 
+    def handle_treeview_select(self, event):
+        # Получаем выделенный элемент TreeView
+        selected_item = self.tree.selection()
+        # Получаем данные из столбца link выделенного элемента
+        try:
+            link = self.tree.item(selected_item)['values'][4]
+            match link:
+                case "SetpointPlanner":
+                    App.global_controller.show_frame("Frame2")
+                case "EngineParameters":
+                    App.global_controller.show_frame("Frame9")
+                case "SensorSettings":
+                    App.global_controller.show_frame("Frame10")
+                case "PumpParametersInGeneral":
+                    App.global_controller.show_frame("Frame11")
+                case "OnAdditionalPumps":
+                    App.global_controller.show_frame("Frame12")
+                case "OffOfAdditionalPumps":
+                    App.global_controller.show_frame("Frame13")
+                case "Options":
+                    App.global_controller.show_frame("Frame14")
+                case "EmergencyModes":
+                    App.global_controller.show_frame("Frame15")
+                case "SettingsPID":
+                    App.global_controller.show_frame("Frame16")
+            self.tree.selection_remove(selected_item)
+        except IndexError:
+            pass
+
+
+
+
+
+
     def save_journal_data(self):
         data = []
         for item_id in self.tree.get_children():
@@ -2594,7 +2656,8 @@ class Frame8(tk.Frame):
             time = self.tree.item(item_id)['values'][1]  # Получаем данные из второй колонки
             comment = self.tree.item(item_id)['values'][2]  # Получаем данные из третьей колонки
             info = self.tree.item(item_id)['values'][3]  # Получаем данные из четвертой колонки
-            data.append({"Date": date, "Time": time, "Comment": comment, "Info": info})
+            link = self.tree.item(item_id)['values'][4]
+            data.append({"Date": date, "Time": time, "Comment": comment, "Info": info, "Link": link})
         print("save in journal")
         print(data)
         App.journal_data = data
@@ -2607,9 +2670,9 @@ class Frame8(tk.Frame):
             time = self.tree.item(item_id)['values'][1]  # Получаем данные из второй колонки
             comment = self.tree.item(item_id)['values'][2]  # Получаем данные из третьей колонки
             info = self.tree.item(item_id)['values'][3]  # Получаем данные из четвертой колонки
-            self.current_journal_data.append({"Date": date, "Time": time, "Comment": comment, "Info": info})
-        if self.current_journal_data[0]["Date"] == datetime.now().strftime("%d.%m.%Y"):
-            print(self.current_journal_data[0]["Date"])
+            link = self.tree.item(item_id)['values'][4]  # Получаем данные из четвертой колонки
+            self.current_journal_data.append({"Date": date, "Time": time, "Comment": comment, "Info": info, "Link":link})
+        if self.current_journal_data == [] or self.current_journal_data[0]["Date"] == datetime.now().strftime("%d.%m.%Y"):
             print("==")
             print(self.current_journal_data)
             if self.current_journal_data != json_methods.load_data("data/desktop_journal/"+datetime.now().strftime("%d.%m.%Y")+".json"):
@@ -2619,12 +2682,12 @@ class Frame8(tk.Frame):
                 print(2)
                 self.tree.delete(*self.tree.get_children())
                 for item in json_methods.load_data("data/desktop_journal/"+new_path+".json"):
-                    self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"]))
+                    self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"], item["Link"]))
         else:
             print(3)
             self.tree.delete(*self.tree.get_children())
             for item in json_methods.load_data("data/desktop_journal/" + new_path + ".json"):
-                self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"]))
+                self.tree.insert("", tk.END, values=(item["Date"], item["Time"], item["Comment"], item["Info"], item["Link"]))
 
 
 
@@ -2912,6 +2975,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="100")
                     self.numpad_instance.max_value.config(text="1000")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.voltage_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -2919,6 +2983,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.current_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -2926,6 +2991,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.frequency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -2933,6 +2999,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="9999")
+                    self.numpad_instance.new_title(self.label5.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.speed_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -2940,6 +3007,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="655.35")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.power_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -2947,6 +3015,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.new_title(self.label8.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.boost_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -2954,6 +3023,7 @@ class Frame9(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.braking_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click7
@@ -2970,7 +3040,7 @@ class Frame9(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
-        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.voltage_value.cget('text')} -> {self.numpad_instance.current_value}"))
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.voltage_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].voltage_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Voltage"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -2978,42 +3048,42 @@ class Frame9(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
         datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-        f"{self.current_value.cget('text')} -> {self.numpad_instance.current_value}"))
+        f"{self.current_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].current_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Amperage"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].frequency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Frequency"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.speed_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.speed_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].speed_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Speed"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.power_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.power_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].power_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Power"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.boost_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.boost_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].boost_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Acceleration_Time"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.braking_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.braking_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
         App.global_controller.frames["Frame9"].braking_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Braking_Time"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -3029,14 +3099,14 @@ class Frame9(tk.Frame):
             App.storage_data["Reading_Settings"] = "1"
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "EngineParameters"))
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGreen.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGray.png")
             App.storage_data["Reading_Settings"] = "0"
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "EngineParameters"))
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         self.Switch_Flat_first_button = self.canvas.create_image(689, 386.5, image=self.Switch_Flat_first_img)
         self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
@@ -3047,14 +3117,14 @@ class Frame9(tk.Frame):
             App.storage_data["Recording_Settings"] = "1"
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "EngineParameters"))
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_second_img.cget("file") == "new_images/RecordingGreen.png":
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/RecordingGray.png")
             App.storage_data["Recording_Settings"] = "0"
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "EngineParameters"))
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         self.Switch_Flat_second_button = self.canvas.create_image(689, 424.5, image=self.Switch_Flat_second_img)
         self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
@@ -3287,6 +3357,7 @@ class Frame10(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.nominal_s_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -3294,6 +3365,7 @@ class Frame10(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.nominal_d_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -3308,7 +3380,7 @@ class Frame10(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
         datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-        f"{self.nominal_s_value.cget('text')} -> {self.numpad_instance.current_value}"))
+        f"{self.nominal_s_value.cget('text')} -> {self.numpad_instance.current_value}", "SensorSettings"))
         App.global_controller.frames["Frame10"].nominal_s_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Suction_Rating"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -3317,7 +3389,7 @@ class Frame10(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.nominal_d_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.nominal_d_value.cget('text')} -> {self.numpad_instance.current_value}", "SensorSettings"))
         App.global_controller.frames["Frame10"].nominal_d_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Discharge_Rating"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -3559,6 +3631,7 @@ class Frame11(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="15.0")
                     self.numpad_instance.max_value.config(text="30.0")
+                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.min_f_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -3566,6 +3639,7 @@ class Frame11(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="40.00")
                     self.numpad_instance.max_value.config(text="50.00")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.max_f_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -3573,6 +3647,7 @@ class Frame11(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="24")
                     self.numpad_instance.max_value.config(text="72")
+                    self.numpad_instance.new_title(self.label5.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.interval_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -3580,6 +3655,7 @@ class Frame11(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="23")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.time_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -3599,28 +3675,28 @@ class Frame11(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.min_f_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.min_f_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
         App.global_controller.frames["Frame11"].min_f_value.config(text=self.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.max_f_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.max_f_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
         App.global_controller.frames["Frame11"].max_f_value.config(text=self.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.interval_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.interval_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
         App.global_controller.frames["Frame11"].interval_value.config(text=self.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.time_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.time_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
         App.global_controller.frames["Frame11"].time_value.config(text=self.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
@@ -3635,14 +3711,14 @@ class Frame11(tk.Frame):
         if self.Switch_Flat_first_img.cget("file") ==  r"new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "PumpParametersInGeneral"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-1.png")
             App.storage_data["Start_The_Master"] = "1"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_first_img.cget("file") == r"new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "PumpParametersInGeneral"))
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
             App.storage_data["Start_The_Master"] = "0"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -3653,14 +3729,14 @@ class Frame11(tk.Frame):
         if self.Switch_Flat_second_img.cget("file") == r"new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "PumpParametersInGeneral"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-1.png")
             App.storage_data["Pump_Rotation"] = "1"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_second_img.cget("file") == r"new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "PumpParametersInGeneral"))
             self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
             App.storage_data["Pump_Rotation"] = "0"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -3966,6 +4042,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="35.0")
                     self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.master_f_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -3973,6 +4050,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_drawdown_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -3980,6 +4058,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label4.cget('text') + " (Допустимая просадка) ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -3987,6 +4066,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.crit_drawdown_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -3994,6 +4074,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label7.cget('text') + " (Критическая просадка) ")
                     self.numpad_instance.entry_label.config(text=self.crit_сooldown_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -4001,6 +4082,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="9.9")
+                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.fix_сooldown_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -4008,6 +4090,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.fix_f_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click7
@@ -4015,6 +4098,7 @@ class Frame12(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.time_work_on_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
@@ -4029,7 +4113,7 @@ class Frame12(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.master_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.master_f_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].master_f_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Frequency_Master_Enabled"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4037,7 +4121,7 @@ class Frame12(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.acceptable_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Acceptable_Drawdown_Start"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4045,7 +4129,7 @@ class Frame12(tk.Frame):
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.acceptable_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Power_Delay_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4053,7 +4137,7 @@ class Frame12(tk.Frame):
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.crit_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.crit_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Critical_Drawdown_Start"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4061,7 +4145,7 @@ class Frame12(tk.Frame):
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.crit_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.crit_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Power_Delay_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4069,7 +4153,7 @@ class Frame12(tk.Frame):
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.fix_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.fix_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Delayed_Care_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4077,7 +4161,7 @@ class Frame12(tk.Frame):
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.fix_f_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.fix_f_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].fix_f_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Fixed_Frequency_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4085,7 +4169,7 @@ class Frame12(tk.Frame):
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.time_work_on_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.time_work_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
         App.global_controller.frames["Frame12"].time_work_on_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Working_Hours_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4395,6 +4479,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="35.0")
                     self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.master_f_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -4402,6 +4487,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_jump_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -4409,6 +4495,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label4.cget('text') + " (Допустимый скачок) ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -4416,6 +4503,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="5.00")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.crit_jump_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -4423,6 +4511,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label7.cget('text') + " (Критический скачок) ")
                     self.numpad_instance.entry_label.config(text=self.crit_сooldown_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -4430,6 +4519,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="9.9")
+                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.fix_сooldown_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -4437,6 +4527,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="50.0")
+                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.fix_f_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click7
@@ -4444,6 +4535,7 @@ class Frame13(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.time_work_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
@@ -4458,35 +4550,35 @@ class Frame13(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.acceptable_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_jump_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Frequency_Master_Shutdown"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.acceptable_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Acceptable_Drawdown_Stop"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].max_emergency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Shutdown_Delay_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.crit_jump_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.crit_jump_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].crit_jump_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Critical_Drawdown_Stop"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.crit_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.crit_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Shutdown_Delay_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4494,7 +4586,7 @@ class Frame13(tk.Frame):
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.fix_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.fix_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Delayed_Care_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4502,7 +4594,7 @@ class Frame13(tk.Frame):
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.fix_f_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.fix_f_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].fix_f_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Fixed_Frequency_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4510,7 +4602,7 @@ class Frame13(tk.Frame):
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.time_work_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.time_work_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
         App.global_controller.frames["Frame13"].time_work_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Working_Hours_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4825,6 +4917,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="9999")
+                    self.numpad_instance.new_title(self.label3.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.start_mod_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -4832,6 +4925,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label4.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.upper_pressure_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -4839,6 +4933,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label5.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.lower_pressure_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -4846,6 +4941,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label6.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.swing_time_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -4853,6 +4949,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label7.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_range_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -4860,6 +4957,7 @@ class Frame14(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="5.0")
+                    self.numpad_instance.new_title(self.label8.cget('text')+" ")
                     self.numpad_instance.entry_label.config(text=self.acceptable_frequency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -4874,7 +4972,7 @@ class Frame14(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.start_mod_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.start_mod_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].start_mod_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Starting_Power_Savingmode"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4882,7 +4980,7 @@ class Frame14(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.upper_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.upper_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].upper_pressure_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Pressure_Drawdown"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4890,7 +4988,7 @@ class Frame14(tk.Frame):
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.lower_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.lower_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].lower_pressure_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Pressure_Increase"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4898,7 +4996,7 @@ class Frame14(tk.Frame):
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.swing_time_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.swing_time_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].swing_time_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Swing_Time"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4906,7 +5004,7 @@ class Frame14(tk.Frame):
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.acceptable_range_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_range_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].acceptable_range_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Pressure_Range"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4914,7 +5012,7 @@ class Frame14(tk.Frame):
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.acceptable_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.acceptable_frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
         App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Frequency_Range"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -4928,14 +5026,14 @@ class Frame14(tk.Frame):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "Options"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
             App.storage_data["Power_Savingmode"] = "1"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "Options"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
             App.storage_data["Power_Savingmode"] = "0"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5253,6 +5351,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT1")
                     self.numpad_instance.min_value.config(text="0.0")
                     self.numpad_instance.max_value.config(text="99.9")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.response_frequency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -5260,6 +5359,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="10")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " (Реле) ")
                     self.numpad_instance.entry_label.config(text=self.cooldown_emergency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -5267,6 +5367,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="99")
+                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.max_emergency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -5274,6 +5375,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.warnings_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -5281,6 +5383,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label7.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.emergency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -5288,6 +5391,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="99")
+                    self.numpad_instance.new_title(self.label8.cget('text') + " (Сухой ход) ")
                     self.numpad_instance.entry_label.config(text=self.cd_emergency_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click6
@@ -5295,6 +5399,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="5")
+                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.cd_off_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click7
@@ -5302,6 +5407,7 @@ class Frame15(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.stop_crit_pressure_value.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click8
@@ -5316,7 +5422,7 @@ class Frame15(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.response_frequency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.response_frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].response_frequency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Response_Frequency"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5324,7 +5430,7 @@ class Frame15(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.cooldown_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.cooldown_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Delay_Accident_One"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5332,7 +5438,7 @@ class Frame15(tk.Frame):
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].max_emergency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Number_Accidents"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5340,7 +5446,7 @@ class Frame15(tk.Frame):
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.warnings_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.warnings_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].warnings_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Warnings"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5348,7 +5454,7 @@ class Frame15(tk.Frame):
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].emergency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Crash"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5356,7 +5462,7 @@ class Frame15(tk.Frame):
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.cd_emergency_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.cd_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].cd_emergency_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Delay_Accident_Two"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5364,7 +5470,7 @@ class Frame15(tk.Frame):
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.cd_off_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.cd_off_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].cd_off_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Shutdown_Delay"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5372,7 +5478,7 @@ class Frame15(tk.Frame):
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.stop_crit_pressure_value.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.stop_crit_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
         App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=self.numpad_instance.current_value)
         App.storage_data["Pressure_Stop"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5387,14 +5493,14 @@ class Frame15(tk.Frame):
         if self.Switch_Flat_img.cget("file") == "new_images/_NO_YES.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "EmergencyModes"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_YES_NO.png")
             App.storage_data["Gap_Control"] = "1"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
         elif self.Switch_Flat_img.cget("file") == "new_images/_YES_NO.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label12.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "EmergencyModes"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/_NO_YES.png")
             App.storage_data["Gap_Control"] = "0"
             json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5625,6 +5731,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT3")
                     self.numpad_instance.min_value.config(text="0.000")
                     self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.p_k.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -5632,6 +5739,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT3")
                     self.numpad_instance.min_value.config(text="0.000")
                     self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.i_k.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -5639,6 +5747,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT3")
                     self.numpad_instance.min_value.config(text="0.000")
                     self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.d_k.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click3
@@ -5646,6 +5755,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT3")
                     self.numpad_instance.min_value.config(text="0.000")
                     self.numpad_instance.max_value.config(text="5.999")
+                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.const_integral.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click4
@@ -5653,6 +5763,7 @@ class Frame16(tk.Frame):
                     self.numpad_instance = numpad.Numpad(None, "FLOAT2")
                     self.numpad_instance.min_value.config(text="0.00")
                     self.numpad_instance.max_value.config(text="99.99")
+                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.setpoint.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click5
@@ -5667,7 +5778,7 @@ class Frame16(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.p_k.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.p_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
         App.global_controller.frames["Frame16"].p_k.config(text=self.numpad_instance.current_value)
         App.storage_data["Proportional_Coefficient"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5675,14 +5786,14 @@ class Frame16(tk.Frame):
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.i_k.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.i_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
         App.global_controller.frames["Frame16"].i_k.config(text=self.numpad_instance.current_value)
         App.storage_data["Integral_Coefficient"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.d_k.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.d_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
         App.global_controller.frames["Frame16"].d_k.config(text=self.numpad_instance.current_value)
         App.storage_data["Differential_Coefficient"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5690,7 +5801,7 @@ class Frame16(tk.Frame):
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.const_integral.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.const_integral.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
         App.global_controller.frames["Frame16"].const_integral.config(text=self.numpad_instance.current_value)
         App.storage_data["Constant_Integrations"] = self.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
@@ -5698,7 +5809,7 @@ class Frame16(tk.Frame):
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.setpoint.cget('text')} -> {self.numpad_instance.current_value}"))
+            f"{self.setpoint.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
         App.global_controller.frames["Frame16"].setpoint.config(text=self.numpad_instance.current_value)
         App.storage_data["Setting_Substitution"] = self.numpad_instance.current_value
         App.global_controller.frames["Frame2"].update_setpoints()
@@ -5716,7 +5827,7 @@ class Frame16(tk.Frame):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-                f"OFF -> ON"))
+                f"OFF -> ON", "SettingsPID"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
             App.storage_data["Substitution_Setpoint"] = "1"
             App.global_controller.frames["Frame2"].type_setpoint.config(text="PID")
@@ -5724,7 +5835,7 @@ class Frame16(tk.Frame):
         elif self.Switch_Flat_img.cget("file") == "new_images/Switch-1.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
                 datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-                f"ON -> OFF"))
+                f"ON -> OFF", "SettingsPID"))
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
             App.storage_data["Substitution_Setpoint"] = "0"
             App.global_controller.frames["Frame2"].type_setpoint.config(text="Пользователь")
@@ -5983,385 +6094,55 @@ class Frame18(tk.Frame):
                             command=lambda: controller.show_frame("Frame18"))
         button5.place(x=0, y=240, width=200, height=60)
 
-        self.img_noon = PhotoImage(file=r"new_images/noon.png")
-        self.img_scrn = PhotoImage(file=r"new_images/screen.png")
-        self.img_note = PhotoImage(file=r"new_images/note.png")
-        self.img_cal = PhotoImage(file=r"new_images/calendar.png")
-        self.img_time = PhotoImage(file=r"new_images/time.png")
-        self.img_ip = PhotoImage(file=r"new_images/ip.png")
-        self.img_mask = PhotoImage(file=r"new_images/mask.png")
-        self.img_gateway = PhotoImage(file=r"new_images/gateway.png")
+        self.img_tablet = PhotoImage(file=r"new_images/tablet.png")
+        self.img_chip = PhotoImage(file=r"new_images/chip.png")
+        self.img_peak = PhotoImage(file=r"new_images/peak.png")
+        self.img_clock_reverse = PhotoImage(file=r"new_images/clock_reverse.png")
+        self.img_hourglass = PhotoImage(file=r"new_images/hourglass.png")
         self.img_shield = PhotoImage(file=r"new_images/shield.png")
-        self.img_rectangle_l = PhotoImage(file=r"new_images/rectangle_long.png")
-        self.img_rectangle_s = PhotoImage(file=r"new_images/rectangle_short.png")
 
-        self.canvas.create_line(220, 180, 790, 180, fill="gray", width=2)
-        self.canvas.create_line(220, 270, 790, 270, fill="gray", width=2)
+        self.canvas.create_image(234.25, 79.5, image=self.img_tablet)
+        self.canvas.create_image(233, 128, image=self.img_chip)
+        self.canvas.create_image(234.25, 174.25, image=self.img_peak)
+        self.canvas.create_image(238, 244, image=self.img_clock_reverse)
+        self.canvas.create_image(753, 81, image=self.img_hourglass)
+        self.canvas.create_image(753, 126, image=self.img_hourglass)
+        self.canvas.create_image(753, 173, image=self.img_hourglass)
 
-        self.canvas.create_image(233, 70, image=self.img_noon)
-        self.canvas.create_image(233, 110, image=self.img_scrn)
-        self.canvas.create_image(233, 145, image=self.img_note)
-        self.canvas.create_image(233, 202, image=self.img_cal)
-        self.canvas.create_image(233, 237, image=self.img_time)
-        self.canvas.create_image(233, 303, image=self.img_ip)
-        self.canvas.create_image(233, 342, image=self.img_mask)
-        self.canvas.create_image(233, 381, image=self.img_gateway)
+        self.canvas.create_line(220, 220, 790, 220, fill="gray", width=2)
 
-        self.shield1 = self.canvas.create_image(624, 70, image=self.img_shield)
-        self.shield2 = self.canvas.create_image(624, 109, image=self.img_shield)
-        self.shield3 = self.canvas.create_image(624, 147, image=self.img_shield)
-        self.shield4 = self.canvas.create_image(461.25, 201.75, image=self.img_shield)
-        self.shield5 = self.canvas.create_image(461.25, 242.75, image=self.img_shield)
-        self.shield6 = self.canvas.create_image(362.25, 302.75, image=self.img_shield)
-        self.shield7 = self.canvas.create_image(362.25, 342.75, image=self.img_shield)
-        self.shield8 = self.canvas.create_image(362.25, 380.75, image=self.img_shield)
-
-        self.label1 = tk.Label(self.canvas, text="Ethernet", fg='white', bg='black',
+        self.label1 = tk.Label(self.canvas, text="Копирование данных на USB носитель:", fg='white', bg='black',
                                font=('Roboto Bold', 10))
-        self.label1.place(x=216, y=273, width=54, height=14)
-        self.label2 = tk.Label(self.canvas, text="Время до отключения дисплея", fg='white', bg='black',
+        self.label1.place(x=218, y=41)
+        self.label2 = tk.Label(self.canvas, text="Журнал за 90 дней", fg='white', bg='black',
                                font=('Roboto Bold', 12))
-        self.label2.place(x=259, y=59)
-        self.label3 = tk.Label(self.canvas, text="Время до отключения заставки", fg='white', bg='black',
+        self.label2.place(x=256, y=72)
+        self.label3 = tk.Label(self.canvas, text="Энергозависимая память", fg='white', bg='black',
                                font=('Roboto Bold', 12))
-        self.label3.place(x=259, y=99)
-        self.label4 = tk.Label(self.canvas, text="Зуммер", fg='white', bg='black',
+        self.label3.place(x=259, y=120)
+        self.label4 = tk.Label(self.canvas, text="Тренды", fg='white', bg='black',
                                font=('Roboto Bold', 12))
-        self.label4.place(x=259, y=136)
-        self.label5 = tk.Label(self.canvas, text="Дата", fg='white', bg='black',
+        self.label4.place(x=259, y=166)
+        self.label5 = tk.Label(self.canvas, text="Сброс всех настроек на заводские", fg='white', bg='black',
                                font=('Roboto Bold', 12))
-        self.label5.place(x=259, y=193)
-        self.label6 = tk.Label(self.canvas, text="Время", fg='white', bg='black',
-                               font=('Roboto Bold', 12))
-        self.label6.place(x=259, y=227)
-        self.label7 = tk.Label(self.canvas, text="IP Адрес", fg='white', bg='black',
-                               font=('Roboto Bold', 12))
-        self.label7.place(x=259, y=294)
-        self.label8 = tk.Label(self.canvas, text="Маска", fg='white', bg='black',
-                               font=('Roboto Bold', 12))
-        self.label8.place(x=259, y=333)
-        self.label9 = tk.Label(self.canvas, text="Шлюз", fg='white', bg='black',
-                               font=('Roboto Bold', 12))
-        self.label9.place(x=259, y=372)
+        self.label5.place(x=259, y=237)
+        self.label6 = tk.Label(self.canvas, text="Внимание копирование данных может занять продолжительное время!", fg='white', bg='black',
+                               font=('Roboto Bold', 10))
+        self.label6.place(x=252, y=307)
 
-
-        self.ip_ = NetInfo().ipv4
-        self.result_IP = self.ip_.split(".")
-
-        self.net_if_addrs = psutil.net_if_addrs()
-
-        for interface, addresses in self.net_if_addrs.items():
-            for address in addresses:
-                if address.family == 2:  # IPv4
-                    if address.address == self.ip_:
-                        self.result_netmask = address.netmask
-
-        self.result_netmask_split = self.result_netmask.split(".")
-
-        if (len(self.result_netmask_split[0]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=418, y=332)
-        elif (len(self.result_netmask_split[0]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=414, y=332)
-        elif (len(self.result_netmask_split[0]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=410, y=332)
-        if (len(self.result_netmask_split[1]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=520, y=332)
-        elif (len(self.result_netmask_split[1]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=516, y=332)
-        elif (len(self.result_netmask_split[1]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=512, y=332)
-        if (len(self.result_netmask_split[2]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=622, y=332)
-        elif (len(self.result_netmask_split[2]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=617, y=332)
-        elif (len(self.result_netmask_split[2]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=614, y=332)
-        if (len(self.result_netmask_split[3]) == 1):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=724, y=332)
-        elif (len(self.result_netmask_split[3]) == 2):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=720, y=332)
-        elif (len(self.result_netmask_split[3]) == 3):
-            self.netmask_1 = tk.Label(self.canvas, text=f"{self.result_netmask_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.netmask_1.place(x=717, y=332)
-
-        # Кликабельная зона
-        self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png") if App.storage_data["Switch_settings_panel"] == "0" else PhotoImage(file=r"new_images/Switch-1.png")
-        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
-
-        self.time_rectangle_1 = self.canvas.create_image(715, 69.5, image=self.img_rectangle_l)
-        self.canvas.tag_bind(self.time_rectangle_1, "<Button-1>", lambda event: self.check_password("click1"))
-        self.time_display_1 = tk.Label(self.canvas, text=App.storage_data["Time_screensaver_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_display_1.place(x=645, y=58)
-        self.time_display_1.bind("<Button-1>", lambda event: self.check_password("click1"))
-        self.time_label_1 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_label_1.place(x=738, y=59, width=47, height=19)
-        self.time_label_1.bind("<Button-1>", lambda event: self.check_password("click1"))
-
-        self.time_rectangle_2 = self.canvas.create_image(715, 109.5, image=self.img_rectangle_l)
-        self.canvas.tag_bind(self.time_rectangle_2, "<Button-1>", lambda event: self.check_password("click2"))
-        self.time_display_2 = tk.Label(self.canvas, text=App.storage_data["Time_display_settings_panel"], fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_display_2.place(x=645, y=98)
-        self.time_display_2.bind("<Button-1>", lambda event: self.check_password("click2"))
-        self.time_label_2 = tk.Label(self.canvas, text="минут", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.time_label_2.place(x=738, y=99, width=47, height=19)
-        self.time_label_2.bind("<Button-1>", lambda event: self.check_password("click2"))
-
-        self.data_days = self.canvas.create_image(525, 205, image=self.img_rectangle_s)
-        self.data_days_label = tk.Label(self.canvas, text="День", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.data_days_label.place(x=530, y=198, width=39, height=19)
-        self.data_months = self.canvas.create_image(630, 205, image=self.img_rectangle_s)
-        self.data_months_label = tk.Label(self.canvas, text="Месяц", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.data_months_label.place(x=620, y=198, width=59, height=19)
-        self.data_years = self.canvas.create_image(735, 205, image=self.img_rectangle_s)
-        self.data_years_label = tk.Label(self.canvas, text="Год", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.data_years_label.place(x=745, y=198, width=39, height=19)
-        self.data_hours = self.canvas.create_image(525, 245, image=self.img_rectangle_s)
-        self.data_hours_label = tk.Label(self.canvas, text="Часы", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.data_hours_label.place(x=530, y=237, width=39, height=19)
-        self.data_minutes = self.canvas.create_image(630, 245, image=self.img_rectangle_s)
-        self.data_minutes_label = tk.Label(self.canvas, text="Минуты", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.data_minutes_label.place(x=615, y=237, width=59, height=19)
-        self.data_seconds = self.canvas.create_image(735, 245, image=self.img_rectangle_s)
-        self.data_seconds_label = tk.Label(self.canvas, text="Секунды", fg='white', bg='black',
-                                           font=('Roboto Bold', 12))
-        self.data_seconds_label.place(x=715, y=237, width=66, height=19)
-
-        self.ip_rectangle_1 = self.canvas.create_image(428.75, 302.5, image=self.img_rectangle_s)
-        self.ip_rectangle_2 = self.canvas.create_image(530.75, 302.5, image=self.img_rectangle_s)
-        self.ip_rectangle_3 = self.canvas.create_image(632.75, 302.5, image=self.img_rectangle_s)
-        self.ip_rectangle_4 = self.canvas.create_image(734.75, 302.5, image=self.img_rectangle_s)
-        self.mask_rectangle_1 = self.canvas.create_image(428.75, 342.5, image=self.img_rectangle_s)
-        self.mask_rectangle_2 = self.canvas.create_image(530.75, 342.5, image=self.img_rectangle_s)
-        self.mask_rectangle_3 = self.canvas.create_image(632.75, 342.5, image=self.img_rectangle_s)
-        self.mask_rectangle_4 = self.canvas.create_image(734.75, 342.5, image=self.img_rectangle_s)
-        self.gateway_rectangle_1 = self.canvas.create_image(428.75, 382.5, image=self.img_rectangle_s)
-        self.gateway_rectangle_2 = self.canvas.create_image(530.75, 382.5, image=self.img_rectangle_s)
-        self.gateway_rectangle_3 = self.canvas.create_image(632.75, 382.5, image=self.img_rectangle_s)
-        self.gateway_rectangle_4 = self.canvas.create_image(734.75, 382.5, image=self.img_rectangle_s)
-
-        # Кликабельная зона
-
-
-        def show_data_and_time():
-            now = datetime.now()
-            self.show_day.config(text=now.strftime("%d"))
-            self.show_month.config(text=now.strftime("%m"))
-            self.show_year.config(text=now.strftime("%Y"))
-            self.show_hour.config(text=now.strftime("%H"))
-            self.show_minute.config(text=now.strftime("%M"))
-            self.show_second.config(text=now.strftime("%S"))
-            self.canvas.after(100, show_data_and_time)
-
-        wmi_obj = wmi.WMI()
-        wmi_sql = "select IPAddress,DefaultIPGateway from Win32_NetworkAdapterConfiguration where IPEnabled=TRUE"
-        self.wmi_out = wmi_obj.query(wmi_sql)
-
-        self.show_hour = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_hour.place(x=480, y=234)
-        self.show_minute = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_minute.place(x=584, y=234)
-        self.show_second = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_second.place(x=689, y=234)
-        self.show_day = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_day.place(x=480, y=195)
-        self.show_month = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_month.place(x=584, y=195)
-        self.show_year = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 12))
-        self.show_year.place(x=689, y=195)
-
-        show_data_and_time()
-
-        self.result_IP = self.ip_.split(".")
-
-        if (len(self.result_IP[0]) == 1):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_1.place(x=418, y=294)
-        elif (len(self.result_IP[0]) == 2):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_1.place(x=414, y=294)
-        elif (len(self.result_IP[0]) == 3):
-            self.IP_1 = tk.Label(self.canvas, text=f"{self.result_IP[0]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_1.place(x=410, y=294)
-        if (len(self.result_IP[1]) == 1):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_2.place(x=520, y=294)
-        elif (len(self.result_IP[1]) == 2):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_2.place(x=516, y=294)
-        elif (len(self.result_IP[1]) == 3):
-            self.IP_2 = tk.Label(self.canvas, text=f"{self.result_IP[1]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_2.place(x=512, y=294)
-        if (len(self.result_IP[2]) == 1):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_3.place(x=622, y=294)
-        elif (len(self.result_IP[2]) == 2):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_3.place(x=617, y=294)
-        elif (len(self.result_IP[2]) == 3):
-            self.IP_3 = tk.Label(self.canvas, text=f"{self.result_IP[2]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_3.place(x=614, y=294)
-        if (len(self.result_IP[3]) == 1):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_4.place(x=724, y=294)
-        elif (len(self.result_IP[3]) == 2):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_4.place(x=720, y=294)
-        elif (len(self.result_IP[3]) == 3):
-            self.IP_4 = tk.Label(self.canvas, text=f"{self.result_IP[3]}", fg='white', bg='black',
-                                 font=('Roboto Bold', 12))
-            self.IP_4.place(x=717, y=294)
-
-        for dev in self.wmi_out:
-            self.result_gateway = dev.DefaultIPGateway[0]
-
-        self.result_gateway_split = self.result_gateway.split(".")
-
-        if (len(self.result_gateway_split[0]) == 1):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_1.place(x=418, y=374)
-        elif (len(self.result_gateway_split[0]) == 2):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_1.place(x=414, y=374)
-        elif (len(self.result_gateway_split[0]) == 3):
-            self.gateway_1 = tk.Label(self.canvas, text=f"{self.result_gateway_split[0]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_1.place(x=410, y=374)
-        if (len(self.result_gateway_split[1]) == 1):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_2.place(x=520, y=374)
-        elif (len(self.result_gateway_split[1]) == 2):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_2.place(x=516, y=374)
-        elif (len(self.result_gateway_split[1]) == 3):
-            self.gateway_2 = tk.Label(self.canvas, text=f"{self.result_gateway_split[1]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_2.place(x=512, y=374)
-        if (len(self.result_gateway_split[2]) == 1):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_3.place(x=622, y=374)
-        elif (len(self.result_gateway_split[2]) == 2):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_3.place(x=617, y=374)
-        elif (len(self.result_gateway_split[2]) == 3):
-            self.gateway_3 = tk.Label(self.canvas, text=f"{self.result_gateway_split[2]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_3.place(x=614, y=374)
-        if (len(self.result_gateway_split[3]) == 1):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_4.place(x=724, y=374)
-        elif (len(self.result_gateway_split[3]) == 2):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_4.place(x=720, y=374)
-        elif (len(self.result_gateway_split[3]) == 3):
-            self.gateway_4 = tk.Label(self.canvas, text=f"{self.result_gateway_split[3]}", fg='white', bg='black',
-                                      font=('Roboto Bold', 12))
-            self.gateway_4.place(x=717, y=374)
-
-    def check_password(self, word):  # Сверка пароля и вызов необходимого метода, путем слова
-        print("check_password")
-        if App.session_access == True:
-            if App.LVL_access < 2:
-                App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
-                if word == "switch":  # Переключатель
-                    print("CALL FUNCTION")
-                    self.update_switch(self)
-                elif word == "click1":  # Первое поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
-                elif word == "click2":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
-                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
-            else:
-                messagebox.showerror("Ошибка!", "Недостаточно прав!")
-        else:
-            self.keypad_instance = keypad.Keypad()
-            self.keypad_instance.grab_set()
-            self.keypad_instance.callback_function = self.set_access
-
-    # Получение доступа
-    def set_access(self, event=None):
-        print("set_access")
-        App.session_access = True
-        App.LVL_access = self.keypad_instance.access
-        App.shields_hide()
-
-    def click1(self):
-        App.global_controller.frames["Frame18"].time_display_1.config(text=self.numpad_instance.current_value)
-        App.storage_data["Time_screensaver_settings_panel"] = self.numpad_instance.current_value
-
-
-    def click2(self):
-        App.global_controller.frames["Frame18"].time_display_2.config(text=self.numpad_instance.current_value)
-        App.storage_data["Time_display_settings_panel"] = self.numpad_instance.current_value
-
-    def update_switch(self, event=None):  # Смена переключателей
-        print("step 1")
-        if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
-            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
-            print("step 2")
-            App.storage_data["Switch_settings_panel"] = "1"
-        elif self.Switch_Flat_img.cget("file") == r"new_images/Switch-1.png":
-            self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-0.png")
-            print("step 3")
-            App.storage_data["Switch_settings_panel"] = "0"
-        self.Switch_Flat_button = self.canvas.create_image(670, 152, image=self.Switch_Flat_img)
-        self.canvas.tag_bind(self.Switch_Flat_button, "<Button-1>", lambda event: self.check_password("switch"))
-        self.canvas.update()
+        self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(694.5, 81, image=self.Switch_Flat_first_img)
+        self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(694.5, 126, image=self.Switch_Flat_second_img)
+        self.Switch_Flat_third_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_third_button = self.canvas.create_image(694.5, 173, image=self.Switch_Flat_third_img)
+        self.Switch_Flat_fourth_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_fourth_button = self.canvas.create_image(694.5, 246, image=self.Switch_Flat_fourth_img)
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
+
+
 
 class NetInfo:
     def __init__(self):
@@ -6809,6 +6590,7 @@ class Frame19(tk.Frame, NetInfo):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click1
@@ -6816,6 +6598,7 @@ class Frame19(tk.Frame, NetInfo):
                     self.numpad_instance = numpad.Numpad(None, "INT")
                     self.numpad_instance.min_value.config(text="0")
                     self.numpad_instance.max_value.config(text="30")
+                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
                     self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
                     self.numpad_instance.grab_set()
                     self.numpad_instance.callback_function = self.click2
@@ -7041,6 +6824,7 @@ class Frame20(tk.Frame):
         self.numpad_instance = numpad.Numpad(None, "INT")
         self.numpad_instance.max_value.config(text="6")
         self.numpad_instance.min_value.config(text="1")
+        self.numpad_instance.new_title("Насосы ")
         self.numpad_instance.entry_label.config(text=self.pumpsWorking_label.cget('text'))
         self.numpad_instance.grab_set()
         self.numpad_instance.callback_function = self.change_active_pumps
