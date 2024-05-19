@@ -547,7 +547,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Напряжение",
-            "Info": `${write} -> ${input2.innerText}`
+            "Info": `${write} -> ${input2.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -589,7 +590,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Ток",
-            "Info": `${write} -> ${input4.innerText}`
+            "Info": `${write} -> ${input4.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -631,7 +633,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Частота",
-            "Info": `${write} -> ${input6.innerText}`
+            "Info": `${write} -> ${input6.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -661,7 +664,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Скорость",
-            "Info": `${write} -> ${input8.innerText}`
+            "Info": `${write} -> ${input8.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -713,7 +717,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Мощность",
-            "Info": `${write} -> ${input10.innerText}`
+            "Info": `${write} -> ${input10.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -755,7 +760,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Время ускорения",
-            "Info": `${write} -> ${input12.innerText}`
+            "Info": `${write} -> ${input12.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -797,7 +803,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Время торможения",
-            "Info": `${write} -> ${input14.innerText}`
+            "Info": `${write} -> ${input14.innerText}`,
+            "Linc": "EngineParameters"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -876,7 +883,8 @@ SwitchReading.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Считывание настроек с ПЧ",
-                    "Info": `Off -> On`
+                    "Info": `Off -> On`,
+                    "Linc": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -898,7 +906,8 @@ SwitchReading.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Считывание настроек с ПЧ",
-                    "Info": `On -> Off`
+                    "Info": `On -> Off`,
+                    "Linc": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -939,7 +948,8 @@ SwitchRecording.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Запись настроек в ПЧ",
-                    "Info": `Off -> On`
+                    "Info": `Off -> On`,
+                    "Linc": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -961,7 +971,8 @@ SwitchRecording.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Запись настроек в ПЧ",
-                    "Info": `On -> Off`
+                    "Info": `On -> Off`,
+                    "Linc": "EngineParameters"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',

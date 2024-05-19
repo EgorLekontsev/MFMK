@@ -26,6 +26,7 @@ table {
     overflow: auto;
     overflow: hidden;
 }
+
 .content {
     max-height: 480px;
     height: 480px;
@@ -144,6 +145,26 @@ fetch('/data_log')
 
             var td_Comment_Text = document.createElement('td');
             td_Comment_Text.textContent = data[i].Comment;
+
+            td_Comment_Text.addEventListener('click', function() {
+                if (data[i].Linc==="SetpointPlanner") {
+                    window.location.href = "/SetpointPlanner";
+                } else if (data[i].Linc==="EngineParameters") {
+                    window.location.href = "/EngineParameters";
+                } else if (data[i].Linc==="SensorSettings") {
+                    window.location.href = "/SensorSettings";
+                } else if (data[i].Linc==="PumpParametersInGeneral") {
+                    window.location.href = "/PumpParametersInGeneral";
+                } else if (data[i].Linc==="OnAdditionalPumps") {
+                    window.location.href = "/OnAdditionalPumps";
+                } else if (data[i].Linc==="OffOfAdditionalPumps") {
+                    window.location.href = "/OffOfAdditionalPumps";
+                } else if (data[i].Linc==="Options") {
+                    window.location.href = "/Options";
+                } else if (data[i].Linc==="EmergencyModes") {
+                    window.location.href = "/EmergencyModes";
+                }
+            });
             tr_All.appendChild(td_Comment_Text);
 
             var td_Info_Text = document.createElement('td');

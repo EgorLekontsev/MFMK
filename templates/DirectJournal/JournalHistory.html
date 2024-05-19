@@ -4,6 +4,49 @@
 <title>Журнал историй</title>
 {% endblock %}
 
+{% block styleforrightbody %}
+.buttons {
+    height: 120px;
+}
+
+#data_show {
+    max-height: 360px;
+    width: 200px;
+    height: 360px;
+    overflow: auto;
+    float: left;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.contents {
+    float: left;
+    max-height: 480px;
+    width: 200px;
+    height: 480px;
+    overflow: auto;
+    overflow: hidden;
+}
+
+.selected {
+    background-color: yellow;
+}
+
+p {
+    margin: 2px;
+    margin-left: 5px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: bold;
+    width: 190px;
+    text-align: center;
+    border: 1px solid #DED2D2;
+}
+{% endblock %}
+
 {% block container %}
 <div class="buttons">
     <img onclick="window.location.href='/'" src="{{ url_for('static', filename='iconsbutton/MainScreen.png') }}"
@@ -18,4 +61,45 @@
 
 {% block clock %}
 <div id="clock"></div>
+{% endblock %}
+
+{% block switch %}
+var brain;
+
+data_show = document.getElementById('data_show');
+fetch('/get_file_list')
+    .then(response => response.json())
+    .then(data => {
+        for (let i = 0; i < data.length; i++) {
+            const listItem = document.createElement('p')
+            listItem.textContent = data[i]
+            listItem.style.color = "white";
+            fetch('/data')
+                .then(response => response.json())
+                .then(data_info => {
+                    if(data[i]===data_info.Current_Data) {
+                        listItem.style.background = "#413737";
+                        brain = listItem;
+                    }
+                })
+            data_show.appendChild(listItem)
+            listItem.addEventListener('click', function() {
+                var formData = new FormData();
+                formData.append('Current_Data', data[i]);
+                fetch('/update_data', {
+                    method: 'POST',
+                    body: formData
+                })
+                brain.style.background = "black";
+                listItem.style.background = "#413737";
+                brain = listItem;
+            });
+        }
+    });
+{% endblock %}
+
+{% block log %}
+<div id="data_show">
+
+</div>
 {% endblock %}

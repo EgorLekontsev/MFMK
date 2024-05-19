@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify, request
+from datetime import datetime
+import os
 import json
 
 app = Flask(__name__)
@@ -46,6 +48,29 @@ def PumpOperatingTimeScreen():
 
 @app.route('/CurrentEvent')
 def CurrentEventScreen():
+    current_date = datetime.now()
+    formatted_date = current_date.strftime('%d.%m.%Y')
+    file_path = f"data/Log/{formatted_date}.json"
+    if not os.path.exists(file_path):
+        with open(file_path, "w") as f:
+            json.dump([], f)
+
+    with open("data/jsonstorage.json", "r") as file:
+        json_data = json.load(file)
+
+    data = json_data["Current_Data"]
+
+    folder_path = 'data/Log'
+    file_list = os.listdir(folder_path)
+    file_list = [os.path.splitext(filename)[0] for filename in file_list if filename.endswith('.json')]
+
+    if data != formatted_date:
+        if len(file_list)==1:
+            json_data["Current_Data"] = file_list[0]
+
+            with open("data/jsonstorage.json", "w") as file:
+                json.dump(json_data, file)
+
     return render_template('DirectJournal/CurrentEvent.html')
 
 
@@ -118,7 +143,6 @@ def SettingsPanelScreen():
 def ContactsScreen():
     return render_template('DirectMenu/Contacts.html')
 
-
 @app.route("/data")
 def data():
     with open("data/jsonstorage.json", "r") as f:
@@ -128,14 +152,57 @@ def data():
 
     return jsonify(data)
 
+def function_create_data(name_file, data):
+    file_path = f"data/Log/{name_file}.json"
+
+    if os.path.exists(file_path):
+        with open(file_path, "r") as file:
+            json_data = json.load(file)
+
+        if not isinstance(json_data, list):
+            json_data = []
+
+        json_data.append(data)
+
+        with open(file_path, "w") as file:
+            json.dump(json_data, file)
+
+        return 'Data added successfully'
+    else:
+        json_data = [data]
+
+        with open(file_path, "w") as file:
+            json.dump(json_data, file)
+
+        return 'Data added successfully'
+
+
+
 @app.route("/data_log")
 def data_log():
-    with open("data/changelog.json", "r") as f:
-        json_data = f.read()
+    current_date = datetime.now()
+    formatted_date = current_date.strftime('%d.%m.%Y')
+    file_path = f"data/Log/{formatted_date}.json"
 
-    data = json.loads(json_data)
+    if(os.path.exists(file_path)):
+        with open("data/jsonstorage.json", "r") as file:
+            json_data = json.load(file)
 
-    return jsonify(data)
+        data = json_data["Current_Data"]
+
+        file_path = f"data/Log/{data}.json"
+
+        with open(file_path, "r") as file:
+            json_data = file.read()
+
+        data_last = json.loads(json_data)
+
+        return jsonify(data_last)
+    else:
+        with open(file_path, "w") as f:
+            json.dump([], f)
+
+        return 'Data added successfully'
 
 @app.route('/update_data', methods=['POST'])
 def update_data():
@@ -144,7 +211,7 @@ def update_data():
     with open("data/jsonstorage.json", "r") as file:
         json_data = json.load(file)
 
-    json_data.update(new_data)  # Обновить словарь с данными из JSON
+    json_data.update(new_data)
 
     with open("data/jsonstorage.json", "w") as file:
         json.dump(json_data, file)
@@ -153,21 +220,20 @@ def update_data():
 
 @app.route('/add_data_to_log', methods=['POST'])
 def add_data_to_log():
-    new_data = request.get_json() # Чтение данных в формате JSON
+    new_data = request.get_json()
 
-    with open("data/changelog.json", "r") as file:
-        json_data = json.load(file)
-
-    if not isinstance(json_data, list):
-        json_data = []
-
-    json_data.append(new_data)
-
-    with open("data/changelog.json", "w") as file:
-        json.dump(json_data, file)
+    function_create_data(new_data["Date"], new_data)
 
     return 'Data added successfully'
 
+@app.route('/get_file_list')
+def get_file_list():
+    folder_path = 'data/Log'
+    file_list = os.listdir(folder_path)
+
+    file_list = [os.path.splitext(filename)[0] for filename in file_list if filename.endswith('.json')]
+
+    return jsonify(file_list)
 
 if __name__ == '__main__':
     app.run(debug=True)

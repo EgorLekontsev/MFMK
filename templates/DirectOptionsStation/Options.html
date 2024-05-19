@@ -188,7 +188,8 @@ Switch.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Режим энергосбережения",
-                    "Info": `Off -> On`
+                    "Info": `Off -> On`,
+                    "Linc": "Options"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -210,7 +211,8 @@ Switch.onclick = function() {
                     "Date": currentDateString,
                     "Time": currentTimeString,
                     "Comment": "Режим энергосбережения",
-                    "Info": `On -> Off`
+                    "Info": `On -> Off`,
+                    "Linc": "Options"
                 };
                 fetch('/add_data_to_log', {
                     method: 'POST',
@@ -468,7 +470,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Запускать режим энергосбережения раз в",
-            "Info": `${write} -> ${input2.innerText}`
+            "Info": `${write} -> ${input2.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -524,7 +527,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Просадка давления для выкл. энерг. сбер.",
-            "Info": `${write} -> ${input4.innerText}`
+            "Info": `${write} -> ${input4.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -580,7 +584,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Повышать давление на",
-            "Info": `${write} -> ${input6.innerText}`
+            "Info": `${write} -> ${input6.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -612,7 +617,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Время интегрирования размаха",
-            "Info": `${write} -> ${input8.innerText}`
+            "Info": `${write} -> ${input8.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -668,7 +674,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Допустимый размах давления",
-            "Info": `${write} -> ${input10.innerText}`
+            "Info": `${write} -> ${input10.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -702,7 +709,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Допустимый размах частоты",
-            "Info": `${write} -> ${input12.innerText}`
+            "Info": `${write} -> ${input12.innerText}`,
+            "Linc": "Options"
         };
         fetch('/add_data_to_log', {
             method: 'POST',

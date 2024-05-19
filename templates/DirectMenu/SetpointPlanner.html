@@ -1496,7 +1496,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Уставка пользователя",
-            "Info": `${write} -> ${input2.innerText}`
+            "Info": `${write} -> ${input2.innerText}`,
+            "Linc": "SetpointPlanner"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -2286,4 +2287,4 @@ async function hideFlickeringElements() {
 <p style="position: absolute; top: 444px; left: 251px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 100px;">Тип уставки</p>
 <p style="position: absolute; top: 444px; left: 519px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 140px;">Текущая уставка</p>
 <p style="position: absolute; top: 444px; left: 744px; right: 0px; bottom: 0px; border: none; padding: 0px; width: 30px;">Бар</p>
-{% endblock %}h
+{% endblock %}

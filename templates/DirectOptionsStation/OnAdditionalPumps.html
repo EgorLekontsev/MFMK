@@ -351,7 +351,7 @@ function appendToNumpad(value) {
             document.getElementById('numpad').innerText += value;
         }
     } else if (input6check === true) {
-        if (result.length===0 && value>=0 && value<=3) {
+        if (result.length===0 && value>=0 && value<=9) {
             cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
@@ -382,7 +382,7 @@ function appendToNumpad(value) {
             document.getElementById('numpad').innerText += value;
         }
     } else if (input10check === true) {
-        if (result.length===0 && value>=0 && value<=3) {
+        if (result.length===0 && value>=0 && value<=9) {
             cnn += value;
             document.getElementById('numpad').innerText += value;
         } else if (result.length===1 && result[0]>=1 && result[0]<=2 && value>=0 && value<=9) {
@@ -489,7 +489,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Частота мастера на включение доп. насоса",
-            "Info": `${write} -> ${input2.innerText}`
+            "Info": `${write} -> ${input2.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -533,7 +534,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Допустимый скачок(Пуск доп. насоса)",
-            "Info": `${write} -> ${input4.innerText}`
+            "Info": `${write} -> ${input4.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -565,7 +567,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Задержка включения",
-            "Info": `${write} -> ${input6.innerText}`
+            "Info": `${write} -> ${input6.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -609,7 +612,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Критический скачок(Пуск доп. насоса)",
-            "Info": `${write} -> ${input8.innerText}`
+            "Info": `${write} -> ${input8.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -641,7 +645,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Задержка включения",
-            "Info": `${write} -> ${input10.innerText}`
+            "Info": `${write} -> ${input10.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -675,7 +680,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Задержка ухода на фиксированную частоту",
-            "Info": `${write} -> ${input12.innerText}`
+            "Info": `${write} -> ${input12.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -721,7 +727,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Фиксированная частота",
-            "Info": `${write} -> ${input14.innerText}`
+            "Info": `${write} -> ${input14.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
@@ -753,7 +760,8 @@ function checkNumpad() {
             "Date": currentDateString,
             "Time": currentTimeString,
             "Comment": "Время работы на фиксированной частоте",
-            "Info": `${write} -> ${input16.innerText}`
+            "Info": `${write} -> ${input16.innerText}`,
+            "Linc": "OnAdditionalPumps"
         };
         fetch('/add_data_to_log', {
             method: 'POST',
