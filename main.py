@@ -222,22 +222,6 @@ class App(tk.Tk):
                                                                   state='hidden')
         App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
                                                                   state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield8,
-                                                                  state='hidden')
         App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
                                                                   state='hidden')
         App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
@@ -378,22 +362,6 @@ class App(tk.Tk):
         App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
                                                                   state='normal')
         App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield8,
                                                                   state='normal')
         App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
                                                                   state='normal')
