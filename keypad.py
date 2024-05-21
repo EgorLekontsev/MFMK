@@ -16,7 +16,7 @@ class Keypad(tk.Toplevel):
             relief="ridge")
         self.canvas.place(x=0, y=0)
 
-        self.passwords = {"7531":0, "159":1, "221":2}
+        self.passwords = {"7531":0, "159":5, "221":7}
         self.enter_password = ""
 
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')

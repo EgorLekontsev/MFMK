@@ -60,8 +60,8 @@ class App(tk.Tk):
     LVL_access = 10
     session_access = False
     global_controller = None
-
-
+    numpad_instance = 0
+    after_function = 0
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -91,7 +91,6 @@ class App(tk.Tk):
 
         self.protocol("WM_DELETE_WINDOW", self.on_closing)
 
-
     def on_closing(self):
         print("TESTING")
         print(App.journal_data)
@@ -100,287 +99,635 @@ class App(tk.Tk):
         self.destroy()
 
     def shields_hide(event=None): #Сокрытие щитов, а также вызов метода показа щитов
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
-                                                                 state='hidden')
-        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
-                                                                  state='hidden')
-        App.global_controller.frames["Frame1_1"].after(120000, App.shields_show)
+        if App.LVL_access == 0:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame20"].canvas.itemconfig(App.global_controller.frames["Frame20"].shield1,
+                                                                      state='hidden')
+        elif App.LVL_access == 5:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                      state='hidden')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                      state='hidden')
+        elif App.LVL_access == 7:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='hidden')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='hidden')
+        if App.after_function != 0:
+            App.global_controller.frames["Frame1_1"].after_cancel(App.after_function)
+        App.after_function = App.global_controller.frames["Frame1_1"].after(10000, App.shields_show)
 
     def shields_show(event=None):
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
-                                                                 state='normal')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
-                                                                 state='normal')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
-                                                                 state='normal')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
-                                                                 state='normal')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
-                                                                 state='normal')
-        App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
-                                                                 state='normal')
-        App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
-                                                                 state='normal')
-        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
-                                                                  state='normal')
-        App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
-                                                                  state='normal')
-        App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
-                                                                  state='normal')
+        if App.LVL_access == 0:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                     state='normal')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame20"].canvas.itemconfig(App.global_controller.frames["Frame20"].shield1,
+                                                                      state='normal')
+        elif App.LVL_access == 5:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield1,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield2,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield3,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield4,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield5,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield6,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield7,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield8,
+                                                                     state='normal')
+            App.global_controller.frames["Frame9"].canvas.itemconfig(App.global_controller.frames["Frame9"].shield9,
+                                                                     state='normal')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame10"].canvas.itemconfig(App.global_controller.frames["Frame10"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame11"].canvas.itemconfig(App.global_controller.frames["Frame11"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame12"].canvas.itemconfig(App.global_controller.frames["Frame12"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame13"].canvas.itemconfig(App.global_controller.frames["Frame13"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame14"].canvas.itemconfig(App.global_controller.frames["Frame14"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield8,
+                                                                      state='normal')
+            App.global_controller.frames["Frame15"].canvas.itemconfig(App.global_controller.frames["Frame15"].shield9,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame16"].canvas.itemconfig(App.global_controller.frames["Frame16"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame18"].canvas.itemconfig(App.global_controller.frames["Frame18"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield1,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield2,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield3,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield4,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield5,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield6,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield7,
+                                                                      state='normal')
+            App.global_controller.frames["Frame19"].canvas.itemconfig(App.global_controller.frames["Frame19"].shield8,
+                                                                      state='normal')
+        elif App.LVL_access == 7:
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield2,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield3,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield4,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield5,
+                                                                     state='normal')
+            App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
+                                                                     state='normal')
+        if App.numpad_instance != 0:
+            if App.numpad_instance.winfo_exists():
+                App.numpad_instance.destroy()
         App.session_access = False
         App.LVL_access = 10
+        print("Доступ прекращен")
 
 
 
@@ -1611,208 +1958,208 @@ class Frame2(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 7:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Уставка пользователя ")
-                    self.numpad_instance.entry_label.config(text=self.setpoint_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Уставка пользователя ")
+                    App.numpad_instance.entry_label.config(text=self.setpoint_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Будни утро(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Будни утро(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_morning_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Будни день(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Будни день(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_afternoon_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Будни вечер(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Будни вечер(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_evening_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Будни ночь(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_night_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Будни ночь(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_night_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Будни утро(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Будни утро(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_morning_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 elif word == "click7":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Будни день(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click7
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Будни день(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_afternoon_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click7
                 elif word == "click8":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Будни вечер(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click8
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Будни вечер(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_evening_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click8
                 elif word == "click9":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Будни ночь(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_night_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click9
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Будни ночь(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_night_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click9
                 elif word == "click10":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Выходные утро(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_morning_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click10
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Выходные утро(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_morning_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click10
                 elif word == "click11":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Выходные день(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click11
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Выходные день(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_afternoon_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click11
                 elif word == "click12":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Выходные вечер(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_evening_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click12
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Выходные вечер(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_evening_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click12
                 elif word == "click13":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title("Выходные ночь(часы) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_night_h.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click13
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title("Выходные ночь(часы) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_night_h.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click13
                 elif word == "click14":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Выходные утро(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_morning_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click14
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Выходные утро(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_morning_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click14
                 elif word == "click15":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Выходные день(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click15
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Выходные день(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_afternoon_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click15
                 elif word == "click16":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Выходные вечер(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_evening_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click16
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Выходные вечер(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_evening_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click16
                 elif word == "click17":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="59")
-                    self.numpad_instance.new_title("Выходные ночь(минуты) ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_night_m.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click17
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="59")
+                    App.numpad_instance.new_title("Выходные ночь(минуты) ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_night_m.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click17
                 elif word == "click18":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Будни утро уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_morning_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click18
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Будни утро уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_morning_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click18
                 elif word == "click19":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Будни день уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_afternoon_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click19
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Будни день уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_afternoon_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click19
                 elif word == "click20":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Будни вечер уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_evening_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click20
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Будни вечер уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_evening_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click20
                 elif word == "click21":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Будни ночь уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekdays_night_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click21
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Будни ночь уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekdays_night_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click21
                 elif word == "click22":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Выходные утро уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_morning_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click22
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Выходные утро уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_morning_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click22
                 elif word == "click23":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Выходные день уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_afternoon_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click23
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Выходные день уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_afternoon_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click23
                 elif word == "click24":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Выходные вечер уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_evening_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click24
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Выходные вечер уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_evening_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click24
                 elif word == "click25":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title("Выходные ночь уставка ")
-                    self.numpad_instance.entry_label.config(text=self.weekends_night_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click25
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title("Выходные ночь уставка ")
+                    App.numpad_instance.entry_label.config(text=self.weekends_night_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click25
                 elif word == "button1":
                     if self.button_day1.cget('bg') == "#3C3C3C":
                         self.button_day1.config(bg="#0F91DA", activebackground="#0F91DA")
@@ -1899,161 +2246,161 @@ class Frame2(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
-        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {self.numpad_instance.current_value}", "SetpointPlanner"))
-        App.global_controller.frames["Frame2"].setpoint_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["User_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {App.numpad_instance.current_value}", "SetpointPlanner"))
+        App.global_controller.frames["Frame2"].setpoint_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["User_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         self.update_setpoints()
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click2(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_morning_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekday_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_morning_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click3(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_afternoon_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekday_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_afternoon_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click4(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_evening_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekday_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_evening_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
     def click5(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_night_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekday_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_night_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click6(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_morning_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekday_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_morning_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click7(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_afternoon_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekday_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_afternoon_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click8(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_evening_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekday_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_evening_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click9(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekdays_night_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekday_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_night_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click10(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_morning_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekend_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_morning_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click11(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_afternoon_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekend_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_afternoon_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click12(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_evening_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekend_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_evening_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click13(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_night_h.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekend_Hour"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_night_h.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Hour"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click14(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_morning_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekend_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_morning_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click15(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_afternoon_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekend_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_afternoon_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click16(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_evening_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekend_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_evening_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click17(self):
-        if len(self.numpad_instance.current_value) == 1:
-            self.numpad_instance.current_value = "0" + self.numpad_instance.current_value
-        App.global_controller.frames["Frame2"].weekends_night_m.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekend_Minute"] = self.numpad_instance.current_value
+        if len(App.numpad_instance.current_value) == 1:
+            App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_night_m.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Minute"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click18(self):
-        App.global_controller.frames["Frame2"].weekdays_morning_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekday_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_morning_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekday_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click19(self):
-        App.global_controller.frames["Frame2"].weekdays_afternoon_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekday_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_afternoon_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekday_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click20(self):
-        App.global_controller.frames["Frame2"].weekdays_evening_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekday_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_evening_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekday_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click21(self):
-        App.global_controller.frames["Frame2"].weekdays_night_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekday_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekdays_night_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekday_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click22(self):
-        App.global_controller.frames["Frame2"].weekends_morning_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Morning_Weekend_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_morning_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Morning_Weekend_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click23(self):
-        App.global_controller.frames["Frame2"].weekends_afternoon_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Day_Weekend_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_afternoon_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Day_Weekend_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click24(self):
-        App.global_controller.frames["Frame2"].weekends_evening_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Evening_Weekend_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_evening_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Evening_Weekend_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
     def click25(self):
-        App.global_controller.frames["Frame2"].weekends_night_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setpoint_Planner_Night_Weekend_Setpoint"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame2"].weekends_night_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setpoint_Planner_Night_Weekend_Setpoint"] = App.numpad_instance.current_value
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
 
 
@@ -2062,6 +2409,8 @@ class Frame2(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 7:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
 
 
@@ -2937,64 +3286,64 @@ class Frame9(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="100")
-                    self.numpad_instance.max_value.config(text="1000")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.voltage_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="100")
+                    App.numpad_instance.max_value.config(text="1000")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.voltage_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="99.9")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.current_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="99.9")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.current_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="99.9")
-                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.frequency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="99.9")
+                    App.numpad_instance.new_title(self.label4.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.frequency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="9999")
-                    self.numpad_instance.new_title(self.label5.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.speed_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="9999")
+                    App.numpad_instance.new_title(self.label5.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.speed_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="655.35")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.power_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="655.35")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.power_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="99.9")
-                    self.numpad_instance.new_title(self.label8.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.boost_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="99.9")
+                    App.numpad_instance.new_title(self.label8.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.boost_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 elif word == "click7":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="99.9")
-                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.braking_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click7
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="99.9")
+                    App.numpad_instance.new_title(self.label9.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.braking_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click7
                 elif word == "switch1":
                     self.update_switch_first()
                 elif word == "switch2":
@@ -3008,52 +3357,52 @@ class Frame9(tk.Frame):
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
-        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.voltage_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].voltage_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Voltage"] = self.numpad_instance.current_value
+        App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.voltage_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].voltage_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Voltage"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
         datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-        f"{self.current_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].current_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Amperage"] = self.numpad_instance.current_value
+        f"{self.current_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].current_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Amperage"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].frequency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Frequency"] = self.numpad_instance.current_value
+            f"{self.frequency_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].frequency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Frequency"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.speed_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].speed_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Speed"] = self.numpad_instance.current_value
+            f"{self.speed_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].speed_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Speed"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.power_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].power_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Power"] = self.numpad_instance.current_value
+            f"{self.power_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].power_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Power"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.boost_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].boost_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Acceleration_Time"] = self.numpad_instance.current_value
+            f"{self.boost_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].boost_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Acceleration_Time"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.braking_value.cget('text')} -> {self.numpad_instance.current_value}", "EngineParameters"))
-        App.global_controller.frames["Frame9"].braking_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Braking_Time"] = self.numpad_instance.current_value
+            f"{self.braking_value.cget('text')} -> {App.numpad_instance.current_value}", "EngineParameters"))
+        App.global_controller.frames["Frame9"].braking_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Braking_Time"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -3061,6 +3410,8 @@ class Frame9(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
     def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") == "new_images/ReadingGray.png":
             self.Switch_Flat_first_img = PhotoImage(file=r"new_images/ReadingGreen.png")
@@ -3319,24 +3670,24 @@ class Frame10(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.nominal_s_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.nominal_s_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.nominal_d_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.nominal_d_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -3348,18 +3699,18 @@ class Frame10(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
         datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-        f"{self.nominal_s_value.cget('text')} -> {self.numpad_instance.current_value}", "SensorSettings"))
-        App.global_controller.frames["Frame10"].nominal_s_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Suction_Rating"] = self.numpad_instance.current_value
+        f"{self.nominal_s_value.cget('text')} -> {App.numpad_instance.current_value}", "SensorSettings"))
+        App.global_controller.frames["Frame10"].nominal_s_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Suction_Rating"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.nominal_d_value.cget('text')} -> {self.numpad_instance.current_value}", "SensorSettings"))
-        App.global_controller.frames["Frame10"].nominal_d_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Discharge_Rating"] = self.numpad_instance.current_value
+            f"{self.nominal_d_value.cget('text')} -> {App.numpad_instance.current_value}", "SensorSettings"))
+        App.global_controller.frames["Frame10"].nominal_d_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Discharge_Rating"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -3367,6 +3718,8 @@ class Frame10(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -3593,40 +3946,40 @@ class Frame11(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="15.0")
-                    self.numpad_instance.max_value.config(text="30.0")
-                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.min_f_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="15.0")
+                    App.numpad_instance.max_value.config(text="30.0")
+                    App.numpad_instance.new_title(self.label1.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.min_f_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="40.00")
-                    self.numpad_instance.max_value.config(text="50.00")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.max_f_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="40.00")
+                    App.numpad_instance.max_value.config(text="50.00")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.max_f_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="24")
-                    self.numpad_instance.max_value.config(text="72")
-                    self.numpad_instance.new_title(self.label5.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.interval_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="24")
+                    App.numpad_instance.max_value.config(text="72")
+                    App.numpad_instance.new_title(self.label5.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.interval_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="23")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.time_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="23")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.time_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "switch1":
                     self.update_switch_first()
                 elif word == "switch2":
@@ -3643,29 +3996,29 @@ class Frame11(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.min_f_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
-        App.global_controller.frames["Frame11"].min_f_value.config(text=self.numpad_instance.current_value)
+            f"{self.min_f_value.cget('text')} -> {App.numpad_instance.current_value}", "PumpParametersInGeneral"))
+        App.global_controller.frames["Frame11"].min_f_value.config(text=App.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.max_f_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
-        App.global_controller.frames["Frame11"].max_f_value.config(text=self.numpad_instance.current_value)
+            f"{self.max_f_value.cget('text')} -> {App.numpad_instance.current_value}", "PumpParametersInGeneral"))
+        App.global_controller.frames["Frame11"].max_f_value.config(text=App.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.interval_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
-        App.global_controller.frames["Frame11"].interval_value.config(text=self.numpad_instance.current_value)
+            f"{self.interval_value.cget('text')} -> {App.numpad_instance.current_value}", "PumpParametersInGeneral"))
+        App.global_controller.frames["Frame11"].interval_value.config(text=App.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.time_value.cget('text')} -> {self.numpad_instance.current_value}", "PumpParametersInGeneral"))
-        App.global_controller.frames["Frame11"].time_value.config(text=self.numpad_instance.current_value)
+            f"{self.time_value.cget('text')} -> {App.numpad_instance.current_value}", "PumpParametersInGeneral"))
+        App.global_controller.frames["Frame11"].time_value.config(text=App.numpad_instance.current_value)
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
 
@@ -3674,6 +4027,8 @@ class Frame11(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def update_switch_first(self):
         if self.Switch_Flat_first_img.cget("file") ==  r"new_images/Switch-0.png":
@@ -4004,72 +4359,72 @@ class Frame12(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="35.0")
-                    self.numpad_instance.max_value.config(text="50.0")
-                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.master_f_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="35.0")
+                    App.numpad_instance.max_value.config(text="50.0")
+                    App.numpad_instance.new_title(self.label1.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.master_f_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="5.00")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_drawdown_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="5.00")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_drawdown_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label4.cget('text') + " (Допустимая просадка) ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label4.cget('text') + " (Допустимая просадка) ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_сooldown_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="5.00")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.crit_drawdown_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="5.00")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.crit_drawdown_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label7.cget('text') + " (Критическая просадка) ")
-                    self.numpad_instance.entry_label.config(text=self.crit_сooldown_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label7.cget('text') + " (Критическая просадка) ")
+                    App.numpad_instance.entry_label.config(text=self.crit_сooldown_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="9.9")
-                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.fix_сooldown_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="9.9")
+                    App.numpad_instance.new_title(self.label9.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.fix_сooldown_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 elif word == "click7":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="50.0")
-                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.fix_f_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click7
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="50.0")
+                    App.numpad_instance.new_title(self.label10.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.fix_f_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click7
                 elif word == "click8":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.time_work_on_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click8
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label11.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.time_work_on_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click8
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -4081,65 +4436,65 @@ class Frame12(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.master_f_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].master_f_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Frequency_Master_Enabled"] = self.numpad_instance.current_value
+            f"{self.master_f_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].master_f_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Frequency_Master_Enabled"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.acceptable_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Acceptable_Drawdown_Start"] = self.numpad_instance.current_value
+            f"{self.acceptable_drawdown_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].acceptable_drawdown_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Acceptable_Drawdown_Start"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.acceptable_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Power_Delay_One"] = self.numpad_instance.current_value
+            f"{self.acceptable_сooldown_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].acceptable_сooldown_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Power_Delay_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.crit_drawdown_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Critical_Drawdown_Start"] = self.numpad_instance.current_value
+            f"{self.crit_drawdown_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].crit_drawdown_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Critical_Drawdown_Start"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.crit_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Power_Delay_Two"] = self.numpad_instance.current_value
+            f"{self.crit_сooldown_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].crit_сooldown_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Power_Delay_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.fix_сooldown_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Delayed_Care_One"] = self.numpad_instance.current_value
+            f"{self.fix_сooldown_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].fix_сooldown_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Delayed_Care_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.fix_f_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].fix_f_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Fixed_Frequency_One"] = self.numpad_instance.current_value
+            f"{self.fix_f_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].fix_f_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Fixed_Frequency_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.time_work_on_value.cget('text')} -> {self.numpad_instance.current_value}", "OnAdditionalPumps"))
-        App.global_controller.frames["Frame12"].time_work_on_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Working_Hours_One"] = self.numpad_instance.current_value
+            f"{self.time_work_on_value.cget('text')} -> {App.numpad_instance.current_value}", "OnAdditionalPumps"))
+        App.global_controller.frames["Frame12"].time_work_on_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Working_Hours_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -4147,6 +4502,8 @@ class Frame12(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -4441,72 +4798,72 @@ class Frame13(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="35.0")
-                    self.numpad_instance.max_value.config(text="50.0")
-                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.master_f_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="35.0")
+                    App.numpad_instance.max_value.config(text="50.0")
+                    App.numpad_instance.new_title(self.label1.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.master_f_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="5.00")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_jump_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="5.00")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_jump_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label4.cget('text') + " (Допустимый скачок) ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_сooldown_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label4.cget('text') + " (Допустимый скачок) ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_сooldown_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="5.00")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.crit_jump_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="5.00")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.crit_jump_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label7.cget('text') + " (Критический скачок) ")
-                    self.numpad_instance.entry_label.config(text=self.crit_сooldown_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label7.cget('text') + " (Критический скачок) ")
+                    App.numpad_instance.entry_label.config(text=self.crit_сooldown_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="9.9")
-                    self.numpad_instance.new_title(self.label9.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.fix_сooldown_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="9.9")
+                    App.numpad_instance.new_title(self.label9.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.fix_сooldown_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 elif word == "click7":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="50.0")
-                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.fix_f_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click7
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="50.0")
+                    App.numpad_instance.new_title(self.label10.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.fix_f_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click7
                 elif word == "click8":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.time_work_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click8
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label11.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.time_work_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click8
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -4518,61 +4875,61 @@ class Frame13(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.acceptable_jump_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Frequency_Master_Shutdown"] = self.numpad_instance.current_value
+            f"{self.acceptable_jump_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].acceptable_jump_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Frequency_Master_Shutdown"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.acceptable_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Acceptable_Drawdown_Stop"] = self.numpad_instance.current_value
+            f"{self.acceptable_сooldown_off_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].acceptable_сooldown_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Acceptable_Drawdown_Stop"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].max_emergency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Shutdown_Delay_One"] = self.numpad_instance.current_value
+            f"{self.max_emergency_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].max_emergency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Shutdown_Delay_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.crit_jump_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].crit_jump_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Critical_Drawdown_Stop"] = self.numpad_instance.current_value
+            f"{self.crit_jump_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].crit_jump_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Critical_Drawdown_Stop"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.crit_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Shutdown_Delay_Two"] = self.numpad_instance.current_value
+            f"{self.crit_сooldown_off_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].crit_сooldown_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Shutdown_Delay_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label9.cget('text'),
-            f"{self.fix_сooldown_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Delayed_Care_Two"] = self.numpad_instance.current_value
+            f"{self.fix_сooldown_off_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].fix_сooldown_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Delayed_Care_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.fix_f_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].fix_f_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Fixed_Frequency_Two"] = self.numpad_instance.current_value
+            f"{self.fix_f_off_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].fix_f_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Fixed_Frequency_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.time_work_off_value.cget('text')} -> {self.numpad_instance.current_value}", "OffOfAdditionalPumps"))
-        App.global_controller.frames["Frame13"].time_work_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Working_Hours_Two"] = self.numpad_instance.current_value
+            f"{self.time_work_off_value.cget('text')} -> {App.numpad_instance.current_value}", "OffOfAdditionalPumps"))
+        App.global_controller.frames["Frame13"].time_work_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Working_Hours_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -4580,6 +4937,8 @@ class Frame13(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
 class Frame14(tk.Frame):
@@ -4876,59 +5235,59 @@ class Frame14(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "switch":
                     print("CALL FUNCTION")
                     self.update_switch(self)
                 elif word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="9999")
-                    self.numpad_instance.new_title(self.label3.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.start_mod_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="9999")
+                    App.numpad_instance.new_title(self.label3.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.start_mod_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label4.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.upper_pressure_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label4.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.upper_pressure_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label5.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.lower_pressure_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label5.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.lower_pressure_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label6.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.swing_time_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label6.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.swing_time_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label7.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_range_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label7.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_range_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="5.0")
-                    self.numpad_instance.new_title(self.label8.cget('text')+" ")
-                    self.numpad_instance.entry_label.config(text=self.acceptable_frequency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="5.0")
+                    App.numpad_instance.new_title(self.label8.cget('text')+" ")
+                    App.numpad_instance.entry_label.config(text=self.acceptable_frequency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -4940,49 +5299,49 @@ class Frame14(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.start_mod_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].start_mod_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Starting_Power_Savingmode"] = self.numpad_instance.current_value
+            f"{self.start_mod_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].start_mod_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Starting_Power_Savingmode"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.upper_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].upper_pressure_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Pressure_Drawdown"] = self.numpad_instance.current_value
+            f"{self.upper_pressure_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].upper_pressure_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Pressure_Drawdown"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label5.cget('text'),
-            f"{self.lower_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].lower_pressure_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Pressure_Increase"] = self.numpad_instance.current_value
+            f"{self.lower_pressure_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].lower_pressure_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Pressure_Increase"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.swing_time_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].swing_time_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Swing_Time"] = self.numpad_instance.current_value
+            f"{self.swing_time_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].swing_time_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Swing_Time"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.acceptable_range_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].acceptable_range_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Pressure_Range"] = self.numpad_instance.current_value
+            f"{self.acceptable_range_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].acceptable_range_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Pressure_Range"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.acceptable_frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "Options"))
-        App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Frequency_Range"] = self.numpad_instance.current_value
+            f"{self.acceptable_frequency_value.cget('text')} -> {App.numpad_instance.current_value}", "Options"))
+        App.global_controller.frames["Frame14"].acceptable_frequency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Frequency_Range"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -4990,6 +5349,8 @@ class Frame14(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
             App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
@@ -5310,75 +5671,75 @@ class Frame15(tk.Frame):
     def check_password(self, word):
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "switch":
                     print("CALL FUNCTION")
                     self.update_switch(self)
                 elif word == "click1":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT1")
-                    self.numpad_instance.min_value.config(text="0.0")
-                    self.numpad_instance.max_value.config(text="99.9")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.response_frequency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT1")
+                    App.numpad_instance.min_value.config(text="0.0")
+                    App.numpad_instance.max_value.config(text="99.9")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.response_frequency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="10")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " (Реле) ")
-                    self.numpad_instance.entry_label.config(text=self.cooldown_emergency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="10")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " (Реле) ")
+                    App.numpad_instance.entry_label.config(text=self.cooldown_emergency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="99")
-                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.max_emergency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="99")
+                    App.numpad_instance.new_title(self.label4.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.max_emergency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.warnings_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.warnings_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label7.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.emergency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label7.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.emergency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 elif word == "click6":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="99")
-                    self.numpad_instance.new_title(self.label8.cget('text') + " (Сухой ход) ")
-                    self.numpad_instance.entry_label.config(text=self.cd_emergency_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click6
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="99")
+                    App.numpad_instance.new_title(self.label8.cget('text') + " (Сухой ход) ")
+                    App.numpad_instance.entry_label.config(text=self.cd_emergency_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click6
                 elif word == "click7":
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="5")
-                    self.numpad_instance.new_title(self.label10.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.cd_off_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click7
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="5")
+                    App.numpad_instance.new_title(self.label10.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.cd_off_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click7
                 elif word == "click8":
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label11.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.stop_crit_pressure_value.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click8
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label11.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.stop_crit_pressure_value.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click8
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -5390,65 +5751,65 @@ class Frame15(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.response_frequency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].response_frequency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Response_Frequency"] = self.numpad_instance.current_value
+            f"{self.response_frequency_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].response_frequency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Response_Frequency"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.cooldown_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Delay_Accident_One"] = self.numpad_instance.current_value
+            f"{self.cooldown_emergency_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].cooldown_emergency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Delay_Accident_One"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.max_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].max_emergency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Number_Accidents"] = self.numpad_instance.current_value
+            f"{self.max_emergency_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].max_emergency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Number_Accidents"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.warnings_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].warnings_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Warnings"] = self.numpad_instance.current_value
+            f"{self.warnings_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].warnings_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Warnings"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label7.cget('text'),
-            f"{self.emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].emergency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Crash"] = self.numpad_instance.current_value
+            f"{self.emergency_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].emergency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Crash"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click6(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label8.cget('text'),
-            f"{self.cd_emergency_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].cd_emergency_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Delay_Accident_Two"] = self.numpad_instance.current_value
+            f"{self.cd_emergency_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].cd_emergency_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Delay_Accident_Two"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click7(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label10.cget('text'),
-            f"{self.cd_off_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].cd_off_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Shutdown_Delay"] = self.numpad_instance.current_value
+            f"{self.cd_off_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].cd_off_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Shutdown_Delay"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click8(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label11.cget('text'),
-            f"{self.stop_crit_pressure_value.cget('text')} -> {self.numpad_instance.current_value}", "EmergencyModes"))
-        App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=self.numpad_instance.current_value)
-        App.storage_data["Pressure_Stop"] = self.numpad_instance.current_value
+            f"{self.stop_crit_pressure_value.cget('text')} -> {App.numpad_instance.current_value}", "EmergencyModes"))
+        App.global_controller.frames["Frame15"].stop_crit_pressure_value.config(text=App.numpad_instance.current_value)
+        App.storage_data["Pressure_Stop"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def set_access(self, event=None):
@@ -5456,6 +5817,8 @@ class Frame15(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/_NO_YES.png":
@@ -5690,51 +6053,51 @@ class Frame16(tk.Frame):
     def check_password(self, word):  # Сверка пароля и вызов необходимого метода, путем слова
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "switch":  # Переключатель
                     print("CALL FUNCTION")
                     self.update_switch(self)
                 elif word == "click1":  # Первое поле
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
-                    self.numpad_instance.min_value.config(text="0.000")
-                    self.numpad_instance.max_value.config(text="5.999")
-                    self.numpad_instance.new_title(self.label1.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.p_k.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    App.numpad_instance.min_value.config(text="0.000")
+                    App.numpad_instance.max_value.config(text="5.999")
+                    App.numpad_instance.new_title(self.label1.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.p_k.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
-                    self.numpad_instance.min_value.config(text="0.000")
-                    self.numpad_instance.max_value.config(text="5.999")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.i_k.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    App.numpad_instance.min_value.config(text="0.000")
+                    App.numpad_instance.max_value.config(text="5.999")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.i_k.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 elif word == "click3":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
-                    self.numpad_instance.min_value.config(text="0.000")
-                    self.numpad_instance.max_value.config(text="5.999")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.d_k.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click3
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    App.numpad_instance.min_value.config(text="0.000")
+                    App.numpad_instance.max_value.config(text="5.999")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.d_k.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click3
                 elif word == "click4":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT3")
-                    self.numpad_instance.min_value.config(text="0.000")
-                    self.numpad_instance.max_value.config(text="5.999")
-                    self.numpad_instance.new_title(self.label4.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.const_integral.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click4
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT3")
+                    App.numpad_instance.min_value.config(text="0.000")
+                    App.numpad_instance.max_value.config(text="5.999")
+                    App.numpad_instance.new_title(self.label4.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.const_integral.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click4
                 elif word == "click5":  # Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    self.numpad_instance.min_value.config(text="0.00")
-                    self.numpad_instance.max_value.config(text="99.99")
-                    self.numpad_instance.new_title(self.label6.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.setpoint.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click5
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
+                    App.numpad_instance.min_value.config(text="0.00")
+                    App.numpad_instance.max_value.config(text="99.99")
+                    App.numpad_instance.new_title(self.label6.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.setpoint.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click5
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
@@ -5746,40 +6109,40 @@ class Frame16(tk.Frame):
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label1.cget('text'),
-            f"{self.p_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
-        App.global_controller.frames["Frame16"].p_k.config(text=self.numpad_instance.current_value)
-        App.storage_data["Proportional_Coefficient"] = self.numpad_instance.current_value
+            f"{self.p_k.cget('text')} -> {App.numpad_instance.current_value}", "SettingsPID"))
+        App.global_controller.frames["Frame16"].p_k.config(text=App.numpad_instance.current_value)
+        App.storage_data["Proportional_Coefficient"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click2(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'),
-            f"{self.i_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
-        App.global_controller.frames["Frame16"].i_k.config(text=self.numpad_instance.current_value)
-        App.storage_data["Integral_Coefficient"] = self.numpad_instance.current_value
+            f"{self.i_k.cget('text')} -> {App.numpad_instance.current_value}", "SettingsPID"))
+        App.global_controller.frames["Frame16"].i_k.config(text=App.numpad_instance.current_value)
+        App.storage_data["Integral_Coefficient"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
     def click3(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label3.cget('text'),
-            f"{self.d_k.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
-        App.global_controller.frames["Frame16"].d_k.config(text=self.numpad_instance.current_value)
-        App.storage_data["Differential_Coefficient"] = self.numpad_instance.current_value
+            f"{self.d_k.cget('text')} -> {App.numpad_instance.current_value}", "SettingsPID"))
+        App.global_controller.frames["Frame16"].d_k.config(text=App.numpad_instance.current_value)
+        App.storage_data["Differential_Coefficient"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click4(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label4.cget('text'),
-            f"{self.const_integral.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
-        App.global_controller.frames["Frame16"].const_integral.config(text=self.numpad_instance.current_value)
-        App.storage_data["Constant_Integrations"] = self.numpad_instance.current_value
+            f"{self.const_integral.cget('text')} -> {App.numpad_instance.current_value}", "SettingsPID"))
+        App.global_controller.frames["Frame16"].const_integral.config(text=App.numpad_instance.current_value)
+        App.storage_data["Constant_Integrations"] = App.numpad_instance.current_value
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
     def click5(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(
             datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label6.cget('text'),
-            f"{self.setpoint.cget('text')} -> {self.numpad_instance.current_value}", "SettingsPID"))
-        App.global_controller.frames["Frame16"].setpoint.config(text=self.numpad_instance.current_value)
-        App.storage_data["Setting_Substitution"] = self.numpad_instance.current_value
+            f"{self.setpoint.cget('text')} -> {App.numpad_instance.current_value}", "SettingsPID"))
+        App.global_controller.frames["Frame16"].setpoint.config(text=App.numpad_instance.current_value)
+        App.storage_data["Setting_Substitution"] = App.numpad_instance.current_value
         App.global_controller.frames["Frame2"].update_setpoints()
         json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
 
@@ -5790,6 +6153,8 @@ class Frame16(tk.Frame):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def update_switch(self, event):
         if self.Switch_Flat_img.cget("file") == "new_images/Switch-0.png":
@@ -6077,6 +6442,11 @@ class Frame18(tk.Frame):
         self.canvas.create_image(753, 126, image=self.img_hourglass)
         self.canvas.create_image(753, 173, image=self.img_hourglass)
 
+        self.shield1 = self.canvas.create_image(633.25, 78.75, image=self.img_shield)
+        self.shield2 = self.canvas.create_image(633.25, 123.75, image=self.img_shield)
+        self.shield3 = self.canvas.create_image(633.25, 171.75, image=self.img_shield)
+        self.shield4 = self.canvas.create_image(633.25, 245.75, image=self.img_shield)
+
         self.canvas.create_line(220, 220, 790, 220, fill="gray", width=2)
 
         self.label1 = tk.Label(self.canvas, text="Копирование данных на USB носитель:", fg='white', bg='black',
@@ -6098,14 +6468,83 @@ class Frame18(tk.Frame):
                                font=('Roboto Bold', 10))
         self.label6.place(x=252, y=307)
 
+        # Кликабельная зона
         self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_first_button = self.canvas.create_image(694.5, 81, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
+
         self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_second_button = self.canvas.create_image(694.5, 126, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
+
         self.Switch_Flat_third_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_third_button = self.canvas.create_image(694.5, 173, image=self.Switch_Flat_third_img)
+        self.canvas.tag_bind(self.Switch_Flat_third_button, "<Button-1>", lambda event: self.check_password("switch3"))
+
         self.Switch_Flat_fourth_img = PhotoImage(file=r"new_images/Switch-0.png")
         self.Switch_Flat_fourth_button = self.canvas.create_image(694.5, 246, image=self.Switch_Flat_fourth_img)
+        self.canvas.tag_bind(self.Switch_Flat_fourth_button, "<Button-1>", lambda event: self.check_password("switch4"))
+        # Кликабельная зона
+
+    def check_password(self, word): #Сверка пароля и вызов необходимого метода, путем слова
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access <= 5:
+                if word == "switch1": #Переключатель
+                    self.update_switch_one()
+                elif word == "switch2": #Первое поле
+                    self.update_switch_two()
+                elif word == "switch3": #Второе поле
+                    self.update_switch_three()
+                elif word == "switch4": #Второе поле
+                    self.update_switch_four()
+            else:
+                self.keypad_instance = keypad.Keypad()
+                self.keypad_instance.grab_set()
+                self.keypad_instance.callback_function = self.set_access
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+        if App.LVL_access > 5 :
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
+
+    def update_switch_one(self):
+        if self.Switch_Flat_first_img.cget("file") == "new_images/Switch-0.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-1.png")
+        elif self.Switch_Flat_first_img.cget("file") == "new_images/Switch-1.png":
+            self.Switch_Flat_first_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_first_button = self.canvas.create_image(694.5, 81, image=self.Switch_Flat_first_img)
+        self.canvas.tag_bind(self.Switch_Flat_first_button, "<Button-1>", lambda event: self.check_password("switch1"))
+
+    def update_switch_two(self):
+        if self.Switch_Flat_second_img.cget("file") == "new_images/Switch-0.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-1.png")
+        elif self.Switch_Flat_second_img.cget("file") == "new_images/Switch-1.png":
+            self.Switch_Flat_second_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_second_button = self.canvas.create_image(694.5, 126, image=self.Switch_Flat_second_img)
+        self.canvas.tag_bind(self.Switch_Flat_second_button, "<Button-1>", lambda event: self.check_password("switch2"))
+
+    def update_switch_three(self, event):
+        if self.Switch_Flat_third_img.cget("file") == "new_images/Switch-0.png":
+            self.Switch_Flat_third_img = PhotoImage(file=r"new_images/Switch-1.png")
+        elif self.Switch_Flat_third_img.cget("file") == "new_images/Switch-1.png":
+            self.Switch_Flat_third_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_third_button = self.canvas.create_image(694.5, 173, image=self.Switch_Flat_third_img)
+        self.canvas.tag_bind(self.Switch_Flat_third_button, "<Button-1>", lambda event: self.check_password("switch3"))
+
+    def update_switch_four(self, event):
+        if self.Switch_Flat_fourth_img.cget("file") == "new_images/Switch-0.png":
+            self.Switch_Flat_fourth_img = PhotoImage(file=r"new_images/Switch-1.png")
+        elif self.Switch_Flat_fourth_img.cget("file") == "new_images/Switch-1.png":
+            self.Switch_Flat_fourth_img = PhotoImage(file=r"new_images/Switch-0.png")
+        self.Switch_Flat_fourth_button = self.canvas.create_image(694.5, 246, image=self.Switch_Flat_fourth_img)
+        self.canvas.tag_bind(self.Switch_Flat_fourth_button, "<Button-1>", lambda event: self.check_password("switch4"))
 
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
@@ -6549,30 +6988,32 @@ class Frame19(tk.Frame, NetInfo):
     def check_password(self, word): #Сверка пароля и вызов необходимого метода, путем слова
         print("check_password")
         if App.session_access == True:
-            if App.LVL_access < 2:
+            if App.LVL_access <= 5:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "switch": #Переключатель
                     print("CALL FUNCTION")
-                    self.update_switch(self)
+                    self.update_switch()
                 elif word == "click1": #Первое поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label2.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click1
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label2.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.time_display_1.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click1
                 elif word == "click2": #Второе поле
-                    self.numpad_instance = numpad.Numpad(None, "INT")
-                    self.numpad_instance.min_value.config(text="0")
-                    self.numpad_instance.max_value.config(text="30")
-                    self.numpad_instance.new_title(self.label3.cget('text') + " ")
-                    self.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
-                    self.numpad_instance.grab_set()
-                    self.numpad_instance.callback_function = self.click2
+                    App.numpad_instance = numpad.Numpad(None, "INT")
+                    App.numpad_instance.min_value.config(text="0")
+                    App.numpad_instance.max_value.config(text="30")
+                    App.numpad_instance.new_title(self.label3.cget('text') + " ")
+                    App.numpad_instance.entry_label.config(text=self.time_display_2.cget('text'))
+                    App.numpad_instance.grab_set()
+                    App.numpad_instance.callback_function = self.click2
                 json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
             else:
-                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+                self.keypad_instance = keypad.Keypad()
+                self.keypad_instance.grab_set()
+                self.keypad_instance.callback_function = self.set_access
         else:
             self.keypad_instance = keypad.Keypad()
             self.keypad_instance.grab_set()
@@ -6584,16 +7025,18 @@ class Frame19(tk.Frame, NetInfo):
         App.session_access = True
         App.LVL_access = self.keypad_instance.access
         App.shields_hide()
+        if App.LVL_access > 5:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def click1(self):
-        App.storage_data["Time_screensaver_settings_panel"] = self.numpad_instance.current_value
-        App.global_controller.frames["Frame19"].time_display_1.config(text=self.numpad_instance.current_value)
+        App.storage_data["Time_screensaver_settings_panel"] = App.numpad_instance.current_value
+        App.global_controller.frames["Frame19"].time_display_1.config(text=App.numpad_instance.current_value)
     def click2(self):
-        App.storage_data["Time_display_settings_panel"] = self.numpad_instance.current_value
-        App.global_controller.frames["Frame19"].time_display_2.config(text=self.numpad_instance.current_value)
+        App.storage_data["Time_display_settings_panel"] = App.numpad_instance.current_value
+        App.global_controller.frames["Frame19"].time_display_2.config(text=App.numpad_instance.current_value)
 
 
-    def update_switch(self, event=None):  # Смена переключателей
+    def update_switch(self):  # Смена переключателей
         print("step 1")
         if self.Switch_Flat_img.cget("file") == r"new_images/Switch-0.png":
             self.Switch_Flat_img = PhotoImage(file=r"new_images/Switch-1.png")
@@ -6721,6 +7164,7 @@ class Frame20(tk.Frame):
         self.img_mail = PhotoImage(file=r"new_images/mail.png")
         self.img_site = PhotoImage(file=r"new_images/site.png")
         self.img_support = PhotoImage(file=r"new_images/support.png")
+        self.img_shield = PhotoImage(file=r"new_images/shield.png")
 
         self.canvas.create_line(220, 160, 790, 160, fill="gray", width=2)
         self.canvas.create_line(220, 240, 790, 240, fill="gray", width=2)
@@ -6786,19 +7230,39 @@ class Frame20(tk.Frame):
         self.pumpsAll_label.place(x=444, y=207)
         self.pumpsWorking_label = tk.Label(self.canvas, text=App.storage_data["Pumps"], fg='white', bg='black', font=('Roboto Bold', 12))
         self.pumpsWorking_label.place(x=651, y=207)
-        self.pumpsWorking_label.bind("<Button-1>", lambda event: self.numpad_for_pumps())
+        self.pumpsWorking_label.bind("<Button-1>", lambda event: self.check_password())
 
-    def numpad_for_pumps(self):
-        self.numpad_instance = numpad.Numpad(None, "INT")
-        self.numpad_instance.max_value.config(text="6")
-        self.numpad_instance.min_value.config(text="1")
-        self.numpad_instance.new_title("Насосы ")
-        self.numpad_instance.entry_label.config(text=self.pumpsWorking_label.cget('text'))
-        self.numpad_instance.grab_set()
-        self.numpad_instance.callback_function = self.change_active_pumps
+        self.shield1 = self.canvas.create_image(695.25, 216.75, image=self.img_shield)
+
+    def check_password(self):
+        print("check_password")
+        if App.session_access == True:
+            if App.LVL_access <= 0:
+                App.numpad_instance = numpad.Numpad(None, "INT")
+                App.numpad_instance.max_value.config(text="6")
+                App.numpad_instance.min_value.config(text="1")
+                App.numpad_instance.new_title("Насосы ")
+                App.numpad_instance.entry_label.config(text=self.pumpsWorking_label.cget('text'))
+                App.numpad_instance.grab_set()
+                App.numpad_instance.callback_function = self.change_active_pumps
+                json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
+            else:
+                messagebox.showerror("Ошибка!", "Недостаточно прав!")
+        else:
+            self.keypad_instance = keypad.Keypad()
+            self.keypad_instance.grab_set()
+            self.keypad_instance.callback_function = self.set_access
+
+    def set_access(self, event=None):
+        print("set_access")
+        App.session_access = True
+        App.LVL_access = self.keypad_instance.access
+        App.shields_hide()
+        if App.LVL_access > 0:
+            messagebox.showerror("Ошибка!", "Недостаточно прав!")
 
     def change_active_pumps(self):
-        App.Pumps_active = int(self.numpad_instance.current_value)
+        App.Pumps_active = int(App.numpad_instance.current_value)
         App.storage_data["Pumps"] = str(App.Pumps_active)
         json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
         App.global_controller.frames["Frame20"].pumpsWorking_label.config(text=App.Pumps_active)
