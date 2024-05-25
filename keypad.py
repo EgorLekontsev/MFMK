@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import PhotoImage, Canvas, messagebox
+
 class Keypad(tk.Toplevel):
     def __init__(self, master=None):
         super().__init__(master)
@@ -15,8 +15,9 @@ class Keypad(tk.Toplevel):
             highlightthickness=0,
             relief="ridge")
         self.canvas.place(x=0, y=0)
-
+        # Список паролей и уровней прав
         self.passwords = {"7531":0, "159":5, "221":7}
+        # Введеный пароль
         self.enter_password = ""
 
         self.entry_label = tk.Label(self.canvas, text="", fg='white', bg='black', font=('Roboto Bold', 16), width=20, anchor='e')
@@ -134,11 +135,13 @@ class Keypad(tk.Toplevel):
         self.enter_password = self.enter_password[:-1]
         self.entry_label.config(text=new_text)
     def enter_button_func(self):
+        # Смотрим есть ли такой пароль
         if self.passwords.get(self.enter_password, 100) != 100:
             self.access = self.passwords.get(self.enter_password)
             self.entry_label.config(text="")
             print("Успешный вход!")
             print(f"Уровень доступа: {self.access}")
+            # После ввода вызов обратной функции, если она есть
             if self.callback_function:
                 self.callback_function()
                 self.destroy()

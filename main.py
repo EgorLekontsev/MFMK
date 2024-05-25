@@ -50,6 +50,8 @@ Frame20 - Контакты
 class App(tk.Tk):
     # Основной класс с характеристиками окна
     # Будет содержать какие-то глобальные значения внутри сессии
+
+    #Путь для ведения журнала на сегодня
     file_path = "data/desktop_journal/"+datetime.now().strftime("%d.%m.%Y")+".json"
     if not os.path.exists(file_path):
         json_methods.save_data(file_path, [])
@@ -57,11 +59,11 @@ class App(tk.Tk):
     storage_data = json_methods.load_data(r"data/desktop_storage.json")
 
     Pumps_active = int(storage_data["Pumps"])
-    LVL_access = 10
-    session_access = False
-    global_controller = None
-    numpad_instance = 0
-    after_function = 0
+    LVL_access = 10  #Уровень доступа - Гость
+    session_access = False #Доступ неактивен
+    global_controller = None #Глобальный контроллер
+    numpad_instance = 0 #Экземпляр нумпада
+    after_function = 0 #Функция для обновления таймера щитов, если вновь был введен пароль
 
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -89,7 +91,7 @@ class App(tk.Tk):
         self.show_frame("Frame1_1")
         self.update_clock()
 
-        self.protocol("WM_DELETE_WINDOW", self.on_closing)
+        self.protocol("WM_DELETE_WINDOW", self.on_closing) #Протокол при закрытии окна
 
     def on_closing(self):
         print("TESTING")
@@ -410,9 +412,9 @@ class App(tk.Tk):
                                                                      state='hidden')
         if App.after_function != 0:
             App.global_controller.frames["Frame1_1"].after_cancel(App.after_function)
-        App.after_function = App.global_controller.frames["Frame1_1"].after(10000, App.shields_show)
+        App.after_function = App.global_controller.frames["Frame1_1"].after(10000, App.shields_show) #Таймер сессии
 
-    def shields_show(event=None):
+    def shields_show(event=None): #Показ щитов
         if App.LVL_access == 0:
             App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield1,
                                                                      state='normal')
@@ -723,7 +725,7 @@ class App(tk.Tk):
             App.global_controller.frames["Frame2"].canvas.itemconfig(App.global_controller.frames["Frame2"].shield6,
                                                                      state='normal')
         if App.numpad_instance != 0:
-            if App.numpad_instance.winfo_exists():
+            if App.numpad_instance.winfo_exists(): #Закрытие нумпада после конца сессии
                 App.numpad_instance.destroy()
         App.session_access = False
         App.LVL_access = 10
@@ -871,12 +873,13 @@ class Frame1_1(tk.Frame):
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
+        #Отрисовка графика, попытка номер 71
         self.red_line = self.canvas.create_line(0, 0, 0, 0, fill="red", width=2)
         self.x = 45
         self.y = 302
 
-        #self.initialization_graphic()
-        self.initialization_pumps()
+        #self.initialization_graphic() #Отрисовка графика в методе с часами!!! Ниже
+        self.initialization_pumps() # Отрисовка насосов
 
     def initialization_graphic(self):
         if self.x == 730:
@@ -970,7 +973,7 @@ class Frame1_1(tk.Frame):
         self.canvas.tag_bind(self.right_button, "<Button-1>", self.update_right)
     def update_clock(self, current_time):
         self.clock_label.config(text=current_time)
-        self.initialization_graphic()
+        self.initialization_graphic() #Отрисовка графика
 
 class Frame1_2(tk.Frame):
     def __init__(self, parent, controller):
@@ -1043,7 +1046,7 @@ class Frame1_2(tk.Frame):
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
 
-        self.initialization_pumps()
+        self.initialization_pumps() #Отрисовка насосов
     def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
             case 1:
@@ -1202,7 +1205,7 @@ class Frame1_3(tk.Frame):
         self.button6_button = self.canvas.create_image(710, 200, image=self.button6_img)
         self.canvas.tag_bind(self.button6_button, "<Button-1>", self.update_button6)
 
-        self.initialization_pumps()
+        self.initialization_pumps() #Отрисовка насосов
 
     def update_button1(self, event):
         if self.button1_img.cget("file") == r"new_images/OFF.png":
@@ -1390,7 +1393,7 @@ class Frame1_4(tk.Frame):
         self.label5 = tk.Label(self.canvas, text="Бар",
                                fg='white', bg='black',
                                font=('Roboto Bold', 10))
-        self.initialization_pumps()
+        self.initialization_pumps() #Отрисовка насосов
 
     def initialization_pumps(self, Pumps_active=App.Pumps_active):
         match (Pumps_active):
@@ -1918,10 +1921,10 @@ class Frame2(tk.Frame):
                             command=lambda: controller.show_frame("Frame20"))
         button8.place(x=0, y=420, width=200, height=60)
 
-        self.update_type_day()
-        self.after(500, self.update_setpoints)
+        self.update_type_day() #Обновление типа дня
+        self.after(500, self.update_setpoints) #Обновление уставок через полсекунды при старте программы
 
-    def update_setpoints(self):
+    def update_setpoints(self): #Установка уставок на фреймах
         if self.type_setpoint.cget('text') == "Пользователь":
             self.current_setpoint.config(text=self.setpoint_value.cget('text'))
         elif self.type_setpoint.cget('text') == "PID":
@@ -1933,7 +1936,7 @@ class Frame2(tk.Frame):
         App.global_controller.frames["Frame16"].current_setpoint.config(text=self.current_setpoint.cget('text'))
 
 
-    def colors_button(self, choice):
+    def colors_button(self, choice): #Установка цвета кнопок
         match (choice):
             case "buttonblue":
                 return "#0F91DA"
@@ -1942,7 +1945,7 @@ class Frame2(tk.Frame):
             case "buttongray":
                 return "#3C3C3C"
 
-    def update_type_day(self):
+    def update_type_day(self): #Обновление типа дня
         self.button_dict = {"Понедельник": self.button_day1.cget('bg'), "Вторник": self.button_day2.cget('bg'),
                             "Среда": self.button_day3.cget('bg'),
                             "Четверг": self.button_day4.cget('bg'), "Пятница": self.button_day5.cget('bg'),
@@ -1961,28 +1964,28 @@ class Frame2(tk.Frame):
             if App.LVL_access <= 7:
                 App.global_controller.frames["Frame8"].update_tree(datetime.now().strftime("%d.%m.%Y"))
                 if word == "click1":
-                    App.numpad_instance = numpad.Numpad(None, "FLOAT2")
-                    App.numpad_instance.min_value.config(text="0.00")
-                    App.numpad_instance.max_value.config(text="99.99")
-                    App.numpad_instance.new_title("Уставка пользователя ")
+                    App.numpad_instance = numpad.Numpad(None, "FLOAT2") #Ключевое слово
+                    App.numpad_instance.min_value.config(text="0.00") #Минимум
+                    App.numpad_instance.max_value.config(text="99.99") #Максимум
+                    App.numpad_instance.new_title("Уставка пользователя ") # Передаем название поля
                     App.numpad_instance.entry_label.config(text=self.setpoint_value.cget('text'))
-                    App.numpad_instance.grab_set()
+                    App.numpad_instance.grab_set() #Захват главного окна
                     App.numpad_instance.callback_function = self.click1
                 elif word == "click2":
-                    App.numpad_instance = numpad.Numpad(None, "INT")
-                    App.numpad_instance.min_value.config(text="0")
-                    App.numpad_instance.max_value.config(text="23")
-                    App.numpad_instance.new_title("Будни утро(часы) ")
+                    App.numpad_instance = numpad.Numpad(None, "INT") #Ключевое слово
+                    App.numpad_instance.min_value.config(text="0") #Минимум
+                    App.numpad_instance.max_value.config(text="23") #Максимум
+                    App.numpad_instance.new_title("Будни утро(часы) ") # Передаем название поля
                     App.numpad_instance.entry_label.config(text=self.weekdays_morning_h.cget('text'))
-                    App.numpad_instance.grab_set()
+                    App.numpad_instance.grab_set() #Захват главного окна
                     App.numpad_instance.callback_function = self.click2
                 elif word == "click3":
-                    App.numpad_instance = numpad.Numpad(None, "INT")
-                    App.numpad_instance.min_value.config(text="0")
-                    App.numpad_instance.max_value.config(text="23")
-                    App.numpad_instance.new_title("Будни день(часы) ")
+                    App.numpad_instance = numpad.Numpad(None, "INT") #Ключевое слово
+                    App.numpad_instance.min_value.config(text="0") #Минимум
+                    App.numpad_instance.max_value.config(text="23") #Максимум
+                    App.numpad_instance.new_title("Будни день(часы) ") # Передаем название поля
                     App.numpad_instance.entry_label.config(text=self.weekdays_afternoon_h.cget('text'))
-                    App.numpad_instance.grab_set()
+                    App.numpad_instance.grab_set() #Захват главного окна
                     App.numpad_instance.callback_function = self.click3
                 elif word == "click4":
                     App.numpad_instance = numpad.Numpad(None, "INT")
@@ -2241,17 +2244,17 @@ class Frame2(tk.Frame):
             else:
                 messagebox.showerror("Ошибка!", "Недостаточно прав!")
         else:
-            self.keypad_instance = keypad.Keypad()
-            self.keypad_instance.grab_set()
+            self.keypad_instance = keypad.Keypad() # Вызов экземпляра кейпада
+            self.keypad_instance.grab_set() # Захват главного окна
             self.keypad_instance.callback_function = self.set_access
 
     def click1(self):
         App.global_controller.frames["Frame8"].tree.insert("", tk.END, values=(datetime.now().strftime("%d.%m.%Y"), datetime.now().strftime("%H:%M:%S"), self.label2.cget('text'), f"{self.setpoint_value.cget('text')} -> {App.numpad_instance.current_value}", "SetpointPlanner"))
         App.global_controller.frames["Frame2"].setpoint_value.config(text=App.numpad_instance.current_value)
-        App.storage_data["User_Setpoint"] = App.numpad_instance.current_value
-        json_methods.save_data(r"data/desktop_storage.json", App.storage_data)
+        App.storage_data["User_Setpoint"] = App.numpad_instance.current_value # Запись в ОП
+        json_methods.save_data(r"data/desktop_storage.json", App.storage_data) #Сохранение в JSON
         self.update_setpoints()
-        json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data())
+        json_methods.save_data(App.file_path, App.global_controller.frames["Frame8"].save_journal_data()) #Сохранение действия в журнал
     def click2(self):
         if len(App.numpad_instance.current_value) == 1:
             App.numpad_instance.current_value = "0" + App.numpad_instance.current_value
